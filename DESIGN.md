@@ -1,162 +1,255 @@
----
-name: Technical Editorial
-colors:
-  surface: '#f9f9f9'
-  surface-dim: '#dadada'
-  surface-bright: '#f9f9f9'
-  surface-container-lowest: '#ffffff'
-  surface-container-low: '#f3f3f3'
-  surface-container: '#eeeeee'
-  surface-container-high: '#e8e8e8'
-  surface-container-highest: '#e2e2e2'
-  on-surface: '#1a1c1c'
-  on-surface-variant: '#5c4037'
-  inverse-surface: '#2f3131'
-  inverse-on-surface: '#f0f1f1'
-  outline: '#916f65'
-  outline-variant: '#e6beb2'
-  surface-tint: '#ad3300'
-  primary: '#a93100'
-  on-primary: '#ffffff'
-  primary-container: '#d34000'
-  on-primary-container: '#fffbff'
-  inverse-primary: '#ffb59e'
-  secondary: '#5f5e5e'
-  on-secondary: '#ffffff'
-  secondary-container: '#e5e2e1'
-  on-secondary-container: '#656464'
-  tertiary: '#005da8'
-  on-tertiary: '#ffffff'
-  tertiary-container: '#0076d3'
-  on-tertiary-container: '#fdfcff'
-  error: '#ba1a1a'
-  on-error: '#ffffff'
-  error-container: '#ffdad6'
-  on-error-container: '#93000a'
-  primary-fixed: '#ffdbd0'
-  primary-fixed-dim: '#ffb59e'
-  on-primary-fixed: '#3a0b00'
-  on-primary-fixed-variant: '#842500'
-  secondary-fixed: '#e5e2e1'
-  secondary-fixed-dim: '#c9c6c5'
-  on-secondary-fixed: '#1c1b1b'
-  on-secondary-fixed-variant: '#474646'
-  tertiary-fixed: '#d4e3ff'
-  tertiary-fixed-dim: '#a4c9ff'
-  on-tertiary-fixed: '#001c39'
-  on-tertiary-fixed-variant: '#004884'
-  background: '#f9f9f9'
-  on-background: '#1a1c1c'
-  surface-variant: '#e2e2e2'
-typography:
-  display:
-    fontFamily: Inter
-    fontSize: 80px
-    fontWeight: '800'
-    lineHeight: '1.0'
-    letterSpacing: -0.04em
-  headline-lg:
-    fontFamily: Inter
-    fontSize: 48px
-    fontWeight: '700'
-    lineHeight: '1.1'
-    letterSpacing: -0.02em
-  headline-lg-mobile:
-    fontFamily: Inter
-    fontSize: 32px
-    fontWeight: '700'
-    lineHeight: '1.2'
-    letterSpacing: -0.02em
-  headline-md:
-    fontFamily: Inter
-    fontSize: 24px
-    fontWeight: '600'
-    lineHeight: '1.3'
-  body-lg:
-    fontFamily: Inter
-    fontSize: 18px
-    fontWeight: '400'
-    lineHeight: '1.6'
-  body-md:
-    fontFamily: Inter
-    fontSize: 16px
-    fontWeight: '400'
-    lineHeight: '1.5'
-  mono-label:
-    fontFamily: JetBrains Mono
-    fontSize: 13px
-    fontWeight: '500'
-    lineHeight: '1.0'
-  mono-code:
-    fontFamily: JetBrains Mono
-    fontSize: 14px
-    fontWeight: '400'
-    lineHeight: '1.6'
-spacing:
-  unit: 4px
-  gutter: 24px
-  margin-desktop: 64px
-  margin-mobile: 20px
-  container-max: 1440px
----
+# Portfolio Design System
 
-## Brand & Style
+## Role Of This File
 
-This design system is built for precision-engineered documentation and high-performance technical environments. The brand personality is authoritative, clinical, and unapologetically functional. It draws heavily from **Minimalism** and **Neo-Brutalism**, utilizing a monochrome foundation to allow content to lead, while employing a single high-visibility accent to denote action and urgency.
+`DESIGN.md` is the active source of truth for the portfolio visual system.
 
-The aesthetic evokes the feeling of a modern technical manual or a high-end architectural specification. It prioritizes clarity, structural integrity, and the beauty of systematic information hierarchy. The target audience includes developers, engineers, and designers who value density without clutter and find beauty in rigorous documentation.
+It should answer four questions:
 
-## Colors
+1. What impression should the product create?
+2. Which visual rules are fixed for MVP?
+3. Which tokens and themes must exist in code?
+4. How should layout, typography, and components behave?
 
-The palette is strictly constrained to ensure maximum impact for the "International Orange" accent.
+If this file conflicts with old Stitch notes or previous summaries, this file wins.
 
-- **Primary (#FF4F00):** Used exclusively for primary calls-to-action, critical status indicators, and active states. It is the "signal" in the noise.
-- **Monochrome Foundation:** Use `#0A0A0A` for primary text and structural elements. `#FAFAFA` and `#FFFFFF` provide the canvas.
-- **Functional Greys:** Use a neutral scale for secondary text and borders to maintain a clinical, "un-designed" feel.
-- **Semantic Usage:** Red, green, and yellow should be avoided unless strictly necessary for status; even then, they should be desaturated to not compete with the International Orange.
+## Product Signal
+
+The portfolio should read as a reliable hiring tool for a remote Middle Frontend / Next.js role.
+
+The desired first impression is:
+
+> production-ready, structured, technically strong, and visually restrained
+
+This is not a creative showpiece, an experimental art portfolio, or a generic template landing page.
+
+## Non-Goals
+
+- No glossy startup aesthetic.
+- No purple-blue gradient identity.
+- No decorative blobs or empty visual tricks.
+- No heavy animation that slows recruiter scanning.
+- No overly playful tone.
+- No design choices that make the content feel secondary.
+
+## Visual Direction
+
+Chosen direction: `Clean Editorial Technical`.
+
+The visual language combines:
+
+- editorial hierarchy;
+- technical documentation clarity;
+- strict geometry;
+- monochrome surfaces with one strong accent;
+- dense but readable information blocks.
+
+The accent color is the only intentional signal in the system. Everything else should support structure, contrast, and reading rhythm.
+
+## Theme Strategy
+
+MVP includes a theme selector with four curated schemes. Themes change atmosphere, but they must preserve the same hierarchy, spacing, contrast discipline, and component shapes.
+
+| Theme | `data-theme` value | Use |
+| --- | --- | --- |
+| Editorial Light | `light` | default theme for recruiters and general browsing |
+| Graphite Dark | `dark` | darker technical reading mode |
+| Warm Neutral | `warm` | softer editorial alternative |
+| High Contrast | `contrast` | strict accessibility-first mode |
+
+## Core Token Contract
+
+For MVP, all styling should derive from this token contract before any component-specific expansion:
+
+```css
+--background
+--foreground
+--surface
+--surface-muted
+--border
+--accent
+--accent-foreground
+--muted
+--muted-foreground
+--ring
+--radius
+--font-sans
+--font-mono
+```
+
+Rules:
+
+- `--accent` is reserved for primary action, active state, and high-signal UI only.
+- `--radius` stays `0rem` for MVP.
+- New tokens should only be added when a real component or layout requirement cannot be expressed through the core set.
+- If shadcn/ui is introduced later, map its semantic variables from this contract instead of inventing a second palette.
+
+## Theme Tokens
+
+```css
+[data-theme='light'] {
+  --background: #f9f9f9;
+  --foreground: #000000;
+  --surface: #ffffff;
+  --surface-muted: #f0f0f0;
+  --border: #e5e5e5;
+  --accent: #ff4f00;
+  --accent-foreground: #ffffff;
+  --muted: #f3f3f3;
+  --muted-foreground: #666666;
+  --ring: #ff4f00;
+  --radius: 0rem;
+}
+
+[data-theme='dark'] {
+  --background: #0a0a0a;
+  --foreground: #fafafa;
+  --surface: #141414;
+  --surface-muted: #1f1f1f;
+  --border: #262626;
+  --accent: #ff4f00;
+  --accent-foreground: #ffffff;
+  --muted: #1a1a1a;
+  --muted-foreground: #a0a0a0;
+  --ring: #ff4f00;
+  --radius: 0rem;
+}
+
+[data-theme='warm'] {
+  --background: #f4f1ea;
+  --foreground: #1a1a1a;
+  --surface: #faf8f4;
+  --surface-muted: #efebe0;
+  --border: #ded9d1;
+  --accent: #ff4f00;
+  --accent-foreground: #ffffff;
+  --muted: #eae5d8;
+  --muted-foreground: #5c5c5c;
+  --ring: #ff4f00;
+  --radius: 0rem;
+}
+
+[data-theme='contrast'] {
+  --background: #ffffff;
+  --foreground: #000000;
+  --surface: #ffffff;
+  --surface-muted: #ffffff;
+  --border: #000000;
+  --accent: #ff4f00;
+  --accent-foreground: #ffffff;
+  --muted: #000000;
+  --muted-foreground: #000000;
+  --ring: #000000;
+  --radius: 0rem;
+}
+```
 
 ## Typography
 
-The typography system relies on the tension between the massive, aggressive weight of **Inter** (tightened for a neo-grotesque feel) and the technical precision of **JetBrains Mono**.
+- Sans family: `Inter`.
+- Mono family: `JetBrains Mono`.
+- Font loading should use `next/font` with CSS variables.
+- Display and heading text should be tight, dense, and confident.
+- Body text must stay readable first; avoid over-tightening long copy.
+- Mono is for labels, metadata, dates, filters, badges, and technical support text.
+- Prefer uppercase mono labels for section metadata and UI chrome.
 
-- **Headings:** Should be set with tight letter-spacing and low line-height to create dense "blocks" of text.
-- **Accents:** Use JetBrains Mono for metadata, labels, small captions, and technical data points. 
-- **Body:** Inter provides high legibility for long-form documentation.
-- **Case:** Use All-Caps for Monospaced labels to reinforce the "technical spec" aesthetic.
+### Recommended Scale
 
-## Layout & Spacing
+- Display: `72px-80px`, weight `800`, line-height `1.0-1.05`.
+- Large heading: `48px`, weight `700`, line-height `1.1`.
+- Large heading mobile: `32px`, weight `700`, line-height `1.2`.
+- Section heading: `24px`, weight `600`, line-height `1.3`.
+- Body large: `18px`, line-height `1.6`.
+- Body default: `16px`, line-height `1.5`.
+- Mono label: `12px-13px`, uppercase.
 
-The design system utilizes a **12-column editorial grid** that emphasizes asymmetrical layouts and intentional "dead space."
+## Layout And Spacing
 
-- **Grid:** Use a 12-column grid on desktop. Large display type should often span 8-10 columns, while body text is restricted to 6 columns for optimal line length.
-- **Rhythm:** All spacing is based on a 4px baseline grid. Use 8px, 16px, 24px, 32px, 48px, and 64px increments.
-- **Density:** Technical areas (dashboards, code blocks) should use tight 8px/12px spacing, while editorial sections (articles, landing pages) should use 64px+ margins to provide breathing room.
-- **Breakpoints:** 
-  - Mobile: 4 columns, 20px margins.
-  - Tablet: 8 columns, 40px margins.
-  - Desktop: 12 columns, 64px margins.
+- Use a 4px spacing base.
+- Preferred spacing steps: `4, 8, 12, 16, 24, 32, 48, 64, 80, 120, 160`.
+- Desktop layout uses a 12-column grid.
+- Tablet uses 8 columns.
+- Mobile uses 4 columns.
+- Desktop page margin: `64px`.
+- Mobile page margin: `20px`.
+- Max container width: `1440px`.
 
-## Elevation & Depth
+Practical rule:
 
-This design system rejects traditional shadows in favor of **Tonal Layers** and **Bold Outlines**.
+- hero and editorial sections may breathe;
+- proof blocks, metadata rows, and technical sections should stay dense;
+- body copy should usually sit within 5-6 columns for readable line length.
 
-- **Flat Construction:** No blur-based shadows. Objects are separated by hair-line borders (1px) in `#E5E5E5` or `#0A0A0A`.
-- **Tonal Stepping:** Use `#FFFFFF` for the base layer and `#FAFAFA` for inset containers or sidebars. 
-- **Active State Depth:** Instead of a shadow, use a solid 2px or 4px offset "hard shadow" in `#0A0A0A` for interactive elements that need to pop, creating a tactile, paper-like lift.
-- **Overlays:** Modals should use a solid `#0A0A0A` backdrop at 40% opacity with no blur, maintaining the crispness of the interface.
+## Surfaces, Borders, And Depth
 
-## Shapes
+- No blur-based soft shadows as the primary separation mechanism.
+- Default separation comes from tone and border.
+- Borders are `1px` by default.
+- Hard offset shadows may be used sparingly for active or tactile states.
+- All main UI surfaces use sharp corners.
+- Overlays should stay crisp, not glassy.
 
-The shape language is strictly **Sharp (0px)**. 
+## Component Rules
 
-Every element—from buttons and input fields to cards and images—must have 90-degree corners. This reinforces the technical, grid-based nature of the system. Circular elements are permitted only for specific functional icons (e.g., status pips) or user avatars, but even those should ideally be contained within square frames.
+### Buttons
 
-## Components
+- Primary button: accent background, accent foreground text, mono label, uppercase.
+- Secondary button: transparent or surface background, visible border, no rounded corners.
+- Hover states should feel precise, not playful.
 
-- **Buttons:** Rectangular with 1px black borders. Primary button is solid International Orange with white text. Secondary button is white with black text and border. Use JetBrains Mono for button labels.
-- **Input Fields:** 1px borders on all sides. On focus, the border thickens to 2px International Orange. No rounded corners.
-- **Chips/Tags:** Small JetBrains Mono text inside a light grey (`#F0F0F0`) box. Use for metadata or technical tags.
-- **Cards:** Defined by a 1px `#E5E5E5` border. No shadow. The header of the card should be separated by a 1px horizontal rule.
-- **Code Blocks:** Background `#0A0A0A` with `#FAFAFA` JetBrains Mono text. Line numbers are mandatory for the technical aesthetic.
-- **Lists:** Unordered lists use a small square bullet (4px x 4px) in International Orange rather than a standard circle.
-- **Progress Bars:** Solid International Orange fill on a `#E5E5E5` background. No animation except for the width transition.
+### Cards
+
+- Flat surface with border.
+- No generic drop shadow.
+- Project cards should prioritize screenshot, title, role, stack, and outcome.
+- Metadata uses mono text.
+
+### Inputs
+
+- Visible border on all sides.
+- Focus state should rely on accent border or ring.
+- No rounded corners.
+
+### Tags And Metadata
+
+- Use mono.
+- Keep them small and structured.
+- Backgrounds should stay neutral so the accent remains rare.
+
+### Code And Technical Blocks
+
+- Dark technical blocks are allowed even in light themes.
+- Mono content should remain compact and readable.
+- Avoid decorative syntax-card treatments.
+
+## Motion And Interaction
+
+- Motion is supportive, not central.
+- Prefer reveal, hover, and state transitions over theatrical timeline animation.
+- All motion must respect `prefers-reduced-motion`.
+- Theme switching should feel immediate and stable.
+- Recruiter scan speed is more important than visual spectacle.
+
+## Accessibility Requirements
+
+- Default themes should target WCAG AA.
+- High contrast theme should be the fallback accessibility-first mode.
+- Focus indicators must be obvious and never rely on color alone.
+- Text contrast and interactive states matter more than aesthetic purity.
+
+## Implementation Notes For The Next Pass
+
+- Put theme state on the root element with a `data-theme` attribute.
+- Define global CSS variables in `src/app/(frontend)/styles.css`.
+- Load fonts in `src/app/(frontend)/layout.tsx` with `next/font` variables.
+- Persist theme choice in `localStorage` only after the token contract is implemented.
+- Do not add component-library tokens until the base theme variables are in code.
+
+## Reference Material
+
+These are reference inputs, not active source-of-truth files:
+
+- `.agents/docs/stitch-portfolio-brief.md`
+- `.agents/docs/stitch-prompt-workflow.md`
+- `.agents/docs/design-image/`
