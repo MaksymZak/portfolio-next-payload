@@ -27,9 +27,9 @@
 
 **Purpose**: Replace the blank frontend with portfolio-specific scaffolding while locking the work to the approved MVP1 slice.
 
-- [ ] T001 Audit the current placeholder frontend in `src/app/(frontend)/layout.tsx`, `src/app/(frontend)/page.tsx`, and `tests/e2e/frontend.e2e.spec.ts` against `specs/001-portfolio-mvp/plan.md` and `.agents/docs/release-plan.md`
-- [ ] T002 Create portfolio module scaffolding in `src/content/portfolio/index.ts`, `src/content/portfolio/types.ts`, `src/lib/portfolio/routes.ts`, and `src/lib/portfolio/metadata.ts`
-- [ ] T003 Create shared frontend entrypoints in `src/components/portfolio/sections/index.ts`, `src/components/portfolio/theme/theme-switcher.tsx`, and `src/components/portfolio/ui/section-shell.tsx`
+- [X] T001 Audit the current placeholder frontend in `src/app/(frontend)/layout.tsx`, `src/app/(frontend)/page.tsx`, and `tests/e2e/frontend.e2e.spec.ts` against `specs/001-portfolio-mvp/plan.md` and `.agents/docs/release-plan.md`
+- [X] T002 Create portfolio module scaffolding in `src/content/portfolio/index.ts`, `src/content/portfolio/types.ts`, `src/lib/portfolio/routes.ts`, and `src/lib/portfolio/metadata.ts`
+- [X] T003 Create shared frontend entrypoints in `src/components/portfolio/sections/index.ts`, `src/components/portfolio/theme/theme-switcher.tsx`, and `src/components/portfolio/ui/section-shell.tsx`
 
 ---
 
@@ -39,16 +39,16 @@
 
 **⚠️ CRITICAL**: No user story work should begin until this phase is complete.
 
-- [ ] T004 Define the typed MVP1 content contracts from `specs/001-portfolio-mvp/data-model.md` in `src/content/portfolio/types.ts`
-- [ ] T005 [P] Create the English typed content source for homepage, resume, case page, project cards, proof examples, contacts, and metadata in `src/content/portfolio/en.ts`
-- [ ] T006 [P] Create the Ukrainian typed content source with parity-safe structure in `src/content/portfolio/uk.ts`
-- [ ] T007 Build content access, locale guards, and route helpers in `src/content/portfolio/index.ts` and `src/lib/portfolio/routes.ts`
-- [ ] T008 Build route metadata helpers and theme persistence utilities in `src/lib/portfolio/metadata.ts` and `src/lib/portfolio/theme.ts`
-- [ ] T009 Implement the shared frontend shell with locale-aware layout and token-driven styling in `src/app/(frontend)/layout.tsx`, `src/app/(frontend)/[lang]/layout.tsx`, and `src/app/(frontend)/styles.css`
-- [ ] T010 Implement the theme bootstrap and reusable theme switcher in `src/components/portfolio/theme/theme-provider-script.tsx` and `src/components/portfolio/theme/theme-switcher.tsx`
-- [ ] T011 Add foundational parity and helper coverage in `tests/int/content.int.spec.ts` and `tests/int/metadata.int.spec.ts`
-- [ ] T012 Validate the foundation with `tests/int/content.int.spec.ts` and `tests/int/metadata.int.spec.ts` before starting user-story routes
-- [ ] T013 Update the foundational slice status and keep MVP2/MVP3 work deferred in `.agents/docs/release-plan.md`
+- [X] T004 Define the typed MVP1 content contracts from `specs/001-portfolio-mvp/data-model.md` in `src/content/portfolio/types.ts`
+- [X] T005 [P] Create the English typed content source for homepage, resume, case page, project cards, proof examples, contacts, and metadata in `src/content/portfolio/en.ts`
+- [X] T006 [P] Create the Ukrainian typed content source with parity-safe structure in `src/content/portfolio/uk.ts`
+- [X] T007 Build content access, locale guards, and route helpers in `src/content/portfolio/index.ts` and `src/lib/portfolio/routes.ts`
+- [X] T008 Build route metadata helpers and theme persistence utilities in `src/lib/portfolio/metadata.ts` and `src/lib/portfolio/theme.ts`
+- [X] T009 Implement the shared frontend shell with locale-aware layout and token-driven styling in `src/app/(frontend)/layout.tsx`, `src/app/(frontend)/[lang]/layout.tsx`, and `src/app/(frontend)/styles.css`
+- [X] T010 Implement the theme bootstrap and reusable theme switcher in `src/components/portfolio/theme/theme-provider-script.tsx` and `src/components/portfolio/theme/theme-switcher.tsx`
+- [X] T011 Add foundational parity and helper coverage in `tests/int/content.int.spec.ts` and `tests/int/metadata.int.spec.ts`
+- [X] T012 Validate the foundation with `tests/int/content.int.spec.ts` and `tests/int/metadata.int.spec.ts` before starting user-story routes
+- [X] T013 Update the foundational slice status and keep MVP2/MVP3 work deferred in `.agents/docs/release-plan.md`
 
 **Checkpoint**: Typed content, locale layout, route helpers, and theme infrastructure are ready for story delivery.
 
@@ -62,18 +62,18 @@
 
 ### Tests for User Story 1
 
-- [ ] T014 [US1] Replace the blank frontend smoke test with root redirect coverage in `tests/e2e/frontend.e2e.spec.ts`
-- [ ] T015 [US1] Add homepage recruiter-scan acceptance coverage in `tests/e2e/homepage.e2e.spec.ts`
+- [X] T014 [US1] Replace the blank frontend smoke test with root redirect coverage in `tests/e2e/frontend.e2e.spec.ts`
+- [X] T015 [US1] Add homepage recruiter-scan acceptance coverage in `tests/e2e/homepage.e2e.spec.ts`
 
 ### Implementation for User Story 1
 
-- [ ] T016 [US1] Implement the root redirect and localized homepage route in `src/app/(frontend)/page.tsx` and `src/app/(frontend)/[lang]/page.tsx`
-- [ ] T017 [US1] Build the homepage page-shell composition in `src/components/portfolio/sections/home-page.tsx` and `src/components/portfolio/ui/section-shell.tsx`
-- [ ] T018 [P] [US1] Implement the hero, proof metrics, and core skills sections in `src/components/portfolio/sections/home-hero.tsx`, `src/components/portfolio/sections/proof-metrics.tsx`, and `src/components/portfolio/sections/core-skills.tsx`
-- [ ] T019 [P] [US1] Implement the commercial proof, selected projects, and contact sections in `src/components/portfolio/sections/commercial-proof.tsx`, `src/components/portfolio/sections/selected-projects.tsx`, and `src/components/portfolio/sections/contact-section.tsx`
-- [ ] T020 [US1] Wire the localized CTA targets and theme control into `src/components/portfolio/sections/home-page.tsx` and `src/components/portfolio/theme/theme-switcher.tsx`
-- [ ] T021 [US1] Update the delivered homepage slice status and keep MVP2/MVP3 work deferred in `.agents/docs/release-plan.md`
-- [ ] T022 [US1] Validate the homepage slice with `tests/e2e/frontend.e2e.spec.ts`, `tests/e2e/homepage.e2e.spec.ts`, and the homepage checks in `specs/001-portfolio-mvp/quickstart.md`
+- [X] T016 [US1] Implement the root redirect and localized homepage route in `src/app/(frontend)/page.tsx` and `src/app/(frontend)/[lang]/page.tsx`
+- [X] T017 [US1] Build the homepage page-shell composition in `src/components/portfolio/sections/home-page.tsx` and `src/components/portfolio/ui/section-shell.tsx`
+- [X] T018 [P] [US1] Implement the hero, proof metrics, and core skills sections in `src/components/portfolio/sections/home-hero.tsx`, `src/components/portfolio/sections/proof-metrics.tsx`, and `src/components/portfolio/sections/core-skills.tsx`
+- [X] T019 [P] [US1] Implement the commercial proof, selected projects, and contact sections in `src/components/portfolio/sections/commercial-proof.tsx`, `src/components/portfolio/sections/selected-projects.tsx`, and `src/components/portfolio/sections/contact-section.tsx`
+- [X] T020 [US1] Wire the localized CTA targets and theme control into `src/components/portfolio/sections/home-page.tsx` and `src/components/portfolio/theme/theme-switcher.tsx`
+- [X] T021 [US1] Update the delivered homepage slice status and keep MVP2/MVP3 work deferred in `.agents/docs/release-plan.md`
+- [X] T022 [US1] Validate the homepage slice with `tests/e2e/frontend.e2e.spec.ts`, `tests/e2e/homepage.e2e.spec.ts`, and the homepage checks in `specs/001-portfolio-mvp/quickstart.md`
 
 **Checkpoint**: The recruiter-facing homepage is live in both locales and usable for outreach before deeper pages are added.
 
@@ -87,16 +87,16 @@
 
 ### Tests for User Story 2
 
-- [ ] T023 [US2] Add localized resume and print-readiness coverage in `tests/e2e/resume.e2e.spec.ts`
+- [X] T023 [US2] Add localized resume and print-readiness coverage in `tests/e2e/resume.e2e.spec.ts`
 
 ### Implementation for User Story 2
 
-- [ ] T024 [US2] Implement the localized resume route in `src/app/(frontend)/[lang]/resume/page.tsx`
-- [ ] T025 [US2] Build the resume page sections and print trigger in `src/components/portfolio/sections/resume-page.tsx` and `src/components/portfolio/ui/print-resume-button.tsx`
-- [ ] T026 [US2] Apply compact print styles and hide nonessential chrome in `src/app/(frontend)/styles.css` and `src/components/portfolio/sections/resume-page.tsx`
-- [ ] T027 [US2] Keep resume project references and contact details aligned with MVP1-only scope in `src/content/portfolio/en.ts` and `src/content/portfolio/uk.ts`
-- [ ] T028 [US2] Update the delivered resume slice status in `.agents/docs/release-plan.md`
-- [ ] T029 [US2] Validate the resume slice with `tests/e2e/resume.e2e.spec.ts` and the print checks in `specs/001-portfolio-mvp/quickstart.md`
+- [X] T024 [US2] Implement the localized resume route in `src/app/(frontend)/[lang]/resume/page.tsx`
+- [X] T025 [US2] Build the resume page sections and print trigger in `src/components/portfolio/sections/resume-page.tsx` and `src/components/portfolio/ui/print-resume-button.tsx`
+- [X] T026 [US2] Apply compact print styles and hide nonessential chrome in `src/app/(frontend)/styles.css` and `src/components/portfolio/sections/resume-page.tsx`
+- [X] T027 [US2] Keep resume project references and contact details aligned with MVP1-only scope in `src/content/portfolio/en.ts` and `src/content/portfolio/uk.ts`
+- [X] T028 [US2] Update the delivered resume slice status in `.agents/docs/release-plan.md`
+- [X] T029 [US2] Validate the resume slice with `tests/e2e/resume.e2e.spec.ts` and the print checks in `specs/001-portfolio-mvp/quickstart.md`
 
 **Checkpoint**: Both localized resume pages are printable and independently useful for recruiter follow-up.
 
@@ -110,15 +110,15 @@
 
 ### Tests for User Story 3
 
-- [ ] T030 [US3] Add case-page and proof-honesty coverage in `tests/e2e/portfolio-case.e2e.spec.ts`
+- [X] T030 [US3] Add case-page and proof-honesty coverage in `tests/e2e/portfolio-case.e2e.spec.ts`
 
 ### Implementation for User Story 3
 
-- [ ] T031 [US3] Implement the localized `Portfolio CMS` case-study route in `src/app/(frontend)/[lang]/projects/portfolio-cms/page.tsx`
-- [ ] T032 [US3] Build the case-page sections for overview, goals, stack, proof, scope, architecture, and workflow in `src/components/portfolio/sections/portfolio-case-page.tsx`
-- [ ] T033 [US3] Harden `coming next` project-card behavior and commercial-proof honesty in `src/components/portfolio/sections/selected-projects.tsx`, `src/components/portfolio/sections/commercial-proof.tsx`, `src/content/portfolio/en.ts`, and `src/content/portfolio/uk.ts`
-- [ ] T034 [US3] Update the delivered case-study slice status in `.agents/docs/release-plan.md`
-- [ ] T035 [US3] Validate the case-study slice with `tests/e2e/portfolio-case.e2e.spec.ts` and the route-coverage checks in `specs/001-portfolio-mvp/quickstart.md`
+- [X] T031 [US3] Implement the localized `Portfolio CMS` case-study route in `src/app/(frontend)/[lang]/projects/portfolio-cms/page.tsx`
+- [X] T032 [US3] Build the case-page sections for overview, goals, stack, proof, scope, architecture, and workflow in `src/components/portfolio/sections/portfolio-case-page.tsx`
+- [X] T033 [US3] Harden `coming next` project-card behavior and commercial-proof honesty in `src/components/portfolio/sections/selected-projects.tsx`, `src/components/portfolio/sections/commercial-proof.tsx`, `src/content/portfolio/en.ts`, and `src/content/portfolio/uk.ts`
+- [X] T034 [US3] Update the delivered case-study slice status in `.agents/docs/release-plan.md`
+- [X] T035 [US3] Validate the case-study slice with `tests/e2e/portfolio-case.e2e.spec.ts` and the route-coverage checks in `specs/001-portfolio-mvp/quickstart.md`
 
 **Checkpoint**: The portfolio presents one honest detailed case study while clearly keeping MVP2 and MVP3 proof out of active implementation.
 
@@ -128,11 +128,11 @@
 
 **Purpose**: Finish metadata, accessibility, and full-slice validation without expanding MVP1 scope.
 
-- [ ] T036 Implement localized titles, descriptions, canonicals, alternates, and open graph metadata in `src/lib/portfolio/metadata.ts`, `src/app/(frontend)/[lang]/page.tsx`, `src/app/(frontend)/[lang]/resume/page.tsx`, and `src/app/(frontend)/[lang]/projects/portfolio-cms/page.tsx`
-- [ ] T037 Align focus states, reduced-motion behavior, and final token usage with `DESIGN.md` in `src/app/(frontend)/styles.css` and `src/components/portfolio/ui/section-shell.tsx`
-- [ ] T038 Refresh metadata/parity assertions after the route work in `tests/int/metadata.int.spec.ts` and `tests/int/content.int.spec.ts`
-- [ ] T039 Update `.agents/docs/release-plan.md` with the final MVP1 touched-slice status and explicit MVP2/MVP3 deferments
-- [ ] T040 Validate the touched MVP1 slice with `tests/int/content.int.spec.ts`, `tests/int/metadata.int.spec.ts`, `tests/e2e/frontend.e2e.spec.ts`, `tests/e2e/homepage.e2e.spec.ts`, `tests/e2e/resume.e2e.spec.ts`, `tests/e2e/portfolio-case.e2e.spec.ts`, and `specs/001-portfolio-mvp/quickstart.md`
+- [X] T036 Implement localized titles, descriptions, canonicals, alternates, and open graph metadata in `src/lib/portfolio/metadata.ts`, `src/app/(frontend)/[lang]/page.tsx`, `src/app/(frontend)/[lang]/resume/page.tsx`, and `src/app/(frontend)/[lang]/projects/portfolio-cms/page.tsx`
+- [X] T037 Align focus states, reduced-motion behavior, and final token usage with `DESIGN.md` in `src/app/(frontend)/styles.css` and `src/components/portfolio/ui/section-shell.tsx`
+- [X] T038 Refresh metadata/parity assertions after the route work in `tests/int/metadata.int.spec.ts` and `tests/int/content.int.spec.ts`
+- [X] T039 Update `.agents/docs/release-plan.md` with the final MVP1 touched-slice status and explicit MVP2/MVP3 deferments
+- [X] T040 Validate the touched MVP1 slice with `tests/int/content.int.spec.ts`, `tests/int/metadata.int.spec.ts`, `tests/e2e/frontend.e2e.spec.ts`, `tests/e2e/homepage.e2e.spec.ts`, `tests/e2e/resume.e2e.spec.ts`, `tests/e2e/portfolio-case.e2e.spec.ts`, and `specs/001-portfolio-mvp/quickstart.md`
 
 ---
 
