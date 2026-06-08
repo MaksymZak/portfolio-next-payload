@@ -1,27 +1,22 @@
 <!--
 Sync Impact Report
-- Version change: unversioned template -> 1.0.0
+- Version change: 1.0.0 -> 1.1.0
 - Modified principles:
-  - Template Principle 1 -> I. Hiring Outcome First
-  - Template Principle 2 -> II. Honest, Public-Safe Evidence
-  - Template Principle 3 -> III. Bilingual MVP Parity
-  - Template Principle 4 -> IV. Clean Editorial Technical Consistency
-  - Template Principle 5 -> V. Small, Verifiable Delivery
+  - Added VI. Agent Skills & Usage
+  - Added VII. Context7 Documentation Requirement
+  - Added VIII. Interview Mode for Clarifications
 - Added sections:
-  - Delivery Scope & Evidence Boundaries
-  - Workflow & Release Planning
+  - Agent Skills & Documentation
+  - Documentation via Context7 MCP
 - Removed sections:
   - None
 - Templates requiring updates:
   - ✅ .specify/templates/plan-template.md
   - ✅ .specify/templates/spec-template.md
   - ✅ .specify/templates/tasks-template.md
-  - ✅ .agents/docs/spec-kit-prompt-pack.md
-  - ✅ README.md
-  - ✅ AGENTS.md
-  - ⚠ .specify/templates/commands/*.md (not present; no update required)
 - Follow-up TODOs:
-  - None
+  - ⚠ Ensure `.agents/docs/` references are updated where agent-context is used
+  - None blocking for this change
 -->
 # Portfolio Next Payload Constitution
 
@@ -63,6 +58,37 @@ validation and release-plan tracking. Plans and tasks MUST avoid premature abstr
 premature runtime CMS dependency, and broad parallel work that obscures status. Small,
 verifiable delivery is required because this project must ship quickly without losing
 trust or maintainability.
+
+### VI. Agent Skills & Usage
+Agents and automated assistants MUST consult and use appropriate skills located in
+the `.agents/skills` directory when those skills apply to the task. When an agent
+uses one or more skills, the agent MUST record which skill(s) were consulted (path
+and name) and include that reference in the feature plan, task list, or release-plan
+notes so reviewers can reproduce or audit the automated steps.
+
+Rationale: Keeping agents tied to curated local skills ensures predictable behavior,
+reproducibility, and that project-specific conventions are followed rather than
+relying solely on general model knowledge.
+
+### VII. Documentation via Context7 MCP
+Agents MUST use the Context7 MCP documentation tools (resolve-library-id and
+query-docs) to fetch authoritative, up-to-date documentation for libraries, frameworks,
+APIs, and SDKs before making implementation decisions that depend on external
+behavior. Agents MUST cite the Context7 library ID or direct snippet references in the
+Technical Context of plans and specs.
+
+Rationale: Using Context7 for documentation removes ambiguity from stale training data
+and ensures the agent references exact, versioned documentation for technical choices.
+
+### VIII. Interview Mode for Clarifications
+Any question that requires the user's explicit approval or that is ambiguous enough to
+affect scope, public-safety, parity, or governance MUST be asked in interview/clarify
+mode (interactive prompts) and not assumed by the agent. Agents MUST not proceed
+with approval-required changes without explicit user confirmation captured in the
+conversation history.
+
+Rationale: This preserves human governance over sensitive or scope-changing decisions
+and ensures the user remains the final approver for policy-sensitive actions.
 
 ## Delivery Scope & Evidence Boundaries
 
@@ -116,4 +142,4 @@ release-plan update. Reviewers and implementers MUST verify that scope remains h
 public-safe, bilingual where required, design-consistent, and tracked as small,
 verifiable slices before work is considered complete.
 
-**Version**: 1.0.0 | **Ratified**: 2026-06-08 | **Last Amended**: 2026-06-08
+**Version**: 1.1.0 | **Ratified**: 2026-06-08 | **Last Amended**: 2026-06-08

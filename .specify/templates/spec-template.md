@@ -79,6 +79,12 @@
 - **Language Coverage**: [State the required English and Ukrainian parity for this
   feature, or justify why parity does not apply]
 
+- **Agent Tools & Documentation**: When an agent or automated assistant is used to
+  prepare or implement this spec, document which `.agents/skills` were consulted and
+  any Context7 MCP queries performed (include resolved library IDs and brief
+  excerpts). Mark any decisions that require explicit user approval so they can be
+  captured in interview/clarify mode.
+
 ### Edge Cases
 
 <!--

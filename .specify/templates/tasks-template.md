@@ -9,6 +9,11 @@ description: "Task list template for feature implementation"
 
 **Prerequisites**: plan.md (required), spec.md (required for user stories), research.md, data-model.md, contracts/
 
+**Agent Automation Note**: If tasks are generated or assisted by an agent, the task
+generator MUST record which `.agents/skills` were used and any Context7 MCP
+documentation lookups performed. Include these references in the task list metadata
+so reviewers can reproduce automated guidance.
+
 **Tests**: The examples below include test tasks. Tests are OPTIONAL only when the
 feature specification does not require them, but every story MUST still include an
 explicit validation step.

@@ -51,6 +51,10 @@
   Clean Editorial Technical system unless an exception is explicitly justified.
 - **Small, Verifiable Slices**: Break the work into maintainable increments with clear
   validation and an explicit `.agents/docs/release-plan.md` update plan.
+ - **Agent Skills & Documentation**: If agent assistance or automated tooling is used,
+   confirm the agent consulted `.agents/skills` for applicable skills and used Context7
+   MCP to fetch authoritative documentation. Record skill names/paths and Context7
+   library IDs in the Technical Context of this plan.
 
 ## Project Structure
 
