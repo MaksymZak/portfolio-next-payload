@@ -27,6 +27,7 @@ This repository is a hiring-focused portfolio site for a remote Middle Frontend 
 ## Active Documentation
 
 - [DESIGN.md](./DESIGN.md) — source of truth for visual direction, themes, token contract, layout, and component rules.
+- [.specify/memory/constitution.md](./.specify/memory/constitution.md) — governance source of truth for MVP scope, trust, parity, and delivery rules.
 - [.agents/docs/project-context.md](./.agents/docs/project-context.md) — project purpose, positioning, constraints, MVP scope, and SDD direction.
 - [.agents/docs/release-plan.md](./.agents/docs/release-plan.md) — current release slicing, implementation status, and deferred scope.
 - [.agents/docs/spec-kit-prompt-pack.md](./.agents/docs/spec-kit-prompt-pack.md) — ready-to-run Spec Kit prompt package for the first `portfolio-mvp` cycle.

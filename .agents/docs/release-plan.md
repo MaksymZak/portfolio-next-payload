@@ -42,8 +42,19 @@ Important rule:
 ### Not implemented yet
 
 - `planned` — Spec Kit bootstrap and initialization.
-- `planned` — `portfolio-mvp` specification artifacts.
-- `planned` — actual frontend implementation.
+- `implemented` — `portfolio-mvp` specification artifact created at `specs/001-portfolio-mvp/spec.md`.
+- `implemented` — actual MVP1 frontend implementation.
+- `implemented` — MVP1 content foundation now exists in `src/content/portfolio` with EN/UK typed content, proof examples, project-card states, and shared theme labels.
+- `implemented` — MVP1 route, metadata, and theme helper scaffolding now exists in `src/lib/portfolio`.
+- `implemented` — foundational portfolio UI entrypoints now exist in `src/components/portfolio`.
+- `implemented` — root redirect plus localized route skeletons now build for `/en`, `/uk`, `/en/resume`, `/uk/resume`, `/en/projects/portfolio-cms`, and `/uk/projects/portfolio-cms`.
+- `implemented` — global frontend shell, CSS-token theme foundation, `next/font` setup, and theme bootstrap/switcher are now active in `src/app/(frontend)`.
+- `implemented` — homepage recruiter-scan slice now ships hero proof, metrics, core skills, commercial proof, selected projects, contact section, and theme persistence in both locales.
+- `implemented` — homepage E2E coverage now verifies `/` redirect, EN/UK section rendering, contact jump behavior, project-card honesty, and theme persistence.
+- `implemented` — localized compact resume pages now ship in EN/UK with recruiter-facing sections and a browser print action.
+- `implemented` — resume E2E coverage now verifies localized section rendering and print-mode shell hiding.
+- `implemented` — localized `Portfolio CMS` case pages now ship the required overview, goals, stack, proof, scope, architecture, and workflow sections.
+- `implemented` — case-page E2E coverage now verifies required section coverage and keeps `LMS` / `Landing Version System` non-navigating.
 - `planned` — actual Payload modeling and content migration.
 
 ## Locked Decisions For MVP1
@@ -132,7 +143,14 @@ Ship a public hiring-ready portfolio that is clean, fast to scan, and strong eno
 ### Current status
 
 - `implemented` — documentation and planning baseline.
-- `planned` — product specification and implementation.
+- `implemented` — `portfolio-mvp` specification artifact exists at `specs/001-portfolio-mvp/spec.md`.
+- `implemented` — slice 1 content foundation and route helper layer.
+- `implemented` — foundational parity/helper coverage for typed content and metadata helpers.
+- `implemented` — slice 2 layout/theme foundation and localized route skeletons.
+- `implemented` — slice 3 homepage composition and recruiter-scan sections.
+- `implemented` — slice 4 resume composition and print-readiness.
+- `implemented` — slice 5 `Portfolio CMS` case-page composition and proof-honesty polish.
+- `implemented` — final metadata polish, accessibility pass, and cross-slice validation.
 
 ## MVP2
 
@@ -185,15 +203,15 @@ Add secondary proof and broader depth without bloating the first two releases.
 
 ## Open Decisions
 
-- `open` — none currently blocking `portfolio-mvp specify`.
+- `open` — none currently blocking `portfolio-mvp clarify` or `portfolio-mvp plan`.
 
 ## Next Planning Move
 
-The next practical step is to initialize Spec Kit and run the prepared prompt package from `.agents/docs/spec-kit-prompt-pack.md`.
+The next practical step is to run `clarify` for `portfolio-mvp`, then move into `plan` using the created specification artifact.
 
 That package must still follow these rules:
 
 - `constitution` defines project principles;
-- `portfolio-mvp specify` describes only `MVP1`;
+- `portfolio-mvp specify` describes only `MVP1` and is now captured in `specs/001-portfolio-mvp/spec.md`;
 - `clarify` checks implementation-blocking ambiguity without reopening locked decisions;
 - `plan` and `tasks` must keep `MVP2` and `MVP3` out of active implementation unless explicitly promoted.

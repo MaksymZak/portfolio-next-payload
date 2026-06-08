@@ -7,7 +7,7 @@
 - Keep project-level instructions in this file so Claude Code and other agents load them at startup.
 - Skills live in [.agents/skills](.agents/skills). Each skill has its own `SKILL.md`.
 - Relevant skills in this repo are [`payload`](.agents/skills/payload/SKILL.md), [`shadcn`](.agents/skills/shadcn/SKILL.md), [`frontend-design`](.agents/skills/frontend-design/SKILL.md), and [`vercel-react-best-practices`](.agents/skills/vercel-react-best-practices/SKILL.md).
-- Active planning docs are [DESIGN.md](DESIGN.md), [.agents/docs/project-context.md](.agents/docs/project-context.md), and [.agents/docs/release-plan.md](.agents/docs/release-plan.md). Stitch documents under `.agents/docs/` are reference material only.
+- Active planning docs are [DESIGN.md](DESIGN.md), [.specify/memory/constitution.md](.specify/memory/constitution.md), [.agents/docs/project-context.md](.agents/docs/project-context.md), and [.agents/docs/release-plan.md](.agents/docs/release-plan.md). Stitch documents under `.agents/docs/` are reference material only.
 - For any ambiguous, disputed, or underspecified project decision, switch to interview mode and ask the user clarifying questions one at a time before choosing an approach or writing implementation code.
 - Keep implementation status explicit. After each completed slice, update [.agents/docs/release-plan.md](.agents/docs/release-plan.md) so it clearly shows what is implemented, what is in progress, what is next, and what is deferred to later releases.
 

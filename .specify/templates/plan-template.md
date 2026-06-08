@@ -40,7 +40,17 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+- **Hiring Outcome Fit**: Explain how the feature improves recruiter scan speed,
+  hiring proof, or essential MVP usability. Defer anything that does not.
+- **Public-Safe Honesty**: Confirm public-facing content does not expose private
+  repositories, corporate code, or internal client architecture, and clearly separates
+  implemented scope from `coming next`.
+- **Bilingual Parity**: Define how required English and Ukrainian MVP surfaces remain
+  equivalent, or document why the work is outside parity-critical scope.
+- **Design Contract**: Confirm the solution follows `DESIGN.md` and preserves the
+  Clean Editorial Technical system unless an exception is explicitly justified.
+- **Small, Verifiable Slices**: Break the work into maintainable increments with clear
+  validation and an explicit `.agents/docs/release-plan.md` update plan.
 
 ## Project Structure
 

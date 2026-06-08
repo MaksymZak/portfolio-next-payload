@@ -68,6 +68,17 @@
 
 [Add more user stories as needed, each with an assigned priority]
 
+## Scope & Trust Guardrails *(mandatory)*
+
+- **Active Release Slice**: [State the exact release scope this spec belongs to, e.g.
+  MVP1 only]
+- **Built vs Next**: [List what this spec treats as already implemented, what it adds
+  now, and what must remain explicitly `coming next` or deferred]
+- **Public-Safety Constraints**: [State what public proof is allowed and confirm that
+  no private repositories, corporate code, or internal client architecture are exposed]
+- **Language Coverage**: [State the required English and Ukrainian parity for this
+  feature, or justify why parity does not apply]
+
 ### Edge Cases
 
 <!--
@@ -92,11 +103,15 @@
 - **FR-003**: Users MUST be able to [key interaction, e.g., "reset their password"]
 - **FR-004**: System MUST [data requirement, e.g., "persist user preferences"]
 - **FR-005**: System MUST [behavior, e.g., "log all security events"]
+- **FR-006**: Public content MUST clearly distinguish what is already built from what
+  is planned next whenever that status affects user trust.
+- **FR-007**: If the feature is public-facing in MVP, English and Ukrainian versions
+  MUST provide equivalent meaning and hiring signal.
 
 *Example of marking unclear requirements:*
 
-- **FR-006**: System MUST authenticate users via [NEEDS CLARIFICATION: auth method not specified - email/password, SSO, OAuth?]
-- **FR-007**: System MUST retain user data for [NEEDS CLARIFICATION: retention period not specified]
+- **FR-008**: System MUST authenticate users via [NEEDS CLARIFICATION: auth method not specified - email/password, SSO, OAuth?]
+- **FR-009**: System MUST retain user data for [NEEDS CLARIFICATION: retention period not specified]
 
 ### Key Entities *(include if feature involves data)*
 
@@ -116,6 +131,8 @@
 - **SC-002**: [Measurable metric, e.g., "System handles 1000 concurrent users without degradation"]
 - **SC-003**: [User satisfaction metric, e.g., "90% of users successfully complete primary task on first attempt"]
 - **SC-004**: [Business metric, e.g., "Reduce support tickets related to [X] by 50%"]
+- **SC-005**: [Trust metric, e.g., "Reviewers can identify implemented scope versus
+  coming-next scope without ambiguity"]
 
 ## Assumptions
 
