@@ -44,10 +44,12 @@ Important constraint: do not present as a fully proven fullstack engineer yet.
 - `/uk`
 - `/en/resume`
 - `/uk/resume`
+- `/en/projects/portfolio-cms`
+- `/uk/projects/portfolio-cms`
 
 ### Content model direction
 
-Payload should manage:
+For MVP1, code should manage the public runtime content for:
 
 - projects;
 - commercial landing cases;
@@ -55,6 +57,8 @@ Payload should manage:
 - experience items;
 - SEO and media;
 - localized content fields for English and Ukrainian.
+
+Payload should remain installed in the repository for admin work and later migration, but it must not become the runtime content source for the public site until MVP2+ after the structure is validated.
 
 Code should keep ownership of:
 
@@ -86,7 +90,7 @@ Code should keep ownership of:
 
 ### Commercial Landing Pages rules
 
-- show 6-10 best public links, not 100+;
+- show exactly 6 best public links in MVP1, not 100+;
 - describe role honestly;
 - emphasize implementation, support, optimization, responsive work, CMS/content updates, and fixes.
 

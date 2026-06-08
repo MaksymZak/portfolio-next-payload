@@ -42,7 +42,7 @@ Important rule:
 ### Not implemented yet
 
 - `planned` — Spec Kit bootstrap and initialization.
-- `planned` — `portfolio-mvp` specification artifacts.
+- `implemented` — `portfolio-mvp` specification artifact created at `specs/001-portfolio-mvp/spec.md`.
 - `planned` — actual frontend implementation.
 - `planned` — actual Payload modeling and content migration.
 
@@ -132,7 +132,8 @@ Ship a public hiring-ready portfolio that is clean, fast to scan, and strong eno
 ### Current status
 
 - `implemented` — documentation and planning baseline.
-- `planned` — product specification and implementation.
+- `implemented` — `portfolio-mvp` specification artifact exists at `specs/001-portfolio-mvp/spec.md`.
+- `planned` — implementation planning and frontend build-out.
 
 ## MVP2
 
@@ -185,15 +186,15 @@ Add secondary proof and broader depth without bloating the first two releases.
 
 ## Open Decisions
 
-- `open` — none currently blocking `portfolio-mvp specify`.
+- `open` — none currently blocking `portfolio-mvp clarify` or `portfolio-mvp plan`.
 
 ## Next Planning Move
 
-The next practical step is to initialize Spec Kit and run the prepared prompt package from `.agents/docs/spec-kit-prompt-pack.md`.
+The next practical step is to run `clarify` for `portfolio-mvp`, then move into `plan` using the created specification artifact.
 
 That package must still follow these rules:
 
 - `constitution` defines project principles;
-- `portfolio-mvp specify` describes only `MVP1`;
+- `portfolio-mvp specify` describes only `MVP1` and is now captured in `specs/001-portfolio-mvp/spec.md`;
 - `clarify` checks implementation-blocking ambiguity without reopening locked decisions;
 - `plan` and `tasks` must keep `MVP2` and `MVP3` out of active implementation unless explicitly promoted.

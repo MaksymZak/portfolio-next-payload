@@ -14,6 +14,7 @@ It exists to do three things:
 
 Use this file together with:
 
+- `.specify/memory/constitution.md`
 - `README.md`
 - `DESIGN.md`
 - `.agents/docs/project-context.md`
@@ -21,10 +22,11 @@ Use this file together with:
 
 If there is a conflict, use this priority:
 
-1. `.agents/docs/release-plan.md`
-2. `.agents/docs/project-context.md`
-3. `DESIGN.md`
-4. this file
+1. `.specify/memory/constitution.md`
+2. `.agents/docs/release-plan.md`
+3. `.agents/docs/project-context.md`
+4. `DESIGN.md`
+5. this file
 
 ## Working Rules
 
