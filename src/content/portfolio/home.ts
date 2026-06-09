@@ -84,7 +84,8 @@ const commercialEn: CommercialExample[] = [
     title: 'Painting: Three Courses',
     type: 'Course landing page',
     role: 'Responsive implementation · layout refinement · production support',
-    summary: 'Delivered a structured page focused on clear packages, proof blocks, and mobile readability.',
+    summary:
+      'Delivered a structured page focused on clear packages, proof blocks, and mobile readability.',
     mode: 'visual',
     outboundUrl: 'https://painting.goiteens.com/three-courses/',
   },
@@ -93,7 +94,8 @@ const commercialEn: CommercialExample[] = [
     title: 'AI Creator',
     type: 'Education landing page',
     role: 'Frontend implementation · content updates · launch support',
-    summary: 'Shipped a modern course landing with implementation-focused collaboration around promotion flows.',
+    summary:
+      'Shipped a modern course landing with implementation-focused collaboration around promotion flows.',
     mode: 'text-led',
     outboundUrl: 'https://ai-creator.goiteens.com/',
   },
@@ -102,7 +104,8 @@ const commercialEn: CommercialExample[] = [
     title: 'School Webinar',
     type: 'Webinar signup page',
     role: 'Frontend implementation · responsive fixes · production maintenance',
-    summary: 'Supported a webinar page with conversion-oriented frontend updates and practical launch fixes.',
+    summary:
+      'Supported a webinar page with conversion-oriented frontend updates and practical launch fixes.',
     mode: 'text-led',
     outboundUrl: 'https://school-lp.goiteens.com/webinar-ai/',
   },
@@ -111,7 +114,8 @@ const commercialEn: CommercialExample[] = [
     title: 'Interior Design',
     type: 'Course landing page',
     role: 'Frontend implementation · responsive layout · production support',
-    summary: 'Implemented and maintained a polished landing page with dense content blocks and clean scanning rhythm.',
+    summary:
+      'Implemented and maintained a polished landing page with dense content blocks and clean scanning rhythm.',
     mode: 'text-led',
     outboundUrl: 'https://interior-design.goiteens.com/',
   },
@@ -141,7 +145,8 @@ const commercialUk: CommercialExample[] = [
     title: 'Painting: Three Courses',
     type: 'Лендінг курсу',
     role: 'Responsive implementation · layout refinement · production support',
-    summary: 'Сторінка з чіткою структурою пакетів, proof-блоками та зручною мобільною читабельністю.',
+    summary:
+      'Сторінка з чіткою структурою пакетів, proof-блоками та зручною мобільною читабельністю.',
     mode: 'visual',
     outboundUrl: 'https://painting.goiteens.com/three-courses/',
   },
@@ -168,7 +173,8 @@ const commercialUk: CommercialExample[] = [
     title: 'Interior Design',
     type: 'Лендінг курсу',
     role: 'Frontend implementation · responsive layout · production support',
-    summary: 'Щільний, але читабельний лендінг із чистим ритмом секцій і production-oriented реалізацією.',
+    summary:
+      'Щільний, але читабельний лендінг із чистим ритмом секцій і production-oriented реалізацією.',
     mode: 'text-led',
     outboundUrl: 'https://interior-design.goiteens.com/',
   },
@@ -200,7 +206,8 @@ function projectsEn(locale: Locale): ProjectCard[] {
       title: 'Landing Version System',
       status: 'coming-next',
       statusLabel: 'Coming next',
-      summary: 'Deferred until a sanitized public demo can explain versioned landing workflows honestly.',
+      summary:
+        'Deferred until a sanitized public demo can explain versioned landing workflows honestly.',
       proof: 'Stays out of scope to avoid implying shipped proof before the public demo exists.',
       href: null,
     },
@@ -216,7 +223,8 @@ function projectsUk(locale: Locale): ProjectCard[] {
       statusLabel: 'Реалізовано зараз',
       summary:
         'Це портфоліо як двомовна публічна поверхня на Next.js 16, де Payload поки не є runtime-джерелом контенту.',
-      proof: 'Показує локалізацію, чітке розділення відповідальності за контент і структурований публічний proof.',
+      proof:
+        'Показує локалізацію, чітке розділення відповідальності за контент і структурований публічний proof.',
       href: `/${locale}/projects/portfolio-cms`,
     },
     {
@@ -224,7 +232,8 @@ function projectsUk(locale: Locale): ProjectCard[] {
       title: 'LMS',
       status: 'coming-next',
       statusLabel: 'Наступним етапом',
-      summary: 'Запланований майбутній кейс після очищення матеріалів і підготовки публічного proof.',
+      summary:
+        'Запланований майбутній кейс після очищення матеріалів і підготовки публічного proof.',
       proof: 'Залишається відкладеним, щоб не видавати майбутній proof за вже завершений.',
       href: null,
     },
@@ -233,7 +242,8 @@ function projectsUk(locale: Locale): ProjectCard[] {
       title: 'Landing Version System',
       status: 'coming-next',
       statusLabel: 'Наступним етапом',
-      summary: 'Відкладено до появи санітизованого публічного демо для чесного пояснення versioned workflow.',
+      summary:
+        'Відкладено до появи санітизованого публічного демо для чесного пояснення versioned workflow.',
       proof: 'Не входить до обсягу, щоб не створювати враження, ніби демо вже готове.',
       href: null,
     },
@@ -315,7 +325,8 @@ const content: Record<Locale, (locale: Locale) => HomeContent> = {
     projects: {
       eyebrow: 'Вибрані проєкти',
       title: 'Що я будую — чесно.',
-      intro: 'Один реалізований кейс і два відкрито позначені як наступні — без перебільшеного proof.',
+      intro:
+        'Один реалізований кейс і два відкрито позначені як наступні — без перебільшеного proof.',
       cards: projectsUk(locale),
     },
     commercial: {

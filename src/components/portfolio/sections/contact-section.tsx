@@ -4,13 +4,7 @@ import type { HomeContent } from '@/content/portfolio/home'
 
 import { SectionShell } from './section-shell'
 
-export function ContactSection({
-  id,
-  contact,
-}: {
-  id?: string
-  contact: HomeContent['contact']
-}) {
+export function ContactSection({ id, contact }: { id?: string; contact: HomeContent['contact'] }) {
   return (
     <SectionShell id={id} eyebrow={contact.eyebrow} title={contact.title} intro={contact.intro}>
       <div className="grid grid-cols-1 gap-10 md:grid-cols-[1fr_1.4fr]">

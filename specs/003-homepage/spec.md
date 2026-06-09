@@ -16,12 +16,14 @@ mobile-first.
 ## User Scenarios
 
 ### US1 — Recruiter scan (Priority: P1)
+
 A recruiter opens `/en` (or `/uk`) and within seconds reads the positioning,
 availability, and headline proof metrics without scrolling far.
 **Independent check**: hero shows positioning, availability, two CTAs, and three
 proof metrics; verified at ~375px, tablet, desktop, all four themes.
 
 ### US2 — Evidence of commercial work (Priority: P1)
+
 The reader sees a focused set of real public landing pages with role context and
 outbound links, plus a compact core-skills row.
 **Independent check**: commercial-proof block renders the curated examples with
@@ -29,6 +31,7 @@ working outbound links (`target=_blank`, `rel=noopener noreferrer`); core-skills
 row lists the stack.
 
 ### US3 — Selected projects with honest status (Priority: P1)
+
 The reader sees project cards. `Portfolio CMS` is navigable to its case page;
 `LMS` and `Landing Version System` are clearly marked "coming next" and are NOT
 navigable.
@@ -36,12 +39,14 @@ navigable.
 render as non-interactive "coming next" cards.
 
 ### US4 — Contact (Priority: P1)
+
 The reader reaches a contact section (anchor `#contact`) with public channels
 (email, Telegram, LinkedIn, GitHub) and location/availability.
 **Independent check**: `#contact` jump works from nav and hero secondary CTA; all
 public channels render with correct hrefs; no private repository link.
 
 ### US5 — Bilingual parity (Priority: P1)
+
 Every section exists with equivalent meaning in EN and UK.
 **Independent check**: `/en` and `/uk` render the same sections; copy is
 translated; no missing-translation fallbacks.
@@ -49,6 +54,7 @@ translated; no missing-translation fallbacks.
 ## Requirements
 
 ### Functional
+
 - FR1 The homepage MUST render at `/[locale]` for `en` and `uk`.
 - FR2 Hero MUST show eyebrow/availability, headline positioning, summary, and two
   equal CTAs: "View resume" (→ `/[locale]/resume`) and "Get in touch" (→ `#contact`).
@@ -66,11 +72,13 @@ translated; no missing-translation fallbacks.
 - FR11 No private repository link anywhere on the page.
 
 ### Non-Functional
+
 - NFR1 Recruiter scan speed is prioritized over visual spectacle.
 - NFR2 Motion (if any) MUST respect `prefers-reduced-motion`.
 - NFR3 Focus indicators MUST be visible and not rely on color alone.
 
 ## Success Criteria
+
 - SC1 `/en` and `/uk` render all six sections at EN/UK parity.
 - SC2 `bun run lint` and `bun run build` pass.
 - SC3 Manual check passes at mobile/tablet/desktop and across all four themes.
@@ -78,12 +86,14 @@ translated; no missing-translation fallbacks.
 - SC5 `#contact` and section anchors resolve from header/hero navigation.
 
 ## Out of Scope (deferred)
+
 - Resume page content (`004-resume`).
 - `Portfolio CMS` case page content (`005-case`).
 - SEO metadata/OG/hreflang/sitemap (`006-seo`).
 - Payload runtime content sourcing.
 
 ## Notes
+
 - Internal links to `/[locale]/resume` and `/[locale]/projects/portfolio-cms`
   target routes that land in `004`/`005`; tracked as follow-ups in the release plan.
 - Content is harvested from the retained, vetted data in `src/content/portfolio`.

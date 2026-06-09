@@ -253,6 +253,6 @@ Practical rule:
 
 These are reference inputs, not active source-of-truth files:
 
-- `.agents/docs/stitch-portfolio-brief.md`
-- `.agents/docs/stitch-prompt-workflow.md`
+- `.agents/docs/reference.md`
+- `.agents/docs/v0/`
 - `.agents/docs/design-image/`

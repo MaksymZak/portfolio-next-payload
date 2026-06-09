@@ -164,6 +164,6 @@ Working rule:
 
 These files are useful references, but not active source-of-truth documents:
 
-- `stitch-portfolio-brief.md`
-- `stitch-prompt-workflow.md`
+- `reference.md` (consolidated CV facts, contacts, examples, scope, workflows)
+- `v0/` (per-page v0.dev design prompts)
 - `design-image/`

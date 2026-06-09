@@ -85,7 +85,7 @@ themes, EN/UK parity).
 - `implemented` — `.agents/docs/project-context.md` became the canonical project context file.
 - `implemented` — `AGENTS.md` now requires interview mode for ambiguous decisions.
 - `implemented` — `AGENTS.md` now requires explicit implementation status tracking.
-- `implemented` — `.agents/docs/spec-kit-prompt-pack.md` now provides the ready-to-run Spec Kit prompt package for `portfolio-mvp`.
+- `implemented` — `.agents/docs/reference.md` now consolidates the former Stitch brief, Stitch workflow, Spec Kit prompt pack, and Spec Kit command reference into one reference file; per-page v0.dev design prompts live in `.agents/docs/v0/`.
 
 ### Not implemented yet
 

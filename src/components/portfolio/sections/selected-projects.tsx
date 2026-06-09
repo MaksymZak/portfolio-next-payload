@@ -11,9 +11,7 @@ function StatusBadge({ card }: { card: ProjectCard }) {
     <span
       className={cn(
         'inline-block border px-2 py-0.5 font-mono text-[11px] uppercase tracking-[0.15em]',
-        isImplemented
-          ? 'border-primary text-primary'
-          : 'border-border text-muted-foreground',
+        isImplemented ? 'border-primary text-primary' : 'border-border text-muted-foreground',
       )}
     >
       {card.statusLabel}
@@ -45,12 +43,7 @@ export function SelectedProjects({
   projects: HomeContent['projects']
 }) {
   return (
-    <SectionShell
-      id={id}
-      eyebrow={projects.eyebrow}
-      title={projects.title}
-      intro={projects.intro}
-    >
+    <SectionShell id={id} eyebrow={projects.eyebrow} title={projects.title} intro={projects.intro}>
       <div className="grid grid-cols-1 gap-px border border-border bg-border sm:grid-cols-3">
         {projects.cards.map((card) =>
           card.href ? (

@@ -1,6 +1,7 @@
 # Implementation Plan: Homepage (003)
 
 ## Technical Context
+
 - **Stack**: Next.js 16 App Router · next-intl 4 · next-themes · Tailwind 4 +
   shadcn/ui · TypeScript. Package manager: bun.
 - **Builds on**: `002-foundation` shell (`AppShell`, header/footer, theme + i18n).
@@ -12,6 +13,7 @@
   (`--primary`, orange) used sparingly.
 
 ## Constitution Check
+
 - **Hiring outcome first**: page is a recruiter-scan surface; positioning + proof first. ✅
 - **Honest, public-safe evidence**: real goiteens links, honest "coming next"
   statuses, no private repo link. ✅
@@ -25,6 +27,7 @@
   no needless client components).
 
 ## Approach
+
 1. Content module `home.ts` (types + EN/UK data + `getHomeContent`).
 2. Section components under `src/components/portfolio/sections/`:
    `home-hero`, `proof-metrics`, `core-skills`, `selected-projects`,
@@ -34,9 +37,11 @@
 4. Verify lint + build + manual scan; update release plan.
 
 ## Section order (recruiter scan)
+
 hero → proof metrics → core skills → selected projects (`id=work`) →
 commercial proof (`id=experience`) → contact (`id=contact`).
 
 ## Risks / Follow-ups
+
 - Internal links to resume/case routes 404 until `004`/`005`; acceptable on the
   feature branch, tracked in release-plan.

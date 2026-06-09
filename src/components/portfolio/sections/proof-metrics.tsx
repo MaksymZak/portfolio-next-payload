@@ -8,8 +8,7 @@ export function ProofMetrics({ metrics }: { metrics: HomeContent['metrics'] }) {
           <div
             key={metric.label}
             className={
-              'border-border px-6 py-10 ' +
-              (index > 0 ? 'border-t sm:border-l sm:border-t-0' : '')
+              'border-border px-6 py-10 ' + (index > 0 ? 'border-t sm:border-l sm:border-t-0' : '')
             }
           >
             <p className="text-3xl font-semibold tracking-tight sm:text-4xl">{metric.value}</p>
