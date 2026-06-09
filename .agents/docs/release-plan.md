@@ -30,6 +30,44 @@ Important rule:
 
 ## Current Project-Level Progress
 
+### Restart — Spec-Based Rebuild (active)
+
+The hand-written MVP1 UI was intentionally deleted and rebuilt from scratch on a
+modern stack. Only typed data (`src/content/portfolio`, `src/lib/portfolio`) was
+kept. Work is now sliced as one page-or-shell per spec under `specs/`.
+
+Stack locked: Next.js 16 (App Router) · next-intl 4 (`en`/`uk`, prefix always) ·
+next-themes (4 themes: light/dark/warm/contrast) · Tailwind 4 + shadcn/ui ·
+IBM Plex Sans + JetBrains Mono (latin+cyrillic). Design direction: Swiss
+Technical Editorial. Package manager: bun.
+
+**Verification policy:** this project does NOT use an automated test suite. The
+former `tests/` directory, Vitest, and Playwright were removed. Verification is
+`bun run lint`, `bun run build`, and manual checks (mobile/tablet/desktop, four
+themes, EN/UK parity).
+
+- `implemented` — **`002-foundation`**: app shell complete. i18n routing
+  (`src/i18n/*`) + Next 16 `proxy.ts`; root `/`→`/en` redirect; localized
+  `[locale]` layout/home stub; 4-theme system via next-themes + token contract
+  in `globals.css` mapped onto shadcn variables (`@theme inline`); responsive
+  header (wordmark, nav placeholders, locale switcher, theme switcher, mobile
+  Sheet nav), footer (public contacts only, no private repo), skip-to-content;
+  EN/UK message catalogs at parity. `bun run lint` and `bun run build` pass;
+  smoke test confirms `/`→`/en`, EN/UK render, localized nav.
+- `planned` — `003-homepage`: hero, proof/metrics, core skills, commercial
+  proof, selected projects, contact (v0-assisted, refactored to tokens/i18n).
+- `planned` — `004-resume`: localized compact resume + print action.
+- `planned` — `005-case`: `Portfolio CMS` case page.
+- `planned` — `006-seo`: metadata, hreflang, sitemap, structured data.
+
+### Superseded by the restart
+
+- `superseded` — the original hand-written MVP1 UI in
+  `src/components/portfolio/{sections,theme,ui}`, the `[lang]` routes, and
+  `styles.css` were removed; their behaviors are being rebuilt per spec above.
+- `implemented` — typed content + helpers in `src/content/portfolio` and
+  `src/lib/portfolio` were retained as data (covered by integration tests).
+
 ### Implemented now
 
 - `implemented` — active docs were consolidated.

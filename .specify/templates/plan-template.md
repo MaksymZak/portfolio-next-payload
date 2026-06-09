@@ -38,7 +38,7 @@
 
 ## Constitution Check
 
-*GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
+_GATE: Must pass before Phase 0 research. Re-check after Phase 1 design._
 
 - **Hiring Outcome Fit**: Explain how the feature improves recruiter scan speed,
   hiring proof, or essential MVP usability. Defer anything that does not.
@@ -48,13 +48,18 @@
 - **Bilingual Parity**: Define how required English and Ukrainian MVP surfaces remain
   equivalent, or document why the work is outside parity-critical scope.
 - **Design Contract**: Confirm the solution follows `DESIGN.md` and preserves the
-  Clean Editorial Technical system unless an exception is explicitly justified.
+  Swiss Technical Editorial system (strict typographic grid, mono labels, single accent,
+  zero radius, restrained motion) unless an exception is explicitly justified.
+- **Mobile-First & Stack Compliance**: Confirm UI is implemented mobile-first (base
+  ~375px, scale up with Tailwind prefixes) and verified at mobile/tablet/desktop. Confirm
+  the mandatory stack (Next.js 16 + React 19 + TS, Tailwind 4, shadcn/ui, next-intl,
+  next-themes, lucide-react, cn/cva) and shadcn token mapping from `DESIGN.md` are used.
 - **Small, Verifiable Slices**: Break the work into maintainable increments with clear
   validation and an explicit `.agents/docs/release-plan.md` update plan.
- - **Agent Skills & Documentation**: If agent assistance or automated tooling is used,
-   confirm the agent consulted `.agents/skills` for applicable skills and used Context7
-   MCP to fetch authoritative documentation. Record skill names/paths and Context7
-   library IDs in the Technical Context of this plan.
+- **Agent Skills & Documentation**: If agent assistance or automated tooling is used,
+  confirm the agent consulted `.agents/skills` for applicable skills and used Context7
+  MCP to fetch authoritative documentation. Record skill names/paths and Context7
+  library IDs in the Technical Context of this plan.
 
 ## Project Structure
 
@@ -71,6 +76,7 @@ specs/[###-feature]/
 ```
 
 ### Source Code (repository root)
+
 <!--
   ACTION REQUIRED: Replace the placeholder tree below with the concrete layout
   for this feature. Delete unused options and expand the chosen structure with
@@ -121,7 +127,7 @@ directories captured above]
 
 > **Fill ONLY if Constitution Check has violations that must be justified**
 
-| Violation | Why Needed | Simpler Alternative Rejected Because |
-|-----------|------------|-------------------------------------|
-| [e.g., 4th project] | [current need] | [why 3 projects insufficient] |
-| [e.g., Repository pattern] | [specific problem] | [why direct DB access insufficient] |
+| Violation                  | Why Needed         | Simpler Alternative Rejected Because |
+| -------------------------- | ------------------ | ------------------------------------ |
+| [e.g., 4th project]        | [current need]     | [why 3 projects insufficient]        |
+| [e.g., Repository pattern] | [specific problem] | [why direct DB access insufficient]  |

@@ -18,4 +18,4 @@
 - `src/collections` contains Payload collections.
 - `src/payload.config.ts` is the main Payload configuration.
 - `src/payload-types.ts` is generated Payload type output.
-- `tests/e2e` and `tests/int` contain end-to-end and integration coverage.
+- This project does not use an automated test suite; verification is `bun run lint`, `bun run build`, and manual checks.
