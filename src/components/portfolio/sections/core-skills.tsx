@@ -1,21 +1,20 @@
-type CoreSkillsProps = {
-  title: string
-  skills: string[]
-}
+import type { HomeContent } from '@/content/portfolio/home'
 
-export function CoreSkills({ title, skills }: CoreSkillsProps) {
+import { SectionShell } from './section-shell'
+
+export function CoreSkills({ skills }: { skills: HomeContent['skills'] }) {
   return (
-    <section className="portfolio-section" data-testid="core-skills">
-      <div className="portfolio-section__header">
-        <h2 className="portfolio-section__title portfolio-section__title--compact">{title}</h2>
-      </div>
-      <ul className="portfolio-inline-list" role="list">
-        {skills.map((skill) => (
-          <li className="portfolio-chip" key={skill}>
-            {skill}
+    <SectionShell eyebrow={skills.eyebrow} title={skills.title} intro={skills.intro}>
+      <ul className="flex flex-wrap gap-2">
+        {skills.items.map((item) => (
+          <li
+            key={item}
+            className="border border-border px-3 py-1.5 font-mono text-sm text-foreground"
+          >
+            {item}
           </li>
         ))}
       </ul>
-    </section>
+    </SectionShell>
   )
 }

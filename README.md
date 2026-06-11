@@ -30,9 +30,8 @@ This repository is a hiring-focused portfolio site for a remote Middle Frontend 
 - [.specify/memory/constitution.md](./.specify/memory/constitution.md) — governance source of truth for MVP scope, trust, parity, and delivery rules.
 - [.agents/docs/project-context.md](./.agents/docs/project-context.md) — project purpose, positioning, constraints, MVP scope, and SDD direction.
 - [.agents/docs/release-plan.md](./.agents/docs/release-plan.md) — current release slicing, implementation status, and deferred scope.
-- [.agents/docs/spec-kit-prompt-pack.md](./.agents/docs/spec-kit-prompt-pack.md) — ready-to-run Spec Kit prompt package for the first `portfolio-mvp` cycle.
-- [.agents/docs/stitch-portfolio-brief.md](./.agents/docs/stitch-portfolio-brief.md) — archived visual brief from Stitch.
-- [.agents/docs/stitch-prompt-workflow.md](./.agents/docs/stitch-prompt-workflow.md) — archived Stitch workflow and prompt notes.
+- [.agents/docs/reference.md](./.agents/docs/reference.md) — consolidated reference: CV facts, contacts, commercial examples, scope guardrails, design + v0 workflow, and Spec Kit command quick reference.
+- [.agents/docs/v0/](./.agents/docs/v0/) — ready-to-paste v0.dev design prompts per page (`homepage.md`, `resume.md`, `case.md`).
 
 ## Key Constraints
 
@@ -48,27 +47,22 @@ This repository is a hiring-focused portfolio site for a remote Middle Frontend 
 - `src/app/(payload)` — Payload admin shell and API routes.
 - `src/config/collections` — collection registration.
 - `src/payload.config.ts` — main Payload configuration.
-- `tests/e2e` and `tests/int` — end-to-end and integration coverage.
 
 ## Useful Commands
 
 ```bash
-pnpm install
-pnpm dev
-pnpm lint
-pnpm test:int
-pnpm test:e2e
-pnpm build
+bun install
+bun run dev
+bun run lint
+bun run build
 ```
+
+This project does not use an automated test suite; verification is `bun run lint`, `bun run build`, and manual checks.
 
 ## Recommended Next Step
 
-After the documentation pass is approved, initialize Spec Kit and run the prepared prompt package from `.agents/docs/spec-kit-prompt-pack.md` in this order:
-
-1. `constitution`
-2. `specify`
-3. `clarify`
-4. `plan`
-5. `tasks`
-6. `analyze`
-7. `implement`
+Spec Kit is initialized and the rebuild is underway one page-sized slice at a time
+(see `.agents/docs/release-plan.md`). Each page follows: `specify` → `clarify` →
+`plan` → `tasks` → (optional v0 visual exploration from `.agents/docs/v0/`) →
+`implement` → verify (`bun run lint`, `bun run build`, manual) → update the
+release plan → commit.

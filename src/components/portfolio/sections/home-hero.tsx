@@ -1,30 +1,31 @@
-import Link from 'next/link'
+import { Button } from '@/components/ui/button'
+import type { HomeContent } from '@/content/portfolio/home'
 
-import type { HeroContent, PortfolioLocale } from '@/content/portfolio/types'
-import { getPortfolioResumePath } from '@/lib/portfolio/routes'
-
-type HomeHeroProps = {
-  content: HeroContent
-  locale: PortfolioLocale
-}
-
-export function HomeHero({ content, locale }: HomeHeroProps) {
+export function HomeHero({ hero }: { hero: HomeContent['hero'] }) {
   return (
-    <section className="portfolio-hero" data-testid="home-hero">
-      <div className="portfolio-hero__content">
-        <p className="portfolio-section__eyebrow">{content.eyebrow}</p>
-        <h1 className="portfolio-hero__title">{content.title}</h1>
-        <p className="portfolio-hero__summary">{content.summary}</p>
-        <p className="portfolio-lead">{content.availability}</p>
-      </div>
+    <section className="border-border">
+      <div className="mx-auto w-full max-w-6xl px-6 pb-16 pt-16 sm:pb-20 sm:pt-24">
+        <p className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
+          <span aria-hidden="true" className="size-2 bg-primary" />
+          {hero.eyebrow}
+        </p>
 
-      <div className="portfolio-actions">
-        <Link className="portfolio-button portfolio-button--primary" href={getPortfolioResumePath(locale)}>
-          {content.primaryCtaLabel}
-        </Link>
-        <a className="portfolio-button portfolio-button--secondary" href={content.secondaryCtaHref}>
-          {content.secondaryCtaLabel}
-        </a>
+        <h1 className="mt-6 max-w-4xl text-balance text-4xl font-semibold leading-[1.05] tracking-tight sm:text-6xl">
+          {hero.title}
+        </h1>
+
+        <p className="mt-6 max-w-2xl text-lg text-muted-foreground">{hero.summary}</p>
+
+        <p className="mt-4 max-w-2xl text-sm text-muted-foreground">{hero.availability}</p>
+
+        <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+          <Button asChild size="lg" className="sm:w-auto">
+            <a href={hero.primaryCtaHref}>{hero.primaryCtaLabel}</a>
+          </Button>
+          <Button asChild size="lg" variant="outline" className="sm:w-auto">
+            <a href={hero.secondaryCtaHref}>{hero.secondaryCtaLabel}</a>
+          </Button>
+        </div>
       </div>
     </section>
   )

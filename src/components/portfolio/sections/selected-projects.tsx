@@ -1,43 +1,66 @@
-import Link from 'next/link'
+import { ArrowUpRight } from 'lucide-react'
 
-import type { SelectedProjectCard } from '@/content/portfolio/types'
+import type { HomeContent, ProjectCard } from '@/content/portfolio/home'
+import { cn } from '@/lib/cn'
 
-type SelectedProjectsProps = {
-  projects: SelectedProjectCard[]
-  title: string
+import { SectionShell } from './section-shell'
+
+function StatusBadge({ card }: { card: ProjectCard }) {
+  const isImplemented = card.status === 'implemented'
+  return (
+    <span
+      className={cn(
+        'inline-block border px-2 py-0.5 font-mono text-[11px] uppercase tracking-[0.15em]',
+        isImplemented ? 'border-primary text-primary' : 'border-border text-muted-foreground',
+      )}
+    >
+      {card.statusLabel}
+    </span>
+  )
 }
 
-export function SelectedProjects({ projects, title }: SelectedProjectsProps) {
+function CardBody({ card }: { card: ProjectCard }) {
   return (
-    <section className="portfolio-section" data-testid="selected-projects">
-      <div className="portfolio-section__header">
-        <h2 className="portfolio-section__title portfolio-section__title--compact">{title}</h2>
+    <>
+      <div className="flex items-start justify-between gap-4">
+        <h3 className="text-xl font-semibold tracking-tight">{card.title}</h3>
+        {card.href ? (
+          <ArrowUpRight className="size-5 shrink-0 text-muted-foreground transition-colors group-hover:text-primary" />
+        ) : null}
       </div>
+      <StatusBadge card={card} />
+      <p className="mt-4 text-sm text-foreground">{card.summary}</p>
+      <p className="mt-3 text-sm text-muted-foreground">{card.proof}</p>
+    </>
+  )
+}
 
-      <ul className="portfolio-card-grid" role="list">
-        {projects.map((project) => {
-          const content = (
-            <>
-              <p className="portfolio-card__meta">{project.statusLabel}</p>
-              <h3 className="portfolio-card__title">{project.title}</h3>
-              <p>{project.summary}</p>
-              <p>{project.proof}</p>
-            </>
-          )
-
-          return (
-            <li className="portfolio-card" data-testid="selected-project-card" key={project.id}>
-              {project.isNavigable && project.href ? (
-                <Link data-testid="selected-project-card-link" href={project.href}>
-                  {content}
-                </Link>
-              ) : (
-                <div>{content}</div>
-              )}
-            </li>
-          )
-        })}
-      </ul>
-    </section>
+export function SelectedProjects({
+  id,
+  projects,
+}: {
+  id?: string
+  projects: HomeContent['projects']
+}) {
+  return (
+    <SectionShell id={id} eyebrow={projects.eyebrow} title={projects.title} intro={projects.intro}>
+      <div className="grid grid-cols-1 gap-px border border-border bg-border sm:grid-cols-3">
+        {projects.cards.map((card) =>
+          card.href ? (
+            <a
+              key={card.id}
+              href={card.href}
+              className="group flex flex-col bg-surface p-6 transition-colors hover:bg-surface-muted"
+            >
+              <CardBody card={card} />
+            </a>
+          ) : (
+            <div key={card.id} className="flex flex-col bg-surface p-6" aria-disabled="true">
+              <CardBody card={card} />
+            </div>
+          ),
+        )}
+      </div>
+    </SectionShell>
   )
 }

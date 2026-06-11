@@ -1,43 +1,49 @@
-import type { ContactSectionContent } from '@/content/portfolio/types'
+import { ArrowUpRight } from 'lucide-react'
 
-type ContactSectionProps = {
-  content: ContactSectionContent
-}
+import type { HomeContent } from '@/content/portfolio/home'
 
-export function ContactSection({ content }: ContactSectionProps) {
+import { SectionShell } from './section-shell'
+
+export function ContactSection({ id, contact }: { id?: string; contact: HomeContent['contact'] }) {
   return (
-    <section className="portfolio-section" data-testid="contact-section" id="contact">
-      <header className="portfolio-section__header">
-        <h2 className="portfolio-section__title portfolio-section__title--compact">{content.title}</h2>
-        <p className="portfolio-section__intro">{content.intro}</p>
-      </header>
+    <SectionShell id={id} eyebrow={contact.eyebrow} title={contact.title} intro={contact.intro}>
+      <div className="grid grid-cols-1 gap-10 md:grid-cols-[1fr_1.4fr]">
+        <dl className="space-y-4">
+          <div>
+            <dt className="font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground">
+              {contact.location}
+            </dt>
+          </div>
+          <div>
+            <dt className="font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground">
+              {contact.availability}
+            </dt>
+          </div>
+        </dl>
 
-      <div className="portfolio-flow">
-        <p className="portfolio-card__meta">
-          {content.location} · {content.availability}
-        </p>
-
-        <ul className="portfolio-contact-list" role="list">
-          {content.methods
-            .filter((method) => method.showOnHome)
-            .sort((left, right) => left.priority - right.priority)
-            .map((method) => (
-              <li key={method.id}>
-                {method.href ? (
-                  <a href={method.href} rel="noreferrer" target={method.href.startsWith('mailto:') ? undefined : '_blank'}>
-                    <strong>{method.label}</strong>
-                    <span>{method.value}</span>
-                  </a>
-                ) : (
-                  <div>
-                    <strong>{method.label}</strong>
-                    <span>{method.value}</span>
-                  </div>
-                )}
+        <ul className="grid grid-cols-1 gap-px border border-border bg-border sm:grid-cols-2">
+          {contact.channels.map((channel) => {
+            const isExternal = channel.href.startsWith('http')
+            return (
+              <li key={channel.id} className="bg-surface">
+                <a
+                  href={channel.href}
+                  {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                  className="group flex items-center justify-between gap-4 p-5 transition-colors hover:bg-surface-muted"
+                >
+                  <span>
+                    <span className="block font-mono text-[11px] uppercase tracking-[0.15em] text-muted-foreground">
+                      {channel.label}
+                    </span>
+                    <span className="mt-1 block text-sm text-foreground">{channel.value}</span>
+                  </span>
+                  <ArrowUpRight className="size-4 shrink-0 text-muted-foreground transition-colors group-hover:text-primary" />
+                </a>
               </li>
-            ))}
+            )
+          })}
         </ul>
       </div>
-    </section>
+    </SectionShell>
   )
 }

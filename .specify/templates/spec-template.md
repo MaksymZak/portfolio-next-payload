@@ -8,7 +8,7 @@
 
 **Input**: User description: "$ARGUMENTS"
 
-## User Scenarios & Testing *(mandatory)*
+## User Scenarios & Testing _(mandatory)_
 
 <!--
   IMPORTANT: User stories should be PRIORITIZED as user journeys ordered by importance.
@@ -68,7 +68,7 @@
 
 [Add more user stories as needed, each with an assigned priority]
 
-## Scope & Trust Guardrails *(mandatory)*
+## Scope & Trust Guardrails _(mandatory)_
 
 - **Active Release Slice**: [State the exact release scope this spec belongs to, e.g.
   MVP1 only]
@@ -78,6 +78,10 @@
   no private repositories, corporate code, or internal client architecture are exposed]
 - **Language Coverage**: [State the required English and Ukrainian parity for this
   feature, or justify why parity does not apply]
+- **Slice Granularity**: Confirm this spec covers exactly one page or page-group (not
+  the whole site, not a single section). Within the page, sections are implemented one
+  at a time; any externally generated (e.g. v0.dev) section code MUST be refactored to
+  project structure, tokens, i18n, and accessibility before commit.
 
 - **Agent Tools & Documentation**: When an agent or automated assistant is used to
   prepare or implement this spec, document which `.agents/skills` were consulted and
@@ -95,7 +99,7 @@
 - What happens when [boundary condition]?
 - How does system handle [error scenario]?
 
-## Requirements *(mandatory)*
+## Requirements _(mandatory)_
 
 <!--
   ACTION REQUIRED: The content in this section represents placeholders.
@@ -114,17 +118,17 @@
 - **FR-007**: If the feature is public-facing in MVP, English and Ukrainian versions
   MUST provide equivalent meaning and hiring signal.
 
-*Example of marking unclear requirements:*
+_Example of marking unclear requirements:_
 
 - **FR-008**: System MUST authenticate users via [NEEDS CLARIFICATION: auth method not specified - email/password, SSO, OAuth?]
 - **FR-009**: System MUST retain user data for [NEEDS CLARIFICATION: retention period not specified]
 
-### Key Entities *(include if feature involves data)*
+### Key Entities _(include if feature involves data)_
 
 - **[Entity 1]**: [What it represents, key attributes without implementation]
 - **[Entity 2]**: [What it represents, relationships to other entities]
 
-## Success Criteria *(mandatory)*
+## Success Criteria _(mandatory)_
 
 <!--
   ACTION REQUIRED: Define measurable success criteria.
