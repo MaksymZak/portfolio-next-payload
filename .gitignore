@@ -51,3 +51,9 @@ node_modules/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+
+pnpm-lock.yaml
+bun.lock
+
+
