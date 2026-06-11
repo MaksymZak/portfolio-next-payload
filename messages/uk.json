@@ -1,0 +1,34 @@
+{
+  "Shell": {
+    "wordmark": "Максим Закалюжний",
+    "skipToContent": "Перейти до вмісту"
+  },
+  "Nav": {
+    "ariaLabel": "Основна навігація",
+    "openMenu": "Відкрити меню",
+    "closeMenu": "Закрити меню",
+    "menuTitle": "Меню",
+    "work": "Роботи",
+    "experience": "Досвід",
+    "resume": "Резюме",
+    "contact": "Контакти",
+    "downloadCv": "Завантажити CV"
+  },
+  "Locale": {
+    "switchLabel": "Мова",
+    "en": "EN",
+    "uk": "UK"
+  },
+  "Theme": {
+    "label": "Тема",
+    "light": "Editorial Light",
+    "dark": "Graphite Dark",
+    "warm": "Warm Neutral",
+    "contrast": "High Contrast"
+  },
+  "Footer": {
+    "contactsLabel": "Контакти",
+    "availability": "Відкритий до віддалених frontend-ролей",
+    "rights": "Усі права захищено."
+  }
+}

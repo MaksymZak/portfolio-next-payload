@@ -1,5 +1,0 @@
-export { SectionShell } from '@/components/portfolio/ui/section-shell'
-export { ThemeSwitcher } from '@/components/portfolio/theme/theme-switcher'
-export { HomePage } from '@/components/portfolio/sections/home-page'
-export { ResumePage } from '@/components/portfolio/sections/resume-page'
-export { PortfolioCasePage } from '@/components/portfolio/sections/portfolio-case-page'

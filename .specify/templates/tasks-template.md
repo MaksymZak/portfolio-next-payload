@@ -1,6 +1,5 @@
 ---
-
-description: "Task list template for feature implementation"
+description: 'Task list template for feature implementation'
 ---
 
 # Tasks: [FEATURE NAME]
@@ -14,12 +13,15 @@ generator MUST record which `.agents/skills` were used and any Context7 MCP
 documentation lookups performed. Include these references in the task list metadata
 so reviewers can reproduce automated guidance.
 
-**Tests**: The examples below include test tasks. Tests are OPTIONAL only when the
-feature specification does not require them, but every story MUST still include an
-explicit validation step.
+**Tests**: This project does NOT use an automated test suite (no Vitest, no
+Playwright, no unit/integration/e2e tasks). MUST NOT add test files, test
+tooling, or test tasks. Verification for every story is: `bun run lint`,
+`bun run build`, and manual checks. UI work MUST include verification at mobile,
+tablet, and desktop breakpoints (mobile-first baseline ~375px), all four themes,
+and EN/UK parity.
 
 **Organization**: Tasks are grouped by user story to enable independent implementation,
-testing, release-plan updates, and MVP validation of each story.
+release-plan updates, and manual MVP validation of each story.
 
 ## Format: `[ID] [P?] [Story] Description`
 
@@ -30,7 +32,8 @@ testing, release-plan updates, and MVP validation of each story.
 
 ## Path Conventions
 
-- **Single project**: `src/`, `tests/` at repository root
+- **Single project**: `src/` at repository root (no `tests/` directory; this
+  project does not maintain an automated test suite)
 - **Web app**: `backend/src/`, `frontend/src/`
 - **Mobile**: `api/src/`, `ios/src/` or `android/src/`
 - Paths shown below assume single project - adjust based on plan.md structure
@@ -94,8 +97,8 @@ Examples of foundational tasks (adjust based on your project):
 
 > **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T011 [P] [US1] Contract test for [endpoint] in tests/contract/test_[name].py
-- [ ] T012 [P] [US1] Integration test for [user journey] in tests/integration/test_[name].py
+- [ ] T011 [P] [US1] Contract test for [endpoint] in tests/contract/test\_[name].py
+- [ ] T012 [P] [US1] Integration test for [user journey] in tests/integration/test\_[name].py
 
 ### Implementation for User Story 1
 
@@ -118,8 +121,8 @@ Examples of foundational tasks (adjust based on your project):
 
 ### Tests for User Story 2 (OPTIONAL - only if tests requested) ⚠️
 
-- [ ] T019 [P] [US2] Contract test for [endpoint] in tests/contract/test_[name].py
-- [ ] T020 [P] [US2] Integration test for [user journey] in tests/integration/test_[name].py
+- [ ] T019 [P] [US2] Contract test for [endpoint] in tests/contract/test\_[name].py
+- [ ] T020 [P] [US2] Integration test for [user journey] in tests/integration/test\_[name].py
 
 ### Implementation for User Story 2
 
@@ -141,8 +144,8 @@ Examples of foundational tasks (adjust based on your project):
 
 ### Tests for User Story 3 (OPTIONAL - only if tests requested) ⚠️
 
-- [ ] T026 [P] [US3] Contract test for [endpoint] in tests/contract/test_[name].py
-- [ ] T027 [P] [US3] Integration test for [user journey] in tests/integration/test_[name].py
+- [ ] T026 [P] [US3] Contract test for [endpoint] in tests/contract/test\_[name].py
+- [ ] T027 [P] [US3] Integration test for [user journey] in tests/integration/test\_[name].py
 
 ### Implementation for User Story 3
 

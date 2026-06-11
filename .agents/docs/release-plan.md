@@ -30,6 +30,54 @@ Important rule:
 
 ## Current Project-Level Progress
 
+### Restart — Spec-Based Rebuild (active)
+
+The hand-written MVP1 UI was intentionally deleted and rebuilt from scratch on a
+modern stack. Only typed data (`src/content/portfolio`, `src/lib/portfolio`) was
+kept. Work is now sliced as one page-or-shell per spec under `specs/`.
+
+Stack locked: Next.js 16 (App Router) · next-intl 4 (`en`/`uk`, prefix always) ·
+next-themes (4 themes: light/dark/warm/contrast) · Tailwind 4 + shadcn/ui ·
+IBM Plex Sans + JetBrains Mono (latin+cyrillic). Design direction: Swiss
+Technical Editorial. Package manager: bun.
+
+**Verification policy:** this project does NOT use an automated test suite. The
+former `tests/` directory, Vitest, and Playwright were removed. Verification is
+`bun run lint`, `bun run build`, and manual checks (mobile/tablet/desktop, four
+themes, EN/UK parity).
+
+- `implemented` — **`002-foundation`**: app shell complete. i18n routing
+  (`src/i18n/*`) + Next 16 `proxy.ts`; root `/`→`/en` redirect; localized
+  `[locale]` layout/home stub; 4-theme system via next-themes + token contract
+  in `globals.css` mapped onto shadcn variables (`@theme inline`); responsive
+  header (wordmark, nav placeholders, locale switcher, theme switcher, mobile
+  Sheet nav), footer (public contacts only, no private repo), skip-to-content;
+  EN/UK message catalogs at parity. `bun run lint` and `bun run build` pass;
+  smoke test confirms `/`→`/en`, EN/UK render, localized nav.
+- `implemented` — **`003-homepage`**: bilingual homepage shipped in section
+  order hero → proof/metrics → core skills → selected projects (`#work`) →
+  commercial proof (`#experience`) → contact (`#contact`). Server components read
+  from `src/content/portfolio/home.ts` (`getHomeContent(locale)`); real contact
+  channels and goiteens example URLs; only the `Portfolio CMS` card navigates
+  (LMS / Landing Version System stay non-navigating `coming next`); outbound
+  links use `rel="noopener noreferrer"`. `bun run lint` and `bun run build`
+  pass; smoke test confirms EN/UK render, anchors, statuses, and parity.
+  Follow-up: the hero `View resume` CTA (`/[locale]/resume`) and the
+  `Portfolio CMS` card link (`/[locale]/projects/portfolio-cms`) land in
+  `004-resume` / `005-case`; they 404 until those slices ship.
+- `planned` — `004-resume`: localized compact resume + print action.
+- `planned` — `005-case`: `Portfolio CMS` case page.
+- `planned` — `006-seo`: metadata, hreflang, sitemap, structured data.
+
+### Superseded by the restart
+
+- `superseded` — the original hand-written MVP1 UI in
+  `src/components/portfolio/{sections,theme,ui}`, the `[lang]` routes, and
+  `styles.css` were removed; their behaviors are being rebuilt per spec above.
+- `implemented` — typed content + helpers in `src/content/portfolio` and
+  `src/lib/portfolio` were retained as data (the former integration tests were
+  removed under the no-test policy).
+
 ### Implemented now
 
 - `implemented` — active docs were consolidated.
@@ -37,7 +85,7 @@ Important rule:
 - `implemented` — `.agents/docs/project-context.md` became the canonical project context file.
 - `implemented` — `AGENTS.md` now requires interview mode for ambiguous decisions.
 - `implemented` — `AGENTS.md` now requires explicit implementation status tracking.
-- `implemented` — `.agents/docs/spec-kit-prompt-pack.md` now provides the ready-to-run Spec Kit prompt package for `portfolio-mvp`.
+- `implemented` — `.agents/docs/reference.md` now consolidates the former Stitch brief, Stitch workflow, Spec Kit prompt pack, and Spec Kit command reference into one reference file; per-page v0.dev design prompts live in `.agents/docs/v0/`.
 
 ### Not implemented yet
 
@@ -50,11 +98,11 @@ Important rule:
 - `implemented` — root redirect plus localized route skeletons now build for `/en`, `/uk`, `/en/resume`, `/uk/resume`, `/en/projects/portfolio-cms`, and `/uk/projects/portfolio-cms`.
 - `implemented` — global frontend shell, CSS-token theme foundation, `next/font` setup, and theme bootstrap/switcher are now active in `src/app/(frontend)`.
 - `implemented` — homepage recruiter-scan slice now ships hero proof, metrics, core skills, commercial proof, selected projects, contact section, and theme persistence in both locales.
-- `implemented` — homepage E2E coverage now verifies `/` redirect, EN/UK section rendering, contact jump behavior, project-card honesty, and theme persistence.
+- `superseded` — former homepage E2E coverage was removed under the no-test policy; verification is now `bun run lint`, `bun run build`, and manual checks.
 - `implemented` — localized compact resume pages now ship in EN/UK with recruiter-facing sections and a browser print action.
-- `implemented` — resume E2E coverage now verifies localized section rendering and print-mode shell hiding.
+- `superseded` — former resume E2E coverage was removed under the no-test policy.
 - `implemented` — localized `Portfolio CMS` case pages now ship the required overview, goals, stack, proof, scope, architecture, and workflow sections.
-- `implemented` — case-page E2E coverage now verifies required section coverage and keeps `LMS` / `Landing Version System` non-navigating.
+- `superseded` — former case-page E2E coverage was removed under the no-test policy.
 - `planned` — actual Payload modeling and content migration.
 
 ## Locked Decisions For MVP1

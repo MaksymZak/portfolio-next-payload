@@ -34,28 +34,29 @@ This is not a creative showpiece, an experimental art portfolio, or a generic te
 
 ## Visual Direction
 
-Chosen direction: `Clean Editorial Technical`.
+Chosen direction: `Swiss Technical Editorial`.
 
 The visual language combines:
 
-- editorial hierarchy;
+- Swiss/International typographic discipline (strict grid, decisive hierarchy, generous structure);
 - technical documentation clarity;
-- strict geometry;
+- strict geometry and sharp corners;
 - monochrome surfaces with one strong accent;
+- mono labels for metadata and UI chrome;
 - dense but readable information blocks.
 
-The accent color is the only intentional signal in the system. Everything else should support structure, contrast, and reading rhythm.
+The accent color is the only intentional signal in the system. Everything else should support structure, contrast, and reading rhythm. The result must read as an engineer's reference document, not a marketing landing page.
 
 ## Theme Strategy
 
 MVP includes a theme selector with four curated schemes. Themes change atmosphere, but they must preserve the same hierarchy, spacing, contrast discipline, and component shapes.
 
-| Theme | `data-theme` value | Use |
-| --- | --- | --- |
-| Editorial Light | `light` | default theme for recruiters and general browsing |
-| Graphite Dark | `dark` | darker technical reading mode |
-| Warm Neutral | `warm` | softer editorial alternative |
-| High Contrast | `contrast` | strict accessibility-first mode |
+| Theme           | `data-theme` value | Use                                               |
+| --------------- | ------------------ | ------------------------------------------------- |
+| Editorial Light | `light`            | default theme for recruiters and general browsing |
+| Graphite Dark   | `dark`             | darker technical reading mode                     |
+| Warm Neutral    | `warm`             | softer editorial alternative                      |
+| High Contrast   | `contrast`         | strict accessibility-first mode                   |
 
 ## Core Token Contract
 
@@ -133,11 +134,11 @@ Rules:
   --background: #ffffff;
   --foreground: #000000;
   --surface: #ffffff;
-  --surface-muted: #ffffff;
+  --surface-muted: #f2f2f2;
   --border: #000000;
   --accent: #ff4f00;
   --accent-foreground: #ffffff;
-  --muted: #000000;
+  --muted: #f2f2f2;
   --muted-foreground: #000000;
   --ring: #000000;
   --radius: 0rem;
@@ -146,9 +147,10 @@ Rules:
 
 ## Typography
 
-- Sans family: `Inter`.
-- Mono family: `JetBrains Mono`.
-- Font loading should use `next/font` with CSS variables.
+- Sans family: `IBM Plex Sans` (display + body). Distinctive, technical, editorial; supports full Cyrillic (required for Ukrainian) and avoids the generic `Inter`/`Arial`/system look.
+- Mono family: `JetBrains Mono` (also supports Cyrillic).
+- Both families MUST be loaded with the `latin` and `cyrillic` subsets so Ukrainian renders in the correct typeface, never a fallback.
+- Font loading MUST use `next/font` with CSS variables mapped to `--font-sans` and `--font-mono`.
 - Display and heading text should be tight, dense, and confident.
 - Body text must stay readable first; avoid over-tightening long copy.
 - Mono is for labels, metadata, dates, filters, badges, and technical support text.
@@ -240,16 +242,17 @@ Practical rule:
 
 ## Implementation Notes For The Next Pass
 
-- Put theme state on the root element with a `data-theme` attribute.
-- Define global CSS variables in `src/app/(frontend)/styles.css`.
-- Load fonts in `src/app/(frontend)/layout.tsx` with `next/font` variables.
-- Persist theme choice in `localStorage` only after the token contract is implemented.
-- Do not add component-library tokens until the base theme variables are in code.
+- Theme state is managed by `next-themes` using the `data-theme` attribute on the root element, with themes `light`, `dark`, `warm`, `contrast` and default `light`.
+- Define global CSS variables (the token contract above) in the global stylesheet, and expose them to Tailwind 4 via the `@theme inline` mapping so utilities resolve from tokens.
+- shadcn/ui semantic variables MUST be mapped from this token contract, not invented separately: `--background`->`--background`, `--foreground`->`--foreground`, `--card`->`--surface`, `--border`->`--border`, `--primary`->`--accent`, `--primary-foreground`->`--accent-foreground`, `--muted`/`--muted-foreground` direct, `--ring`->`--ring`, `--radius`->`--radius` (0rem).
+- Load fonts with `next/font` (`IBM Plex Sans` + `JetBrains Mono`, both with `latin` + `cyrillic` subsets) exposing `--font-sans` and `--font-mono`.
+- `next-themes` handles persistence; no manual `localStorage` theme code is required.
+- All UI is implemented mobile-first (base styles ~375px, scale up with Tailwind responsive prefixes) and verified at mobile, tablet, and desktop.
 
 ## Reference Material
 
 These are reference inputs, not active source-of-truth files:
 
-- `.agents/docs/stitch-portfolio-brief.md`
-- `.agents/docs/stitch-prompt-workflow.md`
+- `.agents/docs/reference.md`
+- `.agents/docs/v0/`
 - `.agents/docs/design-image/`

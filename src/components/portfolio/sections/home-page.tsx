@@ -1,27 +1,24 @@
-import { ContactSection } from '@/components/portfolio/sections/contact-section'
-import { CommercialProof } from '@/components/portfolio/sections/commercial-proof'
-import { CoreSkills } from '@/components/portfolio/sections/core-skills'
-import { HomeHero } from '@/components/portfolio/sections/home-hero'
-import { ProofMetrics } from '@/components/portfolio/sections/proof-metrics'
-import { SelectedProjects } from '@/components/portfolio/sections/selected-projects'
-import { getPortfolioContent } from '@/content/portfolio'
-import type { PortfolioLocale } from '@/content/portfolio/types'
+import { getHomeContent } from '@/content/portfolio/home'
+import type { Locale } from '@/i18n/routing'
 
-type HomePageProps = {
-  locale: PortfolioLocale
-}
+import { CommercialProof } from './commercial-proof'
+import { ContactSection } from './contact-section'
+import { CoreSkills } from './core-skills'
+import { HomeHero } from './home-hero'
+import { ProofMetrics } from './proof-metrics'
+import { SelectedProjects } from './selected-projects'
 
-export function HomePage({ locale }: HomePageProps) {
-  const content = getPortfolioContent(locale)
+export function HomePage({ locale }: { locale: Locale }) {
+  const content = getHomeContent(locale)
 
   return (
-    <div className="portfolio-stack">
-      <HomeHero content={content.home.hero} locale={locale} />
-      <ProofMetrics metrics={content.home.proofMetrics} />
-      <CoreSkills skills={content.home.coreSkills} title="Core skills / stack" />
-      <CommercialProof content={content.home.commercialProof} />
-      <SelectedProjects projects={content.home.selectedProjects} title={content.shared.labels.selectedProjectsTitle} />
-      <ContactSection content={content.home.contactSection} />
-    </div>
+    <>
+      <HomeHero hero={content.hero} />
+      <ProofMetrics metrics={content.metrics} />
+      <CoreSkills skills={content.skills} />
+      <SelectedProjects id="work" projects={content.projects} />
+      <CommercialProof id="experience" commercial={content.commercial} />
+      <ContactSection id="contact" contact={content.contact} />
+    </>
   )
 }
