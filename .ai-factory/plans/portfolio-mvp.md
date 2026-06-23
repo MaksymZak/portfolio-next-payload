@@ -70,52 +70,52 @@ Content ownership:
 ## Phase 0 — i18n & Theming Foundations
 
 ### Step 1 — next-intl routing config
-- Files: create `src/i18n/routing.ts`.
+- [x] Files: create `src/i18n/routing.ts`.
 - Do: `defineRouting({ locales: ['en','uk'], defaultLocale: 'en', localePrefix: 'always', localeDetection: false })`. Export `locales`, `defaultLocale`.
 - Done when: `routing` importable; matches the type already referenced in `src/global.d.ts`.
 
 ### Step 2 — next-intl navigation helpers
-- Files: create `src/i18n/navigation.ts`.
+- [x] Files: create `src/i18n/navigation.ts`.
 - Do: `createNavigation(routing)` → export `Link`, `redirect`, `usePathname`, `useRouter`, `getPathname`.
 - Done when: locale-aware `Link`/`useRouter` available for switchers and internal links.
 
 ### Step 3 — next-intl request config
-- Files: create `src/i18n/request.ts`.
+- [x] Files: create `src/i18n/request.ts`.
 - Do: `getRequestConfig` — validate `requestLocale` against `routing.locales`, fall back to `defaultLocale`, `return { locale, messages: (await import(`../../messages/${locale}.json`)).default }`.
 - Done when: server components can resolve messages for a locale.
 
 ### Step 4 — message catalogs (UI chrome only)
-- Files: create `messages/en.json` and `messages/uk.json` (identical key shape).
+- [x] Files: create `messages/en.json` and `messages/uk.json` (identical key shape).
 - Do: keys for `nav` (index, hero, stack, projects, archive, experience, contact), `actions` (viewProjects, contactMe, downloadCv, savePdf, copyEmail, copied, readDoc, viewTelemetry, hideTelemetry, backToIndex, viewArchive, search), `labels` (location, availability, localTime, systemState, online, locale, theme), `themes` (light/dark/warm/contrast display names), `footer`. Pull English copy from `reference/app/translations.ts`; provide Ukrainian. Keep ONLY chrome here, not dynamic content.
 - Done when: both files parse and have matching keys; `en.json` shape satisfies `global.d.ts`.
 
 ### Step 5 — next-intl plugin in next.config
-- Files: edit `next.config.ts`.
+- [x] Files: edit `next.config.ts`.
 - Do: `import createNextIntlPlugin from 'next-intl/plugin'; const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts')`. Wrap so both `withPayload` and `withNextIntl` apply (compose: `export default withPayload(withNextIntl(nextConfig), { devBundleServerPackages: false })` — preserve the existing `devBundleServerPackages: false` option and the `turbopack.root` setting). Also add `experimental: { optimizePackageImports: ['lucide-react'] }` so icon imports stay tree-shaken with full types under `strict` (avoids deep-path imports without `.d.ts`; see React best-practices 2.1).
 - Done when: `bun run build` picks up the plugin without errors; `lucide-react` named imports type-check.
 
 ### Step 6 — middleware
-- Files: create `src/middleware.ts`.
+- [x] Files: create `src/middleware.ts`.
 - Do: `createMiddleware(routing)`; `matcher` excludes `/admin`, `/api`, `/_next`, `/_payload`, files with extensions, and favicon. (Keep Payload admin/api untouched.)
 - Done when: visiting `/` redirects to `/en`; `/admin` still loads Payload.
 
 ### Step 7 — slim the frontend group layout
-- Files: edit `src/app/(frontend)/layout.tsx`.
+- [x] Files: edit `src/app/(frontend)/layout.tsx`.
 - Do: remove `<html>/<body>` and fonts; make it `export default function ({children}){ return children }`. (Fonts/html move to `[locale]/layout.tsx`.)
 - Done when: no nested `<html>` once Step 9 lands.
 
 ### Step 8 — fix `/` redirect to default locale
-- Files: edit `src/app/(frontend)/page.tsx`.
+- [x] Files: edit `src/app/(frontend)/page.tsx`.
 - Do: `redirect('/en')` (was `/uk`). Middleware normally handles this; keep as fallback.
 - Done when: hitting `/` lands on `/en`.
 
 ### Step 9 — locale layout: html, fonts, providers, static params
-- Files: rewrite `src/app/(frontend)/[locale]/layout.tsx`; move `globals.css` import here.
+- [x] Files: rewrite `src/app/(frontend)/[locale]/layout.tsx`; move `globals.css` import here.
 - Do: `generateStaticParams` from `routing.locales`; await `params`, guard unknown locale → `notFound()`, call `setRequestLocale(locale)`; render `<html lang={locale} suppressHydrationWarning className={sans.variable + mono.variable}><body><ThemeProvider><NextIntlClientProvider>{children}</NextIntlClientProvider></ThemeProvider></body></html>`. Move the IBM Plex Sans + JetBrains Mono `next/font` setup from old `(frontend)/layout.tsx` to here.
 - Done when: `/en` and `/uk` render with correct lang + fonts; no hydration warnings.
 
 ### Step 10 — theme provider (next-themes)
-- Files: create `src/components/layout/theme-provider.tsx` (client).
+- [x] Files: create `src/components/layout/theme-provider.tsx` (client).
 - Do: wrap `next-themes` `ThemeProvider` with `attribute="data-theme"`, `themes={['light','dark','warm','contrast']}`, `defaultTheme="light"`, `enableSystem={false}`, `disableTransitionOnChange`.
 - Done when: `data-theme` toggles on `<html>`; no flash; replaces all prototype `localStorage` theme code.
 
