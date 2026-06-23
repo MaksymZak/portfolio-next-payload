@@ -126,12 +126,12 @@ Content ownership:
 ## Phase 1 — Payload Collections, Globals & Seed
 
 ### Step 11 — enable Payload field-localization
-- Files: edit `src/payload.config.ts`.
+- [x] Files: edit `src/payload.config.ts`.
 - Do: add `localization: { locales: ['en','uk'], defaultLocale: 'en' }`. Confirm `@payload-config` alias exists in `tsconfig.json` (add if missing) for the data layer.
 - Done when: admin shows per-locale field tabs; types regenerate cleanly.
 
 ### Step 12 — `skills` collection
-- Files: create `src/config/collections/Skills/Skills.ts`; register in `collections/index.ts`.
+- [x] Files: create `src/config/collections/Skills/Skills.ts`; register in `collections/index.ts`.
 - Do: fields `title` (text), `level` (number 1-5, from cv `levels` true-count), `order` (number). `access.read: () => true`. Maps cv.json `hardSkills`.
 - Done when: collection appears in admin; used later by `stack` + resume.
 
