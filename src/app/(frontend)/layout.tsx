@@ -1,10 +1,8 @@
 import { IBM_Plex_Sans, JetBrains_Mono } from 'next/font/google'
-import { getLocale } from 'next-intl/server'
+
 import type { ReactNode } from 'react'
 
 import './globals.css'
-
-import { ThemeProvider } from '@/components/theme-provider'
 
 const sans = IBM_Plex_Sans({
   subsets: ['latin', 'cyrillic'],
@@ -20,13 +18,9 @@ const mono = JetBrains_Mono({
 })
 
 export default async function FrontendRootLayout({ children }: { children: ReactNode }) {
-  const locale = await getLocale()
-
   return (
-    <html lang={locale} className={`${sans.variable} ${mono.variable}`} suppressHydrationWarning>
-      <body>
-        <ThemeProvider>{children}</ThemeProvider>
-      </body>
+    <html lang={'uk'} className={`${sans.variable} ${mono.variable}`} suppressHydrationWarning>
+      <body>{children}</body>
     </html>
   )
 }

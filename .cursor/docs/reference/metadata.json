@@ -1,0 +1,6 @@
+{
+  "name": "Developer Portfolio",
+  "description": "Minimalist and precise developer portfolio for Maksym Zakaliuzhnyi.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
