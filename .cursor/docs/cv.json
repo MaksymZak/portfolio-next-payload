@@ -1,0 +1,183 @@
+{
+  "title": "Maksym Zakaliuzhnyi",
+  "position": "Full Stack (Frontend-focused) Developer",
+
+  "contacts": {
+    "title": "Contacts",
+    "list": [
+      {
+        "icon": "phone",
+        "link": "tel:+380994322085",
+        "text": "+38 (099) 432-20-85"
+      },
+      {
+        "icon": "mail",
+        "link": "mailto:zaksumy1989@gmail.com",
+        "text": "zaksumy1989@gmail.com"
+      },
+      {
+        "icon": "telegram",
+        "link": "https://t.me/MaksymZak",
+        "text": "@MaksymZak"
+      },
+      {
+        "icon": "github",
+        "link": "https://github.com/MaksymZak",
+        "text": "Github"
+      },
+      {
+        "icon": "linkedin",
+        "link": "https://www.linkedin.com/in/mzakaliuzhnyi/",
+        "text": "Linkedin"
+      },
+      {
+        "icon": "map",
+        "link": "https://maps.app.goo.gl/8MoxKkNXwVzS99Wi9",
+        "text": "Sumy, Ukraine"
+      }
+    ]
+  },
+  "hardSkills": {
+    "title": "Hard Skills",
+    "list": [
+      {
+        "title": "HTML",
+        "levels": [true, true, true, true, true]
+      },
+      {
+        "title": "CSS",
+        "levels": [true, true, true, true, true]
+      },
+      {
+        "title": "JavaScript / TypeScript",
+        "levels": [true, true, true, true, true]
+      },
+      {
+        "title": "Tailwind",
+        "levels": [true, true, true, true, true]
+      },
+      {
+        "title": "React",
+        "levels": [true, true, true, true, false]
+      },
+      {
+        "title": "Next.js",
+        "levels": [true, true, true, true, true]
+      },
+      {
+        "title": "Astro",
+        "levels": [true, true, true, true, false]
+      },
+      {
+        "title": "Payload CMS",
+        "levels": [true, true, true, true, false]
+      },
+      {
+        "title": "Redux & Zustand",
+        "levels": [true, true, true, true, false]
+      },
+      {
+        "title": "Node.js",
+        "levels": [true, true, true, false, false]
+      },
+      {
+        "title": "Express.js",
+        "levels": [true, true, true, true, false]
+      },
+      {
+        "title": "PostgreSQL & MongoDB",
+        "levels": [true, true, true, true, false]
+      },
+      {
+        "title": "Mongoose & Prisma ORM",
+        "levels": [true, true, true, false, false]
+      },
+      {
+        "title": "Docker",
+        "levels": [true, true, true, false, false]
+      }
+    ]
+  },
+  "softSkills": {
+    "title": "Soft Skills",
+    "list": ["Problem-solving", "Teamwork", "Communication", "Time management", "Adaptability"]
+  },
+  "languages": {
+    "title": "Languages",
+    "list": ["Ukrainian - Native", "English - Pre-Intermediate"]
+  },
+
+  "about": {
+    "title": "About me",
+    "text": "Frontend-focused Full Stack Developer with 4+ years of commercial experience in building modern web applications using React, Next.js, Payload CMS, Node.js, and databases (PostgreSQL, MongoDB). Skilled in optimizing landing pages, implementing A/B testing, and mentoring developers. Seeking to join a professional team to create scalable, high-performance solutions."
+  },
+
+  "workExperience": {
+    "title": "Work Experience",
+    "list": [
+      {
+        "position": "Frontend Developer — Goiteens Company, Ukraine",
+        "date": "June 2024 - Present",
+        "list": [
+          "Developed and optimized landing pages (Next.js, Payload CMS, Astro, Gulp).",
+          "Implemented A/B testing logic and analytics for conversion optimization.",
+          "Maintained scalable Next.js projects and mentored a junior developer."
+        ]
+      },
+      {
+        "position": "Frontend Developer — SoftRyzen Company, Ukraine",
+        "date": "July 2022 - April 2024",
+        "list": [
+          "Delivered 150+ landing pages and CRM systems with Gulp and React.",
+          "Collaborated with designers and backend developers to ensure UI/UX consistency.",
+          "Improved project performance and maintainability."
+        ]
+      }
+    ]
+  },
+  "education": {
+    "title": "Education",
+    "list": [
+      {
+        "date": "February 2021 – November 2021",
+        "title": "Full Stack Developer Bootcamp",
+        "text": "10-month intensive program focused on JavaScript, React, Node.js, and database development.",
+        "link": ""
+      }
+    ]
+  },
+  "portfolio": {
+    "title": "Portfolio",
+    "description": "Created 300+ landing pages (minimum)",
+    "projects": [
+      { "name": "Fast Reading", "url": "https://fast-reading.goiteens.com/" },
+      { "name": "NMT 2026", "url": "https://nmt.goiteens.com/nmt-2026/" },
+      {
+        "name": "Painting",
+        "url": "https://painting.goiteens.com/three-courses/"
+      },
+      {
+        "name": "Painting Tablet",
+        "url": "https://painting-on-tablet.goiteens.com/v-1/"
+      },
+      { "name": "AI Creator", "url": "https://ai-creator.goiteens.com/" },
+      {
+        "name": "Courses Quiz",
+        "url": "https://courses-all.goiteens.com/quiz-bloggers/discount-30/"
+      },
+      {
+        "name": "School Webinar",
+        "url": "https://school-lp.goiteens.com/webinar-ai/"
+      },
+      { "name": "Summer AI", "url": "https://summer-ai-courses.goiteens.com/" },
+      { "name": "Math 1-4", "url": "https://math.goiteens.com/1-4-classes/" },
+      {
+        "name": "Interior Design",
+        "url": "https://interior-design.goiteens.com/"
+      },
+      { "name": "Python", "url": "https://python.goiteens.com/" }
+    ],
+    "link": "https://lp.goiteens.com/landings-list",
+    "linkText": "A/B Tested Landing Pages"
+  }
+}
