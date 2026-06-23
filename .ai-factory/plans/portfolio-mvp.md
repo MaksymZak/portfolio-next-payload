@@ -1,7 +1,7 @@
 # Implementation Plan — Portfolio MVP (Maksym Zak, Middle Frontend)
 
 Created: 2026-06-23
-Branch: none (plan only — no git branch created)
+Branch: feat/portfolio-mvp
 Mode: full
 
 ## Settings
