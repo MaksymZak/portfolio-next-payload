@@ -49,7 +49,7 @@ src/
   components/
     ui/        # button, badge, card, section-tag, mono-label, drawer (radix), toast
     layout/    # theme-provider, theme-switcher, locale-switcher, clock, status-panel, sidebar, header, drawer-menu, nav
-    sections/  # hero, stack, projects, archive, experience, contact
+    sections/  # hero/, stack, projects/, archive, experience, contact — folder per section when it has sub-components
     resume/ case/ archive/
   db/
     client.ts  # getPayloadClient — single entry point to Payload Local API (React.cache)
@@ -317,37 +317,37 @@ Pre-req for data-consuming steps (30, 32): Steps 21a–21c complete.
 Pre-req: Steps 21a–21c (repositories + cache tags).
 
 ### Step 34 — `Hero` (`#hero`)
-- Files: `src/components/sections/hero.tsx`.
+- [x] Files: `src/components/sections/hero/` (`index.tsx`, `hero-ctas.tsx`).
 - Do: badge/headline/copy from `getHome(locale)` (`@/server/repositories`).hero; CTAs (`viewProjects`→`#projects`, `contactMe`→`#contact`) using `Button`; technical grid background; reduced-motion safe.
 - Done when: localized hero renders.
 
 ### Step 35 — `Stack` (`#stack`)
-- Files: `src/components/sections/stack.tsx`.
+- [x] Files: `src/components/sections/stack.tsx`.
 - Do: 3 metric cells from `getHome(locale)` (`@/server/repositories`).proof; tech inventory from `getSkills(locale)` as bordered mono badges (icon optional via a small id→icon map using standard named `lucide-react` imports — `import { X } from 'lucide-react'`; tree-shaking handled by `optimizePackageImports` from Step 5, not deep-path imports).
 - Done when: metrics + skills render localized.
 
 ### Step 36 — `Projects` (`#projects`)
-- Files: `src/components/sections/projects.tsx` + `src/components/case/project-card.tsx` (client for expand).
+- [x] Files: `src/components/sections/projects/` (`index.tsx`, `project-card.tsx` client for expand).
 - Do: list `getProjects(locale)` from `@/server/repositories`; card = node header + label + title + role/period + summary; expandable "telemetry" (highlights + stack) via local state (CSS height/opacity, reduced-motion safe); flagship card links `readDoc`→`/case/[slug]`.
 - Done when: cards render, expand toggles, link routes to case page.
 
 ### Step 37 — `Archive` (`#archive`)
-- Files: `src/components/sections/archive.tsx`.
+- [x] Files: `src/components/sections/archive.tsx`.
 - Do: featured grid (first ~4 of `getArchive(locale)` from `@/server/repositories`); `viewArchive` button → `/archive`.
 - Done when: featured entries render + link works.
 
 ### Step 38 — `Experience` (`#experience`)
-- Files: `src/components/sections/experience.tsx`.
+- [x] Files: `src/components/sections/experience.tsx`.
 - Do: timeline from `getExperience(locale)` (`@/server/repositories`) — role/company/period/bullets, localized.
 - Done when: timeline renders localized.
 
 ### Step 39 — `Contact` (`#contact`)
-- Files: `src/components/sections/contact.tsx` (client).
+- [x] Files: `src/components/sections/contact.tsx` (client).
 - Do: prominent email copy (clipboard + `Toast`) + social cards from `getSettings(locale)` (`@/server/repositories`).contacts (passed as props from server parent). No separate page.
 - Done when: copy works; links open.
 
 ### Step 40 — assemble home page
-- Files: rewrite `src/app/(frontend)/[locale]/page.tsx`.
+- [x] Files: rewrite `src/app/(frontend)/[locale]/page.tsx`.
 - Do: server component; `setRequestLocale(locale)`; parallel-fetch via `@/server/repositories` (`getSettings`, `getHome`, `getProjects`, `getArchive`, `getExperience`, `getSkills` — use `Promise.all` where independent); render `Sidebar` + `Header`/`DrawerMenu` + sections in order hero→stack→projects→archive→experience→contact within the 2-column responsive container.
 - Done when: full localized home renders at `/en` and `/uk`; lint+build pass.
 

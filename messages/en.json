@@ -49,5 +49,15 @@
     "close": "[ CLOSE ]",
     "registrar": "MENU_SYSTEM // REGISTRAR",
     "title": "CONFIG & INDEX"
+  },
+  "contact": {
+    "types": {
+      "phone": "DIRECT VOICE LINE",
+      "mail": "SECURED MAIL ENDPOINT",
+      "telegram": "INSTANT TEXT SYSTEM",
+      "github": "SECURE CODE PLATFORM",
+      "linkedin": "VERIFIED IDENTITY HUB",
+      "map": "GEO SPATIAL NODE"
+    }
   }
 }
