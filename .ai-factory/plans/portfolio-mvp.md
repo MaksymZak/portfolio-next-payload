@@ -245,22 +245,22 @@ Content ownership:
 - Done when: renders all variants from tokens.
 
 ### Step 23 — `SectionTag` + `MonoLabel`
-- Files: `src/components/ui/section-tag.tsx`, `src/components/ui/mono-label.tsx`.
+- [x] Files: `src/components/ui/section-tag.tsx`, `src/components/ui/mono-label.tsx`.
 - Do: `SectionTag` = `[0x]` accent number + 1px rule + uppercase mono label (the `[02] — PROOF` header pattern). `MonoLabel` = small uppercase mono span.
 - Done when: matches reference section headers via tokens.
 
 ### Step 24 — `Card` + `Badge`/`Tag`
-- Files: `src/components/ui/card.tsx`, `src/components/ui/badge.tsx`.
+- [x] Files: `src/components/ui/card.tsx`, `src/components/ui/badge.tsx`.
 - Do: `Card` flat surface + 1px border, sharp corners, optional hover offset-shadow. `Badge` neutral mono tag for stack/metadata.
 - Done when: reusable across sections.
 
 ### Step 25 — `Drawer` (Radix Dialog as right sheet)
-- Files: `src/components/ui/drawer.tsx`.
+- [x] Files: `src/components/ui/drawer.tsx`.
 - Do: build on installed `radix-ui` Dialog → right-side panel, backdrop, focus trap, Esc close, `data-state` animations via `tw-animate-css`. Sharp corners, border-l. (No framer-motion.)
 - Done when: accessible open/close; reduced-motion respected.
 
 ### Step 26 — `Toast` (copy feedback)
-- Files: `src/components/ui/toast.tsx`.
+- [x] Files: `src/components/ui/toast.tsx`.
 - Do: minimal client toast (timeout-based) for "email copied"; mono, offset-shadow; reduced-motion safe.
 - Done when: shows/auto-dismisses.
 
