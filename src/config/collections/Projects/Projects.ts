@@ -1,7 +1,10 @@
 import type { CollectionConfig } from 'payload'
 
+import { projectsRevalidateHooks } from '@/server/cache'
+
 export const Projects: CollectionConfig = {
   slug: 'projects',
+  hooks: projectsRevalidateHooks,
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'slug', 'label', 'period', 'order'],

@@ -1,7 +1,10 @@
 import type { GlobalConfig } from 'payload'
 
+import { settingsRevalidateHooks } from '@/server/cache'
+
 export const Settings: GlobalConfig = {
   slug: 'settings',
+  hooks: settingsRevalidateHooks,
   label: 'Settings',
   admin: {
     group: 'Site',

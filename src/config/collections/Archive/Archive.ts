@@ -1,7 +1,10 @@
 import type { CollectionConfig } from 'payload'
 
+import { archiveRevalidateHooks } from '@/server/cache'
+
 export const Archive: CollectionConfig = {
   slug: 'archive',
+  hooks: archiveRevalidateHooks,
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'category', 'year', 'order'],

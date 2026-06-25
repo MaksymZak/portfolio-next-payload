@@ -51,11 +51,21 @@ src/
     layout/    # theme-provider, theme-switcher, locale-switcher, clock, status-panel, sidebar, header, drawer-menu, nav
     sections/  # hero, stack, projects, archive, experience, contact
     resume/ case/ archive/
-  lib/data/    # getSettings, getHome, getResume, getProjects, getProject, getArchive, getExperience, getSkills
+  db/
+    client.ts  # getPayloadClient — single entry point to Payload Local API (React.cache)
+    seed/...
+  server/
+    cache/
+      tags.ts       # CACHE_TAGS constants
+      query.ts      # cachedQuery (unstable_cache wrapper)
+      revalidate.ts # shared revalidateTag hooks for Payload
+    repositories/   # getSettings, getHome, getResume, getProjects, getProject, getArchive, getExperience, getSkills
+    services/       # business logic (empty on MVP; reserved)
+    types.ts        # DataLocale
+  lib/              # utilities only (cn)
   config/
     collections/{Projects,Archive,Experience,Skills,Media,Users}/...
     globals/{Settings,Home,Resume}.ts
-  db/seed/...
 messages/{en,uk}.json
 ```
 
@@ -187,18 +197,50 @@ Content ownership:
 ## Phase 2 — Runtime Data Layer
 
 ### Step 21 — Payload client accessors
-- Files: create `src/lib/data/index.ts` (or one file per accessor).
+- [x] Files: create `src/lib/data/index.ts` (or one file per accessor).
 - Do: `getPayload({ config })` via `@payload-config`; wrap each accessor in React `cache()`. Implement `getSettings(locale)`, `getHome(locale)`, `getResume(locale)`, `getProjects(locale)`, `getProject(slug, locale)`, `getArchive(locale)`, `getExperience(locale)`, `getSkills(locale)`. Pass `locale` + `depth` to Payload `find/findGlobal`; sort by `order`. Type returns from `payload-types`.
 - Done when: a temporary RSC log confirms localized data returns for `en` and `uk`; remove temp log.
+- Note: superseded by Steps 21a–21c (migrate to `db/client` + `server/repositories`, add Data Cache tags, wire revalidation). Keep `[x]` as historical baseline.
 
-**Commit checkpoint C:** `feat(data): payload runtime data layer` (Step 21).
+### Step 21a — migrate to `db/client` + `server/repositories`
+- [x] Pre-req: Steps 21 (baseline accessors exist in `lib/data`).
+- [x] Files: refactor `src/db/client.ts`; create `src/server/repositories/*.repository.ts`, `src/server/types.ts`, `src/server/repositories/index.ts`; delete `src/lib/data/`; edit `AGENTS.md`; add `server-only` dependency.
+- Do:
+  - `bun add server-only`.
+  - `src/db/client.ts` — **single entry point** to Payload: `import 'server-only'`, `import config from '@payload-config'`, `export const getPayloadClient = cache(async () => getPayload({ config }))`.
+  - One repository file per domain (`settings.repository.ts`, `home.repository.ts`, `resume.repository.ts`, `projects.repository.ts`, `archive.repository.ts`, `experience.repository.ts`, `skills.repository.ts`): import `getPayloadClient` from `@/db/client` only (never call `getPayload` elsewhere). Same public API: `getSettings(locale)`, `getHome(locale)`, `getResume(locale)`, `getProjects(locale)`, `getProject(slug, locale)`, `getArchive(locale)`, `getExperience(locale)`, `getSkills(locale)`. Pass `locale` + `depth: 1` to Payload `find`/`findGlobal`; sort by `order`. Return types from `payload-types`.
+  - `src/db/seed/index.ts` — replace direct `getPayload({ config })` with `getPayloadClient()` from `@/db/client`.
+  - Remove `src/lib/data/` entirely.
+- Done when: `@/server/repositories` imports compile; seed runs via `db/client`; `lib/data` is gone; `AGENTS.md` documents `db/client` + `server/repositories`.
+
+### Step 21b — Data Cache tags + `unstable_cache`
+- [x] Pre-req: Step 21a.
+- [x] Files: `src/server/cache/tags.ts`, `src/server/cache/query.ts`; update each repository.
+- Do:
+  - `CACHE_TAGS` constants: `settings`, `home`, `resume`, `projects`, `archive`, `experience`, `skills`.
+  - `cachedQuery(keyParts, tags, fn)` — wrapper around `unstable_cache` from `next/cache`.
+  - Each repository: outer `React.cache` (per-render dedup) + inner `cachedQuery` (cross-request cache + tag for `revalidateTag`).
+  - Example: `getProjects(locale)` → `cache(async (locale) => cachedQuery(['projects', locale], [CACHE_TAGS.projects], async () => { ... payload.find ... }))`.
+- Done when: repositories use tagged `unstable_cache`; `CACHE_TAGS` exported for hooks.
+
+### Step 21c — Payload hooks → `revalidateTag`
+- [x] Pre-req: Step 21b.
+- [x] Files: `src/server/cache/revalidate.ts`; register hooks on `Projects`, `Archive`, `Experience`, `Skills` collections and `Settings`, `Home`, `Resume` globals.
+- Do:
+  - Shared hooks: `afterChange` / `afterDelete` (collections) → `revalidateTag(CACHE_TAGS.<domain>)` wrapped in `try/catch` (seed/standalone must not crash).
+  - Seed writes: pass `context: { disableRevalidate: true }` on `updateGlobal` / `create` / `update` so bulk seed skips Next cache APIs.
+  - Hooks respect `req.context.disableRevalidate` (Payload pattern).
+  - For `projects`: optionally `revalidatePath` for `/en/case/[slug]` and `/uk/case/[slug]` when slug changes.
+- Done when: editing content in `/admin` refreshes the corresponding static page without a full redeploy.
+
+**Commit checkpoint C:** `feat(data): db client, repositories, cache tags & revalidation` (Steps 21a–21c). Verify `bun run lint && bun run build`.
 
 ---
 
 ## Phase 3 — Shared UI Primitives (atomic)
 
 ### Step 22 — `Button`
-- Files: `src/components/ui/button.tsx`.
+- [x] Files: `src/components/ui/button.tsx`.
 - Do: CVA variants — `primary` (accent bg, accent-foreground, brutalist `shadow-[4px_4px_0_var(--foreground)]` + hover translate), `secondary` (surface + border), `ghost`. Mono uppercase label, `rounded-none`. Reduced-motion safe. Use `cn`.
 - Done when: renders all variants from tokens.
 
@@ -228,6 +270,8 @@ Content ownership:
 
 ## Phase 4 — Layout Shell
 
+Pre-req for data-consuming steps (30, 32): Steps 21a–21c complete.
+
 ### Step 27 — `Clock` (Kyiv time)
 - Files: `src/components/layout/clock.tsx` (client).
 - Do: `Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Kyiv',...})` ticking each second; `suppressHydrationWarning` on the value node.
@@ -244,8 +288,9 @@ Content ownership:
 - Done when: `/en/resume` ↔ `/uk/resume` preserves route.
 
 ### Step 30 — `StatusPanel`
+- Pre-req: Steps 21a–21c (data layer migrated).
 - Files: `src/components/layout/status-panel.tsx`.
-- Do: location / availability / local time (embeds `Clock`); data from `getSettings` (passed as props) + `messages.labels`.
+- Do: location / availability / local time (embeds `Clock`); data from `getSettings` via `@/server/repositories` (passed as props) + `messages.labels`.
 - Done when: renders localized metadata block.
 
 ### Step 31 — `Nav` (index + scrollspy)
@@ -255,7 +300,7 @@ Content ownership:
 
 ### Step 32 — `Sidebar` (desktop)
 - Files: `src/components/layout/sidebar.tsx`.
-- Do: sticky left column (xl+): identity (name + `position`), `LocaleSwitcher`, `ThemeSwitcher`, `StatusPanel`, `Nav`, `DOWNLOAD CV` → `/resume`, footer chrome. Composes the above; receives `settings` props.
+- Do: sticky left column (xl+): identity (name + `position`), `LocaleSwitcher`, `ThemeSwitcher`, `StatusPanel`, `Nav`, `DOWNLOAD CV` → `/resume`, footer chrome. Composes the above; receives `settings` props (fetched via `@/server/repositories` in parent page).
 - Done when: matches reference left column via tokens.
 
 ### Step 33 — `Header` + `DrawerMenu` (mobile)
@@ -269,39 +314,41 @@ Content ownership:
 
 ## Phase 5 — Home Sections
 
+Pre-req: Steps 21a–21c (repositories + cache tags).
+
 ### Step 34 — `Hero` (`#hero`)
 - Files: `src/components/sections/hero.tsx`.
-- Do: badge/headline/copy from `getHome().hero`; CTAs (`viewProjects`→`#projects`, `contactMe`→`#contact`) using `Button`; technical grid background; reduced-motion safe.
+- Do: badge/headline/copy from `getHome(locale)` (`@/server/repositories`).hero; CTAs (`viewProjects`→`#projects`, `contactMe`→`#contact`) using `Button`; technical grid background; reduced-motion safe.
 - Done when: localized hero renders.
 
 ### Step 35 — `Stack` (`#stack`)
 - Files: `src/components/sections/stack.tsx`.
-- Do: 3 metric cells from `getHome().proof`; tech inventory from `getSkills()` as bordered mono badges (icon optional via a small id→icon map using standard named `lucide-react` imports — `import { X } from 'lucide-react'`; tree-shaking handled by `optimizePackageImports` from Step 5, not deep-path imports).
+- Do: 3 metric cells from `getHome(locale)` (`@/server/repositories`).proof; tech inventory from `getSkills(locale)` as bordered mono badges (icon optional via a small id→icon map using standard named `lucide-react` imports — `import { X } from 'lucide-react'`; tree-shaking handled by `optimizePackageImports` from Step 5, not deep-path imports).
 - Done when: metrics + skills render localized.
 
 ### Step 36 — `Projects` (`#projects`)
 - Files: `src/components/sections/projects.tsx` + `src/components/case/project-card.tsx` (client for expand).
-- Do: list `getProjects()`; card = node header + label + title + role/period + summary; expandable "telemetry" (highlights + stack) via local state (CSS height/opacity, reduced-motion safe); flagship card links `readDoc`→`/case/[slug]`.
+- Do: list `getProjects(locale)` from `@/server/repositories`; card = node header + label + title + role/period + summary; expandable "telemetry" (highlights + stack) via local state (CSS height/opacity, reduced-motion safe); flagship card links `readDoc`→`/case/[slug]`.
 - Done when: cards render, expand toggles, link routes to case page.
 
 ### Step 37 — `Archive` (`#archive`)
 - Files: `src/components/sections/archive.tsx`.
-- Do: featured grid (first ~4 of `getArchive()`); `viewArchive` button → `/archive`.
+- Do: featured grid (first ~4 of `getArchive(locale)` from `@/server/repositories`); `viewArchive` button → `/archive`.
 - Done when: featured entries render + link works.
 
 ### Step 38 — `Experience` (`#experience`)
 - Files: `src/components/sections/experience.tsx`.
-- Do: timeline from `getExperience()` (role/company/period/bullets), localized.
+- Do: timeline from `getExperience(locale)` (`@/server/repositories`) — role/company/period/bullets, localized.
 - Done when: timeline renders localized.
 
 ### Step 39 — `Contact` (`#contact`)
 - Files: `src/components/sections/contact.tsx` (client).
-- Do: prominent email copy (clipboard + `Toast`) + social cards from `getSettings().contacts`. No separate page.
+- Do: prominent email copy (clipboard + `Toast`) + social cards from `getSettings(locale)` (`@/server/repositories`).contacts (passed as props from server parent). No separate page.
 - Done when: copy works; links open.
 
 ### Step 40 — assemble home page
 - Files: rewrite `src/app/(frontend)/[locale]/page.tsx`.
-- Do: server component; `setRequestLocale(locale)`; fetch needed data; render `Sidebar` + `Header`/`DrawerMenu` + sections in order hero→stack→projects→archive→experience→contact within the 2-column responsive container.
+- Do: server component; `setRequestLocale(locale)`; parallel-fetch via `@/server/repositories` (`getSettings`, `getHome`, `getProjects`, `getArchive`, `getExperience`, `getSkills` — use `Promise.all` where independent); render `Sidebar` + `Header`/`DrawerMenu` + sections in order hero→stack→projects→archive→experience→contact within the 2-column responsive container.
 - Done when: full localized home renders at `/en` and `/uk`; lint+build pass.
 
 **Commit checkpoint F:** `feat(home): sections + page assembly` (Steps 34-40).
@@ -312,7 +359,7 @@ Content ownership:
 
 ### Step 41 — resume components
 - Files: `src/components/resume/header.tsx`, `bento.tsx`, `print-button.tsx`.
-- Do: print-ready bento (about / stack / experience / soft skills / languages / education / portfolio note) from `getResume()` + `getSkills()` + `getExperience()` + `getSettings()`; `print-button` calls `window.print()`; `print:*` classes hide chrome, normalize to B/W, keep one page.
+- Do: print-ready bento (about / stack / experience / soft skills / languages / education / portfolio note) from `@/server/repositories` (`getResume`, `getSkills`, `getExperience`, `getSettings`); `print-button` calls `window.print()`; `print:*` classes hide chrome, normalize to B/W, keep one page.
 - Done when: components render localized + print-clean.
 
 ### Step 42 — resume page
@@ -328,12 +375,12 @@ Content ownership:
 
 ### Step 43 — case components
 - Files: `src/components/case/index-nav.tsx` (client scrollspy) + `src/components/case/section.tsx`.
-- Do: left index sidebar with anchors + section blocks (overview/goals/stack/etc.) driven by `getProject(slug)` fields (summary, highlights, stack, technicalDepth, metrics).
+- Do: left index sidebar with anchors + section blocks (overview/goals/stack/etc.) driven by `getProject(slug, locale)` from `@/server/repositories` (summary, highlights, stack, technicalDepth, metrics).
 - Done when: components render from a project record.
 
 ### Step 44 — case route
 - Files: create `src/app/(frontend)/[locale]/case/[slug]/page.tsx`.
-- Do: `generateStaticParams` from project slugs × locales; `setRequestLocale`; `getProject(slug, locale)` → `notFound()` if missing; render header + index-nav + sections; back link.
+- Do: `generateStaticParams` from `getProjects` slugs × locales; `setRequestLocale`; `getProject(slug, locale)` from `@/server/repositories` → `notFound()` if missing; render header + index-nav + sections; back link.
 - Done when: `/en/case/portfolio-cms` renders; bad slug → 404.
 
 **Commit checkpoint H:** `feat(case): case study route` (Steps 43-44).
@@ -344,12 +391,12 @@ Content ownership:
 
 ### Step 45 — archive components
 - Files: `src/components/archive/table.tsx` (client search/filter) + `src/components/archive/toolbar.tsx`.
-- Do: full ledger table from `getArchive()`; client search + category filter (derive single-pass); localized role/metric; sharp-corner table.
+- Do: full ledger table from `getArchive(locale)` (`@/server/repositories`); client search + category filter (derive single-pass); localized role/metric; sharp-corner table.
 - Done when: search/filter work; localized.
 
 ### Step 46 — archive route
 - Files: create `src/app/(frontend)/[locale]/archive/page.tsx`.
-- Do: server component; `setRequestLocale`; fetch archive; render toolbar + table + back link.
+- Do: server component; `setRequestLocale`; fetch `getArchive(locale)` from `@/server/repositories`; render toolbar + table + back link.
 - Done when: `/en/archive` + `/uk/archive` render and filter.
 
 **Commit checkpoint I:** `feat(archive): full archive ledger page` (Steps 45-46).
@@ -360,7 +407,7 @@ Content ownership:
 
 ### Step 47 — localized metadata + hreflang
 - Files: edit `[locale]/layout.tsx` and each `page.tsx` (`generateMetadata`).
-- Do: per-locale `title`/`description` (from `settings`/`home`), `alternates.languages` for en/uk, canonical, OpenGraph. Use `NEXT_PUBLIC_SITE_URL`.
+- Do: per-locale `title`/`description` from `getSettings`/`getHome` (`@/server/repositories`), `alternates.languages` for en/uk, canonical, OpenGraph. Use `NEXT_PUBLIC_SITE_URL`.
 - Done when: correct `<title>`, `lang`, and hreflang per route.
 
 ### Step 47b — sitemap & robots (optional)
@@ -393,7 +440,7 @@ Content ownership:
 | --- | --- | --- |
 | A | 1-10 | feat(i18n): wire next-intl + theming foundations |
 | B | 11-20 | feat(cms): collections, globals, localization & seed |
-| C | 21 | feat(data): payload runtime data layer |
+| C | 21a–21c | feat(data): db client, repositories, cache tags & revalidation |
 | D | 22-26 | feat(ui): atomic primitives |
 | E | 27-33 | feat(layout): shell, sidebar, drawer, switchers |
 | F | 34-40 | feat(home): sections + page assembly |
@@ -410,3 +457,5 @@ Content ownership:
 - **Drawer** uses Radix Dialog (accessible) styled as a right sheet.
 - **Payload admin/api** stay untouched; middleware matcher must exclude them.
 - **Seed** is idempotent and is the source of initial bilingual content from `cv.json`.
+- **Data layer:** `src/db/client.ts` is the **only** entry point to Payload (`getPayloadClient`). Repositories live in `src/server/repositories/` and import from `@/db/client` only. `lib/` holds utilities, not queries.
+- **Caching (SSG):** `React.cache` deduplicates within a single render; `unstable_cache` + `CACHE_TAGS` persist across requests; `revalidateTag` from Payload hooks invalidates after admin edits. Seed passes `context: { disableRevalidate: true }` to skip cache APIs.

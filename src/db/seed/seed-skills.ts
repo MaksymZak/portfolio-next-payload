@@ -17,10 +17,19 @@ export async function seedSkills(payload: Payload) {
     }
 
     if (existing) {
-      await payload.update({ collection: 'skills', id: existing.id, data })
+      await payload.update({
+        collection: 'skills',
+        id: existing.id,
+        data,
+        context: { disableRevalidate: true },
+      })
       log(`Updated skill: ${skill.title}`)
     } else {
-      await payload.create({ collection: 'skills', data })
+      await payload.create({
+        collection: 'skills',
+        data,
+        context: { disableRevalidate: true },
+      })
       log(`Created skill: ${skill.title}`)
     }
   }

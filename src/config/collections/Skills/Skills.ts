@@ -1,7 +1,10 @@
 import type { CollectionConfig } from 'payload'
 
+import { skillsRevalidateHooks } from '@/server/cache'
+
 export const Skills: CollectionConfig = {
   slug: 'skills',
+  hooks: skillsRevalidateHooks,
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'level', 'order'],

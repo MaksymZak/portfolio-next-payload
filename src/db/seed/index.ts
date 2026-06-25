@@ -1,7 +1,6 @@
 import 'dotenv/config'
 
-import { getPayload } from 'payload'
-import config from '@payload-config'
+import { getPayloadClient } from '@/db/get-payload-client'
 
 import { ensureDatabaseUrl } from './env'
 import { log } from './logger'
@@ -15,7 +14,7 @@ async function main() {
   ensureDatabaseUrl()
   log('Booting Payload Local API')
 
-  const payload = await getPayload({ config })
+  const payload = await getPayloadClient()
 
   await seedGlobals(payload)
   await seedSkills(payload)

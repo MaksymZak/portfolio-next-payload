@@ -3,14 +3,26 @@ import type { Payload } from 'payload'
 import { log } from './logger'
 import type { Locale } from './types'
 
+const seedContext = { context: { disableRevalidate: true } } as const
+
 export async function seedGlobal(
   payload: Payload,
   slug: 'settings' | 'home' | 'resume',
   dataByLocale: Record<Locale, Record<string, unknown>>,
 ) {
   log(`Upserting global: ${slug}`)
-  await payload.updateGlobal({ slug, locale: 'en', data: dataByLocale.en as never })
-  await payload.updateGlobal({ slug, locale: 'uk', data: dataByLocale.uk as never })
+  await payload.updateGlobal({
+    slug,
+    locale: 'en',
+    data: dataByLocale.en as never,
+    ...seedContext,
+  })
+  await payload.updateGlobal({
+    slug,
+    locale: 'uk',
+    data: dataByLocale.uk as never,
+    ...seedContext,
+  })
 }
 
 export async function findDocByTitle(
@@ -60,9 +72,22 @@ export async function upsertLocalizedCollectionDoc(
         collection,
         locale: 'en',
         data: dataByLocale.en as never,
+        ...seedContext,
       })
     ).id
 
-  await payload.update({ collection, id, locale: 'en', data: dataByLocale.en as never })
-  await payload.update({ collection, id, locale: 'uk', data: dataByLocale.uk as never })
+  await payload.update({
+    collection,
+    id,
+    locale: 'en',
+    data: dataByLocale.en as never,
+    ...seedContext,
+  })
+  await payload.update({
+    collection,
+    id,
+    locale: 'uk',
+    data: dataByLocale.uk as never,
+    ...seedContext,
+  })
 }

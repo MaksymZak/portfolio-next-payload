@@ -1,7 +1,10 @@
 import type { CollectionConfig } from 'payload'
 
+import { experienceRevalidateHooks } from '@/server/cache'
+
 export const Experience: CollectionConfig = {
   slug: 'experience',
+  hooks: experienceRevalidateHooks,
   admin: {
     useAsTitle: 'role',
     defaultColumns: ['role', 'company', 'period', 'order'],

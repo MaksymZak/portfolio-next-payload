@@ -1,7 +1,10 @@
 import type { GlobalConfig } from 'payload'
 
+import { resumeRevalidateHooks } from '@/server/cache'
+
 export const Resume: GlobalConfig = {
   slug: 'resume',
+  hooks: resumeRevalidateHooks,
   label: 'Resume',
   admin: {
     group: 'Site',
