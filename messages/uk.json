@@ -40,5 +40,14 @@
   "footer": {
     "spec": "СПЕЦ: TS, REACT 19, NEXT.js, TAILWIND V4.",
     "intended": "© 2026. ТІЛЬКИ ДЛЯ БЕЗПЕЧНОГО НАЙМУ."
+  },
+  "header": {
+    "systemActive": "W-SYSTEM: АКТИВНИЙ"
+  },
+  "drawer": {
+    "menu": "[ МЕНЮ ]",
+    "close": "[ ЗАКРИТИ ]",
+    "registrar": "MENU_SYSTEM // РЕЄСТРАТОР",
+    "title": "КОНФІГ & ПОКАЖЧИК"
   }
 }

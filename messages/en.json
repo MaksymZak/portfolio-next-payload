@@ -40,5 +40,14 @@
   "footer": {
     "spec": "SPEC: TS, REACT 19, NEXT.js, TAILWIND V4.",
     "intended": "© 2026. INTENDED FOR SECURE RECRUITMENT ONLY."
+  },
+  "header": {
+    "systemActive": "W-SYSTEM: ACTIVE"
+  },
+  "drawer": {
+    "menu": "[ MENU ]",
+    "close": "[ CLOSE ]",
+    "registrar": "MENU_SYSTEM // REGISTRAR",
+    "title": "CONFIG & INDEX"
   }
 }

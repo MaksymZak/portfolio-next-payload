@@ -273,38 +273,38 @@ Content ownership:
 Pre-req for data-consuming steps (30, 32): Steps 21a–21c complete.
 
 ### Step 27 — `Clock` (Kyiv time)
-- Files: `src/components/layout/clock.tsx` (client).
+- [x] Files: `src/components/layout/clock.tsx` (client).
 - Do: `Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Kyiv',...})` ticking each second; `suppressHydrationWarning` on the value node.
 - Done when: shows live Kyiv time, no hydration mismatch.
 
 ### Step 28 — `ThemeSwitcher`
-- Files: `src/components/layout/theme-switcher.tsx` (client).
+- [x] Files: `src/components/layout/theme-switcher.tsx` (client).
 - Do: `useTheme()` from next-themes; 2x2 grid of 4 themes with swatches + active state; labels from `messages.themes`. Avoid hydration flash (render after mount or use `resolvedTheme` guard).
 - Done when: switching updates `data-theme` instantly.
 
 ### Step 29 — `LocaleSwitcher`
-- Files: `src/components/layout/locale-switcher.tsx` (client).
+- [x] Files: `src/components/layout/locale-switcher.tsx` (client).
 - Do: use `useRouter`/`usePathname` from `src/i18n/navigation`; switch locale preserving current path; EN/UK buttons with active state. No detection.
 - Done when: `/en/resume` ↔ `/uk/resume` preserves route.
 
 ### Step 30 — `StatusPanel`
-- Pre-req: Steps 21a–21c (data layer migrated).
-- Files: `src/components/layout/status-panel.tsx`.
+- [x] Pre-req: Steps 21a–21c (data layer migrated).
+- [x] Files: `src/components/layout/status-panel.tsx`.
 - Do: location / availability / local time (embeds `Clock`); data from `getSettings` via `@/server/repositories` (passed as props) + `messages.labels`.
 - Done when: renders localized metadata block.
 
 ### Step 31 — `Nav` (index + scrollspy)
-- Files: `src/components/layout/nav.tsx` (client).
+- [x] Files: `src/components/layout/nav.tsx` (client).
 - Do: numbered links `[01..06]` to `#hero…#contact`; `IntersectionObserver` active-section highlight; smooth scroll; labels from `messages.nav`.
 - Done when: active item tracks scroll; clicks scroll smoothly.
 
 ### Step 32 — `Sidebar` (desktop)
-- Files: `src/components/layout/sidebar.tsx`.
+- [x] Files: `src/components/layout/sidebar.tsx`.
 - Do: sticky left column (xl+): identity (name + `position`), `LocaleSwitcher`, `ThemeSwitcher`, `StatusPanel`, `Nav`, `DOWNLOAD CV` → `/resume`, footer chrome. Composes the above; receives `settings` props (fetched via `@/server/repositories` in parent page).
 - Done when: matches reference left column via tokens.
 
 ### Step 33 — `Header` + `DrawerMenu` (mobile)
-- Files: `src/components/layout/header.tsx`, `src/components/layout/drawer-menu.tsx` (client).
+- [x] Files: `src/components/layout/header.tsx`, `src/components/layout/drawer-menu.tsx` (client).
 - Do: sticky top bar (<xl) with name + `[ MENU ]` opening `Drawer`; drawer contains `Nav`, `LocaleSwitcher`, `ThemeSwitcher`, `StatusPanel`, CV link.
 - Done when: mobile nav works; desktop hides header.
 
