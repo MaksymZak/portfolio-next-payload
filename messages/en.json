@@ -50,6 +50,20 @@
     "registrar": "MENU_SYSTEM // REGISTRAR",
     "title": "CONFIG & INDEX"
   },
+  "resume": {
+    "documentTitle": "CV / RESUME",
+    "sections": {
+      "about": "ABOUT",
+      "stack": "STACK",
+      "experience": "EXPERIENCE",
+      "softSkills": "SOFT SKILLS",
+      "languages": "LANGUAGES",
+      "education": "EDUCATION",
+      "portfolio": "PORTFOLIO"
+    },
+    "viewLivePortfolio": "VIEW LIVE PORTFOLIO",
+    "printVisit": "VISIT: {url}"
+  },
   "contact": {
     "types": {
       "phone": "DIRECT VOICE LINE",

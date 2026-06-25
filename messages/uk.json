@@ -50,6 +50,20 @@
     "registrar": "MENU_SYSTEM // РЕЄСТРАТОР",
     "title": "КОНФІГ & ПОКАЖЧИК"
   },
+  "resume": {
+    "documentTitle": "CV / РЕЗЮМЕ",
+    "sections": {
+      "about": "ПРО СЕБЕ",
+      "stack": "СТЕК",
+      "experience": "ДОСВІД",
+      "softSkills": "М'ЯКІ НАВИЧКИ",
+      "languages": "МОВИ",
+      "education": "ОСВІТА",
+      "portfolio": "ПОРТФОЛІО"
+    },
+    "viewLivePortfolio": "ПЕРЕГЛЯНУТИ ПОРТФОЛІО",
+    "printVisit": "ВІЗИТ: {url}"
+  },
   "contact": {
     "types": {
       "phone": "ПРЯМИЙ ГОЛОСОВИЙ КАНАЛ",

@@ -358,12 +358,12 @@ Pre-req: Steps 21a–21c (repositories + cache tags).
 ## Phase 6 — Resume Page
 
 ### Step 41 — resume components
-- Files: `src/components/resume/header.tsx`, `bento.tsx`, `print-button.tsx`.
+- [x] Files: `src/components/resume/header.tsx`, `bento.tsx`, `print-button.tsx`.
 - Do: print-ready bento (about / stack / experience / soft skills / languages / education / portfolio note) from `@/server/repositories` (`getResume`, `getSkills`, `getExperience`, `getSettings`); `print-button` calls `window.print()`; `print:*` classes hide chrome, normalize to B/W, keep one page.
 - Done when: components render localized + print-clean.
 
 ### Step 42 — resume page
-- Files: create `src/app/(frontend)/[locale]/resume/page.tsx`.
+- [x] Files: create `src/app/(frontend)/[locale]/resume/page.tsx`.
 - Do: server component; `setRequestLocale`; back-to-index link; compose resume components; `savePdf` action.
 - Done when: `/en/resume` + `/uk/resume` render; print preview = one clean page.
 
