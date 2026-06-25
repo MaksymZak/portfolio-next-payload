@@ -55,7 +55,7 @@ src/
   config/
     collections/{Projects,Archive,Experience,Skills,Media,Users}/...
     globals/{Settings,Home,Resume}.ts
-  scripts/seed.ts
+  db/seed/...
 messages/{en,uk}.json
 ```
 
@@ -136,42 +136,42 @@ Content ownership:
 - Done when: collection appears in admin; used later by `stack` + resume.
 
 ### Step 13 — `experience` collection
-- Files: create `src/config/collections/Experience/Experience.ts`; register.
+- [x] Files: create `src/config/collections/Experience/Experience.ts`; register.
 - Do: fields `role` (text, localized), `company` (text), `period` (text), `bullets` (array of `{ text: text localized }`), `order`. `access.read: () => true`. Maps cv `workExperience`.
 - Done when: visible in admin.
 
 ### Step 14 — `archive` collection
-- Files: create `src/config/collections/Archive/Archive.ts`; register.
+- [x] Files: create `src/config/collections/Archive/Archive.ts`; register.
 - Do: fields `title` (text), `role` (text localized), `stack` (array of text), `year` (text), `category` (select: Landing/Platform/Campaign/Prototype), `metric` (text localized, optional), `url` (text, optional), `order`. `access.read: () => true`. Maps reference archive + cv `portfolio.projects`.
 - Done when: visible in admin.
 
 ### Step 15 — `projects` collection (flagship case studies)
-- Files: create `src/config/collections/Projects/Projects.ts`; register.
+- [x] Files: create `src/config/collections/Projects/Projects.ts`; register.
 - Do: fields `title` (text), `slug` (text, unique, indexed), `label` (select: live/roadmap), `role` (text localized), `period` (text), `summary` (textarea localized), `highlights` (array `{ text: text localized }`), `stack` (array text), `metrics` (text localized), `technicalDepth` (textarea localized), `screenshot` (upload→media, optional), `order`. `admin.useAsTitle:'title'`, `access.read: () => true`.
 - Done when: visible in admin; `slug` drives `/case/[slug]`.
 
 ### Step 16 — `settings` global (identity + contacts)
-- Files: create `src/config/globals/Settings.ts`; add `globals: [...]` array to `payload.config.ts`.
+- [x] Files: create `src/config/globals/Settings.ts`; add `globals: [...]` array to `payload.config.ts`.
 - Do: fields `name` (text), `position` (text localized), `location` (text localized), `availability` (text localized), `contacts` (array `{ type: select(phone|mail|telegram|github|linkedin|map), label: text, url: text }`), `resumeUrl` (text, optional). Maps cv `contacts` (`icon`→`type`, `text`→`label`, `link`→`url`). Canonical `position` string = **"Middle Frontend Developer"** (overrides cv.json's "Full Stack (Frontend-focused) Developer"; aligns with reference `translations.ts` + plan title). `access.read: () => true`.
 - Done when: editable singleton in admin.
 
 ### Step 17 — `home` global (editorial content)
-- Files: create `src/config/globals/Home.ts`; register in `globals`.
+- [x] Files: create `src/config/globals/Home.ts`; register in `globals`.
 - Do: groups — `hero { badge, headline, copy }` (localized text), `proof { years, yearsDesc, pages, pagesDesc, depth, depthDesc, intro }` (localized). Maps reference `intro`/`proof`. (Note: `softSkills` moved to the `resume` global in Step 18 — it is consumed only by the resume bento, never by any home section.) `access.read: () => true`.
 - Done when: editable singleton in admin.
 
 ### Step 18 — `resume` global (resume-only content)
-- Files: create `src/config/globals/Resume.ts`; register in `globals`.
+- [x] Files: create `src/config/globals/Resume.ts`; register in `globals`.
 - Do: groups — `about { text }` (localized), `education` (array `{ title, date, text }` localized text), `languages` (array `{ name, level }` localized; split cv flat strings like "Ukrainian - Native" → `name`/`level`), `softSkills` (array text localized; from cv `softSkills`), `portfolioNote { title, text }` (localized). Maps cv `about`/`education`/`languages`/`softSkills`/`portfolio`. `access.read: () => true`.
 - Done when: editable singleton in admin.
 
 ### Step 19 — regenerate Payload types
-- Files: regenerate `src/payload-types.ts`.
+- [x] Files: regenerate `src/payload-types.ts`.
 - Do: run `bun run generate:types` (and `generate:importmap` if admin needs it).
 - Done when: types for all new collections/globals exist and compile.
 
 ### Step 20 — seed script from source inputs
-- Files: create `src/scripts/seed.ts`; add `"seed"` script to `package.json`.
+- [x] Files: create `src/db/seed/`; add `"seed"` script to `package.json`.
 - Pre-req: confirm the Payload connection env var resolves before booting the Local API. `src/payload.config.ts` reads `process.env.DATABASE_URL`, but `src/config/env.ts` declares `DATABASE_URI` — ensure `.env` provides `DATABASE_URL` (or align the names) so seed + the Step 21 data layer can connect.
 - Content sources (per-entity, NOT all from cv.json):
   - `settings`/`home`/`resume` globals, `skills`, `experience` → `cv.json` (+ reference `intro`/`proof` editorial copy). Use canonical `position` = "Middle Frontend Developer".

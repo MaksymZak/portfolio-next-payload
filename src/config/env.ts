@@ -1,7 +1,7 @@
 // Environment variable mapping and validation
 export const env = {
   PAYLOAD_SECRET: process.env.PAYLOAD_SECRET || '',
-  DATABASE_URI: process.env.DATABASE_URI || '',
+  DATABASE_URI: process.env.DATABASE_URL || process.env.DATABASE_URI || '',
   NODE_ENV: process.env.NODE_ENV || 'development',
   NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL || 'https://localhost:3000',
 } as const
