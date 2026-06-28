@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl'
 import { useTheme } from 'next-themes'
 import { useSyncExternalStore } from 'react'
 
+import { brutalistSwitcherClasses } from '@/lib/brutalist-motion'
 import { cn } from '@/lib/cn'
 
 const THEMES = [
@@ -14,14 +15,6 @@ const THEMES = [
 ] as const
 
 type ThemeId = (typeof THEMES)[number]['id']
-
-const switcherButtonClass = (isActive: boolean) =>
-  cn(
-    'flex items-center justify-center gap-1.5 rounded-none border p-2.5 text-center font-mono text-[9px] leading-tight font-bold motion-safe:transition-[transform,box-shadow,background-color,color,border-color]',
-    isActive
-      ? '-translate-x-[1px] -translate-y-[1px] border-foreground bg-foreground text-background shadow-[2px_2px_0px_0px_var(--foreground)]'
-      : 'border-border bg-background text-muted-foreground motion-safe:hover:-translate-x-[1px] motion-safe:hover:-translate-y-[1px] motion-safe:hover:border-foreground motion-safe:hover:text-foreground motion-safe:hover:shadow-[2px_2px_0px_0px_var(--foreground)] active:translate-x-0 active:translate-y-0 active:shadow-none',
-  )
 
 function useMounted() {
   return useSyncExternalStore(
@@ -61,7 +54,7 @@ export function ThemeSwitcher() {
             aria-pressed={isActive}
             aria-label={t(item.id)}
             onClick={() => setTheme(item.id)}
-            className={switcherButtonClass(isActive)}
+            className={brutalistSwitcherClasses(isActive, 'flex items-center justify-center gap-1.5')}
           >
             <span className={cn('block h-1.5 w-1.5 shrink-0 rounded-none border', item.swatch)} />
             <span className="truncate">{t(item.id)}</span>

@@ -1,6 +1,7 @@
 import { getTranslations } from 'next-intl/server'
 
 import { buttonVariants } from '@/components/ui/button'
+import { Card } from '@/components/ui/card'
 import { SectionTag } from '@/components/ui/section-tag'
 import { Link } from '@/i18n/navigation'
 import { cn } from '@/lib/cn'
@@ -24,9 +25,10 @@ export async function Archive({ items }: ArchiveSectionProps) {
 
         <div className="grid grid-cols-1 gap-4 border-t border-border pt-6 sm:grid-cols-2">
           {featured.map((item, index) => (
-            <div
+            <Card
               key={item.id}
-              className="group relative flex flex-col justify-between gap-6 border border-border bg-surface-muted p-5 motion-safe:transition-[transform,box-shadow,border-color] motion-safe:duration-200 motion-safe:hover:-translate-x-1 motion-safe:hover:-translate-y-1 motion-safe:hover:border-foreground motion-safe:hover:shadow-[6px_6px_0px_var(--foreground)]"
+              variant="interactive"
+              className="group relative flex flex-col justify-between gap-6 bg-surface-muted p-5"
             >
               <div>
                 <div className="mb-2 flex items-start justify-between gap-2">
@@ -46,7 +48,7 @@ export async function Archive({ items }: ArchiveSectionProps) {
                 <span className="uppercase">{item.category}</span>
                 <span>{item.year}</span>
               </div>
-            </div>
+            </Card>
           ))}
         </div>
 

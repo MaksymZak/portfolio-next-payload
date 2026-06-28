@@ -1,6 +1,7 @@
 import { Download } from 'lucide-react'
 import { getTranslations } from 'next-intl/server'
 
+import { linkControlVariants } from '@/components/ui/button'
 import { Link } from '@/i18n/navigation'
 import { cn } from '@/lib/cn'
 import type { Setting } from '@/payload-types'
@@ -58,7 +59,7 @@ export async function Sidebar({ settings, className }: SidebarProps) {
         <div className="pt-2">
           <Link
             href="/resume"
-            className="flex w-full items-center justify-center gap-2 rounded-none border-2 border-foreground bg-surface px-3 py-3 font-mono text-[10px] font-bold text-foreground uppercase select-none motion-safe:transition-[transform,box-shadow] motion-safe:duration-150 motion-safe:hover:-translate-x-0.5 motion-safe:hover:-translate-y-0.5 motion-safe:hover:shadow-[4px_4px_0px_0px_var(--foreground)] active:translate-x-px active:translate-y-px active:shadow-none"
+            className={cn(linkControlVariants({ variant: 'secondary' }), 'flex w-full gap-2 px-3 py-3')}
           >
             <Download size={13} aria-hidden />
             {tActions('downloadCv')}

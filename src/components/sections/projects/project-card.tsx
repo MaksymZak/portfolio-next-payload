@@ -8,6 +8,7 @@ import { Button, buttonVariants } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { MonoLabel } from '@/components/ui/mono-label'
 import { Link } from '@/i18n/navigation'
+import { brutalistCardSelected } from '@/lib/brutalist-motion'
 import { cn } from '@/lib/cn'
 import type { Project } from '@/payload-types'
 
@@ -46,12 +47,8 @@ export function ProjectCard({ project, actions, isFlagship = false }: ProjectCar
 
   return (
     <Card
-      className={cn(
-        'flex flex-col overflow-hidden motion-safe:transition-[transform,box-shadow,border-color] motion-safe:duration-200',
-        isExpanded
-          ? 'z-10 -translate-x-px -translate-y-px border-foreground shadow-[6px_6px_0_var(--foreground)]'
-          : 'motion-safe:hover:-translate-x-px motion-safe:hover:-translate-y-px motion-safe:hover:border-foreground motion-safe:hover:shadow-[6px_6px_0_var(--foreground)]',
-      )}
+      variant="interactive"
+      className={cn('flex flex-col', isExpanded && cn('z-10', brutalistCardSelected))}
     >
       <div className="flex items-center justify-between border-b border-border bg-surface-muted px-4 py-2 font-mono text-[10px]">
         <div className="flex items-center gap-1.5 font-bold">
@@ -107,11 +104,11 @@ export function ProjectCard({ project, actions, isFlagship = false }: ProjectCar
           {hasTelemetry ? (
             <Button
               type="button"
-              variant="secondary"
+              variant="plack"
               size="default"
               aria-expanded={isExpanded}
               aria-controls={panelId}
-              className="border-2 border-foreground px-4 py-2.5 tracking-widest shadow-[2px_2px_0_0_var(--foreground)] motion-safe:transition-[transform,box-shadow] motion-safe:duration-150 motion-safe:hover:-translate-x-px motion-safe:hover:-translate-y-px motion-safe:hover:shadow-[3px_3px_0_0_var(--foreground)] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none"
+              className="px-4 py-2.5 tracking-widest"
               onClick={toggleTelemetry}
             >
               <Terminal size={12} aria-hidden className="text-muted-foreground" />

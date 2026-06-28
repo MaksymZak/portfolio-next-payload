@@ -12,6 +12,7 @@ import { MonoLabel } from '@/components/ui/mono-label'
 import { Clock as KyivClock } from '@/components/layout/clock'
 import { Link } from '@/i18n/navigation'
 import { routing } from '@/i18n/routing'
+import { brutalistTileLift } from '@/lib/brutalist-motion'
 import { cn } from '@/lib/cn'
 import { buildPageMetadata } from '@/lib/metadata'
 import type { Project } from '@/payload-types'
@@ -223,7 +224,10 @@ export default async function CasePage({ params }: CasePageProps) {
                       {highlights.map((highlight, index) => (
                         <li
                           key={highlight.id ?? `${project.slug}-goal-${index}`}
-                          className="border border-border bg-surface p-4 motion-safe:transition-[transform,box-shadow,background-color] motion-safe:hover:-translate-x-0.5 motion-safe:hover:-translate-y-0.5 motion-safe:hover:bg-surface-muted motion-safe:hover:shadow-[4px_4px_0px_0px_var(--foreground)]"
+                          className={cn(
+                            'border border-border bg-surface p-4 hover:border-foreground hover:bg-surface-muted',
+                            brutalistTileLift,
+                          )}
                         >
                           <MonoLabel variant="accent" size="sm" className="mb-2 block">
                             {String(index + 1).padStart(2, '0')} / GOAL
