@@ -1,0 +1,7 @@
+paths:
+  description: .ai-factory/DESCRIPTION.md
+  architecture: .ai-factory/ARCHITECTURE.md
+
+language:
+  ui: en
+  artifacts: en
