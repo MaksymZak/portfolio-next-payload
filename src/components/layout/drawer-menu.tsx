@@ -17,11 +17,12 @@ import {
 import { MonoLabel } from '@/components/ui/mono-label'
 import { Link } from '@/i18n/navigation'
 import { brutalistDrawerTriggerClasses } from '@/lib/brutalist-motion'
+import { prefersReducedMotion } from '@/lib/home-scroll'
 import { cn } from '@/lib/cn'
 import type { Setting } from '@/payload-types'
 
 import { LocaleSwitcher } from './locale-switcher'
-import { Nav } from './nav'
+import { Nav, type NavSectionId } from './nav'
 import { StatusPanel } from './status-panel'
 import { ThemeSwitcher } from './theme-switcher'
 
@@ -36,8 +37,10 @@ export function DrawerMenu({ settings, className }: DrawerMenuProps) {
   const tLabels = useTranslations('labels')
   const [open, setOpen] = useState(false)
 
-  const handleNavigate = () => {
+  const handleNavigate = (_sectionId: NavSectionId, navigate: () => void) => {
     setOpen(false)
+    const delay = prefersReducedMotion() ? 0 : 200
+    window.setTimeout(navigate, delay)
   }
 
   return (
@@ -61,7 +64,7 @@ export function DrawerMenu({ settings, className }: DrawerMenuProps) {
             </DrawerClose>
           </DrawerHeader>
 
-          <Nav onNavigate={handleNavigate} />
+          <Nav variant="drawer" onNavigate={handleNavigate} />
 
           <div className="border-t border-border pt-4">
             <DrawerClose asChild>

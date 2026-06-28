@@ -3,8 +3,10 @@ import { Sparkles } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { getHome } from '@/server/repositories'
 import type { DataLocale } from '@/server/types'
+import { cn } from '@/lib/cn'
 
 import { HeroCtas } from './hero-ctas'
+import { HOME_SECTION_SCROLL_MT } from '@/lib/home-scroll'
 
 type HeroProps = {
   locale: DataLocale
@@ -18,7 +20,10 @@ export async function Hero({ locale }: HeroProps) {
   return (
     <section
       id="hero"
-      className="relative flex min-h-[48vh] flex-col justify-center overflow-hidden border-b border-border bg-surface p-6 lg:p-12"
+      className={cn(
+        'relative flex min-h-[48vh] flex-col justify-center overflow-hidden border-b border-border bg-surface p-6 lg:p-12',
+        HOME_SECTION_SCROLL_MT,
+      )}
     >
       <div
         aria-hidden

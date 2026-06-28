@@ -68,7 +68,11 @@ export default async function LocaleLayout({ children, params }: Props) {
   const messages = await getMessages()
 
   return (
-    <html lang={locale} suppressHydrationWarning className={`${sans.variable} ${mono.variable}`}>
+    <html
+      lang={locale}
+      suppressHydrationWarning
+      className={`${sans.variable} ${mono.variable} motion-safe:scroll-smooth`}
+    >
       <body>
         <ThemeProvider>
           <NextIntlClientProvider locale={locale} messages={messages}>

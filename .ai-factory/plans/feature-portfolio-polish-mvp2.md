@@ -97,19 +97,19 @@ Use option 1 as the primary fix. Add option 2 only if manual QA still shows the 
 
 ### Phase 3: Sidebar, Drawer, and Scroll-Spy Behavior
 
-- [ ] Task 7: Refactor home navigation item styling to separate active state from hover lift.
+- [x] Task 7: Refactor home navigation item styling to separate active state from hover lift.
   - Files: `src/components/layout/nav.tsx`, `src/components/layout/drawer-menu.tsx`, `src/components/case/index-nav.tsx` if the pattern is shared.
   - Deliverable: active nav rows use stable border/background/font treatment without permanent list-shifting translate, or all rows reserve identical visual space so active changes do not jump. Hover lift should apply only to pointer hover and should not fight active selection.
   - Expected behavior: moving the mouse during scroll no longer creates a cascade of active/hover/shadow shifts.
   - Logging requirements: add temporary development logs only while debugging nav state transitions, e.g. `[Nav] target section settled`; remove them before completion. Keep no production INFO logs for ordinary scrolling.
 
-- [ ] Task 8: Implement stable programmatic scroll targeting for home nav.
+- [x] Task 8: Implement stable programmatic scroll targeting for home nav.
   - Files: `src/components/layout/nav.tsx`, `src/components/sections/*` section wrappers, `src/app/(frontend)/globals.css` if scroll utilities are added.
   - Deliverable: replace raw `scrollIntoView` with offset-aware scroll targeting and a temporary target lock that suppresses observer churn until the target settles or a timeout expires. Add `scroll-mt-*` / offset utilities to home sections.
   - Expected behavior: clicking from the first link to the last link gives stable feedback; the active item does not rapidly flicker through every intermediate section.
   - Logging requirements: standard logs are allowed only during development for target lock diagnostics; final code should keep WARN logs for missing target elements and no logs for successful clicks.
 
-- [ ] Task 9: Tune mobile drawer navigation to match reference behavior and accessibility expectations.
+- [x] Task 9: Tune mobile drawer navigation to match reference behavior and accessibility expectations.
   - Files: `src/components/layout/drawer-menu.tsx`, `src/components/layout/nav.tsx`, `src/components/ui/drawer.tsx`.
   - Deliverable: drawer nav can use a flatter active variant than desktop, closes before scroll, respects reduced motion, and returns focus predictably via Radix Dialog behavior.
   - Expected behavior: mobile drawer navigation feels calm and not over-animated; clicking a link does not combine drawer close animation, hover lift, active shift, and page scroll into visual noise.

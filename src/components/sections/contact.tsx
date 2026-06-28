@@ -20,6 +20,7 @@ import { MonoLabel } from '@/components/ui/mono-label'
 import { SectionTag } from '@/components/ui/section-tag'
 import { useToast } from '@/components/ui/toast'
 import { cn } from '@/lib/cn'
+import { HOME_SECTION_SCROLL_MT } from '@/lib/home-scroll'
 import type { Setting } from '@/payload-types'
 
 type ContactItem = NonNullable<Setting['contacts']>[number]
@@ -88,7 +89,10 @@ function ContactContent({ contacts }: ContactContentProps) {
   return (
     <section
       id="contact"
-      className="flex flex-1 flex-col justify-center border-t border-border bg-background p-6 lg:p-12"
+      className={cn(
+        'flex flex-1 flex-col justify-center border-t border-border bg-background p-6 lg:p-12',
+        HOME_SECTION_SCROLL_MT,
+      )}
     >
       <div className="w-full space-y-10">
         <div className="max-w-2xl space-y-3">

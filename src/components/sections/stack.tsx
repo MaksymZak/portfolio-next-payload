@@ -4,6 +4,7 @@ import { getTranslations } from 'next-intl/server'
 import { StackPlack } from '@/components/sections/stack-plack'
 import { SectionTag } from '@/components/ui/section-tag'
 import { cn } from '@/lib/cn'
+import { HOME_SECTION_SCROLL_MT } from '@/lib/home-scroll'
 import type { Home, Skill } from '@/payload-types'
 
 type StackProps = {
@@ -46,7 +47,7 @@ export async function Stack({ proof, skills }: StackProps) {
   ]
 
   return (
-    <section id="stack" className="border-b border-border bg-background p-6 lg:p-12">
+    <section id="stack" className={cn('border-b border-border bg-background p-6 lg:p-12', HOME_SECTION_SCROLL_MT)}>
       <div className="space-y-10">
         <SectionTag index={2}>{tNav('stack').replace(/^\d+\s+/, '')}</SectionTag>
 

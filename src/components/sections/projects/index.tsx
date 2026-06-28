@@ -2,9 +2,11 @@ import { getTranslations } from 'next-intl/server'
 
 import { MonoLabel } from '@/components/ui/mono-label'
 import { SectionTag } from '@/components/ui/section-tag'
+import { HOME_SECTION_SCROLL_MT } from '@/lib/home-scroll'
 import type { Project } from '@/payload-types'
 
 import { ProjectCard } from './project-card'
+import { cn } from '@/lib/cn'
 
 type ProjectsProps = {
   projects: Project[]
@@ -21,7 +23,7 @@ export async function Projects({ projects }: ProjectsProps) {
   }
 
   return (
-    <section id="projects" className="border-b border-border bg-surface p-6 lg:p-12">
+    <section id="projects" className={cn('border-b border-border bg-surface p-6 lg:p-12', HOME_SECTION_SCROLL_MT)}>
       <div className="space-y-8">
         <div className="flex items-center justify-between gap-4">
           <SectionTag index={3}>{sectionTitle}</SectionTag>

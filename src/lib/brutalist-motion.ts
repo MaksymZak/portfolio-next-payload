@@ -133,6 +133,47 @@ export function brutalistSwitcherClasses(isActive: boolean, className?: string) 
   )
 }
 
+const NAV_ITEM_BASE =
+  'flex w-full cursor-pointer items-center justify-between rounded-none border px-3 py-2 text-left font-mono text-xs motion-safe:transition-[transform,box-shadow,background-color,color,border-color] motion-safe:duration-150 motion-safe:ease-out'
+
+export type BrutalistNavVariant = 'sidebar' | 'drawer'
+
+/**
+ * Home/case index nav rows: active state is flat (no permanent translate);
+ * hover lift applies only to inactive rows so selection does not shift the list.
+ */
+export function brutalistNavItemClasses(
+  isActive: boolean,
+  variant: BrutalistNavVariant = 'sidebar',
+  className?: string,
+) {
+  if (variant === 'drawer') {
+    return cn(
+      NAV_ITEM_BASE,
+      isActive
+        ? 'border-foreground bg-foreground font-extrabold text-background'
+        : cn(
+            'border-border bg-background text-muted-foreground',
+            'motion-safe:hover:border-foreground motion-safe:hover:text-foreground',
+          ),
+      className,
+    )
+  }
+
+  return cn(
+    NAV_ITEM_BASE,
+    'border-transparent',
+    isActive
+      ? 'border-foreground bg-foreground font-bold text-background'
+      : cn(
+          'text-muted-foreground',
+          brutalistLiftClasses('compact', { shadow: false }),
+          'motion-safe:hover:border-foreground motion-safe:hover:bg-surface-muted motion-safe:hover:text-foreground',
+        ),
+    className,
+  )
+}
+
 /** Inverted drawer menu trigger: plack hover lift without a resting shadow. */
 export function brutalistDrawerTriggerClasses(className?: string) {
   return cn(

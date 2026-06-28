@@ -4,7 +4,9 @@ import { useCallback, useEffect, useState } from 'react'
 
 import { LocaleSwitcher } from '@/components/layout/locale-switcher'
 import { ThemeSwitcher } from '@/components/layout/theme-switcher'
+import { brutalistNavItemClasses } from '@/lib/brutalist-motion'
 import { cn } from '@/lib/cn'
+import { scrollToSectionTarget } from '@/lib/home-scroll'
 
 export type CaseIndexItem = {
   id: string
@@ -51,11 +53,7 @@ export function CaseIndexNav({ items, indexTitle }: CaseIndexNavProps) {
   }, [resolveActiveSection])
 
   const scrollToSection = (id: string) => {
-    const element = document.getElementById(id)
-    if (!element) return
-
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    element.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' })
+    if (!scrollToSectionTarget(id, SCROLL_OFFSET)) return
     setActiveId(id)
   }
 
@@ -86,12 +84,7 @@ export function CaseIndexNav({ items, indexTitle }: CaseIndexNavProps) {
                 onClick={() => scrollToSection(item.id)}
                 aria-current={isActive ? 'true' : undefined}
                 aria-label={`${item.num} ${item.title}`}
-                className={cn(
-                  'flex w-full cursor-pointer items-center justify-between rounded-none border border-transparent px-3 py-2 text-left font-mono text-xs motion-safe:transition-[transform,box-shadow,background-color,color,border-color]',
-                  isActive
-                    ? '-translate-x-0.5 -translate-y-0.5 border-foreground bg-foreground font-bold text-background shadow-[2px_2px_0px_0px_var(--foreground)] motion-safe:active:translate-x-0 motion-safe:active:translate-y-0 motion-safe:active:shadow-none'
-                    : 'text-muted-foreground motion-safe:hover:-translate-x-0.5 motion-safe:hover:-translate-y-0.5 motion-safe:hover:border-foreground motion-safe:hover:bg-surface-muted motion-safe:hover:text-foreground motion-safe:hover:shadow-[2px_2px_0px_0px_var(--foreground)] motion-safe:active:translate-x-0 motion-safe:active:translate-y-0 motion-safe:active:shadow-none',
-                )}
+                className={brutalistNavItemClasses(isActive)}
               >
                 <span className="truncate">{item.title}</span>
                 <span

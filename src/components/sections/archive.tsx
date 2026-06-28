@@ -5,6 +5,7 @@ import { Card } from '@/components/ui/card'
 import { SectionTag } from '@/components/ui/section-tag'
 import { Link } from '@/i18n/navigation'
 import { cn } from '@/lib/cn'
+import { HOME_SECTION_SCROLL_MT } from '@/lib/home-scroll'
 import type { Archive } from '@/payload-types'
 
 const FEATURED_COUNT = 4
@@ -19,7 +20,7 @@ export async function Archive({ items }: ArchiveSectionProps) {
   const featured = items.slice(0, FEATURED_COUNT)
 
   return (
-    <section id="archive" className="border-b border-border bg-background p-6 lg:p-12">
+    <section id="archive" className={cn('border-b border-border bg-background p-6 lg:p-12', HOME_SECTION_SCROLL_MT)}>
       <div className="space-y-6">
         <SectionTag index={4}>{tNav('archive').replace(/^\d+\s+/, '')}</SectionTag>
 
