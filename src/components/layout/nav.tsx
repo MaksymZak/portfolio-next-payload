@@ -99,6 +99,7 @@ export function Nav({ className, onNavigate }: NavProps) {
             type="button"
             id={`nav-link-${item.id}`}
             aria-current={isActive ? 'true' : undefined}
+            aria-label={`${item.number} ${label}`}
             onClick={() => handleNavigate(item.id)}
             className={navItemClass(isActive)}
           >

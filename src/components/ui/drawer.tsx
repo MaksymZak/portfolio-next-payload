@@ -31,7 +31,7 @@ function DrawerOverlay({
     <DrawerPrimitive.Overlay
       data-slot="drawer-overlay"
       className={cn(
-        'fixed inset-0 z-50 bg-black/40 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:animate-in data-[state=open]:fade-in-0',
+        'fixed inset-0 z-50 bg-black/40 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:animate-in data-[state=open]:fade-in-0 motion-reduce:animate-none',
         className,
       )}
       {...props}
@@ -53,7 +53,7 @@ function DrawerContent({
           'fixed inset-y-0 right-0 z-50 flex h-full w-full flex-col gap-4 overflow-y-auto rounded-none border-l border-border bg-surface p-6 font-mono text-xs text-foreground shadow-2xl outline-none sm:w-[420px]',
           'data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:slide-out-to-right',
           'data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:slide-in-from-right',
-          'motion-safe:data-[state=closed]:duration-300 motion-safe:data-[state=open]:duration-500',
+          'motion-safe:data-[state=closed]:duration-300 motion-safe:data-[state=open]:duration-500 motion-reduce:animate-none',
           className,
         )}
         {...props}

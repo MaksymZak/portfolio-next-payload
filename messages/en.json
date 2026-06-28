@@ -80,6 +80,7 @@
     "description": "A comprehensive registry of commercial landing pages, single-page applications, and interactive campaigns. Predominantly built using Astro for high performance, alongside Next.js and React components.",
     "searchPlaceholder": "Search records...",
     "categoryAll": "All",
+    "filtersLabel": "Filter archive records",
     "categories": {
       "landing": "Landing",
       "platform": "Platform",

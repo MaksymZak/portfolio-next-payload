@@ -406,27 +406,27 @@ Pre-req: Steps 21a–21c (repositories + cache tags).
 ## Phase 9 — SEO, Metadata & Final Polish
 
 ### Step 47 — localized metadata + hreflang
-- Files: edit `[locale]/layout.tsx` and each `page.tsx` (`generateMetadata`).
+- [x] Files: edit `[locale]/layout.tsx` and each `page.tsx` (`generateMetadata`).
 - Do: per-locale `title`/`description` from `getSettings`/`getHome` (`@/server/repositories`), `alternates.languages` for en/uk, canonical, OpenGraph. Use `NEXT_PUBLIC_SITE_URL`.
 - Done when: correct `<title>`, `lang`, and hreflang per route.
 
 ### Step 47b — sitemap & robots (optional)
-- Files: create `src/app/sitemap.ts` and `src/app/robots.ts`.
+- [x] Files: create `src/app/sitemap.ts` and `src/app/robots.ts`.
 - Do: `sitemap.ts` emits all public routes (home, resume, archive, each `/case/[slug]`) × `en`/`uk` with `alternates.languages` hreflang, base from `NEXT_PUBLIC_SITE_URL`; `robots.ts` allows crawl + points to the sitemap, disallows `/admin` and `/api`. Low priority — drop if out of MVP scope.
 - Done when: `/sitemap.xml` and `/robots.txt` resolve with correct per-locale entries.
 
 ### Step 48 — accessibility & reduced-motion pass
-- Files: touch interactive components as needed.
+- [x] Files: touch interactive components as needed.
 - Do: visible focus rings (already in `globals.css`), keyboard nav for drawer/switchers/nav, `aria-*` on toggles, confirm all motion respects `prefers-reduced-motion`, verify High Contrast theme.
 - Done when: keyboard-only flow works; reduced-motion disables transitions.
 
 ### Step 49 — responsive verification + cleanup
-- Files: as needed.
+- [x] Files: as needed.
 - Do: verify mobile(375)/tablet(768)/desktop(1280+); remove any leftover prototype `localStorage`/dead code; confirm no client `motion/react` dependency leaked in.
 - Done when: clean responsive behavior across breakpoints.
 
 ### Step 50 — final gate
-- Files: none.
+- [x] Files: none.
 - Do: `bun run lint` + `bun run build`; manual smoke of `/en`, `/uk`, `/en/resume`, `/en/case/portfolio-cms`, `/en/archive`, `/admin`.
 - Done when: lint + build pass; all routes load; admin intact.
 

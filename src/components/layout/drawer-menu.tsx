@@ -41,6 +41,7 @@ export function DrawerMenu({ settings, className }: DrawerMenuProps) {
   return (
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger
+        aria-label={tDrawer('menu')}
         className={cn(
           'cursor-pointer rounded-none border border-foreground bg-foreground px-3 py-1.5 font-mono text-[10px] font-bold text-background uppercase select-none motion-safe:transition-[transform,box-shadow,background-color,color] motion-safe:hover:-translate-x-0.5 motion-safe:hover:-translate-y-0.5 motion-safe:hover:bg-surface motion-safe:hover:text-foreground motion-safe:hover:shadow-[3px_3px_0px_0px_var(--foreground)] active:translate-x-px active:translate-y-px active:shadow-none',
           className,

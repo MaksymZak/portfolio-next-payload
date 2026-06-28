@@ -51,7 +51,7 @@ export function ArchiveToolbar({
         />
       </div>
 
-      <div className="flex flex-wrap gap-2" role="group" aria-label={t('categoryAll')}>
+      <div className="flex flex-wrap gap-2" role="group" aria-label={t('filtersLabel')}>
         <CategoryButton
           active={activeCategory === ALL_CATEGORY}
           onClick={() => onCategoryChange(ALL_CATEGORY)}

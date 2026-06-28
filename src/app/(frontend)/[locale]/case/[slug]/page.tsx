@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import { ArrowLeft, Clock } from 'lucide-react'
 import { hasLocale } from 'next-intl'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
@@ -12,8 +13,9 @@ import { Clock as KyivClock } from '@/components/layout/clock'
 import { Link } from '@/i18n/navigation'
 import { routing } from '@/i18n/routing'
 import { cn } from '@/lib/cn'
+import { buildPageMetadata } from '@/lib/metadata'
 import type { Project } from '@/payload-types'
-import { getProject, getProjects } from '@/server/repositories'
+import { getProject, getProjects, getSettings } from '@/server/repositories'
 import type { DataLocale } from '@/server/types'
 
 type CasePageProps = {
@@ -34,6 +36,32 @@ export async function generateStaticParams() {
   return projects.map((project) => ({
     slug: project.slug,
   }))
+}
+
+export async function generateMetadata({ params }: CasePageProps): Promise<Metadata> {
+  const { locale, slug } = await params
+
+  if (!hasLocale(routing.locales, locale)) {
+    return {}
+  }
+
+  const dataLocale = locale as DataLocale
+  const [settings, project] = await Promise.all([
+    getSettings(dataLocale),
+    getProject(slug, dataLocale),
+  ])
+
+  if (!project) {
+    return {}
+  }
+
+  return buildPageMetadata({
+    locale,
+    title: `${project.title} — ${settings.name}`,
+    description: project.summary,
+    path: `/case/${slug}`,
+    siteName: settings.name,
+  })
 }
 
 export default async function CasePage({ params }: CasePageProps) {

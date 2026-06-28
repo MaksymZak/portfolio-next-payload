@@ -85,6 +85,7 @@ export function CaseIndexNav({ items, indexTitle }: CaseIndexNavProps) {
                 type="button"
                 onClick={() => scrollToSection(item.id)}
                 aria-current={isActive ? 'true' : undefined}
+                aria-label={`${item.num} ${item.title}`}
                 className={cn(
                   'flex w-full cursor-pointer items-center justify-between rounded-none border border-transparent px-3 py-2 text-left font-mono text-xs motion-safe:transition-[transform,box-shadow,background-color,color,border-color]',
                   isActive

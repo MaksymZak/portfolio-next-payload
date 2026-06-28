@@ -42,6 +42,7 @@ export function LocaleSwitcher() {
             key={item.id}
             type="button"
             aria-pressed={isActive}
+            aria-label={item.label}
             onClick={() => handleSwitch(item.id)}
             className={switcherButtonClass(isActive)}
           >

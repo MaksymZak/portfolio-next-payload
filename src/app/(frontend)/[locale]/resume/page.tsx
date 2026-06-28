@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import { ArrowLeft } from 'lucide-react'
 import { hasLocale } from 'next-intl'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
@@ -8,6 +9,7 @@ import { ResumeHeader } from '@/components/resume/header'
 import { PrintButton } from '@/components/resume/print-button'
 import { Link } from '@/i18n/navigation'
 import { routing } from '@/i18n/routing'
+import { buildPageMetadata } from '@/lib/metadata'
 import {
   getExperience,
   getResume,
@@ -18,6 +20,29 @@ import type { DataLocale } from '@/server/types'
 
 type ResumePageProps = {
   params: Promise<{ locale: string }>
+}
+
+export async function generateMetadata({ params }: ResumePageProps): Promise<Metadata> {
+  const { locale } = await params
+
+  if (!hasLocale(routing.locales, locale)) {
+    return {}
+  }
+
+  const dataLocale = locale as DataLocale
+  const [settings, resume, tResume] = await Promise.all([
+    getSettings(dataLocale),
+    getResume(dataLocale),
+    getTranslations('resume'),
+  ])
+
+  return buildPageMetadata({
+    locale,
+    title: `${settings.name} — ${tResume('documentTitle')}`,
+    description: resume.about.text,
+    path: '/resume',
+    siteName: settings.name,
+  })
 }
 
 export default async function ResumePage({ params }: ResumePageProps) {

@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import { IBM_Plex_Sans, JetBrains_Mono } from 'next/font/google'
 import { hasLocale, NextIntlClientProvider } from 'next-intl'
 import { getMessages, setRequestLocale } from 'next-intl/server'
@@ -6,6 +7,9 @@ import type { ReactNode } from 'react'
 
 import { ThemeProvider } from '@/components/layout/theme-provider'
 import { routing } from '@/i18n/routing'
+import { buildPageMetadata, buildSiteName, getSiteUrl } from '@/lib/metadata'
+import { getHome, getSettings } from '@/server/repositories'
+import type { DataLocale } from '@/server/types'
 
 import '../globals.css'
 
@@ -29,6 +33,27 @@ export function generateStaticParams() {
 type Props = {
   children: ReactNode
   params: Promise<{ locale: string }>
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params
+
+  if (!hasLocale(routing.locales, locale)) {
+    return {}
+  }
+
+  const dataLocale = locale as DataLocale
+  const [settings, home] = await Promise.all([getSettings(dataLocale), getHome(dataLocale)])
+
+  return {
+    metadataBase: new URL(getSiteUrl()),
+    ...buildPageMetadata({
+      locale,
+      title: buildSiteName(settings),
+      description: home.hero.copy,
+      siteName: settings.name,
+    }),
+  }
 }
 
 export default async function LocaleLayout({ children, params }: Props) {

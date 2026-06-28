@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import { hasLocale } from 'next-intl'
 import { setRequestLocale } from 'next-intl/server'
 import { notFound } from 'next/navigation'
@@ -12,6 +13,7 @@ import { Projects } from '@/components/sections/projects'
 import { Stack } from '@/components/sections/stack'
 import { ToastProvider } from '@/components/ui/toast'
 import { routing } from '@/i18n/routing'
+import { buildPageMetadata, buildSiteName } from '@/lib/metadata'
 import {
   getArchive,
   getExperience,
@@ -24,6 +26,24 @@ import type { DataLocale } from '@/server/types'
 
 type HomePageProps = {
   params: Promise<{ locale: string }>
+}
+
+export async function generateMetadata({ params }: HomePageProps): Promise<Metadata> {
+  const { locale } = await params
+
+  if (!hasLocale(routing.locales, locale)) {
+    return {}
+  }
+
+  const dataLocale = locale as DataLocale
+  const [settings, home] = await Promise.all([getSettings(dataLocale), getHome(dataLocale)])
+
+  return buildPageMetadata({
+    locale,
+    title: buildSiteName(settings),
+    description: home.hero.copy,
+    siteName: settings.name,
+  })
 }
 
 export default async function HomePage({ params }: HomePageProps) {

@@ -59,6 +59,7 @@ export function ThemeSwitcher() {
             key={item.id}
             type="button"
             aria-pressed={isActive}
+            aria-label={t(item.id)}
             onClick={() => setTheme(item.id)}
             className={switcherButtonClass(isActive)}
           >

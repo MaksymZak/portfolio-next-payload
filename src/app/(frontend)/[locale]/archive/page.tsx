@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import { ArrowLeft } from 'lucide-react'
 import { hasLocale } from 'next-intl'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
@@ -7,11 +8,34 @@ import { ArchiveTable } from '@/components/archive/table'
 import { SectionTag } from '@/components/ui/section-tag'
 import { Link } from '@/i18n/navigation'
 import { routing } from '@/i18n/routing'
-import { getArchive } from '@/server/repositories'
+import { buildPageMetadata } from '@/lib/metadata'
+import { getArchive, getSettings } from '@/server/repositories'
 import type { DataLocale } from '@/server/types'
 
 type ArchivePageProps = {
   params: Promise<{ locale: string }>
+}
+
+export async function generateMetadata({ params }: ArchivePageProps): Promise<Metadata> {
+  const { locale } = await params
+
+  if (!hasLocale(routing.locales, locale)) {
+    return {}
+  }
+
+  const dataLocale = locale as DataLocale
+  const [settings, tArchive] = await Promise.all([
+    getSettings(dataLocale),
+    getTranslations('archive'),
+  ])
+
+  return buildPageMetadata({
+    locale,
+    title: `${tArchive('title')} — ${settings.name}`,
+    description: tArchive('description'),
+    path: '/archive',
+    siteName: settings.name,
+  })
 }
 
 export default async function ArchivePage({ params }: ArchivePageProps) {
