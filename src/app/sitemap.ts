@@ -8,7 +8,9 @@ const STATIC_PATHS = ['', '/resume', '/archive'] as const
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const projects = await getProjects('en')
-  const casePaths = projects.map((project) => `/case/${project.slug}`)
+  const casePaths = projects
+    .filter((project) => project.label === 'live')
+    .map((project) => `/case/${project.slug}`)
   const paths = [...STATIC_PATHS, ...casePaths]
 
   return paths.flatMap((path) =>

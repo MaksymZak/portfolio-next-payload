@@ -1,19 +1,68 @@
 import { cva, type VariantProps } from 'class-variance-authority'
 import * as React from 'react'
 
+import { brutalistCtaLift, brutalistPlackLift } from '@/lib/brutalist-motion'
 import { cn } from '@/lib/cn'
 
-const buttonVariants = cva(
-  'inline-flex items-center justify-center gap-2 rounded-none border font-mono text-[10px] font-bold uppercase tracking-widest cursor-pointer disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none',
+const buttonBase =
+  'inline-flex items-center justify-center gap-2 rounded-none border-2 font-mono text-[10px] font-bold uppercase tracking-widest cursor-pointer select-none disabled:pointer-events-none disabled:opacity-50'
+
+const buttonVariants = cva(buttonBase, {
+  variants: {
+    variant: {
+      primary: cn(
+        'border-foreground bg-primary text-primary-foreground',
+        brutalistCtaLift,
+        'hover:bg-primary hover:text-primary-foreground',
+      ),
+      secondary: cn(
+        'border-foreground bg-surface text-foreground',
+        brutalistCtaLift,
+        'hover:border-foreground hover:bg-surface hover:text-foreground',
+      ),
+      ghost:
+        'border-transparent bg-transparent text-muted-foreground motion-safe:transition-colors motion-safe:duration-150 hover:bg-surface-muted hover:text-foreground',
+      plack: cn(
+        'border-foreground bg-surface text-foreground',
+        brutalistPlackLift,
+        'hover:border-foreground hover:bg-surface hover:text-foreground',
+      ),
+    },
+    size: {
+      default: 'h-9 px-3 py-1',
+      sm: 'h-8 px-2.5',
+      lg: 'h-10 px-4',
+    },
+  },
+  defaultVariants: {
+    variant: 'primary',
+    size: 'default',
+  },
+})
+
+/** Link-styled control using the same brutalist CTA / ghost variants as Button. */
+const linkControlVariants = cva(
+  cn(buttonBase, 'no-underline'),
   {
     variants: {
       variant: {
-        primary:
-          'border-transparent bg-primary text-primary-foreground shadow-[4px_4px_0_var(--foreground)] motion-safe:transition-[transform,box-shadow,background-color,color] motion-safe:duration-150 motion-safe:hover:-translate-x-0.5 motion-safe:hover:-translate-y-0.5 hover:bg-primary hover:text-primary-foreground active:translate-x-0 active:translate-y-0 active:shadow-none',
-        secondary:
-          'border-border bg-surface text-foreground motion-safe:transition-colors hover:border-foreground',
+        primary: cn(
+          'border-foreground bg-primary text-primary-foreground',
+          brutalistCtaLift,
+          'hover:bg-primary hover:text-primary-foreground',
+        ),
+        secondary: cn(
+          'border-foreground bg-surface text-foreground',
+          brutalistCtaLift,
+          'hover:border-foreground hover:bg-surface hover:text-foreground',
+        ),
         ghost:
-          'border-transparent bg-transparent text-muted-foreground motion-safe:transition-colors hover:bg-surface-muted hover:text-foreground',
+          'border-transparent bg-transparent text-muted-foreground motion-safe:transition-colors motion-safe:duration-150 hover:bg-surface-muted hover:text-foreground',
+        plack: cn(
+          'border-foreground bg-surface text-foreground',
+          brutalistPlackLift,
+          'hover:border-foreground hover:bg-surface hover:text-foreground',
+        ),
       },
       size: {
         default: 'h-9 px-3 py-1',
@@ -22,7 +71,7 @@ const buttonVariants = cva(
       },
     },
     defaultVariants: {
-      variant: 'primary',
+      variant: 'secondary',
       size: 'default',
     },
   },
@@ -30,6 +79,9 @@ const buttonVariants = cva(
 
 export type ButtonProps = React.ComponentProps<'button'> &
   VariantProps<typeof buttonVariants>
+
+export type LinkControlProps = React.ComponentProps<'a'> &
+  VariantProps<typeof linkControlVariants>
 
 function Button({ className, variant, size, type = 'button', ...props }: ButtonProps) {
   return (
@@ -42,4 +94,14 @@ function Button({ className, variant, size, type = 'button', ...props }: ButtonP
   )
 }
 
-export { Button, buttonVariants }
+function LinkControl({ className, variant, size, ...props }: LinkControlProps) {
+  return (
+    <a
+      data-slot="link-control"
+      className={cn(linkControlVariants({ variant, size }), className)}
+      {...props}
+    />
+  )
+}
+
+export { Button, buttonVariants, LinkControl, linkControlVariants }

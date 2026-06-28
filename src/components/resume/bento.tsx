@@ -5,6 +5,7 @@ import type { ReactNode } from 'react'
 import { Badge } from '@/components/ui/badge'
 import { env } from '@/config/env'
 import { Link } from '@/i18n/navigation'
+import { brutalistTileLift } from '@/lib/brutalist-motion'
 import { cn } from '@/lib/cn'
 import type { Experience, Resume, Skill } from '@/payload-types'
 
@@ -64,9 +65,21 @@ export async function ResumeBento({ resume, skills, experience, className }: Res
               key={skill.id}
               variant="surface"
               size="sm"
-              className="border-border print:border-gray-300 print:bg-white print:text-black motion-safe:transition-[transform,box-shadow,border-color] motion-safe:duration-150 motion-safe:hover:-translate-x-0.5 motion-safe:hover:-translate-y-0.5 motion-safe:hover:border-foreground motion-safe:hover:shadow-[3px_3px_0px_var(--foreground)]"
+              className={cn(
+                'gap-1.5 border-border print:border-gray-300 print:bg-white print:text-black',
+                brutalistTileLift,
+                'hover:border-foreground',
+              )}
             >
-              {skill.title}
+              <span>{skill.title}</span>
+              {skill.level > 0 ? (
+                <span
+                  className="font-mono text-[9px] font-bold text-muted-foreground tabular-nums print:text-gray-500"
+                  aria-label={`Level ${skill.level} of 5`}
+                >
+                  L{skill.level}
+                </span>
+              ) : null}
             </Badge>
           ))}
         </div>

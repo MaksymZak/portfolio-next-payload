@@ -84,7 +84,8 @@ export const Settings: GlobalConfig = {
       name: 'resumeUrl',
       type: 'text',
       admin: {
-        description: 'Optional external CV download URL. Leave empty to use the /resume page.',
+        description:
+          'Optional external CV download URL (https://). Leave empty to link to the on-site /resume page instead.',
       },
     },
   ],

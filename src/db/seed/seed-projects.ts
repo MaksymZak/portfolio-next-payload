@@ -1,11 +1,15 @@
 import type { Payload } from 'payload'
 
-import { projectsSeed } from './data/projects'
+import { deprecatedProjectSlugs, projectsSeed } from './data/projects'
 import { log } from './logger'
 import { findProjectBySlug, upsertLocalizedCollectionDoc } from './payload-helpers'
 
+const seedContext = { context: { disableRevalidate: true } } as const
+
 export async function seedProjects(payload: Payload) {
   log('Seeding projects')
+  let upserted = 0
+  let removed = 0
 
   for (const item of projectsSeed) {
     const base = {
@@ -35,6 +39,22 @@ export async function seedProjects(payload: Payload) {
         technicalDepth: item.technicalDepth.uk,
       },
     })
+    upserted += 1
     log(`Upserted project: ${item.slug}`)
   }
+
+  for (const slug of deprecatedProjectSlugs) {
+    const existing = await findProjectBySlug(payload, slug)
+    if (!existing) continue
+
+    await payload.delete({
+      collection: 'projects',
+      id: existing.id,
+      ...seedContext,
+    })
+    removed += 1
+    log(`Removed deprecated placeholder project: ${slug}`)
+  }
+
+  log(`Projects seed complete: ${upserted} upserted, ${removed} removed`)
 }

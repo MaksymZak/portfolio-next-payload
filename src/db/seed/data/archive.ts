@@ -1,7 +1,8 @@
 import { cv } from '../cv'
 import type { ArchiveSeed } from '../types'
+import { normalizeArchiveUrl } from '../utils'
 
-export const archiveSeed: ArchiveSeed[] = [
+const explicitArchiveSeed: ArchiveSeed[] = [
   {
     title: 'A/B Testing Campaign Landing',
     role: {
@@ -20,8 +21,8 @@ export const archiveSeed: ArchiveSeed[] = [
   {
     title: 'Next.js Corporate Portal',
     role: {
-      en: 'Fullstack Next.js Landing System',
-      uk: 'Fullstack Next.js лендинг система',
+      en: 'Middle Frontend — Next.js Landing System',
+      uk: 'Middle Frontend — Next.js лендинг система',
     },
     stack: ['Next.js', 'React', 'Tailwind CSS', 'Framer Motion'],
     year: '2025',
@@ -111,7 +112,22 @@ export const archiveSeed: ArchiveSeed[] = [
     url: 'https://painting.goiteens.com/three-courses/',
     order: 9,
   },
-  ...cv.portfolio.projects.map((project, index) => ({
+]
+
+const seenUrls = new Set(
+  explicitArchiveSeed
+    .map((item) => normalizeArchiveUrl(item.url))
+    .filter((url): url is string => url !== null),
+)
+
+const cvArchiveSeed: ArchiveSeed[] = cv.portfolio.projects
+  .filter((project) => {
+    const normalized = normalizeArchiveUrl(project.url)
+    if (!normalized || seenUrls.has(normalized)) return false
+    seenUrls.add(normalized)
+    return true
+  })
+  .map((project, index) => ({
     title: project.name,
     role: {
       en: 'Commercial Landing Page Delivery',
@@ -122,5 +138,6 @@ export const archiveSeed: ArchiveSeed[] = [
     category: 'landing' as const,
     url: project.url,
     order: 10 + index,
-  })),
-]
+  }))
+
+export const archiveSeed: ArchiveSeed[] = [...explicitArchiveSeed, ...cvArchiveSeed]

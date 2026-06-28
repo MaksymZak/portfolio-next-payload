@@ -1,14 +1,21 @@
 import { cva, type VariantProps } from 'class-variance-authority'
 import * as React from 'react'
 
+import { brutalistCardLift, brutalistTileLift } from '@/lib/brutalist-motion'
 import { cn } from '@/lib/cn'
 
 const cardVariants = cva('rounded-none border border-border bg-surface text-foreground', {
   variants: {
     variant: {
       default: '',
-      interactive:
-        'motion-safe:transition-[transform,box-shadow,background-color,border-color] motion-safe:duration-150 hover:border-foreground hover:bg-surface-muted motion-safe:hover:-translate-x-0.5 motion-safe:hover:-translate-y-0.5 motion-safe:hover:shadow-[4px_4px_0_var(--foreground)]',
+      interactive: cn(
+        'hover:border-foreground hover:bg-surface-muted',
+        brutalistCardLift,
+      ),
+      'interactive-tile': cn(
+        'hover:border-foreground hover:bg-surface-muted',
+        brutalistTileLift,
+      ),
     },
   },
   defaultVariants: {

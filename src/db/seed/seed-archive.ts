@@ -3,17 +3,32 @@ import type { Payload } from 'payload'
 import { archiveSeed } from './data/archive'
 import { log, warn } from './logger'
 import { findDocByTitle, upsertLocalizedCollectionDoc } from './payload-helpers'
+import { normalizeArchiveUrl } from './utils'
 
 export async function seedArchive(payload: Payload) {
   log('Seeding archive')
   const seenTitles = new Set<string>()
+  const seenUrls = new Set<string>()
+  let upserted = 0
+  let skipped = 0
 
   for (const item of archiveSeed) {
+    const normalizedUrl = normalizeArchiveUrl(item.url)
+
     if (seenTitles.has(item.title)) {
       warn(`Skipping duplicate archive title: ${item.title}`)
+      skipped += 1
       continue
     }
+
+    if (normalizedUrl && seenUrls.has(normalizedUrl)) {
+      warn(`Skipping duplicate archive URL: ${item.url} (${item.title})`)
+      skipped += 1
+      continue
+    }
+
     seenTitles.add(item.title)
+    if (normalizedUrl) seenUrls.add(normalizedUrl)
 
     const base = {
       title: item.title,
@@ -41,6 +56,9 @@ export async function seedArchive(payload: Payload) {
         },
       },
     )
+    upserted += 1
     log(`Upserted archive: ${item.title}`)
   }
+
+  log(`Archive seed complete: ${upserted} upserted, ${skipped} skipped`)
 }

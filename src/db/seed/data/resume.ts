@@ -13,7 +13,9 @@ export const resumeData: Record<
   }
 > = {
   en: {
-    about: { text: cv.about.text },
+    about: {
+      text: 'Middle Frontend Developer with 4+ years of commercial experience building modern web applications with React, Next.js, Payload CMS, and TypeScript. Skilled in optimizing landing pages, implementing A/B testing, and mentoring developers. Seeking a professional team to deliver scalable, high-performance frontend solutions.',
+    },
     education: cv.education.list.map((item) => ({
       title: item.title,
       date: item.date,
@@ -28,7 +30,7 @@ export const resumeData: Record<
   },
   uk: {
     about: {
-      text: 'Frontend-орієнтований Full Stack розробник із 4+ роками комерційного досвіду у створенні сучасних вебзастосунків на React, Next.js, Payload CMS, Node.js та базах даних (PostgreSQL, MongoDB). Досвід оптимізації лендингів, A/B тестування та менторства. Шукаю професійну команду для масштабованих високопродуктивних рішень.',
+      text: 'Middle Frontend розробник із 4+ роками комерційного досвіду у створенні сучасних вебзастосунків на React, Next.js, Payload CMS та TypeScript. Досвід оптимізації лендингів, A/B тестування та менторства. Шукаю професійну команду для масштабованих високопродуктивних frontend-рішень.',
     },
     education: [
       {

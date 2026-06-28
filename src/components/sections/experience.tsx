@@ -1,6 +1,8 @@
 import { getTranslations } from 'next-intl/server'
 
 import { SectionTag } from '@/components/ui/section-tag'
+import { HOME_SECTION_SCROLL_MT } from '@/lib/home-scroll'
+import { cn } from '@/lib/cn'
 import type { Experience as ExperienceEntry } from '@/payload-types'
 
 type ExperienceProps = {
@@ -11,7 +13,7 @@ export async function Experience({ items }: ExperienceProps) {
   const tNav = await getTranslations('nav')
 
   return (
-    <section id="experience" className="border-b border-border bg-surface p-6 lg:p-12">
+    <section id="experience" className={cn('border-b border-border bg-surface p-6 lg:p-12', HOME_SECTION_SCROLL_MT)}>
       <div className="max-w-4xl space-y-8">
         <SectionTag index={5}>{tNav('experience').replace(/^\d+\s+/, '')}</SectionTag>
 

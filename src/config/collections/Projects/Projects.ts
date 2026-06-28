@@ -100,6 +100,10 @@ export const Projects: CollectionConfig = {
       name: 'screenshot',
       type: 'upload',
       relationTo: 'media',
+      admin: {
+        description:
+          'Hero screenshot for the case study page and future OG image use. Upload via Media (recommended: 1280×720 or wider, WebP/PNG). Leave empty until a capture is ready.',
+      },
     },
     {
       name: 'order',

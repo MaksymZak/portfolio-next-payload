@@ -15,6 +15,7 @@
     "savePdf": "SAVE PDF",
     "copyEmail": "COPY ADDRESS",
     "copied": "EMAIL COPIED TO CLIPBOARD",
+    "copyFailed": "COULD NOT COPY TO CLIPBOARD",
     "readDoc": "READ DETAILED ENGINEERING DOCUMENTATION",
     "viewTelemetry": "VIEW TECHNICAL TELEMETRY",
     "hideTelemetry": "HIDE GRANULAR ARCHITECTURE",
@@ -26,6 +27,8 @@
     "location": "LOCATION",
     "availability": "AVAILABILITY",
     "localTime": "LOCAL TIME",
+    "timeZone": "(Kyiv)",
+    "timeZoneRegion": "SUMY/KYIV",
     "systemState": "SYSTEM STATE",
     "online": "ONLINE",
     "locale": "SYSTEM_LOCALE",
@@ -94,7 +97,38 @@
       "year": "YEAR"
     },
     "noResults": "NO ENTRIES MATCHING CRITERIA //",
-    "arcId": "ARC-{id}"
+    "arcId": "ARC-{id}",
+    "visitSite": "Visit live site"
+  },
+  "projects": {
+    "nodes": "NODES: {count}",
+    "role": "ROLE",
+    "date": "DATE",
+    "status": {
+      "live": "LIVE",
+      "roadmap": "ROADMAP"
+    }
+  },
+  "stack": {
+    "metrics": {
+      "years": {
+        "label": "EXPERIENCE CYCLE"
+      },
+      "pages": {
+        "label": "PRODUCTION METRIC"
+      },
+      "depth": {
+        "label": "TECHNOLOGY DEPTH"
+      }
+    },
+    "engineHead": "Engineering Inventory"
+  },
+  "a11y": {
+    "skipToContent": "Skip to main content",
+    "opensInNewTab": "opens in new tab",
+    "externalLink": "{label} ({hint})",
+    "tableCaption": "Commercial archive ledger",
+    "telemetryPanel": "Technical telemetry for {title}"
   },
   "case": {
     "nodeStudy": "NODE_STUDY // ACTIVE",
@@ -103,6 +137,11 @@
     "verified": "PUBLIC FILE / VERIFIED",
     "role": "ROLE",
     "period": "PERIOD",
+    "status": {
+      "live": "LIVE",
+      "roadmap": "ROADMAP"
+    },
+    "goalIndex": "{index} / GOAL",
     "metadataLabel": "STATUS FILE METADATA",
     "overviewTitle": "Executive Summary / Overview",
     "goalsTitle": "Aims & Technical Goals",

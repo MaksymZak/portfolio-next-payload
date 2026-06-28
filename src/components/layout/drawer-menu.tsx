@@ -4,6 +4,7 @@ import { Download } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 
+import { linkControlVariants } from '@/components/ui/button'
 import {
   Drawer,
   DrawerClose,
@@ -14,17 +15,19 @@ import {
   DrawerTrigger,
 } from '@/components/ui/drawer'
 import { MonoLabel } from '@/components/ui/mono-label'
-import { Link } from '@/i18n/navigation'
+import { brutalistDrawerTriggerClasses } from '@/lib/brutalist-motion'
+import { prefersReducedMotion } from '@/lib/home-scroll'
 import { cn } from '@/lib/cn'
 import type { Setting } from '@/payload-types'
 
 import { LocaleSwitcher } from './locale-switcher'
-import { Nav } from './nav'
+import { Nav, type NavSectionId } from './nav'
+import { ResumeDownloadLink } from './resume-download-link'
 import { StatusPanel } from './status-panel'
 import { ThemeSwitcher } from './theme-switcher'
 
 type DrawerMenuProps = {
-  settings: Pick<Setting, 'location' | 'availability'>
+  settings: Pick<Setting, 'location' | 'availability' | 'resumeUrl'>
   className?: string
 }
 
@@ -32,20 +35,21 @@ export function DrawerMenu({ settings, className }: DrawerMenuProps) {
   const tActions = useTranslations('actions')
   const tDrawer = useTranslations('drawer')
   const tLabels = useTranslations('labels')
+  const tA11y = useTranslations('a11y')
+  const downloadLabel = tActions('downloadCv')
   const [open, setOpen] = useState(false)
 
-  const handleNavigate = () => {
+  const handleNavigate = (_sectionId: NavSectionId, navigate: () => void) => {
     setOpen(false)
+    const delay = prefersReducedMotion() ? 0 : 200
+    window.setTimeout(navigate, delay)
   }
 
   return (
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger
         aria-label={tDrawer('menu')}
-        className={cn(
-          'cursor-pointer rounded-none border border-foreground bg-foreground px-3 py-1.5 font-mono text-[10px] font-bold text-background uppercase select-none motion-safe:transition-[transform,box-shadow,background-color,color] motion-safe:hover:-translate-x-0.5 motion-safe:hover:-translate-y-0.5 motion-safe:hover:bg-surface motion-safe:hover:text-foreground motion-safe:hover:shadow-[3px_3px_0px_0px_var(--foreground)] active:translate-x-px active:translate-y-px active:shadow-none',
-          className,
-        )}
+        className={brutalistDrawerTriggerClasses(className)}
       >
         {tDrawer('menu')}
       </DrawerTrigger>
@@ -62,17 +66,22 @@ export function DrawerMenu({ settings, className }: DrawerMenuProps) {
             </DrawerClose>
           </DrawerHeader>
 
-          <Nav onNavigate={handleNavigate} />
+          <Nav variant="drawer" onNavigate={handleNavigate} />
 
           <div className="border-t border-border pt-4">
             <DrawerClose asChild>
-              <Link
-                href="/resume"
-                className="flex w-full items-center justify-center gap-2 rounded-none border-2 border-foreground bg-surface px-3 py-3 font-mono text-[10px] font-bold text-foreground uppercase select-none motion-safe:transition-[transform,box-shadow] motion-safe:duration-150 motion-safe:hover:-translate-x-0.5 motion-safe:hover:-translate-y-0.5 motion-safe:hover:shadow-[4px_4px_0px_0px_var(--foreground)] active:translate-x-px active:translate-y-px active:shadow-none"
+              <ResumeDownloadLink
+                resumeUrl={settings.resumeUrl}
+                linkLabel={downloadLabel}
+                externalAriaLabel={tA11y('externalLink', {
+                  label: downloadLabel,
+                  hint: tA11y('opensInNewTab'),
+                })}
+                className={cn(linkControlVariants({ variant: 'secondary' }), 'flex w-full gap-2 px-3 py-3')}
               >
                 <Download size={13} aria-hidden />
-                {tActions('downloadCv')}
-              </Link>
+                {downloadLabel}
+              </ResumeDownloadLink>
             </DrawerClose>
           </div>
 

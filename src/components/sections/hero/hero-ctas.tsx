@@ -36,7 +36,7 @@ export function HeroCtas() {
         variant="secondary"
         size="lg"
         id="action-get-touch"
-        className="border-2 border-foreground px-7 py-3 shadow-[4px_4px_0px_0px_var(--foreground)] motion-safe:hover:-translate-x-px motion-safe:hover:-translate-y-px motion-safe:hover:shadow-[5px_5px_0px_0px_var(--foreground)] active:translate-x-1 active:translate-y-1 active:shadow-none"
+        className="px-7 py-3"
         onClick={() => handleScroll('contact')}
       >
         {t('contactMe')}

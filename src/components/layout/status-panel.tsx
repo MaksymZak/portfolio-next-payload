@@ -48,7 +48,7 @@ export function StatusPanel({ location, availability, className }: StatusPanelPr
 
       <div className="flex items-center justify-between text-muted-foreground">
         <span className="font-bold uppercase">{t('localTime')}</span>
-        <Clock className="font-semibold text-foreground" />
+        <Clock className="font-semibold text-foreground" suffix={t('timeZone')} />
       </div>
     </div>
   )

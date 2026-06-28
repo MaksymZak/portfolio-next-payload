@@ -1,18 +1,19 @@
 import { Download } from 'lucide-react'
 import { getTranslations } from 'next-intl/server'
 
-import { Link } from '@/i18n/navigation'
+import { linkControlVariants } from '@/components/ui/button'
 import { cn } from '@/lib/cn'
 import type { Setting } from '@/payload-types'
 
 import { LocaleSwitcher } from './locale-switcher'
 import { MonoLabel } from '../ui/mono-label'
 import { Nav } from './nav'
+import { ResumeDownloadLink } from './resume-download-link'
 import { StatusPanel } from './status-panel'
 import { ThemeSwitcher } from './theme-switcher'
 
 type SidebarProps = {
-  settings: Pick<Setting, 'name' | 'position' | 'location' | 'availability'>
+  settings: Pick<Setting, 'name' | 'position' | 'location' | 'availability' | 'resumeUrl'>
   className?: string
 }
 
@@ -20,6 +21,8 @@ export async function Sidebar({ settings, className }: SidebarProps) {
   const tActions = await getTranslations('actions')
   const tLabels = await getTranslations('labels')
   const tFooter = await getTranslations('footer')
+  const tA11y = await getTranslations('a11y')
+  const downloadLabel = tActions('downloadCv')
 
   return (
     <aside
@@ -56,13 +59,18 @@ export async function Sidebar({ settings, className }: SidebarProps) {
         <Nav />
 
         <div className="pt-2">
-          <Link
-            href="/resume"
-            className="flex w-full items-center justify-center gap-2 rounded-none border-2 border-foreground bg-surface px-3 py-3 font-mono text-[10px] font-bold text-foreground uppercase select-none motion-safe:transition-[transform,box-shadow] motion-safe:duration-150 motion-safe:hover:-translate-x-0.5 motion-safe:hover:-translate-y-0.5 motion-safe:hover:shadow-[4px_4px_0px_0px_var(--foreground)] active:translate-x-px active:translate-y-px active:shadow-none"
+          <ResumeDownloadLink
+            resumeUrl={settings.resumeUrl}
+            linkLabel={downloadLabel}
+            externalAriaLabel={tA11y('externalLink', {
+              label: downloadLabel,
+              hint: tA11y('opensInNewTab'),
+            })}
+            className={cn(linkControlVariants({ variant: 'secondary' }), 'flex w-full gap-2 px-3 py-3')}
           >
             <Download size={13} aria-hidden />
-            {tActions('downloadCv')}
-          </Link>
+            {downloadLabel}
+          </ResumeDownloadLink>
         </div>
       </div>
 

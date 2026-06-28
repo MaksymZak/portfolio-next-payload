@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { ArrowLeft, Clock } from 'lucide-react'
+import Image from 'next/image'
 import { hasLocale } from 'next-intl'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { notFound } from 'next/navigation'
@@ -12,9 +13,10 @@ import { MonoLabel } from '@/components/ui/mono-label'
 import { Clock as KyivClock } from '@/components/layout/clock'
 import { Link } from '@/i18n/navigation'
 import { routing } from '@/i18n/routing'
+import { brutalistTileLift } from '@/lib/brutalist-motion'
 import { cn } from '@/lib/cn'
-import { buildPageMetadata } from '@/lib/metadata'
-import type { Project } from '@/payload-types'
+import { resolveMediaUrl } from '@/lib/media-url'
+import { buildPageMetadata, buildRoadmapCaseRobots } from '@/lib/metadata'
 import { getProject, getProjects, getSettings } from '@/server/repositories'
 import type { DataLocale } from '@/server/types'
 
@@ -24,10 +26,6 @@ type CasePageProps = {
 
 function formatNodeId(slug: string) {
   return `NODE_${slug.toUpperCase().replace(/-/g, '_')}`
-}
-
-function formatLabel(label: Project['label']) {
-  return label === 'live' ? 'LIVE' : 'ROADMAP'
 }
 
 export async function generateStaticParams() {
@@ -55,12 +53,26 @@ export async function generateMetadata({ params }: CasePageProps): Promise<Metad
     return {}
   }
 
+  const screenshot = resolveMediaUrl(project.screenshot)
+  const isRoadmap = project.label === 'roadmap'
+
   return buildPageMetadata({
     locale,
     title: `${project.title} — ${settings.name}`,
     description: project.summary,
     path: `/case/${slug}`,
     siteName: settings.name,
+    ...(screenshot
+      ? {
+          image: {
+            url: screenshot.src,
+            width: screenshot.width,
+            height: screenshot.height,
+            alt: screenshot.alt,
+          },
+        }
+      : {}),
+    ...(isRoadmap ? { robots: buildRoadmapCaseRobots() } : {}),
   })
 }
 
@@ -82,6 +94,7 @@ export default async function CasePage({ params }: CasePageProps) {
 
   const tActions = await getTranslations('actions')
   const tCase = await getTranslations('case')
+  const tLabels = await getTranslations('labels')
 
   const sections = buildCaseSections(project, {
     overview: tCase('sections.overview'),
@@ -98,9 +111,9 @@ export default async function CasePage({ params }: CasePageProps) {
   const depthParagraphs = project.technicalDepth
     ? project.technicalDepth.split(/\n{2,}/).filter(Boolean)
     : []
+  const screenshot = resolveMediaUrl(project.screenshot)
 
-  return (
-    <div className="relative flex min-h-screen flex-col bg-background font-sans text-foreground">
+  return (    <div className="relative flex min-h-screen flex-col bg-background font-sans text-foreground">
       <div className="sticky top-0 z-40 mx-auto w-full max-w-full border-x border-border bg-surface md:max-w-[768px] xl:max-w-[1280px] 2xl:max-w-[1536px]">
         <header className="flex items-center justify-between border-b border-border px-6 py-3.5 font-mono text-[10px] lg:px-10">
           <div className="flex items-center gap-4">
@@ -122,7 +135,7 @@ export default async function CasePage({ params }: CasePageProps) {
           <div className="flex items-center gap-4">
             <span className="flex items-center gap-1 font-bold text-muted-foreground uppercase">
               <Clock size={11} className="text-muted-foreground" aria-hidden />
-              <KyivClock suffix="SUMY/KYIV" />
+              <KyivClock suffix={tLabels('timeZoneRegion')} />
             </span>
             <span className="hidden rounded-none border border-border bg-surface-muted px-2 py-0.5 text-[9px] font-bold text-muted-foreground uppercase md:inline">
               {tCase('verified')}
@@ -134,7 +147,7 @@ export default async function CasePage({ params }: CasePageProps) {
       <div className="mx-auto flex w-full max-w-full flex-1 flex-col border-x border-border bg-background md:max-w-[768px] xl:max-w-[1280px] xl:flex-row 2xl:max-w-[1536px]">
         <CaseIndexNav items={indexItems} indexTitle={tCase('indexTitle')} />
 
-        <main className="flex w-full flex-col bg-background xl:w-[68%]">
+        <main id="main-content" className="flex w-full flex-col bg-background xl:w-[68%]">
           <section className="relative flex min-h-[30vh] w-full flex-col justify-center overflow-hidden border-b border-border bg-surface p-6 lg:p-12">
             <div
               className="pointer-events-none absolute inset-0 z-0 bg-[linear-gradient(to_right,var(--border)_1px,transparent_1px),linear-gradient(to_bottom,var(--border)_1px,transparent_1px)] bg-size-[32px_32px] mask-[radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-35"
@@ -159,7 +172,7 @@ export default async function CasePage({ params }: CasePageProps) {
                       : 'border-border bg-surface text-muted-foreground',
                   )}
                 >
-                  {formatLabel(project.label)}
+                  {tCase(`status.${project.label ?? 'roadmap'}`)}
                 </Badge>
                 <MonoLabel variant="accent" size="sm" className="tracking-widest">
                   {formatNodeId(project.slug)}
@@ -175,8 +188,21 @@ export default async function CasePage({ params }: CasePageProps) {
                 ))}
               </div>
             </div>
-          </section>
 
+            {screenshot ? (
+              <div className="relative z-10 mt-8 max-w-3xl overflow-hidden border border-border bg-surface">
+                <Image
+                  src={screenshot.src}
+                  alt={screenshot.alt}
+                  width={screenshot.width ?? 1280}
+                  height={screenshot.height ?? 720}
+                  className="h-auto w-full object-cover"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1280px) 68vw, 870px"
+                  priority
+                />
+              </div>
+            ) : null}
+          </section>
           <div className="flex w-full flex-col pb-16">
             {sections.map((section) => {
               const sectionIndex = Number.parseInt(section.num, 10)
@@ -223,10 +249,15 @@ export default async function CasePage({ params }: CasePageProps) {
                       {highlights.map((highlight, index) => (
                         <li
                           key={highlight.id ?? `${project.slug}-goal-${index}`}
-                          className="border border-border bg-surface p-4 motion-safe:transition-[transform,box-shadow,background-color] motion-safe:hover:-translate-x-0.5 motion-safe:hover:-translate-y-0.5 motion-safe:hover:bg-surface-muted motion-safe:hover:shadow-[4px_4px_0px_0px_var(--foreground)]"
+                          className={cn(
+                            'border border-border bg-surface p-4 hover:border-foreground hover:bg-surface-muted',
+                            brutalistTileLift,
+                          )}
                         >
                           <MonoLabel variant="accent" size="sm" className="mb-2 block">
-                            {String(index + 1).padStart(2, '0')} / GOAL
+                            {tCase('goalIndex', {
+                              index: String(index + 1).padStart(2, '0'),
+                            })}
                           </MonoLabel>
                           <p className="text-sm leading-relaxed text-foreground">{highlight.text}</p>
                         </li>
