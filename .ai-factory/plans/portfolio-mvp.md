@@ -374,12 +374,12 @@ Pre-req: Steps 21a–21c (repositories + cache tags).
 ## Phase 7 — Case Study Page
 
 ### Step 43 — case components
-- Files: `src/components/case/index-nav.tsx` (client scrollspy) + `src/components/case/section.tsx`.
+- [x] Files: `src/components/case/index-nav.tsx` (client scrollspy) + `src/components/case/section.tsx`.
 - Do: left index sidebar with anchors + section blocks (overview/goals/stack/etc.) driven by `getProject(slug, locale)` from `@/server/repositories` (summary, highlights, stack, technicalDepth, metrics).
 - Done when: components render from a project record.
 
 ### Step 44 — case route
-- Files: create `src/app/(frontend)/[locale]/case/[slug]/page.tsx`.
+- [x] Files: create `src/app/(frontend)/[locale]/case/[slug]/page.tsx`.
 - Do: `generateStaticParams` from `getProjects` slugs × locales; `setRequestLocale`; `getProject(slug, locale)` from `@/server/repositories` → `notFound()` if missing; render header + index-nav + sections; back link.
 - Done when: `/en/case/portfolio-cms` renders; bad slug → 404.
 

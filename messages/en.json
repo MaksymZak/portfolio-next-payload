@@ -73,5 +73,26 @@
       "linkedin": "VERIFIED IDENTITY HUB",
       "map": "GEO SPATIAL NODE"
     }
+  },
+  "case": {
+    "nodeStudy": "NODE_STUDY // ACTIVE",
+    "indexTitle": "INDEX SUMMARY",
+    "specLabel": "SPECID: {slug}",
+    "verified": "PUBLIC FILE / VERIFIED",
+    "role": "ROLE",
+    "period": "PERIOD",
+    "metadataLabel": "STATUS FILE METADATA",
+    "overviewTitle": "Executive Summary / Overview",
+    "goalsTitle": "Aims & Technical Goals",
+    "stackTitle": "Technology Assembly & Stack",
+    "metricsTitle": "Verified Metric Proof",
+    "depthTitle": "Depth Resolution",
+    "sections": {
+      "overview": "OVERVIEW",
+      "goals": "GOALS",
+      "stack": "STACK",
+      "metrics": "METRICS",
+      "depth": "TECHNICAL DEPTH"
+    }
   }
 }
