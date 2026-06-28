@@ -96,6 +96,20 @@
     "noResults": "NO ENTRIES MATCHING CRITERIA //",
     "arcId": "ARC-{id}"
   },
+  "stack": {
+    "metrics": {
+      "years": {
+        "label": "EXPERIENCE CYCLE"
+      },
+      "pages": {
+        "label": "PRODUCTION METRIC"
+      },
+      "depth": {
+        "label": "TECHNOLOGY DEPTH"
+      }
+    },
+    "engineHead": "Engineering Inventory"
+  },
   "case": {
     "nodeStudy": "NODE_STUDY // ACTIVE",
     "indexTitle": "INDEX SUMMARY",
