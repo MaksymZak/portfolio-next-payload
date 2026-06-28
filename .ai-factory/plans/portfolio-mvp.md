@@ -390,12 +390,12 @@ Pre-req: Steps 21a–21c (repositories + cache tags).
 ## Phase 8 — Archive Page
 
 ### Step 45 — archive components
-- Files: `src/components/archive/table.tsx` (client search/filter) + `src/components/archive/toolbar.tsx`.
+- [x] Files: `src/components/archive/table.tsx` (client search/filter) + `src/components/archive/toolbar.tsx`.
 - Do: full ledger table from `getArchive(locale)` (`@/server/repositories`); client search + category filter (derive single-pass); localized role/metric; sharp-corner table.
 - Done when: search/filter work; localized.
 
 ### Step 46 — archive route
-- Files: create `src/app/(frontend)/[locale]/archive/page.tsx`.
+- [x] Files: create `src/app/(frontend)/[locale]/archive/page.tsx`.
 - Do: server component; `setRequestLocale`; fetch `getArchive(locale)` from `@/server/repositories`; render toolbar + table + back link.
 - Done when: `/en/archive` + `/uk/archive` render and filter.
 

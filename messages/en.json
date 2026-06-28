@@ -74,6 +74,27 @@
       "map": "GEO SPATIAL NODE"
     }
   },
+  "archive": {
+    "sectionTag": "FULL LEDGER",
+    "title": "COMMERCIAL ARCHIVE LEDGER",
+    "description": "A comprehensive registry of commercial landing pages, single-page applications, and interactive campaigns. Predominantly built using Astro for high performance, alongside Next.js and React components.",
+    "searchPlaceholder": "Search records...",
+    "categoryAll": "All",
+    "categories": {
+      "landing": "Landing",
+      "platform": "Platform",
+      "campaign": "Campaign",
+      "prototype": "Prototype"
+    },
+    "columns": {
+      "identifier": "IDENTIFIER",
+      "surface": "SURFACE & ROLE",
+      "stack": "STACK ARCHITECTURE",
+      "year": "YEAR"
+    },
+    "noResults": "NO ENTRIES MATCHING CRITERIA //",
+    "arcId": "ARC-{id}"
+  },
   "case": {
     "nodeStudy": "NODE_STUDY // ACTIVE",
     "indexTitle": "INDEX SUMMARY",
