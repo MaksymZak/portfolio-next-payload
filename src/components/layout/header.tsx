@@ -6,7 +6,7 @@ import type { Setting } from '@/payload-types'
 import { DrawerMenu } from './drawer-menu'
 
 type HeaderProps = {
-  settings: Pick<Setting, 'name' | 'location' | 'availability'>
+  settings: Pick<Setting, 'name' | 'location' | 'availability' | 'resumeUrl'>
   className?: string
 }
 

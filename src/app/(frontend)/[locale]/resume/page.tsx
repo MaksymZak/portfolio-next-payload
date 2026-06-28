@@ -86,7 +86,7 @@ export default async function ResumePage({ params }: ResumePageProps) {
         </div>
       </div>
 
-      <main className="mx-auto max-w-5xl p-6 md:p-12 print:mx-auto print:max-w-[900px] print:p-0">
+      <main id="main-content" className="mx-auto max-w-5xl p-6 md:p-12 print:mx-auto print:max-w-[900px] print:p-0">
         <ResumeHeader settings={settings} />
         <ResumeBento resume={resume} skills={skills} experience={experience} />
       </main>

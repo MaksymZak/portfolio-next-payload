@@ -1,3 +1,7 @@
+---
+archived: 2026-06-28
+---
+
 # Implementation Plan — Portfolio MVP (Maksym Zak, Middle Frontend)
 
 Created: 2026-06-23

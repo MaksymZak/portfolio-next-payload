@@ -1,10 +1,13 @@
+import { ArrowUpRight } from 'lucide-react'
 import { getTranslations } from 'next-intl/server'
 
 import { buttonVariants } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { SectionTag } from '@/components/ui/section-tag'
 import { Link } from '@/i18n/navigation'
+import { brutalistFocusRing } from '@/lib/brutalist-motion'
 import { cn } from '@/lib/cn'
+import { resolveExternalUrl } from '@/lib/external-url'
 import { HOME_SECTION_SCROLL_MT } from '@/lib/home-scroll'
 import type { Archive } from '@/payload-types'
 
@@ -14,10 +17,66 @@ type ArchiveSectionProps = {
   items: Archive[]
 }
 
+type ArchiveFeaturedCardProps = {
+  item: Archive
+  index: number
+  externalLinkLabel: string
+}
+
+function ArchiveFeaturedCard({ item, index, externalLinkLabel }: ArchiveFeaturedCardProps) {
+  const externalUrl = resolveExternalUrl(item.url, { context: `archive:${item.title}` })
+
+  const card = (
+    <Card
+      variant="interactive"
+      className={cn(
+        'group relative flex flex-col justify-between gap-6 bg-surface-muted p-5',
+        externalUrl && 'motion-safe:transition-[transform,box-shadow]',
+      )}
+    >
+      <div>
+        <div className="mb-2 flex items-start justify-between gap-2">
+          <h4 className="text-sm leading-tight font-extrabold tracking-tight text-foreground uppercase">
+            {item.title}
+          </h4>
+          <span className="flex shrink-0 items-center gap-1 font-mono text-[10px] font-bold text-muted-foreground group-hover:text-primary motion-safe:transition-colors">
+            {externalUrl ? <ArrowUpRight size={10} aria-hidden /> : null}
+            _0{index + 1}
+          </span>
+        </div>
+        <p className="font-mono text-[10px] font-bold text-foreground">{item.role}</p>
+        {item.metric ? (
+          <p className="mt-2 font-mono text-[10px] text-primary">{item.metric}</p>
+        ) : null}
+      </div>
+      <div className="flex items-center justify-between font-mono text-[10px] text-muted-foreground">
+        <span className="uppercase">{item.category}</span>
+        <span>{item.year}</span>
+      </div>
+    </Card>
+  )
+
+  if (!externalUrl) return card
+
+  return (
+    <a
+      href={externalUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={externalLinkLabel}
+      className={cn('block rounded-none', brutalistFocusRing)}
+    >
+      {card}
+    </a>
+  )
+}
+
 export async function Archive({ items }: ArchiveSectionProps) {
   const tNav = await getTranslations('nav')
   const tActions = await getTranslations('actions')
+  const tA11y = await getTranslations('a11y')
   const featured = items.slice(0, FEATURED_COUNT)
+  const opensInNewTabHint = tA11y('opensInNewTab')
 
   return (
     <section id="archive" className={cn('border-b border-border bg-background p-6 lg:p-12', HOME_SECTION_SCROLL_MT)}>
@@ -26,30 +85,15 @@ export async function Archive({ items }: ArchiveSectionProps) {
 
         <div className="grid grid-cols-1 gap-4 border-t border-border pt-6 sm:grid-cols-2">
           {featured.map((item, index) => (
-            <Card
+            <ArchiveFeaturedCard
               key={item.id}
-              variant="interactive"
-              className="group relative flex flex-col justify-between gap-6 bg-surface-muted p-5"
-            >
-              <div>
-                <div className="mb-2 flex items-start justify-between gap-2">
-                  <h4 className="text-sm leading-tight font-extrabold tracking-tight text-foreground uppercase">
-                    {item.title}
-                  </h4>
-                  <span className="shrink-0 font-mono text-[10px] font-bold text-muted-foreground group-hover:text-primary motion-safe:transition-colors">
-                    _0{index + 1}
-                  </span>
-                </div>
-                <p className="font-mono text-[10px] font-bold text-foreground">{item.role}</p>
-                {item.metric ? (
-                  <p className="mt-2 font-mono text-[10px] text-primary">{item.metric}</p>
-                ) : null}
-              </div>
-              <div className="flex items-center justify-between font-mono text-[10px] text-muted-foreground">
-                <span className="uppercase">{item.category}</span>
-                <span>{item.year}</span>
-              </div>
-            </Card>
+              item={item}
+              index={index}
+              externalLinkLabel={tA11y('externalLink', {
+                label: item.title,
+                hint: opensInNewTabHint,
+              })}
+            />
           ))}
         </div>
 

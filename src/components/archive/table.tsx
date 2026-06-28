@@ -1,9 +1,11 @@
 'use client'
 
+import { ArrowUpRight } from 'lucide-react'
 import { useMemo, useState } from 'react'
 import { useTranslations } from 'next-intl'
 
 import { Badge } from '@/components/ui/badge'
+import { resolveExternalUrl } from '@/lib/external-url'
 import type { Archive } from '@/payload-types'
 
 import { ALL_CATEGORY, ArchiveToolbar, type ArchiveCategoryFilter } from './toolbar'
@@ -14,6 +16,7 @@ type ArchiveTableProps = {
 
 export function ArchiveTable({ items }: ArchiveTableProps) {
   const t = useTranslations('archive')
+  const tA11y = useTranslations('a11y')
   const [searchQuery, setSearchQuery] = useState('')
   const [activeCategory, setActiveCategory] = useState<ArchiveCategoryFilter>(ALL_CATEGORY)
 
@@ -66,18 +69,22 @@ export function ArchiveTable({ items }: ArchiveTableProps) {
 
       <div className="w-full overflow-x-auto border border-border bg-surface">
         <table className="w-full border-collapse text-left font-mono text-sm">
+          <caption className="sr-only">{tA11y('tableCaption')}</caption>
           <thead>
             <tr className="border-b border-border bg-surface-muted text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
-              <th className="border-r border-border p-4">{t('columns.identifier')}</th>
-              <th className="border-r border-border p-4">{t('columns.surface')}</th>
-              <th className="border-r border-border p-4">{t('columns.stack')}</th>
-              <th className="p-4 text-right">{t('columns.year')}</th>
+              <th scope="col" className="border-r border-border p-4">{t('columns.identifier')}</th>
+              <th scope="col" className="border-r border-border p-4">{t('columns.surface')}</th>
+              <th scope="col" className="border-r border-border p-4">{t('columns.stack')}</th>
+              <th scope="col" className="p-4 text-right">{t('columns.year')}</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-border">
             {filteredItems.length > 0 ? (
               filteredItems.map((item, index) => {
                 const stack = item.stack ?? []
+                const externalUrl = resolveExternalUrl(item.url, {
+                  context: `archive:${item.title}`,
+                })
 
                 return (
                   <tr
@@ -88,8 +95,30 @@ export function ArchiveTable({ items }: ArchiveTableProps) {
                       {t('arcId', { id: String(index + 1).padStart(2, '0') })}
                     </td>
                     <td className="max-w-sm border-r border-border p-4 align-top">
-                      <div className="mb-1.5 font-sans text-sm leading-snug font-extrabold text-foreground">
-                        {item.title}
+                      <div className="mb-1.5 flex items-start gap-2">
+                        {externalUrl ? (
+                          <a
+                            href={externalUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group/link inline-flex items-start gap-1.5 font-sans text-sm leading-snug font-extrabold text-foreground motion-safe:transition-colors hover:text-primary"
+                            aria-label={tA11y('externalLink', {
+                              label: item.title,
+                              hint: tA11y('opensInNewTab'),
+                            })}
+                          >
+                            <span>{item.title}</span>
+                            <ArrowUpRight
+                              size={12}
+                              className="mt-0.5 shrink-0 text-muted-foreground motion-safe:transition-transform motion-safe:group-hover/link:-translate-y-0.5 motion-safe:group-hover/link:translate-x-0.5 motion-safe:group-hover/link:text-primary"
+                              aria-hidden
+                            />
+                          </a>
+                        ) : (
+                          <div className="font-sans text-sm leading-snug font-extrabold text-foreground">
+                            {item.title}
+                          </div>
+                        )}
                       </div>
                       <div className="mb-3 font-sans text-xs leading-relaxed font-medium text-muted-foreground">
                         {item.role}

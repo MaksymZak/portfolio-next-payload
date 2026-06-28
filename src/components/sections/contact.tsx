@@ -61,6 +61,7 @@ function ContactContent({ contacts }: ContactContentProps) {
   const tNav = useTranslations('nav')
   const tActions = useTranslations('actions')
   const tContactTypes = useTranslations('contact.types')
+  const tA11y = useTranslations('a11y')
   const { show } = useToast()
 
   const emailContact = useMemo(
@@ -82,7 +83,10 @@ function ContactContent({ contacts }: ContactContentProps) {
       await navigator.clipboard.writeText(email)
       show(tActions('copied'))
     } catch {
-      // Clipboard API unavailable (permissions, insecure context, etc.)
+      if (process.env.NODE_ENV === 'development') {
+        console.warn('[Contact] clipboard write failed')
+      }
+      show(tActions('copyFailed'))
     }
   }, [emailContact, show, tActions])
 
@@ -138,6 +142,14 @@ function ContactContent({ contacts }: ContactContentProps) {
                     id={`link-${contact.type}`}
                     target={external ? '_blank' : undefined}
                     rel={external ? 'noopener noreferrer' : undefined}
+                    aria-label={
+                      external
+                        ? tA11y('externalLink', {
+                            label: contact.label,
+                            hint: tA11y('opensInNewTab'),
+                          })
+                        : undefined
+                    }
                     className={cn(
                       'group flex flex-col justify-between rounded-none border border-border bg-surface p-4 motion-safe:transition-[transform,background-color,border-color] hover:border-muted-foreground hover:bg-surface-muted',
                     )}

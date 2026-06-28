@@ -68,7 +68,7 @@ export default async function ArchivePage({ params }: ArchivePageProps) {
         </div>
       </div>
 
-      <main className="mx-auto max-w-5xl p-6 md:p-12">
+      <main id="main-content" className="mx-auto max-w-5xl p-6 md:p-12">
         <div className="space-y-4">
           <SectionTag index={4}>{tArchive('sectionTag')}</SectionTag>
           <h1 className="text-3xl font-extrabold tracking-tight text-foreground md:text-5xl">

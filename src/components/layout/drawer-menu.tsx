@@ -15,7 +15,6 @@ import {
   DrawerTrigger,
 } from '@/components/ui/drawer'
 import { MonoLabel } from '@/components/ui/mono-label'
-import { Link } from '@/i18n/navigation'
 import { brutalistDrawerTriggerClasses } from '@/lib/brutalist-motion'
 import { prefersReducedMotion } from '@/lib/home-scroll'
 import { cn } from '@/lib/cn'
@@ -23,11 +22,12 @@ import type { Setting } from '@/payload-types'
 
 import { LocaleSwitcher } from './locale-switcher'
 import { Nav, type NavSectionId } from './nav'
+import { ResumeDownloadLink } from './resume-download-link'
 import { StatusPanel } from './status-panel'
 import { ThemeSwitcher } from './theme-switcher'
 
 type DrawerMenuProps = {
-  settings: Pick<Setting, 'location' | 'availability'>
+  settings: Pick<Setting, 'location' | 'availability' | 'resumeUrl'>
   className?: string
 }
 
@@ -35,6 +35,8 @@ export function DrawerMenu({ settings, className }: DrawerMenuProps) {
   const tActions = useTranslations('actions')
   const tDrawer = useTranslations('drawer')
   const tLabels = useTranslations('labels')
+  const tA11y = useTranslations('a11y')
+  const downloadLabel = tActions('downloadCv')
   const [open, setOpen] = useState(false)
 
   const handleNavigate = (_sectionId: NavSectionId, navigate: () => void) => {
@@ -68,13 +70,18 @@ export function DrawerMenu({ settings, className }: DrawerMenuProps) {
 
           <div className="border-t border-border pt-4">
             <DrawerClose asChild>
-              <Link
-                href="/resume"
+              <ResumeDownloadLink
+                resumeUrl={settings.resumeUrl}
+                linkLabel={downloadLabel}
+                externalAriaLabel={tA11y('externalLink', {
+                  label: downloadLabel,
+                  hint: tA11y('opensInNewTab'),
+                })}
                 className={cn(linkControlVariants({ variant: 'secondary' }), 'flex w-full gap-2 px-3 py-3')}
               >
                 <Download size={13} aria-hidden />
-                {tActions('downloadCv')}
-              </Link>
+                {downloadLabel}
+              </ResumeDownloadLink>
             </DrawerClose>
           </div>
 

@@ -1,6 +1,7 @@
 'use client'
 
 import { BookOpen, Terminal } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 import { useCallback, useState } from 'react'
 
 import { Badge } from '@/components/ui/badge'
@@ -28,13 +29,11 @@ function formatNodeId(slug: string) {
   return `NODE_${slug.toUpperCase()}`
 }
 
-function formatLabel(label: Project['label']) {
-  return label === 'live' ? 'LIVE' : 'ROADMAP'
-}
-
 export function ProjectCard({ project, actions, isFlagship = false }: ProjectCardProps) {
+  const t = useTranslations('projects')
   const [isExpanded, setIsExpanded] = useState(false)
   const panelId = `telemetry-${project.slug}`
+  const toggleId = `telemetry-toggle-${project.slug}`
 
   const toggleTelemetry = useCallback(() => {
     setIsExpanded((current) => !current)
@@ -67,7 +66,7 @@ export function ProjectCard({ project, actions, isFlagship = false }: ProjectCar
               : 'border-border bg-surface text-muted-foreground',
           )}
         >
-          {formatLabel(project.label)}
+          {t(`status.${project.label ?? 'roadmap'}`)}
         </Badge>
       </div>
 
@@ -77,11 +76,11 @@ export function ProjectCard({ project, actions, isFlagship = false }: ProjectCar
             {project.title}
           </h3>
           <p className="mt-1 font-mono text-[10px] text-muted-foreground uppercase">
-            ROLE: {project.role}{' '}
+            {t('role')}: {project.role}{' '}
             <span aria-hidden className="mx-1.5 text-border">
               |
             </span>
-            DATE: {project.period}
+            {t('date')}: {project.period}
           </p>
         </div>
 
@@ -106,6 +105,7 @@ export function ProjectCard({ project, actions, isFlagship = false }: ProjectCar
               type="button"
               variant="plack"
               size="default"
+              id={toggleId}
               aria-expanded={isExpanded}
               aria-controls={panelId}
               className="px-4 py-2.5 tracking-widest"
@@ -121,7 +121,9 @@ export function ProjectCard({ project, actions, isFlagship = false }: ProjectCar
           <div
             id={panelId}
             role="region"
+            aria-labelledby={toggleId}
             aria-hidden={!isExpanded}
+            inert={!isExpanded ? true : undefined}
             className={cn(
               'grid motion-safe:transition-[grid-template-rows,opacity] motion-safe:duration-200 motion-reduce:transition-none',
               isExpanded ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0',

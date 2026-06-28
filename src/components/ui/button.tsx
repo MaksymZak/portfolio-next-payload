@@ -5,7 +5,7 @@ import { brutalistCtaLift, brutalistPlackLift } from '@/lib/brutalist-motion'
 import { cn } from '@/lib/cn'
 
 const buttonBase =
-  'inline-flex items-center justify-center gap-2 rounded-none border-2 font-mono text-[10px] font-bold uppercase tracking-widest cursor-pointer select-none disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none'
+  'inline-flex items-center justify-center gap-2 rounded-none border-2 font-mono text-[10px] font-bold uppercase tracking-widest cursor-pointer select-none disabled:pointer-events-none disabled:opacity-50'
 
 const buttonVariants = cva(buttonBase, {
   variants: {

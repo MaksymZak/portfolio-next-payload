@@ -13,7 +13,11 @@ type ProjectsProps = {
 }
 
 export async function Projects({ projects }: ProjectsProps) {
-  const [tNav, tActions] = await Promise.all([getTranslations('nav'), getTranslations('actions')])
+  const [tNav, tActions, tProjects] = await Promise.all([
+    getTranslations('nav'),
+    getTranslations('actions'),
+    getTranslations('projects'),
+  ])
 
   const sectionTitle = tNav('projects').replace(/^\d+\s+/, '')
   const actions = {
@@ -28,7 +32,7 @@ export async function Projects({ projects }: ProjectsProps) {
         <div className="flex items-center justify-between gap-4">
           <SectionTag index={3}>{sectionTitle}</SectionTag>
           <MonoLabel size="sm" className="tracking-wider">
-            NODES: {projects.length}
+            {tProjects('nodes', { count: projects.length })}
           </MonoLabel>
         </div>
 

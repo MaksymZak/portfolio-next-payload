@@ -5,6 +5,7 @@ import { getMessages, setRequestLocale } from 'next-intl/server'
 import { notFound } from 'next/navigation'
 import type { ReactNode } from 'react'
 
+import { SkipLink } from '@/components/layout/skip-link'
 import { ThemeProvider } from '@/components/layout/theme-provider'
 import { routing } from '@/i18n/routing'
 import { buildPageMetadata, buildSiteName, getSiteUrl } from '@/lib/metadata'
@@ -76,6 +77,7 @@ export default async function LocaleLayout({ children, params }: Props) {
       <body>
         <ThemeProvider>
           <NextIntlClientProvider locale={locale} messages={messages}>
+            <SkipLink />
             {children}
           </NextIntlClientProvider>
         </ThemeProvider>

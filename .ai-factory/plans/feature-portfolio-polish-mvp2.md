@@ -117,19 +117,19 @@ Use option 1 as the primary fix. Add option 2 only if manual QA still shows the 
 
 ### Phase 4: MVP2 Content and Product Gaps
 
-- [ ] Task 10: Fix launch-blocking content truth issues in seed/CMS data.
+- [x] Task 10: Fix launch-blocking content truth issues in seed/CMS data.
   - Files: `src/db/seed/data/projects.ts`, `src/db/seed/data/archive.ts`, `src/db/seed/data/resume.ts`, related seed scripts if dedupe behavior changes.
   - Deliverable: placeholder roadmap case studies are either hidden/noindexed or clearly marked; archive entries dedupe by normalized URL where possible; portfolio stack mentions Next.js 16; EN/UK positioning copy consistently says Middle Frontend rather than drifting into Full Stack.
   - Expected behavior: public content feels real and trustworthy, not like unfinished placeholders.
   - Logging requirements: seed changes should log INFO for created/updated counts and WARN for deduped/skipped entries; preserve existing seed error logging.
 
-- [ ] Task 11: Wire dormant CMS fields that improve visual and product polish.
+- [x] Task 11: Wire dormant CMS fields that improve visual and product polish.
   - Files: `src/components/sections/archive.tsx`, `src/components/archive/table.tsx`, `src/components/layout/sidebar.tsx`, `src/components/layout/drawer-menu.tsx`, `src/components/sections/stack.tsx`, `src/app/(frontend)/[locale]/case/[slug]/page.tsx`, seed data under `src/db/seed/data/`.
   - Deliverable: render `archive.url` as external links, use `settings.resumeUrl` when present with `/resume` fallback, show `skills.level` in stack/resume where useful, and add at least one case screenshot path or admin guidance if screenshots remain manual.
   - Expected behavior: data already modeled in Payload becomes visible in the portfolio instead of sitting unused.
   - Logging requirements: WARN on malformed external URLs during server-side mapping or seed normalization; do not log ordinary render paths.
 
-- [ ] Task 12: Move hardcoded UI chrome to `messages/{en,uk}.json` and do a Ukrainian copy pass.
+- [x] Task 12: Move hardcoded UI chrome to `messages/{en,uk}.json` and do a Ukrainian copy pass.
   - Files: `messages/en.json`, `messages/uk.json`, `src/components/sections/projects/project-card.tsx`, `src/components/sections/projects/index.tsx`, `src/app/(frontend)/[locale]/case/[slug]/page.tsx`, `src/components/archive/table.tsx`.
   - Deliverable: hardcoded labels such as `ROLE:`, `DATE:`, `LIVE`, `ROADMAP`, `NODES`, `GOAL`, and `SUMY/KYIV` are localized; `archive.sectionTag` in Ukrainian no longer remains English.
   - Expected behavior: `/uk` feels intentionally localized, not partially translated.
@@ -137,25 +137,25 @@ Use option 1 as the primary fix. Add option 2 only if manual QA still shows the 
 
 ### Phase 5: Accessibility, SEO, Docs, and QA
 
-- [ ] Task 13: Add accessibility polish tied to the visual changes.
+- [x] Task 13: Add accessibility polish tied to the visual changes.
   - Files: `src/app/(frontend)/[locale]/layout.tsx`, `src/components/sections/contact.tsx`, `src/components/archive/table.tsx`, `src/components/sections/projects/project-card.tsx`, `src/components/layout/nav.tsx`.
   - Deliverable: add a skip link, verify focus rings on all brutalist controls, add accessible external-link labels, improve clipboard failure feedback, add archive table column scopes/caption, and verify telemetry region labelling.
   - Expected behavior: the sharper visual system remains keyboard and screen-reader friendly.
   - Logging requirements: clipboard failure should produce a user-facing toast and may log WARN in development; no logs for successful focus/navigation behavior.
 
-- [ ] Task 14: Add SEO/social polish appropriate for public MVP2.
+- [x] Task 14: Add SEO/social polish appropriate for public MVP2.
   - Files: `src/lib/metadata.ts`, `src/app/sitemap.ts`, `src/app/robots.ts`, `public/` assets, `src/app/(frontend)/[locale]/case/[slug]/page.tsx`.
   - Deliverable: favicon/apple icon/default OG image exist, metadata includes OG/Twitter images, placeholder/roadmap case policy is reflected in sitemap/noindex behavior, and case screenshots can be used as OG images when available.
   - Expected behavior: shared links look professional and crawlers do not promote unfinished case pages.
   - Logging requirements: no runtime logs. If metadata generation encounters invalid URLs, handle with deterministic fallbacks and WARN only in development.
 
-- [ ] Task 15: Update documentation for the finalized polish system.
+- [x] Task 15: Update documentation for the finalized polish system.
   - Files: `.cursor/docs/design_system_new.md`, `AGENTS.md` if workflow/rules change, optionally `.ai-factory/DESCRIPTION.md`.
   - Deliverable: document the shared brutalist motion contract, nav scroll behavior, stack section pattern, reduced-motion expectations, and manual QA checklist.
   - Expected behavior: future agents do not reintroduce inconsistent hover/card/nav motion.
   - Logging requirements: no runtime logs; documentation task only.
 
-- [ ] Task 16: Run the full manual verification gate.
+- [x] Task 16: Run the full manual verification gate.
   - Files: no source changes expected except fixes discovered during QA.
   - Deliverable: run `bun run lint`, `bun run build`, and manually check `/en`, `/uk`, `/en/resume`, `/uk/resume`, `/en/archive`, `/uk/archive`, `/en/case/portfolio-cms`, `/uk/case/portfolio-cms`, `/admin`, all four themes, keyboard navigation, reduced motion, mobile drawer, and print preview.
   - Expected behavior: site feels smooth and pleasant on desktop and mobile; there are no obvious "toporno" hover/shadow/scroll artifacts.
@@ -163,13 +163,13 @@ Use option 1 as the primary fix. Add option 2 only if manual QA still shows the 
 
 ## Manual QA Checklist
 
-- [ ] Buttons: primary, secondary, archive CTA, print, resume/download, drawer trigger, telemetry, locale/theme switchers all use consistent hover and active geometry.
-- [ ] Cards: project, archive, resume bento, related case links, and stack placks keep shadow visually anchored and avoid clipping.
-- [ ] Nav: desktop click from `hero` to `contact` remains visually stable; moving the mouse during smooth scroll does not create flicker.
-- [ ] Drawer: link click closes drawer calmly, scrolls to target, respects reduced motion, and focus returns correctly.
-- [ ] Stack: metrics and skill placks visually match the reference prototype while using production data.
-- [ ] Content: no obvious placeholder case copy, duplicate archive URLs, outdated Next.js version, or mixed EN/UK labels.
-- [ ] Themes: light, dark, warm, contrast all preserve hard-shadow contrast and visible focus rings.
-- [ ] Reduced motion: no smooth scroll or hover animation dependence for core usability.
-- [ ] Verification commands: `bun run lint`, `bun run build`.
+- [x] Buttons: primary, secondary, archive CTA, print, resume/download, drawer trigger, telemetry, locale/theme switchers all use consistent hover and active geometry.
+- [x] Cards: project, archive, resume bento, related case links, and stack placks keep shadow visually anchored and avoid clipping.
+- [x] Nav: desktop click from `hero` to `contact` remains visually stable; moving the mouse during smooth scroll does not create flicker.
+- [x] Drawer: link click closes drawer calmly, scrolls to target, respects reduced motion, and focus returns correctly.
+- [x] Stack: metrics and skill placks visually match the reference prototype while using production data.
+- [x] Content: no obvious placeholder case copy, duplicate archive URLs, outdated Next.js version, or mixed EN/UK labels.
+- [x] Themes: light, dark, warm, contrast all preserve hard-shadow contrast and visible focus rings.
+- [x] Reduced motion: no smooth scroll or hover animation dependence for core usability.
+- [x] Verification commands: `bun run lint`, `bun run build`.
 

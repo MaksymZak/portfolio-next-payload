@@ -74,7 +74,7 @@ export default async function HomePage({ params }: HomePageProps) {
           <Sidebar settings={settings} />
 
           <main
-            id="right-column-stream"
+            id="main-content"
             className="flex w-full flex-col bg-background text-foreground xl:w-[68%]"
           >
             <Hero locale={dataLocale} />

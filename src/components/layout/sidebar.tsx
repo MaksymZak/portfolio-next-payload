@@ -2,18 +2,18 @@ import { Download } from 'lucide-react'
 import { getTranslations } from 'next-intl/server'
 
 import { linkControlVariants } from '@/components/ui/button'
-import { Link } from '@/i18n/navigation'
 import { cn } from '@/lib/cn'
 import type { Setting } from '@/payload-types'
 
 import { LocaleSwitcher } from './locale-switcher'
 import { MonoLabel } from '../ui/mono-label'
 import { Nav } from './nav'
+import { ResumeDownloadLink } from './resume-download-link'
 import { StatusPanel } from './status-panel'
 import { ThemeSwitcher } from './theme-switcher'
 
 type SidebarProps = {
-  settings: Pick<Setting, 'name' | 'position' | 'location' | 'availability'>
+  settings: Pick<Setting, 'name' | 'position' | 'location' | 'availability' | 'resumeUrl'>
   className?: string
 }
 
@@ -21,6 +21,8 @@ export async function Sidebar({ settings, className }: SidebarProps) {
   const tActions = await getTranslations('actions')
   const tLabels = await getTranslations('labels')
   const tFooter = await getTranslations('footer')
+  const tA11y = await getTranslations('a11y')
+  const downloadLabel = tActions('downloadCv')
 
   return (
     <aside
@@ -57,13 +59,18 @@ export async function Sidebar({ settings, className }: SidebarProps) {
         <Nav />
 
         <div className="pt-2">
-          <Link
-            href="/resume"
+          <ResumeDownloadLink
+            resumeUrl={settings.resumeUrl}
+            linkLabel={downloadLabel}
+            externalAriaLabel={tA11y('externalLink', {
+              label: downloadLabel,
+              hint: tA11y('opensInNewTab'),
+            })}
             className={cn(linkControlVariants({ variant: 'secondary' }), 'flex w-full gap-2 px-3 py-3')}
           >
             <Download size={13} aria-hidden />
-            {tActions('downloadCv')}
-          </Link>
+            {downloadLabel}
+          </ResumeDownloadLink>
         </div>
       </div>
 

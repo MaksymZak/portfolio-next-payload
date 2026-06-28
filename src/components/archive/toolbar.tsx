@@ -3,6 +3,7 @@
 import { Search } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
+import { brutalistFocusRing } from '@/lib/brutalist-motion'
 import { cn } from '@/lib/cn'
 import type { Archive } from '@/payload-types'
 
@@ -47,7 +48,10 @@ export function ArchiveToolbar({
           onChange={(event) => onSearchChange(event.target.value)}
           placeholder={t('searchPlaceholder')}
           aria-label={t('searchPlaceholder')}
-          className="w-full rounded-none border border-border bg-surface-muted py-2 pr-4 pl-9 font-mono text-sm font-semibold text-foreground outline-none placeholder:text-muted-foreground/70 motion-safe:transition-colors focus:border-muted-foreground"
+          className={cn(
+            'w-full rounded-none border border-border bg-surface-muted py-2 pr-4 pl-9 font-mono text-sm font-semibold text-foreground placeholder:text-muted-foreground/70 motion-safe:transition-colors focus:border-muted-foreground',
+            brutalistFocusRing,
+          )}
         />
       </div>
 
@@ -86,6 +90,7 @@ function CategoryButton({ active, onClick, children }: CategoryButtonProps) {
       aria-pressed={active}
       className={cn(
         'cursor-pointer rounded-none border px-3 py-1.5 font-mono text-[9px] font-bold uppercase select-none motion-safe:transition-colors',
+        brutalistFocusRing,
         active
           ? 'border-foreground bg-foreground text-background'
           : 'border-border bg-surface-muted text-muted-foreground hover:bg-surface hover:text-foreground',

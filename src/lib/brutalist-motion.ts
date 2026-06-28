@@ -112,8 +112,14 @@ export const brutalistCtaSelected =
 export const brutalistCardSelected =
   '-translate-x-px -translate-y-px border-foreground shadow-[6px_6px_0_var(--foreground)]'
 
-const SWITCHER_BASE =
-  'rounded-none border p-2.5 text-center font-mono text-[9px] leading-tight font-bold'
+/** Visible keyboard focus ring aligned with globals.css focus treatment. */
+export const brutalistFocusRing =
+  'focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-[var(--ring)]'
+
+const SWITCHER_BASE = cn(
+  'rounded-none border p-2.5 text-center font-mono text-[9px] leading-tight font-bold',
+  brutalistFocusRing,
+)
 
 /** Compact switcher tile (locale/theme): selected lift or hover-only compact motion. */
 export function brutalistSwitcherClasses(isActive: boolean, className?: string) {
@@ -133,8 +139,10 @@ export function brutalistSwitcherClasses(isActive: boolean, className?: string) 
   )
 }
 
-const NAV_ITEM_BASE =
-  'flex w-full cursor-pointer items-center justify-between rounded-none border px-3 py-2 text-left font-mono text-xs motion-safe:transition-[transform,box-shadow,background-color,color,border-color] motion-safe:duration-150 motion-safe:ease-out'
+const NAV_ITEM_BASE = cn(
+  'flex w-full cursor-pointer items-center justify-between rounded-none border px-3 py-2 text-left font-mono text-xs motion-safe:transition-[transform,box-shadow,background-color,color,border-color] motion-safe:duration-150 motion-safe:ease-out',
+  brutalistFocusRing,
+)
 
 export type BrutalistNavVariant = 'sidebar' | 'drawer'
 
@@ -178,6 +186,7 @@ export function brutalistNavItemClasses(
 export function brutalistDrawerTriggerClasses(className?: string) {
   return cn(
     'cursor-pointer rounded-none border border-foreground bg-foreground px-3 py-1.5 font-mono text-[10px] font-bold text-background uppercase select-none',
+    brutalistFocusRing,
     brutalistLiftClasses('plack', { shadow: false }),
     'motion-safe:hover:bg-surface motion-safe:hover:text-foreground',
     className,

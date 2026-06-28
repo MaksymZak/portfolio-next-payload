@@ -66,12 +66,20 @@ export async function ResumeBento({ resume, skills, experience, className }: Res
               variant="surface"
               size="sm"
               className={cn(
-                'border-border print:border-gray-300 print:bg-white print:text-black',
+                'gap-1.5 border-border print:border-gray-300 print:bg-white print:text-black',
                 brutalistTileLift,
                 'hover:border-foreground',
               )}
             >
-              {skill.title}
+              <span>{skill.title}</span>
+              {skill.level > 0 ? (
+                <span
+                  className="font-mono text-[9px] font-bold text-muted-foreground tabular-nums print:text-gray-500"
+                  aria-label={`Level ${skill.level} of 5`}
+                >
+                  L{skill.level}
+                </span>
+              ) : null}
             </Badge>
           ))}
         </div>
