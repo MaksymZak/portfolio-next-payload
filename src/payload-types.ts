@@ -69,6 +69,10 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
+    skills: Skill;
+    experience: Experience;
+    archive: Archive;
+    projects: Project;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -78,6 +82,10 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    skills: SkillsSelect<false> | SkillsSelect<true>;
+    experience: ExperienceSelect<false> | ExperienceSelect<true>;
+    archive: ArchiveSelect<false> | ArchiveSelect<true>;
+    projects: ProjectsSelect<false> | ProjectsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -86,10 +94,18 @@ export interface Config {
   db: {
     defaultIDType: number;
   };
-  fallbackLocale: null;
-  globals: {};
-  globalsSelect: {};
-  locale: null;
+  fallbackLocale: ('false' | 'none' | 'null') | false | null | ('en' | 'uk') | ('en' | 'uk')[];
+  globals: {
+    settings: Setting;
+    home: Home;
+    resume: Resume;
+  };
+  globalsSelect: {
+    settings: SettingsSelect<false> | SettingsSelect<true>;
+    home: HomeSelect<false> | HomeSelect<true>;
+    resume: ResumeSelect<false> | ResumeSelect<true>;
+  };
+  locale: 'en' | 'uk';
   widgets: {
     collections: CollectionsWidget;
   };
@@ -163,6 +179,117 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "skills".
+ */
+export interface Skill {
+  id: number;
+  title: string;
+  /**
+   * Proficiency level from 1 to 5 (maps to cv.json levels true-count).
+   */
+  level: number;
+  order: number;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "experience".
+ */
+export interface Experience {
+  id: number;
+  role: string;
+  company: string;
+  /**
+   * Employment period, e.g. "June 2024 - Present".
+   */
+  period: string;
+  bullets?:
+    | {
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  order: number;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "archive".
+ */
+export interface Archive {
+  id: number;
+  title: string;
+  role: string;
+  stack?:
+    | {
+        name: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Delivery year, e.g. "2024".
+   */
+  year: string;
+  category: 'landing' | 'platform' | 'campaign' | 'prototype';
+  /**
+   * Optional outcome metric, e.g. conversion lift or lighthouse score.
+   */
+  metric?: string | null;
+  /**
+   * Optional live project URL.
+   */
+  url?: string | null;
+  order: number;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "projects".
+ */
+export interface Project {
+  id: number;
+  title: string;
+  /**
+   * URL segment for /case/[slug], e.g. "portfolio-cms".
+   */
+  slug: string;
+  label: 'live' | 'roadmap';
+  role: string;
+  /**
+   * Delivery window, e.g. "Q1-Q2 2026" or "Planned Q3 2026".
+   */
+  period: string;
+  summary: string;
+  highlights?:
+    | {
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  stack?:
+    | {
+        name: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Key outcome metric shown on the project card.
+   */
+  metrics?: string | null;
+  /**
+   * Extended technical narrative for the case study page.
+   */
+  technicalDepth?: string | null;
+  screenshot?: (number | null) | Media;
+  order: number;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -192,6 +319,22 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'media';
         value: number | Media;
+      } | null)
+    | ({
+        relationTo: 'skills';
+        value: number | Skill;
+      } | null)
+    | ({
+        relationTo: 'experience';
+        value: number | Experience;
+      } | null)
+    | ({
+        relationTo: 'archive';
+        value: number | Archive;
+      } | null)
+    | ({
+        relationTo: 'projects';
+        value: number | Project;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -277,6 +420,86 @@ export interface MediaSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "skills_select".
+ */
+export interface SkillsSelect<T extends boolean = true> {
+  title?: T;
+  level?: T;
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "experience_select".
+ */
+export interface ExperienceSelect<T extends boolean = true> {
+  role?: T;
+  company?: T;
+  period?: T;
+  bullets?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "archive_select".
+ */
+export interface ArchiveSelect<T extends boolean = true> {
+  title?: T;
+  role?: T;
+  stack?:
+    | T
+    | {
+        name?: T;
+        id?: T;
+      };
+  year?: T;
+  category?: T;
+  metric?: T;
+  url?: T;
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "projects_select".
+ */
+export interface ProjectsSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  label?: T;
+  role?: T;
+  period?: T;
+  summary?: T;
+  highlights?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
+  stack?:
+    | T
+    | {
+        name?: T;
+        id?: T;
+      };
+  metrics?: T;
+  technicalDepth?: T;
+  screenshot?: T;
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv_select".
  */
 export interface PayloadKvSelect<T extends boolean = true> {
@@ -314,6 +537,223 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "settings".
+ */
+export interface Setting {
+  id: number;
+  /**
+   * Display name shown in the sidebar and header.
+   */
+  name: string;
+  /**
+   * Canonical title, e.g. "Middle Frontend Developer".
+   */
+  position: string;
+  location: string;
+  availability: string;
+  /**
+   * Contact and social links for the home contact section.
+   */
+  contacts?:
+    | {
+        type: 'phone' | 'mail' | 'telegram' | 'github' | 'linkedin' | 'map';
+        /**
+         * Visible label, e.g. email address or "@handle".
+         */
+        label: string;
+        /**
+         * Link target, e.g. mailto:, tel:, or https:// URL.
+         */
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Optional external CV download URL. Leave empty to use the /resume page.
+   */
+  resumeUrl?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "home".
+ */
+export interface Home {
+  id: number;
+  hero: {
+    badge: string;
+    headline: string;
+    copy: string;
+  };
+  /**
+   * Metric values for the stack section. Labels live in next-intl messages.
+   */
+  proof: {
+    /**
+     * Experience metric value, e.g. "4+ Years".
+     */
+    years: string;
+    /**
+     * Experience metric caption, e.g. "COMMERCIAL DELIVERY".
+     */
+    yearsDesc: string;
+    /**
+     * Production metric value, e.g. "300+ Pages".
+     */
+    pages: string;
+    /**
+     * Production metric caption, e.g. "SHIPPED OR SUPPORTED".
+     */
+    pagesDesc: string;
+    /**
+     * Technology depth value, e.g. "Next.js & Payload".
+     */
+    depth: string;
+    /**
+     * Technology depth caption, e.g. "CMS DEVISE SPECIALIST".
+     */
+    depthDesc: string;
+    /**
+     * Engineering inventory intro copy below the metric cells.
+     */
+    intro: string;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "resume".
+ */
+export interface Resume {
+  id: number;
+  about: {
+    text: string;
+  };
+  education?:
+    | {
+        title: string;
+        /**
+         * Study period, e.g. "February 2021 – November 2021".
+         */
+        date: string;
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  languages?:
+    | {
+        name: string;
+        level: string;
+        id?: string | null;
+      }[]
+    | null;
+  softSkills?:
+    | {
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  portfolioNote: {
+    title: string;
+    text: string;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "settings_select".
+ */
+export interface SettingsSelect<T extends boolean = true> {
+  name?: T;
+  position?: T;
+  location?: T;
+  availability?: T;
+  contacts?:
+    | T
+    | {
+        type?: T;
+        label?: T;
+        url?: T;
+        id?: T;
+      };
+  resumeUrl?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "home_select".
+ */
+export interface HomeSelect<T extends boolean = true> {
+  hero?:
+    | T
+    | {
+        badge?: T;
+        headline?: T;
+        copy?: T;
+      };
+  proof?:
+    | T
+    | {
+        years?: T;
+        yearsDesc?: T;
+        pages?: T;
+        pagesDesc?: T;
+        depth?: T;
+        depthDesc?: T;
+        intro?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "resume_select".
+ */
+export interface ResumeSelect<T extends boolean = true> {
+  about?:
+    | T
+    | {
+        text?: T;
+      };
+  education?:
+    | T
+    | {
+        title?: T;
+        date?: T;
+        text?: T;
+        id?: T;
+      };
+  languages?:
+    | T
+    | {
+        name?: T;
+        level?: T;
+        id?: T;
+      };
+  softSkills?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
+  portfolioNote?:
+    | T
+    | {
+        title?: T;
+        text?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

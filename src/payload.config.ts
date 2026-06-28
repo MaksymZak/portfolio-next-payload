@@ -5,11 +5,16 @@ import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
 import sharp from 'sharp'
 import { collections } from '@/config/collections'
+import { globals } from '@/config/globals'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 export default buildConfig({
+  localization: {
+    locales: ['en', 'uk'],
+    defaultLocale: 'en',
+  },
   admin: {
     user: collections.find((c) => c.slug === 'users')?.slug,
     importMap: {
@@ -17,6 +22,7 @@ export default buildConfig({
     },
   },
   collections: collections,
+  globals,
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

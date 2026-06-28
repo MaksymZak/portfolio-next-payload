@@ -31,6 +31,7 @@ const eslintConfig = [
       'dist/**',
       'build/**',
       '.agents/**',
+      '.cursor/**',
       '*.min.js',
       'src/payload-types.ts',
       'src/payload-generated-schema.ts',

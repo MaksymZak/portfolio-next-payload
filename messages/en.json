@@ -1,0 +1,120 @@
+{
+  "nav": {
+    "index": "INDEX",
+    "hero": "01 INTRODUCTION",
+    "stack": "02 PROOF & STACK",
+    "projects": "03 CASE STUDIES",
+    "archive": "04 ARCHIVE SYSTEM",
+    "experience": "05 OPERATIONAL EXPERIENCE",
+    "contact": "06 CONTACTS"
+  },
+  "actions": {
+    "viewProjects": "View Projects",
+    "contactMe": "Contact Me",
+    "downloadCv": "DOWNLOAD CV",
+    "savePdf": "SAVE PDF",
+    "copyEmail": "COPY ADDRESS",
+    "copied": "EMAIL COPIED TO CLIPBOARD",
+    "readDoc": "READ DETAILED ENGINEERING DOCUMENTATION",
+    "viewTelemetry": "VIEW TECHNICAL TELEMETRY",
+    "hideTelemetry": "HIDE GRANULAR ARCHITECTURE",
+    "backToIndex": "BACK TO INDEX",
+    "viewArchive": "VIEW FULL ARCHIVE LEDGER [→]",
+    "search": "Search stack or scope..."
+  },
+  "labels": {
+    "location": "LOCATION",
+    "availability": "AVAILABILITY",
+    "localTime": "LOCAL TIME",
+    "systemState": "SYSTEM STATE",
+    "online": "ONLINE",
+    "locale": "SYSTEM_LOCALE",
+    "theme": "WORKSPACE_THEME"
+  },
+  "themes": {
+    "light": "EDITORIAL LIGHT",
+    "dark": "GRAPHITE DARK",
+    "warm": "WARM NEUTRAL",
+    "contrast": "HIGH CONTRAST"
+  },
+  "footer": {
+    "spec": "SPEC: TS, REACT 19, NEXT.js, TAILWIND V4.",
+    "intended": "© 2026. INTENDED FOR SECURE RECRUITMENT ONLY."
+  },
+  "header": {
+    "systemActive": "W-SYSTEM: ACTIVE"
+  },
+  "drawer": {
+    "menu": "[ MENU ]",
+    "close": "[ CLOSE ]",
+    "registrar": "MENU_SYSTEM // REGISTRAR",
+    "title": "CONFIG & INDEX"
+  },
+  "resume": {
+    "documentTitle": "CV / RESUME",
+    "sections": {
+      "about": "ABOUT",
+      "stack": "STACK",
+      "experience": "EXPERIENCE",
+      "softSkills": "SOFT SKILLS",
+      "languages": "LANGUAGES",
+      "education": "EDUCATION",
+      "portfolio": "PORTFOLIO"
+    },
+    "viewLivePortfolio": "VIEW LIVE PORTFOLIO",
+    "printVisit": "VISIT: {url}"
+  },
+  "contact": {
+    "types": {
+      "phone": "DIRECT VOICE LINE",
+      "mail": "SECURED MAIL ENDPOINT",
+      "telegram": "INSTANT TEXT SYSTEM",
+      "github": "SECURE CODE PLATFORM",
+      "linkedin": "VERIFIED IDENTITY HUB",
+      "map": "GEO SPATIAL NODE"
+    }
+  },
+  "archive": {
+    "sectionTag": "FULL LEDGER",
+    "title": "COMMERCIAL ARCHIVE LEDGER",
+    "description": "A comprehensive registry of commercial landing pages, single-page applications, and interactive campaigns. Predominantly built using Astro for high performance, alongside Next.js and React components.",
+    "searchPlaceholder": "Search records...",
+    "categoryAll": "All",
+    "filtersLabel": "Filter archive records",
+    "categories": {
+      "landing": "Landing",
+      "platform": "Platform",
+      "campaign": "Campaign",
+      "prototype": "Prototype"
+    },
+    "columns": {
+      "identifier": "IDENTIFIER",
+      "surface": "SURFACE & ROLE",
+      "stack": "STACK ARCHITECTURE",
+      "year": "YEAR"
+    },
+    "noResults": "NO ENTRIES MATCHING CRITERIA //",
+    "arcId": "ARC-{id}"
+  },
+  "case": {
+    "nodeStudy": "NODE_STUDY // ACTIVE",
+    "indexTitle": "INDEX SUMMARY",
+    "specLabel": "SPECID: {slug}",
+    "verified": "PUBLIC FILE / VERIFIED",
+    "role": "ROLE",
+    "period": "PERIOD",
+    "metadataLabel": "STATUS FILE METADATA",
+    "overviewTitle": "Executive Summary / Overview",
+    "goalsTitle": "Aims & Technical Goals",
+    "stackTitle": "Technology Assembly & Stack",
+    "metricsTitle": "Verified Metric Proof",
+    "depthTitle": "Depth Resolution",
+    "sections": {
+      "overview": "OVERVIEW",
+      "goals": "GOALS",
+      "stack": "STACK",
+      "metrics": "METRICS",
+      "depth": "TECHNICAL DEPTH"
+    }
+  }
+}
