@@ -65,8 +65,8 @@ export function CaseIndexNav({ items, indexTitle }: CaseIndexNavProps) {
       aria-label={indexTitle}
     >
       <div className="space-y-4 border border-border bg-surface-muted p-3">
-        <LocaleSwitcher />
-        <ThemeSwitcher />
+        <LocaleSwitcher showSection />
+        <ThemeSwitcher showSection />
       </div>
 
       <div className="space-y-2">

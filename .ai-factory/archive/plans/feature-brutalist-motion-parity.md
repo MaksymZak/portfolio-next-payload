@@ -1,3 +1,7 @@
+---
+archived: 2026-06-28
+---
+
 # Brutalist Motion Pixel-Parity with Reference Prototype
 
 **Branch:** (not created — planning phase)
@@ -83,23 +87,23 @@ Non-brutalist / micro-motion:               R16–R22
 
 Mapping: approved pattern → current production file → gap.
 
-| Pattern | Production touchpoint | Current motion export | Gap |
-| ------- | --------------------- | --------------------- | --- |
-| R01 | `hero/hero-ctas.tsx` → `Button` primary/secondary + `px-7 py-3` | `brutalistCtaLift` via `button.tsx` | Scale updated in contract; verify typography (`text-sm` wrapper vs `text-[10px]` on button base) |
-| R02 | `projects/project-card.tsx` → `Button` plack / case link | `brutalistPlackLift` on `plack` variant | **Wrong pattern** — should use R02 (`compact` / `approvedMotionR02`), not plack; sizing `px-4 py-2.5` |
-| R03 | `sections/archive.tsx` featured links | ad-hoc / `LinkControl` | Needs dedicated compact link variant or `approvedMotionR03` + `text-[9px] px-3 py-1.5` |
-| R04 | `sections/archive.tsx` “view full archive” | `LinkControl` secondary | Should use R04 motion + `px-6 py-3 tracking-widest` |
-| R05 | `sidebar.tsx`, `drawer-menu.tsx` → `ResumeDownloadLink` + `linkControlVariants secondary` | `brutalistCtaLift` (R01) | **Wrong pattern** — must switch to `brutalistCvLinkLift` / R05 (no rest shadow) |
-| R06 | `nav.tsx` `variant="sidebar"` inactive | `brutalistLiftClasses('compact')` in `brutalistNavItemClasses` | **Wrong scale** — use `brutalistSidebarNavLift` / R06; active row in reference has baked lift — verify |
-| R07/R08 | `locale-switcher.tsx`, `theme-switcher.tsx` in **sidebar** | `brutalistSwitcherClasses` — single path, `p-2.5`, drawer selected | **No sidebar/drawer split**; wrong padding (`p-2.5` vs `p-2`); R08 must use **draft** accent selected |
-| R09/R10 | Same switchers in **drawer** | same as above | Drawer inactive R09 + selected R10 (**draft**) not wired |
-| R11 | `drawer-menu.tsx` `DrawerTrigger` | `brutalistDrawerTriggerClasses` → `plack` scale | Contract plack updated; verify inverted colors + active press (+1px in reference, not +4px) |
-| R12 | `stack-plack.tsx` | `brutalistPlackLift` | **Wrong export** — use `approvedMotionR12` / `brutalistTileLift` (tile scale) |
-| R13 | `card.tsx` interactive + `project-card.tsx` expanded | `brutalistCardLift`, `brutalistCardSelected` | Contract updated (-4px hover, -4px selected); components not yet on new exports |
-| R14 | `sections/archive.tsx` preview cards | `Card variant="interactive"` | Uses card lift; archive cards need `bg-surface-muted` + R14 |
-| R15 | `resume/bento.tsx` stack badges | `brutalistTileLift` on `Card interactive-tile` | R15 has **no active** — tile lift includes active press; align or override |
-| R16 | `nav.tsx` `variant="drawer"` | no lift in `brutalistNavItemClasses` | **OK** — matches reference |
-| R17–R22 | resume top bar, contact icons, archive toolbar, contact copy, toast, drawer close | mixed / none | Verify only in Step 11 — no brutalist lift expected except R22 dismiss chip |
+| Pattern | Production touchpoint                                                                     | Current motion export                                              | Gap                                                                                                    |
+| ------- | ----------------------------------------------------------------------------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| R01     | `hero/hero-ctas.tsx` → `Button` primary/secondary + `px-7 py-3`                           | `brutalistCtaLift` via `button.tsx`                                | Scale updated in contract; verify typography (`text-sm` wrapper vs `text-[10px]` on button base)       |
+| R02     | `projects/project-card.tsx` → `Button` plack / case link                                  | `brutalistPlackLift` on `plack` variant                            | **Wrong pattern** — should use R02 (`compact` / `approvedMotionR02`), not plack; sizing `px-4 py-2.5`  |
+| R03     | `sections/archive.tsx` featured links                                                     | ad-hoc / `LinkControl`                                             | Needs dedicated compact link variant or `approvedMotionR03` + `text-[9px] px-3 py-1.5`                 |
+| R04     | `sections/archive.tsx` “view full archive”                                                | `LinkControl` secondary                                            | Should use R04 motion + `px-6 py-3 tracking-widest`                                                    |
+| R05     | `sidebar.tsx`, `drawer-menu.tsx` → `ResumeDownloadLink` + `linkControlVariants secondary` | `brutalistCtaLift` (R01)                                           | **Wrong pattern** — must switch to `brutalistCvLinkLift` / R05 (no rest shadow)                        |
+| R06     | `nav.tsx` `variant="sidebar"` inactive                                                    | `brutalistLiftClasses('compact')` in `brutalistNavItemClasses`     | **Wrong scale** — use `brutalistSidebarNavLift` / R06; active row in reference has baked lift — verify |
+| R07/R08 | `locale-switcher.tsx`, `theme-switcher.tsx` in **sidebar**                                | `brutalistSwitcherClasses` — single path, `p-2.5`, drawer selected | **No sidebar/drawer split**; wrong padding (`p-2.5` vs `p-2`); R08 must use **draft** accent selected  |
+| R09/R10 | Same switchers in **drawer**                                                              | same as above                                                      | Drawer inactive R09 + selected R10 (**draft**) not wired                                               |
+| R11     | `drawer-menu.tsx` `DrawerTrigger`                                                         | `brutalistDrawerTriggerClasses` → `plack` scale                    | Contract plack updated; verify inverted colors + active press (+1px in reference, not +4px)            |
+| R12     | `stack-plack.tsx`                                                                         | `brutalistPlackLift`                                               | **Wrong export** — use `approvedMotionR12` / `brutalistTileLift` (tile scale)                          |
+| R13     | `card.tsx` interactive + `project-card.tsx` expanded                                      | `brutalistCardLift`, `brutalistCardSelected`                       | Contract updated (-4px hover, -4px selected); components not yet on new exports                        |
+| R14     | `sections/archive.tsx` preview cards                                                      | `Card variant="interactive"`                                       | Uses card lift; archive cards need `bg-surface-muted` + R14                                            |
+| R15     | `resume/bento.tsx` stack badges                                                           | `brutalistTileLift` on `Card interactive-tile`                     | R15 has **no active** — tile lift includes active press; align or override                             |
+| R16     | `nav.tsx` `variant="drawer"`                                                              | no lift in `brutalistNavItemClasses`                               | **OK** — matches reference                                                                             |
+| R17–R22 | resume top bar, contact icons, archive toolbar, contact copy, toast, drawer close         | mixed / none                                                       | Verify only in Step 11 — no brutalist lift expected except R22 dismiss chip                            |
 
 **Key structural gaps (must fix in helpers before scattered call sites):**
 
@@ -121,23 +125,23 @@ Execute in order via `/aif-implement`. Do not skip ahead.
 - [x] Сверка R01–R15: reference (prototype) vs draft (proposed) в sandbox.
 - [x] Зафиксировать победителя по каждому паттерну:
 
-| Pattern | Выбор | Контекст |
-| ------- | ----- | -------- |
-| R01 | **reference** | Hero CTA |
-| R02 | **reference** | Project card actions |
-| R03 | **reference** | Archive featured link |
-| R04 | **reference** | View full archive CTA |
-| R05 | **reference** | Download CV (sidebar + drawer) |
-| R06 | **reference** | Sidebar section nav |
-| R07 | **reference** | Sidebar locale/theme inactive |
-| **R08** | **draft** | Sidebar locale/theme selected — accent shadow, `-1.5px` baked |
-| R09 | **reference** | Drawer locale/theme inactive |
-| **R10** | **draft** | Drawer locale/theme selected — foreground shadow, `-1px` baked |
-| R11 | **reference** | `[ MENU ]` trigger |
-| R12 | **reference** | Stack skill plack |
-| R13 | **reference** | Project card shell |
-| R14 | **reference** | Archive preview card |
-| R15 | **reference** | Resume stack badge |
+| Pattern | Выбор         | Контекст                                                       |
+| ------- | ------------- | -------------------------------------------------------------- |
+| R01     | **reference** | Hero CTA                                                       |
+| R02     | **reference** | Project card actions                                           |
+| R03     | **reference** | Archive featured link                                          |
+| R04     | **reference** | View full archive CTA                                          |
+| R05     | **reference** | Download CV (sidebar + drawer)                                 |
+| R06     | **reference** | Sidebar section nav                                            |
+| R07     | **reference** | Sidebar locale/theme inactive                                  |
+| **R08** | **draft**     | Sidebar locale/theme selected — accent shadow, `-1.5px` baked  |
+| R09     | **reference** | Drawer locale/theme inactive                                   |
+| **R10** | **draft**     | Drawer locale/theme selected — foreground shadow, `-1px` baked |
+| R11     | **reference** | `[ MENU ]` trigger                                             |
+| R12     | **reference** | Stack skill plack                                              |
+| R13     | **reference** | Project card shell                                             |
+| R14     | **reference** | Archive preview card                                           |
+| R15     | **reference** | Resume stack badge                                             |
 
 ### Step 2 — Motion contract в `brutalist-motion.ts` (только exports, без helpers)
 
@@ -233,9 +237,9 @@ Execute in order via `/aif-implement`. Do not skip ahead.
 
 ### Step 15 — Manual QA
 
-- [ ] `/en`, `/uk` — hero CTAs, stack placks, project cards, archive preview, sidebar nav, switchers, CV link, drawer menu
-- [ ] `/en/resume` — stack badges (R15)
-- [ ] Compare motion feel to reference prototype for R01–R15
+- [x] `/en`, `/uk` — hero CTAs, stack placks, project cards, archive preview, sidebar nav, switchers, CV link, drawer menu
+- [x] `/en/resume` — stack badges (R15)
+- [x] Compare motion feel to reference prototype for R01–R15
 
 ---
 

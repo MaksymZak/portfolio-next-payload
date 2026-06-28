@@ -9,9 +9,7 @@ function Drawer({ ...props }: React.ComponentProps<typeof DrawerPrimitive.Root>)
   return <DrawerPrimitive.Root data-slot="drawer" {...props} />
 }
 
-function DrawerTrigger({
-  ...props
-}: React.ComponentProps<typeof DrawerPrimitive.Trigger>) {
+function DrawerTrigger({ ...props }: React.ComponentProps<typeof DrawerPrimitive.Trigger>) {
   return <DrawerPrimitive.Trigger data-slot="drawer-trigger" {...props} />
 }
 
@@ -53,7 +51,7 @@ function DrawerContent({
           'fixed inset-y-0 right-0 z-50 flex h-full w-full flex-col gap-4 overflow-y-auto rounded-none border-l border-border bg-surface p-6 font-mono text-xs text-foreground shadow-2xl outline-none sm:w-[420px]',
           'data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:slide-out-to-right',
           'data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:slide-in-from-right',
-          'motion-safe:data-[state=closed]:duration-300 motion-safe:data-[state=open]:duration-500 motion-reduce:animate-none',
+          'motion-safe:data-[state=closed]:duration-300 motion-safe:data-[state=open]:duration-300 motion-reduce:animate-none',
           className,
         )}
         {...props}
@@ -84,10 +82,7 @@ function DrawerFooter({ className, ...props }: React.ComponentProps<'div'>) {
   )
 }
 
-function DrawerTitle({
-  className,
-  ...props
-}: React.ComponentProps<typeof DrawerPrimitive.Title>) {
+function DrawerTitle({ className, ...props }: React.ComponentProps<typeof DrawerPrimitive.Title>) {
   return (
     <DrawerPrimitive.Title
       data-slot="drawer-title"

@@ -1,27 +1,61 @@
-import {
-  Code2,
-  Link2,
-  Mail,
-  MapPin,
-  Phone,
-  Send,
-  type LucideIcon,
-} from 'lucide-react'
-import type { ReactNode } from 'react'
+import { Mail, MapPin, MessageCircle, Phone } from 'lucide-react'
+import type { ComponentType, ReactNode, SVGProps } from 'react'
 
-import { approvedMotionR18 } from '@/lib/brutalist-motion'
 import { cn } from '@/lib/cn'
 import type { Setting } from '@/payload-types'
 
 type ContactItem = NonNullable<Setting['contacts']>[number]
+type SocialIconProps = SVGProps<SVGSVGElement> & { size?: number }
 
-const CONTACT_ICONS: Record<ContactItem['type'], LucideIcon> = {
-  phone: Phone,
-  mail: Mail,
-  telegram: Send,
-  github: Code2,
-  linkedin: Link2,
-  map: MapPin,
+function GithubIcon({ size = 22, className, ...props }: SocialIconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.5}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden
+      {...props}
+    >
+      <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-.1.58-.18.88-.27 0 0 .6.22.83 2.45a4.65 4.65 0 0 1-1.3-.25 4.87 4.87 0 0 0 6.91 4.27 9.82 9.82 0 0 1-2.78 1.2 10.1 10.1 0 0 1-1.55-.1 4.87 4.87 0 0 0 4.63 3.37A9.81 9.81 0 0 1 2 18.56a13.91 13.91 0 0 0 7.55 2.21" />
+    </svg>
+  )
+}
+
+function LinkedinIcon({ size = 22, className, ...props }: SocialIconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.5}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden
+      {...props}
+    >
+      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z" />
+      <rect width="4" height="12" x="2" y="9" />
+      <circle cx="4" cy="4" r="2" />
+    </svg>
+  )
+}
+
+const SOCIAL_ICON_COMPONENTS: Record<
+  'telegram' | 'github' | 'linkedin',
+  ComponentType<SocialIconProps>
+> = {
+  telegram: MessageCircle,
+  github: GithubIcon,
+  linkedin: LinkedinIcon,
 }
 
 const SOCIAL_TYPES = new Set<ContactItem['type']>(['telegram', 'github', 'linkedin'])
@@ -45,6 +79,11 @@ function isExternalUrl(url: string): boolean {
   return url.startsWith('http://') || url.startsWith('https://')
 }
 
+function resumeLocationLabel(location: string): string {
+  const city = location.split(',')[0]?.trim()
+  return city || location
+}
+
 export function ResumeHeader({ settings, children, className }: ResumeHeaderProps) {
   const [firstName, lastName] = splitDisplayName(settings.name)
   const contacts = settings.contacts ?? []
@@ -53,6 +92,7 @@ export function ResumeHeader({ settings, children, className }: ResumeHeaderProp
   const phoneContact = contacts.find((contact) => contact.type === 'phone')
   const socialContacts = contacts.filter((contact) => SOCIAL_TYPES.has(contact.type))
   const mapContact = contacts.find((contact) => contact.type === 'map')
+  const locationLabel = resumeLocationLabel(mapContact?.label ?? settings.location ?? '')
 
   return (
     <header
@@ -73,8 +113,8 @@ export function ResumeHeader({ settings, children, className }: ResumeHeaderProp
       {children ? <div className="relative z-10 mb-4 print:hidden">{children}</div> : null}
 
       <div className="relative z-10 flex flex-col justify-between gap-6 md:flex-row md:items-end">
-        <div>
-          <h1 className="inline-block self-start bg-surface/80 text-4xl leading-none font-extrabold tracking-tight text-foreground uppercase backdrop-blur-sm print:bg-transparent print:text-black md:text-5xl">
+        <div className="bg-surface/80 backdrop-blur-sm print:bg-transparent">
+          <h1 className="inline-block text-4xl leading-none font-extrabold tracking-tight text-foreground uppercase print:text-black md:text-5xl">
             {firstName}
             {lastName ? (
               <>
@@ -83,7 +123,7 @@ export function ResumeHeader({ settings, children, className }: ResumeHeaderProp
               </>
             ) : null}
           </h1>
-          <div className="mt-4 inline-block bg-foreground px-3 py-1 font-mono text-[10px] font-bold tracking-widest text-background uppercase print:bg-black print:text-white sm:text-xs">
+          <div className="mt-4 block bg-foreground px-3 py-1 font-mono text-[10px] font-bold tracking-widest text-background uppercase print:bg-black print:text-white sm:text-xs">
             {settings.position}
           </div>
         </div>
@@ -102,16 +142,17 @@ export function ResumeHeader({ settings, children, className }: ResumeHeaderProp
           {phoneContact ? (
             <a
               href={phoneContact.url}
-              className="-m-1 mt-1 flex items-center gap-2 p-1 motion-safe:transition-colors hover:text-foreground md:justify-end print:text-gray-800"
+              className="-m-1 flex items-center gap-2 p-1 motion-safe:transition-colors hover:text-foreground md:justify-end print:text-gray-800"
             >
               <Phone size={14} aria-hidden className="shrink-0" />
               {phoneContact.label}
             </a>
           ) : null}
 
-          <div className="mt-3 flex flex-wrap items-center gap-4 text-foreground print:text-black md:justify-end">
+          <div className="mt-3 flex items-center gap-4 text-foreground print:text-black md:justify-end">
             {socialContacts.map((contact) => {
-              const Icon = CONTACT_ICONS[contact.type]
+              const socialType = contact.type as keyof typeof SOCIAL_ICON_COMPONENTS
+              const Icon = SOCIAL_ICON_COMPONENTS[socialType]
               const external = isExternalUrl(contact.url)
 
               return (
@@ -121,20 +162,17 @@ export function ResumeHeader({ settings, children, className }: ResumeHeaderProp
                   target={external ? '_blank' : undefined}
                   rel={external ? 'noopener noreferrer' : undefined}
                   aria-label={contact.label}
-                  className={cn(
-                    '-m-2 p-2 hover:text-primary print:hidden',
-                    approvedMotionR18,
-                  )}
+                  className="-m-2 p-2 motion-safe:transition-transform motion-safe:hover:-translate-y-0.5 motion-safe:hover:text-primary print:text-black"
                 >
-                  <Icon size={20} strokeWidth={1.5} aria-hidden className="sm:size-5" />
+                  <Icon size={22} strokeWidth={1.5} className="sm:size-5" />
                 </a>
               )
             })}
 
-            {(mapContact ?? settings.location) ? (
-              <span className="flex items-center gap-1.5 p-1 text-muted-foreground print:text-gray-700">
+            {locationLabel ? (
+              <span className="ml-2 flex items-center gap-1.5 p-1 text-muted-foreground print:text-gray-700">
                 <MapPin size={14} aria-hidden className="shrink-0" />
-                {mapContact?.label ?? settings.location}
+                {locationLabel}
               </span>
             ) : null}
           </div>

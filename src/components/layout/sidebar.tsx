@@ -6,7 +6,6 @@ import { cn } from '@/lib/cn'
 import type { Setting } from '@/payload-types'
 
 import { LocaleSwitcher } from './locale-switcher'
-import { MonoLabel } from '../ui/mono-label'
 import { Nav } from './nav'
 import { ResumeDownloadLink } from './resume-download-link'
 import { StatusPanel } from './status-panel'
@@ -43,15 +42,8 @@ export async function Sidebar({ settings, className }: SidebarProps) {
         </div>
 
         <div className="my-2 space-y-3.5 border-y border-border py-4">
-          <div className="flex w-full flex-col items-center space-y-2 text-center">
-            <MonoLabel size="sm">{tLabels('locale')}</MonoLabel>
-            <LocaleSwitcher variant="sidebar" />
-          </div>
-
-          <div className="flex w-full flex-col items-center space-y-2 text-center">
-            <MonoLabel size="sm">{tLabels('theme')}</MonoLabel>
-            <ThemeSwitcher variant="sidebar" />
-          </div>
+          <LocaleSwitcher variant="sidebar" showSection />
+          <ThemeSwitcher variant="sidebar" showSection />
         </div>
 
         <StatusPanel location={settings.location} availability={settings.availability} />

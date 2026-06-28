@@ -14,7 +14,6 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from '@/components/ui/drawer'
-import { MonoLabel } from '@/components/ui/mono-label'
 import { brutalistDrawerDismissClasses, brutalistDrawerTriggerClasses } from '@/lib/brutalist-motion'
 import { prefersReducedMotion } from '@/lib/home-scroll'
 import type { Setting } from '@/payload-types'
@@ -33,7 +32,6 @@ type DrawerMenuProps = {
 export function DrawerMenu({ settings, className }: DrawerMenuProps) {
   const tActions = useTranslations('actions')
   const tDrawer = useTranslations('drawer')
-  const tLabels = useTranslations('labels')
   const tA11y = useTranslations('a11y')
   const downloadLabel = tActions('downloadCv')
   const [open, setOpen] = useState(false)
@@ -84,15 +82,8 @@ export function DrawerMenu({ settings, className }: DrawerMenuProps) {
             </DrawerClose>
           </div>
 
-          <div className="space-y-3">
-            <MonoLabel size="sm">{tLabels('locale')}</MonoLabel>
-            <LocaleSwitcher variant="drawer" />
-          </div>
-
-          <div className="space-y-3">
-            <MonoLabel size="sm">{tLabels('theme')}</MonoLabel>
-            <ThemeSwitcher variant="drawer" />
-          </div>
+          <LocaleSwitcher variant="drawer" showSection />
+          <ThemeSwitcher variant="drawer" showSection />
 
           <StatusPanel location={settings.location} availability={settings.availability} />
         </div>
