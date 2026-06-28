@@ -8,6 +8,8 @@ import { ResumeBento } from '@/components/resume/bento'
 import { ResumeHeader } from '@/components/resume/header'
 import { PrintButton } from '@/components/resume/print-button'
 import { Link } from '@/i18n/navigation'
+import { approvedMotionR17 } from '@/lib/brutalist-motion'
+import { cn } from '@/lib/cn'
 import { routing } from '@/i18n/routing'
 import { buildPageMetadata } from '@/lib/metadata'
 import {
@@ -72,7 +74,10 @@ export default async function ResumePage({ params }: ResumePageProps) {
           <div className="flex items-center gap-4">
             <Link
               href="/"
-              className="flex items-center gap-1.5 font-bold text-muted-foreground motion-safe:transition-all motion-safe:hover:-translate-x-1 hover:text-foreground"
+              className={cn(
+                'flex items-center gap-1.5 font-bold text-muted-foreground hover:text-foreground',
+                approvedMotionR17,
+              )}
             >
               <ArrowLeft size={12} aria-hidden />
               {tActions('backToIndex')}

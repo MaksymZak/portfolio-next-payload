@@ -1,11 +1,10 @@
 import { ArrowUpRight } from 'lucide-react'
 import { getTranslations } from 'next-intl/server'
 
-import { buttonVariants } from '@/components/ui/button'
+import { buttonVariants, linkControlVariants } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { SectionTag } from '@/components/ui/section-tag'
 import { Link } from '@/i18n/navigation'
-import { brutalistFocusRing } from '@/lib/brutalist-motion'
 import { cn } from '@/lib/cn'
 import { resolveExternalUrl } from '@/lib/external-url'
 import { HOME_SECTION_SCROLL_MT } from '@/lib/home-scroll'
@@ -20,19 +19,22 @@ type ArchiveSectionProps = {
 type ArchiveFeaturedCardProps = {
   item: Archive
   index: number
+  visitSiteLabel: string
   externalLinkLabel: string
 }
 
-function ArchiveFeaturedCard({ item, index, externalLinkLabel }: ArchiveFeaturedCardProps) {
+function ArchiveFeaturedCard({
+  item,
+  index,
+  visitSiteLabel,
+  externalLinkLabel,
+}: ArchiveFeaturedCardProps) {
   const externalUrl = resolveExternalUrl(item.url, { context: `archive:${item.title}` })
 
-  const card = (
+  return (
     <Card
       variant="interactive"
-      className={cn(
-        'group relative flex flex-col justify-between gap-6 bg-surface-muted p-5',
-        externalUrl && 'motion-safe:transition-[transform,box-shadow]',
-      )}
+      className="group relative flex flex-col justify-between gap-6 bg-surface-muted p-5"
     >
       <div>
         <div className="mb-2 flex items-start justify-between gap-2">
@@ -49,31 +51,39 @@ function ArchiveFeaturedCard({ item, index, externalLinkLabel }: ArchiveFeatured
           <p className="mt-2 font-mono text-[10px] text-primary">{item.metric}</p>
         ) : null}
       </div>
-      <div className="flex items-center justify-between font-mono text-[10px] text-muted-foreground">
-        <span className="uppercase">{item.category}</span>
-        <span>{item.year}</span>
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <div className="flex items-center justify-between font-mono text-[10px] text-muted-foreground sm:flex-col sm:items-start sm:justify-end sm:gap-1">
+          <span className="uppercase">{item.category}</span>
+          <span>{item.year}</span>
+        </div>
+        {externalUrl ? (
+          <a
+            href={externalUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={externalLinkLabel}
+            className={cn(
+              linkControlVariants({ variant: 'compact-link', size: 'compact' }),
+              'w-full justify-between sm:w-auto sm:justify-start',
+            )}
+          >
+            <span>{visitSiteLabel}</span>
+            <ArrowUpRight
+              size={10}
+              aria-hidden
+              className="shrink-0 motion-safe:transition-transform motion-safe:group-hover:translate-x-px motion-safe:group-hover:-translate-y-px"
+            />
+          </a>
+        ) : null}
       </div>
     </Card>
-  )
-
-  if (!externalUrl) return card
-
-  return (
-    <a
-      href={externalUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label={externalLinkLabel}
-      className={cn('block rounded-none', brutalistFocusRing)}
-    >
-      {card}
-    </a>
   )
 }
 
 export async function Archive({ items }: ArchiveSectionProps) {
   const tNav = await getTranslations('nav')
   const tActions = await getTranslations('actions')
+  const tArchive = await getTranslations('archive')
   const tA11y = await getTranslations('a11y')
   const featured = items.slice(0, FEATURED_COUNT)
   const opensInNewTabHint = tA11y('opensInNewTab')
@@ -89,6 +99,7 @@ export async function Archive({ items }: ArchiveSectionProps) {
               key={item.id}
               item={item}
               index={index}
+              visitSiteLabel={tArchive('visitSite')}
               externalLinkLabel={tA11y('externalLink', {
                 label: item.title,
                 hint: opensInNewTabHint,
@@ -99,7 +110,7 @@ export async function Archive({ items }: ArchiveSectionProps) {
 
         <Link
           href="/archive"
-          className={cn(buttonVariants({ variant: 'secondary', size: 'lg' }))}
+          className={buttonVariants({ variant: 'secondary', size: 'wide' })}
         >
           {tActions('viewArchive')}
         </Link>

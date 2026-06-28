@@ -9,6 +9,7 @@ import {
 } from 'lucide-react'
 import type { ReactNode } from 'react'
 
+import { approvedMotionR18 } from '@/lib/brutalist-motion'
 import { cn } from '@/lib/cn'
 import type { Setting } from '@/payload-types'
 
@@ -120,7 +121,10 @@ export function ResumeHeader({ settings, children, className }: ResumeHeaderProp
                   target={external ? '_blank' : undefined}
                   rel={external ? 'noopener noreferrer' : undefined}
                   aria-label={contact.label}
-                  className="-m-2 p-2 motion-safe:transition-transform motion-safe:hover:-translate-y-0.5 print:hidden"
+                  className={cn(
+                    '-m-2 p-2 hover:text-primary print:hidden',
+                    approvedMotionR18,
+                  )}
                 >
                   <Icon size={20} strokeWidth={1.5} aria-hidden className="sm:size-5" />
                 </a>

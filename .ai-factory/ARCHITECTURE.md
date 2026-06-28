@@ -76,7 +76,9 @@ src/
 │   ├── services/                  # reserved for future business logic (empty on MVP)
 │   └── types.ts                   # DataLocale, shared server types
 │
-├── lib/                           # pure utilities only (cn, metadata helpers)
+├── lib/                           # pure utilities (cn, metadata, brutalist-motion)
+│   ├── brutalist-motion.ts        # R01–R22 pattern registry + lift helpers (see button.md)
+│   └── home-scroll.ts             # home scroll-spy + section target lock
 ├── payload.config.ts              # Payload composition root
 └── payload-types.ts               # generated — do not edit manually
 
@@ -196,7 +198,7 @@ Rules:
 1. **Single Payload entry point** — `getPayloadClient()` in `src/db/get-payload-client.ts` is the only way to reach Payload Local API from app code.
 2. **Repositories are the public data API** — pages and layouts import from `@/server/repositories`, never from `db/` directly (except seed).
 3. **Thin pages, fat composition** — route files orchestrate fetches and wire sections; business logic stays in repositories (MVP) or future `server/services/`.
-4. **Minimize client bundle** — no framer-motion; CSS transitions + Radix `data-state`; `optimizePackageImports: ['lucide-react']`.
+4. **Minimize client bundle** — no framer-motion; CSS transitions + Radix `data-state`; `optimizePackageImports: ['lucide-react']`. Brutalist hover/active motion is centralized in `src/lib/brutalist-motion.ts` (`APPROVED_MOTION_BY_PATTERN` R01–R15); UI primitives and layout helpers import from there — do not scatter ad-hoc translate/shadow classes.
 5. **Content vs chrome separation** — static UI strings in next-intl; editorial content in Payload with field-level locales.
 6. **Tagged cache by domain** — one `CACHE_TAGS.*` per repository domain; hooks invalidate the matching tag on admin edit.
 

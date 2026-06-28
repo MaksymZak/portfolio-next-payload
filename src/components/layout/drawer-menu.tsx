@@ -15,9 +15,8 @@ import {
   DrawerTrigger,
 } from '@/components/ui/drawer'
 import { MonoLabel } from '@/components/ui/mono-label'
-import { brutalistDrawerTriggerClasses } from '@/lib/brutalist-motion'
+import { brutalistDrawerDismissClasses, brutalistDrawerTriggerClasses } from '@/lib/brutalist-motion'
 import { prefersReducedMotion } from '@/lib/home-scroll'
-import { cn } from '@/lib/cn'
 import type { Setting } from '@/payload-types'
 
 import { LocaleSwitcher } from './locale-switcher'
@@ -61,7 +60,7 @@ export function DrawerMenu({ settings, className }: DrawerMenuProps) {
               <DrawerDescription>{tDrawer('registrar')}</DrawerDescription>
               <DrawerTitle>{tDrawer('title')}</DrawerTitle>
             </div>
-            <DrawerClose className="cursor-pointer rounded-none border border-border bg-background px-2.5 py-1 font-mono text-[10px] font-bold text-foreground motion-safe:transition-[transform,border-color] motion-safe:hover:border-foreground active:translate-y-px">
+            <DrawerClose className={brutalistDrawerDismissClasses()}>
               {tDrawer('close')}
             </DrawerClose>
           </DrawerHeader>
@@ -77,7 +76,7 @@ export function DrawerMenu({ settings, className }: DrawerMenuProps) {
                   label: downloadLabel,
                   hint: tA11y('opensInNewTab'),
                 })}
-                className={cn(linkControlVariants({ variant: 'secondary' }), 'flex w-full gap-2 px-3 py-3')}
+                className={linkControlVariants({ variant: 'cv-link', size: 'cv' })}
               >
                 <Download size={13} aria-hidden />
                 {downloadLabel}
@@ -87,12 +86,12 @@ export function DrawerMenu({ settings, className }: DrawerMenuProps) {
 
           <div className="space-y-3">
             <MonoLabel size="sm">{tLabels('locale')}</MonoLabel>
-            <LocaleSwitcher />
+            <LocaleSwitcher variant="drawer" />
           </div>
 
           <div className="space-y-3">
             <MonoLabel size="sm">{tLabels('theme')}</MonoLabel>
-            <ThemeSwitcher />
+            <ThemeSwitcher variant="drawer" />
           </div>
 
           <StatusPanel location={settings.location} availability={settings.availability} />

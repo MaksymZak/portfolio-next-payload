@@ -7,6 +7,8 @@ import { notFound } from 'next/navigation'
 import { ArchiveTable } from '@/components/archive/table'
 import { SectionTag } from '@/components/ui/section-tag'
 import { Link } from '@/i18n/navigation'
+import { approvedMotionR19 } from '@/lib/brutalist-motion'
+import { cn } from '@/lib/cn'
 import { routing } from '@/i18n/routing'
 import { buildPageMetadata } from '@/lib/metadata'
 import { getArchive, getSettings } from '@/server/repositories'
@@ -60,7 +62,10 @@ export default async function ArchivePage({ params }: ArchivePageProps) {
         <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-3.5 font-mono text-[10px] font-bold md:px-12">
           <Link
             href="/"
-            className="flex items-center gap-1.5 font-bold text-muted-foreground motion-safe:transition-all motion-safe:hover:-translate-x-1 hover:text-foreground"
+            className={cn(
+              'flex items-center gap-1 border border-border bg-surface px-3 py-1.5 font-bold tracking-widest text-muted-foreground uppercase hover:text-foreground',
+              approvedMotionR19,
+            )}
           >
             <ArrowLeft size={12} aria-hidden />
             {tActions('backToIndex')}

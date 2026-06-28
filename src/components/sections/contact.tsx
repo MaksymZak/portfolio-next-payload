@@ -14,11 +14,11 @@ import {
 import { useTranslations } from 'next-intl'
 import { useCallback, useMemo } from 'react'
 
-import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { MonoLabel } from '@/components/ui/mono-label'
 import { SectionTag } from '@/components/ui/section-tag'
 import { useToast } from '@/components/ui/toast'
+import { approvedMotionR20 } from '@/lib/brutalist-motion'
 import { cn } from '@/lib/cn'
 import { HOME_SECTION_SCROLL_MT } from '@/lib/home-scroll'
 import type { Setting } from '@/payload-types'
@@ -115,17 +115,18 @@ function ContactContent({ contacts }: ContactContentProps) {
                   {emailContact.label}
                 </span>
               </div>
-              <Button
+              <button
                 type="button"
                 id="btn-copy-email"
-                variant="primary"
-                size="lg"
-                className="shrink-0 bg-foreground px-6 py-3 text-background motion-safe:transition-colors hover:bg-primary hover:text-primary-foreground"
+                className={cn(
+                  'flex shrink-0 cursor-pointer items-center justify-center gap-2 bg-foreground px-6 py-3 font-mono text-[10px] font-bold tracking-widest text-background uppercase select-none hover:bg-primary hover:text-primary-foreground',
+                  approvedMotionR20,
+                )}
                 onClick={() => void handleCopyEmail()}
               >
                 <Copy size={12} aria-hidden />
                 {tActions('copyEmail')}
-              </Button>
+              </button>
             </Card>
           ) : null}
 

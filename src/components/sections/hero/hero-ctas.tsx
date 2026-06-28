@@ -24,9 +24,8 @@ export function HeroCtas() {
       <Button
         type="button"
         variant="primary"
-        size="lg"
+        size="hero"
         id="action-view-projects"
-        className="px-7 py-3"
         onClick={() => handleScroll('projects')}
       >
         {t('viewProjects')}
@@ -34,9 +33,8 @@ export function HeroCtas() {
       <Button
         type="button"
         variant="secondary"
-        size="lg"
+        size="hero"
         id="action-get-touch"
-        className="px-7 py-3"
         onClick={() => handleScroll('contact')}
       >
         {t('contactMe')}

@@ -1,3 +1,7 @@
+---
+archived: 2026-06-28
+---
+
 # Implementation Plan: Portfolio Polish MVP2
 
 Branch: feature/portfolio-polish-mvp2

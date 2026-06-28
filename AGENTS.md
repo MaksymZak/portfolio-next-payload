@@ -51,6 +51,7 @@ Read these before making structural or architectural changes:
 | Path | Role |
 | --- | --- |
 | [.cursor/docs/design_system_new.md](.cursor/docs/design_system_new.md) | **Active** design system — tokens, themes, layout, components |
+| [.cursor/docs/button.md](.cursor/docs/button.md) | Brutalist motion patterns R01–R22, exports, usage |
 | [.cursor/docs/design_system_old.md](.cursor/docs/design_system_old.md) | Legacy design notes (context only) |
 | [.cursor/docs/cv.json](.cursor/docs/cv.json) | CV facts for seed content |
 | [.cursor/docs/reference/](.cursor/docs/reference/) | Decomposed UI prototype (reference only — do not copy verbatim) |
@@ -86,7 +87,7 @@ src/
 │   ├── repositories/             # cached read accessors (getSettings, getHome, …)
 │   ├── cache/                    # CACHE_TAGS, cachedQuery, revalidation hooks
 │   └── types.ts                  # DataLocale, shared server types
-├── lib/                          # utilities only (cn, metadata helpers)
+├── lib/                          # pure utilities (cn, metadata, brutalist-motion, home-scroll)
 ├── config/env.ts                 # typed env access
 ├── payload.config.ts             # Payload composition root
 └── payload-types.ts              # generated — run generate:types after schema changes

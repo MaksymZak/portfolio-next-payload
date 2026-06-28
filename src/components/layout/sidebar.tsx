@@ -45,18 +45,18 @@ export async function Sidebar({ settings, className }: SidebarProps) {
         <div className="my-2 space-y-3.5 border-y border-border py-4">
           <div className="flex w-full flex-col items-center space-y-2 text-center">
             <MonoLabel size="sm">{tLabels('locale')}</MonoLabel>
-            <LocaleSwitcher />
+            <LocaleSwitcher variant="sidebar" />
           </div>
 
           <div className="flex w-full flex-col items-center space-y-2 text-center">
             <MonoLabel size="sm">{tLabels('theme')}</MonoLabel>
-            <ThemeSwitcher />
+            <ThemeSwitcher variant="sidebar" />
           </div>
         </div>
 
         <StatusPanel location={settings.location} availability={settings.availability} />
 
-        <Nav />
+        <Nav variant="sidebar" />
 
         <div className="pt-2">
           <ResumeDownloadLink
@@ -66,7 +66,7 @@ export async function Sidebar({ settings, className }: SidebarProps) {
               label: downloadLabel,
               hint: tA11y('opensInNewTab'),
             })}
-            className={cn(linkControlVariants({ variant: 'secondary' }), 'flex w-full gap-2 px-3 py-3')}
+            className={linkControlVariants({ variant: 'cv-link', size: 'cv' })}
           >
             <Download size={13} aria-hidden />
             {downloadLabel}

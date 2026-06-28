@@ -4,7 +4,7 @@ import { useLocale, useTranslations } from 'next-intl'
 
 import { usePathname, useRouter } from '@/i18n/navigation'
 import { locales } from '@/i18n/routing'
-import { brutalistSwitcherClasses } from '@/lib/brutalist-motion'
+import { brutalistSwitcherClasses, type BrutalistSwitcherVariant } from '@/lib/brutalist-motion'
 
 type Locale = (typeof locales)[number]
 
@@ -13,7 +13,11 @@ const LOCALE_OPTIONS: { id: Locale; label: string }[] = [
   { id: 'uk', label: 'УКРАЇНСЬКА [UK]' },
 ]
 
-export function LocaleSwitcher() {
+type LocaleSwitcherProps = {
+  variant?: BrutalistSwitcherVariant
+}
+
+export function LocaleSwitcher({ variant = 'sidebar' }: LocaleSwitcherProps) {
   const tLabels = useTranslations('labels')
   const locale = useLocale() as Locale
   const pathname = usePathname()
@@ -36,7 +40,7 @@ export function LocaleSwitcher() {
             aria-pressed={isActive}
             aria-label={item.label}
             onClick={() => handleSwitch(item.id)}
-            className={brutalistSwitcherClasses(isActive)}
+            className={brutalistSwitcherClasses(isActive, variant)}
           >
             {item.label}
           </button>

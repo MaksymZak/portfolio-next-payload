@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl'
 import { useTheme } from 'next-themes'
 import { useSyncExternalStore } from 'react'
 
-import { brutalistSwitcherClasses } from '@/lib/brutalist-motion'
+import { brutalistSwitcherClasses, type BrutalistSwitcherVariant } from '@/lib/brutalist-motion'
 import { cn } from '@/lib/cn'
 
 const THEMES = [
@@ -24,7 +24,11 @@ function useMounted() {
   )
 }
 
-export function ThemeSwitcher() {
+type ThemeSwitcherProps = {
+  variant?: BrutalistSwitcherVariant
+}
+
+export function ThemeSwitcher({ variant = 'sidebar' }: ThemeSwitcherProps) {
   const t = useTranslations('themes')
   const tLabels = useTranslations('labels')
   const { theme, setTheme, resolvedTheme } = useTheme()
@@ -54,7 +58,11 @@ export function ThemeSwitcher() {
             aria-pressed={isActive}
             aria-label={t(item.id)}
             onClick={() => setTheme(item.id)}
-            className={brutalistSwitcherClasses(isActive, 'flex items-center justify-center gap-1.5')}
+            className={brutalistSwitcherClasses(
+              isActive,
+              variant,
+              'flex items-center justify-center gap-1.5',
+            )}
           >
             <span className={cn('block h-1.5 w-1.5 shrink-0 rounded-none border', item.swatch)} />
             <span className="truncate">{t(item.id)}</span>

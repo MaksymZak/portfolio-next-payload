@@ -3,6 +3,7 @@
 import { Check } from 'lucide-react'
 import * as React from 'react'
 
+import { approvedMotionR21 } from '@/lib/brutalist-motion'
 import { cn } from '@/lib/cn'
 
 const DEFAULT_DURATION_MS = 2500
@@ -85,8 +86,9 @@ function Toast({ message, className, id = 'copy-toast', ...props }: ToastProps) 
       aria-live="polite"
       data-slot="toast"
       className={cn(
-        'fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-none border border-border bg-foreground px-4 py-3 font-mono text-xs text-background shadow-[4px_4px_0_rgba(0,0,0,0.1)]',
-        'motion-safe:animate-in motion-safe:fade-in-0 motion-safe:slide-in-from-bottom-2 motion-safe:duration-150',
+        'fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-none border border-border bg-foreground px-4 py-3 font-mono text-xs text-background',
+        approvedMotionR21,
+        'motion-safe:animate-in motion-safe:fade-in-0 motion-safe:slide-in-from-bottom-2',
         className,
       )}
       {...props}

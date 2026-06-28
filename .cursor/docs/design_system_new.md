@@ -38,28 +38,50 @@
 ## Анімації (Micro-interactions)
 
 Анімації використовуються тільки для фідбеку під час взаємодії:
-* Кнопки (скачування CV): різке зміщення об'єкта під час hover-упругого ефекту `hover:-translate-y-0.5 hover:-translate-x-0.5` зі створенням жорсткої заливки знизу — `shadow-[4px_4px_0px_var(--foreground)]`. Цей "Brutalist" ефект ідеально вписується в гострі кути.
+* Brutalist lift/shadow — pattern IDs **R01–R15** у `src/lib/brutalist-motion.ts` (детальна таблиця — [.cursor/docs/button.md](button.md)).
 * Легкі slide та fade-in для індикації завантаження або відкриття Drawer-меню без зайвої химерності.
 
 ---
 
-## Brutalist Motion Contract (MVP2)
+## Brutalist Motion Contract
 
-Єдиний контракт руху живе в `src/lib/brutalist-motion.ts` і застосовується через UI-примітиви (`Button`, `Card`, `brutalistNavItemClasses`, switcher tiles).
+Єдиний контракт руху живе в `src/lib/brutalist-motion.ts`. Компоненти не дублюють translate/shadow класи — імпортують `approvedMotionR**` або helpers (`brutalistNavItemClasses`, `brutalistSwitcherClasses`, `brutalistDrawerTriggerClasses`).
 
-| Scale | Shadow (rest/hover) | Duration | Use |
+**Registry:** `APPROVED_MOTION_BY_PATTERN` (R01–R15), `APPROVED_MOTION_SOURCE` (R08, R10 = `draft`; решта = `reference`).
+
+| ID | Context | Primary touchpoint |
+| --- | --- | --- |
+| R01 | Hero CTA | `Button` primary / secondary |
+| R02 | Project card actions | `Button` card-action |
+| R03 | Archive featured link | `Button` compact-link |
+| R04 | View full archive | `Button` secondary (archive section) |
+| R05 | Download CV | `sidebar.tsx`, `drawer-menu.tsx` |
+| R06 | Sidebar nav | `brutalistNavItemClasses(_, 'sidebar')` |
+| R07–R08 | Sidebar switchers | `LocaleSwitcher` / `ThemeSwitcher` `variant="sidebar"` |
+| R09–R10 | Drawer switchers | same, `variant="drawer"` |
+| R11 | Menu trigger | `brutalistDrawerTriggerClasses` |
+| R12 | Stack plack | `stack-plack.tsx` |
+| R13 | Project card shell | `Card` interactive |
+| R14 | Archive preview card | `Card` interactive + `bg-surface-muted` |
+| R15 | Resume stack badge | `resume/bento.tsx` (no active press) |
+
+**Scale presets** (building blocks inside exports):
+
+| Scale | Shadow (rest/hover) | Duration | Patterns |
 | --- | --- | --- | --- |
-| `cta` | 4px → 5px | 100ms | Primary/secondary buttons, hero CTAs, download links |
-| `plack` | 3px → 4px | 150ms | Drawer trigger, compact CTAs, stack skill placks |
-| `compact` | 2px (hover only) | 150ms | Locale/theme switchers, inactive nav rows |
-| `card` | none → 6px | 200ms | Project cards, archive featured tiles, expanded telemetry |
-| `tile` | none → 3px | 150ms | Resume bento, case goal rows |
+| `cta` | 4px → 5px | 100ms | R01, R04 |
+| `compact` | 2px → 3px | 100ms | R02, R03 |
+| `plack` | none → 3px | default | R11 |
+| `card` | none → 6px | 200ms | R13, R14 |
+| `tile` | none → 3px | 150ms | R12 |
+
+R05–R10, R15 мають окремі exports (CV link без rest shadow; sidebar vs drawer switchers; badge без active).
 
 **Правила:**
-- Елемент рухається (`translate`), тінь залишається візуально «прив’язаною» до нижнього правого кута.
+- Елемент рухається (`translate`), тінь залишається візуально «прив’язаною» до нижнього правого кута (коли rest shadow є).
 - Active/selected — press into shadow (`active:translate-*`, `active:shadow-none`) або стабільний selected lift без hover-only motion.
-- Active nav row **не** має постійного translate — лише border/background/font, щоб список не стрибав.
-- Усі transition/hover обгорнуті в `motion-safe:`; глобальний `@media (prefers-reduced-motion: reduce)` вимикає анімації.
+- Drawer nav (R16) — без brutalist lift; micro-motion R17–R22 — лише translate-X/Y або `transition-colors`.
+- Усі transition/hover обгорнуті в `motion-safe:`; `@media (prefers-reduced-motion: reduce)` вимикає анімації.
 
 **Focus:** `brutalistFocusRing` + глобальний `:focus-visible` outline (3px `var(--ring)`). Не використовуйте `focus-visible:outline-none` на інтерактивних контролах.
 
@@ -76,7 +98,7 @@
 
 `src/components/sections/stack.tsx` + `stack-plack.tsx`:
 - Metrics grid: uppercase label → large value → accent description; group-hover label `muted → foreground`.
-- Skills: bordered placks з icon box, mono title, optional level bars, `plack` scale motion.
+- Skills: bordered placks з icon box, mono title, optional level bars, **R12** tile motion (`approvedMotionR12`).
 - Intro: icon + heading + Payload `proof.intro`; UI chrome — `messages/{en,uk}.json`.
 
 ## Accessibility (MVP2)

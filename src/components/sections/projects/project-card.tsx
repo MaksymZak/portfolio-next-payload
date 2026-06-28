@@ -90,10 +90,7 @@ export function ProjectCard({ project, actions, isFlagship = false }: ProjectCar
           {isFlagship ? (
             <Link
               href={`/case/${project.slug}`}
-              className={cn(
-                buttonVariants({ variant: 'primary', size: 'default' }),
-                'px-4 py-2.5 tracking-widest',
-              )}
+              className={buttonVariants({ variant: 'card-accent', size: 'card' })}
             >
               <BookOpen size={12} aria-hidden />
               {actions.readDoc}
@@ -103,12 +100,11 @@ export function ProjectCard({ project, actions, isFlagship = false }: ProjectCar
           {hasTelemetry ? (
             <Button
               type="button"
-              variant="plack"
-              size="default"
+              variant="card-action"
+              size="card"
               id={toggleId}
               aria-expanded={isExpanded}
               aria-controls={panelId}
-              className="px-4 py-2.5 tracking-widest"
               onClick={toggleTelemetry}
             >
               <Terminal size={12} aria-hidden className="text-muted-foreground" />

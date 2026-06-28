@@ -1,7 +1,7 @@
 import { createElement } from 'react'
 
 import { getSkillIcon } from '@/lib/skill-icon'
-import { brutalistPlackLift } from '@/lib/brutalist-motion'
+import { approvedMotionR12 } from '@/lib/brutalist-motion'
 import { cn } from '@/lib/cn'
 import type { Skill } from '@/payload-types'
 
@@ -17,7 +17,7 @@ export function StackPlack({ skill }: StackPlackProps) {
       id={plackId}
       className={cn(
         'flex cursor-default items-center gap-2 rounded-none border border-border bg-surface px-3 py-2 font-mono text-xs select-none',
-        brutalistPlackLift,
+        approvedMotionR12,
         'motion-safe:hover:border-foreground motion-safe:hover:bg-surface-muted',
       )}
     >

@@ -5,7 +5,7 @@ import type { ReactNode } from 'react'
 import { Badge } from '@/components/ui/badge'
 import { env } from '@/config/env'
 import { Link } from '@/i18n/navigation'
-import { brutalistTileLift } from '@/lib/brutalist-motion'
+import { approvedMotionR15 } from '@/lib/brutalist-motion'
 import { cn } from '@/lib/cn'
 import type { Experience, Resume, Skill } from '@/payload-types'
 
@@ -66,8 +66,8 @@ export async function ResumeBento({ resume, skills, experience, className }: Res
               variant="surface"
               size="sm"
               className={cn(
-                'gap-1.5 border-border print:border-gray-300 print:bg-white print:text-black',
-                brutalistTileLift,
+                'gap-1.5 border-border px-2.5 py-1.5 print:border-gray-300 print:bg-white print:text-black',
+                approvedMotionR15,
                 'hover:border-foreground',
               )}
             >
