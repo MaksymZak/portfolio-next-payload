@@ -1,6 +1,6 @@
 import type { CollectionConfig } from 'payload'
 
-import { archiveRevalidateHooks } from '@/server/cache'
+import { archiveRevalidateHooks } from '@/server/cache/revalidate'
 
 export const Archive: CollectionConfig = {
   slug: 'archive',

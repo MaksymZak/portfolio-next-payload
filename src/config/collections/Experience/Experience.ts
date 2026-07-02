@@ -1,6 +1,6 @@
 import type { CollectionConfig } from 'payload'
 
-import { experienceRevalidateHooks } from '@/server/cache'
+import { experienceRevalidateHooks } from '@/server/cache/revalidate'
 
 export const Experience: CollectionConfig = {
   slug: 'experience',

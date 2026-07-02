@@ -1,21 +1,5 @@
 export type Locale = 'en' | 'uk'
 
-export type CvJson = {
-  title: string
-  contacts: { list: { icon: string; link: string; text: string }[] }
-  hardSkills: { list: { title: string; levels: boolean[] }[] }
-  softSkills: { list: string[] }
-  languages: { list: string[] }
-  about: { text: string }
-  workExperience: {
-    list: { position: string; date: string; list: string[] }[]
-  }
-  education: {
-    list: { date: string; title: string; text: string }[]
-  }
-  portfolio: { title: string; description: string; projects: { name: string; url: string }[] }
-}
-
 export type ArchiveSeed = {
   title: string
   role: Record<Locale, string>

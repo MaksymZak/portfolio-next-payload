@@ -72,14 +72,6 @@ export async function ResumeBento({ resume, skills, experience, className }: Res
               )}
             >
               <span>{skill.title}</span>
-              {skill.level > 0 ? (
-                <span
-                  className="font-mono text-[9px] font-bold text-muted-foreground tabular-nums print:text-gray-500"
-                  aria-label={`Level ${skill.level} of 5`}
-                >
-                  L{skill.level}
-                </span>
-              ) : null}
             </Badge>
           ))}
         </div>

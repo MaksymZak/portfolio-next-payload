@@ -36,7 +36,7 @@ Personal portfolio site with a CMS-backed public frontend. Built as a Next.js Ap
 - **Verification:** `bun run lint`, `bun run build`, manual browser checks — no automated test suite
 - **Performance:** SSG-friendly data layer (`React.cache` + `unstable_cache` + `revalidateTag`)
 - **Accessibility:** keyboard nav, focus rings, reduced-motion support
-- **Content seed:** idempotent `bun run seed` from `.cursor/docs/cv.json` and reference prototypes
+- **Content seed:** idempotent `bun run seed` from self-contained `src/db/seed/data/` (`.cursor/docs/cv.json` is historical reference only)
 
 ## Content Ownership
 

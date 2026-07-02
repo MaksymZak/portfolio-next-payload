@@ -1,6 +1,6 @@
 # Portfolio — Agent Guide
 
-Personal portfolio site (Maksym Zak, Middle Frontend) with a CMS-backed public frontend. Next.js App Router monolith + embedded Payload CMS v3.
+Personal portfolio site (Maksym Zak, Frontend) with a CMS-backed public frontend. Next.js App Router monolith + embedded Payload CMS v3.
 
 **Status:** MVP implemented. Plan: [.ai-factory/plans/portfolio-mvp.md](.ai-factory/plans/portfolio-mvp.md) (all steps complete). Post-MVP fixes are a separate iteration.
 
@@ -53,7 +53,7 @@ Read these before making structural or architectural changes:
 | [.cursor/docs/design_system_new.md](.cursor/docs/design_system_new.md) | **Active** design system — tokens, themes, layout, components |
 | [.cursor/docs/button.md](.cursor/docs/button.md) | Brutalist motion patterns R01–R22, exports, usage |
 | [.cursor/docs/design_system_old.md](.cursor/docs/design_system_old.md) | Legacy design notes (context only) |
-| [.cursor/docs/cv.json](.cursor/docs/cv.json) | CV facts for seed content |
+| [.cursor/docs/cv.json](.cursor/docs/cv.json) | Old CV facts (historical reference; seed is self-contained) |
 | [.cursor/docs/reference/](.cursor/docs/reference/) | Decomposed UI prototype (reference only — do not copy verbatim) |
 | [.cursor/docs/old_vision/](.cursor/docs/old_vision/) | Archived pre-MVP planning docs (may be outdated) |
 

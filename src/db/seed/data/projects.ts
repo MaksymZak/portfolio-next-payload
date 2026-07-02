@@ -1,41 +1,64 @@
 import type { ProjectSeed } from '../types'
 
 /** Placeholder slugs removed from seed — deleted on re-seed. */
-export const deprecatedProjectSlugs = ['edge-analytics-pipeline', 'design-system-ops'] as const
+export const deprecatedProjectSlugs = [
+  'edge-analytics-pipeline',
+  'design-system-ops',
+  'landing-version-system',
+] as const
 
 export const projectsSeed: ProjectSeed[] = [
   {
     slug: 'portfolio-cms',
     title: 'Portfolio CMS',
     label: 'live',
-    role: { en: 'Middle Frontend Developer', uk: 'Middle Frontend Розробник' },
-    period: 'Q1-Q2 2026',
+    role: {
+      en: 'Solo Developer — Frontend & CMS Architecture',
+      uk: 'Соло-розробка — Frontend та архітектура CMS',
+    },
+    period: 'Q1–Q2 2026',
     summary: {
-      en: 'A localized, content-driven developer platform integrated with Payload CMS for instant site-wide localization-friendly updates.',
-      uk: 'Локалізована контентна платформа розробника, інтегрована з Payload CMS для миттєвого оновлення та зручної локалізації сайту.',
+      en: 'This site itself: a bilingual portfolio platform on Next.js 16 App Router with embedded Payload CMS 3. Every piece of content is editable in the admin panel and goes live without a redeploy.',
+      uk: 'Цей сайт: двомовна портфоліо-платформа на Next.js 16 App Router із вбудованим Payload CMS 3. Увесь контент редагується в адмін-панелі та оновлюється без редеплою.',
     },
     highlights: {
       en: [
-        { text: 'Built TypeScript CMS schema using Payload CMS and Next.js App Router.' },
-        { text: 'Engineered dynamic, locale-swapping API middleware logic protecting system speed.' },
-        { text: 'Wired Instant Server Revalidation (ISR) to trigger on CMS publishers webhook save events, bringing load times under 200ms.' },
-        { text: 'Created isolated component template nodes to safely restrict edits for content managers.' },
+        {
+          text: 'Modeled the content schema in Payload CMS with field-level EN/UK localization — one document serves both locales.',
+        },
+        {
+          text: 'Built a tagged cache layer: React.cache per request plus unstable_cache with revalidateTag fired from CMS hooks on publish.',
+        },
+        {
+          text: 'Case pages are statically generated via generateStaticParams and revalidate on content edits — no rebuilds.',
+        },
+        {
+          text: 'Wrote an idempotent bilingual seed script that provisions the entire database in one command.',
+        },
       ],
       uk: [
-        { text: 'Створено TypeScript CMS-схему за допомогою Payload CMS та Next.js App Router.' },
-        { text: 'Реалізовано динамічну логіку зміни локалі за допомогою API middleware без втрати швидкості завантаження.' },
-        { text: 'Налаштовано миттєву ревалідацію сервера (ISR) на подіях збереження вебхуків CMS, що знизило час завантаження до <200мс.' },
-        { text: 'Створено ізольовані шаблони компонентів для безпечного редагування контент-менеджерами.' },
+        {
+          text: 'Змодельовано контент-схему в Payload CMS з локалізацією на рівні полів EN/UK — один документ обслуговує обидві мови.',
+        },
+        {
+          text: 'Побудовано теговий шар кешування: React.cache на запит та unstable_cache із revalidateTag, який спрацьовує з хуків CMS при публікації.',
+        },
+        {
+          text: 'Сторінки кейсів генеруються статично через generateStaticParams і ревалідуються при редагуванні контенту — без ребілдів.',
+        },
+        {
+          text: 'Написано ідемпотентний двомовний seed-скрипт, що розгортає всю базу однією командою.',
+        },
       ],
     },
-    stack: ['Next.js 16', 'Payload CMS', 'TypeScript', 'Tailwind CSS', 'PostgreSQL'],
+    stack: ['Next.js 16', 'Payload CMS 3', 'TypeScript', 'Tailwind CSS 4', 'PostgreSQL'],
     metrics: {
-      en: '200ms Page Load / Instant Editors Publish',
-      uk: 'Завантаження <200мс / Миттєва публікація',
+      en: 'Publish-to-live with zero redeploys',
+      uk: 'Публікація без жодного редеплою',
     },
     technicalDepth: {
-      en: 'Decoupled Server Components architecture ensuring maximum search crawl visibility and localization metadata SEO optimization.',
-      uk: 'Архітектура Decoupled Server Components забезпечує максимальну індексацію в пошукових системах та оптимізацію метаданих локалізації SEO.',
+      en: 'Strict layering: RSC pages read only from cached repositories, all CMS access goes through a single Payload Local API entry point, and client components receive data as props. Four brutalist themes on Tailwind CSS 4 design tokens with full reduced-motion support.',
+      uk: 'Строга шаруватість: RSC-сторінки читають лише з кешованих репозиторіїв, увесь доступ до CMS іде через єдину точку входу Payload Local API, а клієнтські компоненти отримують дані як пропси. Чотири бруталістські теми на дизайн-токенах Tailwind CSS 4 з повною підтримкою reduced motion.',
     },
     order: 1,
   },
@@ -43,69 +66,63 @@ export const projectsSeed: ProjectSeed[] = [
     slug: 'lms-platform',
     title: 'LMS Platform',
     label: 'roadmap',
-    role: { en: 'Frontend Core Engineer', uk: 'Провідний Frontend Розробник' },
-    period: 'Planned Q3 2026',
+    role: {
+      en: 'Full-Stack Developer — Pet Project',
+      uk: 'Full-Stack розробник — власний проєкт',
+    },
+    period: '2025 — relaunch in progress',
     summary: {
-      en: 'A fast, high-performance course delivery platform and progress manager optimized for lightweight mobile networks.',
-      uk: 'Швидка, високоефективна платформа доставки навчальних курсів та менеджер прогресу, оптимізований під слабкі мобільні мережі.',
+      en: 'A course delivery platform with lesson progress tracking. The build is complete; third-party services and tokens are being restored before the public demo relaunch. A full case study will replace this entry once it is live.',
+      uk: 'Платформа доставки навчальних курсів із відстеженням прогресу уроків. Розробку завершено; зараз відновлюються сторонні сервіси й токени перед публічним перезапуском демо. Після запуску цей запис замінить повний кейс.',
     },
     highlights: {
-      en: [
-        { text: 'Interactive learning node pathways dynamically loaded via server-side cached requests.' },
-        { text: 'Next.js streaming layouts with micro-loader animations reducing drop-off on slow mobile networks.' },
-        { text: 'Progress metrics synced securely on client reconnects via Offline LocalStorage synchronization.' },
-        { text: 'Accessible, keyboard-navigable component templates aligned with strict inclusive usability standards.' },
-      ],
-      uk: [
-        { text: 'Інтерактивні ланцюжки навчальних матеріалів динамічно завантажуються через кешовані сервером запити.' },
-        { text: 'Стрімінгові макети Next.js з мікро-анімаціями лоадерів для зменшення відмов у слабких мобільних мережах.' },
-        { text: 'Безпечна синхронізація метрик прогресу при перепідключенні через автономний Offline LocalStorage.' },
-        { text: 'Доступні шаблони компонентів з підтримкою навігації клавіатурою згідно зі стандартами інклюзивності.' },
-      ],
+      en: [{ text: 'Course catalog, lesson pages, and per-user progress tracking.' }],
+      uk: [{ text: 'Каталог курсів, сторінки уроків та відстеження прогресу користувача.' }],
     },
-    stack: ['React 19', 'Next.js 16', 'TypeScript', 'Tailwind CSS', 'IndexedDB'],
+    stack: ['Next.js', 'TypeScript', 'Tailwind CSS'],
     metrics: {
-      en: 'Lightweight Payload / Offline-First Cache',
-      uk: 'Легка вага сторінки / Автономний кеш спочатку',
+      en: 'In relaunch — full case to follow',
+      uk: 'На перезапуску — повний кейс згодом',
     },
     technicalDepth: {
-      en: 'Utilizes React Server Components (RSC) to defer non-critical visual dependencies, keeping initial JavaScript bundle weight minimum.',
-      uk: 'Використовує React Server Components (RSC) для відкладеного завантаження некритичного коду, забезпечуючи мінімальну вагу JS-бандлу.',
+      en: 'Details will be published with the relaunch; this entry is intentionally short until the demo is publicly verifiable.',
+      uk: 'Деталі буде опубліковано разом із перезапуском; запис свідомо короткий, доки демо не можна перевірити публічно.',
     },
     order: 2,
   },
   {
-    slug: 'landing-version-system',
-    title: 'Landing Version System',
+    slug: 'ab-testing-lab',
+    title: 'A/B Testing Lab',
     label: 'roadmap',
-    role: { en: 'Lead Performance Specialist', uk: 'Провідний Інженер Оптимізації' },
-    period: 'Planned Q4 2026',
+    role: {
+      en: 'Frontend Developer — Sanitized Work Replica',
+      uk: 'Frontend розробник — знеособлена копія робочої системи',
+    },
+    period: 'Planned 2026',
     summary: {
-      en: 'A high-throughput dynamic routing system designed to serve and split A/B variations of landing assets via edge middleware.',
-      uk: 'Високопродуктивна система динамічної маршрутизації для роздачі та спліт-тестування A/B варіантів лендингів через edge middleware.',
+      en: 'A public, sanitized rebuild of the A/B landing workflow I run in production: variant builds, traffic routing, and conversion analytics — with all employer branding and data removed.',
+      uk: 'Публічна знеособлена реконструкція робочого A/B-процесу для лендингів: збирання варіантів, маршрутизація трафіку та аналітика конверсій — без брендингу й даних роботодавця.',
     },
     highlights: {
       en: [
-        { text: 'Optimized static assets rendering structure ensuring consistent 98+ Google Lighthouse Performance.' },
-        { text: 'Edge middleware routing to evaluate active URL search keywords and target corresponding version variants dynamically.' },
-        { text: 'Telemetry-free analytical hooks feeding anonymous user conversion ratios directly to reporting servers.' },
-        { text: 'Asset pre-fetch modules configured to load critical graphic templates instantaneously on hover.' },
+        {
+          text: 'Demonstrates the real production workflow: how variants are built, split, and measured.',
+        },
       ],
       uk: [
-        { text: 'Оптимізовано структуру рендерингу статичних ресурсів для досягнення стабільних показників Google Lighthouse 98+.' },
-        { text: 'Маршрутизація на рівні Edge middleware для аналізу активних пошукових запитів в URL та динамічного вибору варіантів.' },
-        { text: 'Аналітичні хуки без стеження за користувачами для передачі анонімних конверсій на сервери звітів.' },
-        { text: 'Модулі попереднього завантаження активів, налаштовані на миттєвий рендеринг критичних графічних шаблонів при ховері.' },
+        {
+          text: 'Демонструє реальний продакшн-процес: як варіанти збираються, розподіляються та вимірюються.',
+        },
       ],
     },
-    stack: ['Next.js 16', 'Vercel Edge', 'Tailwind v4', 'TypeScript', 'HTML5 Performance'],
+    stack: ['Next.js', 'TypeScript', 'Vercel'],
     metrics: {
-      en: 'Split Render in <50ms at Edge level',
-      uk: 'Розподілений рендеринг за <50мс на рівні Edge',
+      en: 'In development — sanitized demo',
+      uk: 'У розробці — знеособлене демо',
     },
     technicalDepth: {
-      en: 'Eliminates typical client-side layout shifts (CLS) by processing high-speed path variations entirely server-side via Edge runtime.',
-      uk: 'Запобігає типовому зсуву макету на стороні клієнта (CLS) шляхом обробки високошвидкісних варіантів шляху на рівні Edge runtime.',
+      en: 'Variant routing and measurement architecture will be documented once the demo is public — no numbers will be published that cannot be reproduced in the demo.',
+      uk: 'Архітектуру маршрутизації варіантів і вимірювань буде задокументовано після публікації демо — жодних цифр, які не можна відтворити в демо.',
     },
     order: 3,
   },

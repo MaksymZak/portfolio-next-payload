@@ -5,6 +5,7 @@ import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
 import sharp from 'sharp'
 import { collections } from '@/config/collections'
+import { revalidateSiteCacheEndpoint } from '@/config/endpoints/revalidate-site-cache'
 import { globals } from '@/config/globals'
 
 const filename = fileURLToPath(import.meta.url)
@@ -20,9 +21,13 @@ export default buildConfig({
     importMap: {
       baseDir: path.resolve(dirname),
     },
+    components: {
+      settingsMenu: ['@/components/admin/RevalidateCacheMenuItem#RevalidateCacheMenuItem'],
+    },
   },
   collections: collections,
   globals,
+  endpoints: [revalidateSiteCacheEndpoint],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

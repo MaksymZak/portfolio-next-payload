@@ -185,9 +185,9 @@ export interface Skill {
   id: number;
   title: string;
   /**
-   * Proficiency level from 1 to 5 (maps to cv.json levels true-count).
+   * Optional legacy proficiency level; not rendered on the site.
    */
-  level: number;
+  level?: number | null;
   order: number;
   updatedAt: string;
   createdAt: string;
@@ -283,6 +283,9 @@ export interface Project {
    * Extended technical narrative for the case study page.
    */
   technicalDepth?: string | null;
+  /**
+   * Hero screenshot for the case study page and future OG image use. Upload via Media (recommended: 1280×720 or wider, WebP/PNG). Leave empty until a capture is ready.
+   */
   screenshot?: (number | null) | Media;
   order: number;
   updatedAt: string;
@@ -572,7 +575,7 @@ export interface Setting {
       }[]
     | null;
   /**
-   * Optional external CV download URL. Leave empty to use the /resume page.
+   * Optional external CV download URL (https://). Leave empty to link to the on-site /resume page instead.
    */
   resumeUrl?: string | null;
   updatedAt?: string | null;

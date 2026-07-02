@@ -5,12 +5,16 @@ import { log, warn } from './logger'
 import { findDocByTitle, upsertLocalizedCollectionDoc } from './payload-helpers'
 import { normalizeArchiveUrl } from './utils'
 
+const seedContext = { context: { disableRevalidate: true } } as const
+
 export async function seedArchive(payload: Payload) {
   log('Seeding archive')
+  const seedTitles = new Set(archiveSeed.map((item) => item.title))
   const seenTitles = new Set<string>()
   const seenUrls = new Set<string>()
   let upserted = 0
   let skipped = 0
+  let removed = 0
 
   for (const item of archiveSeed) {
     const normalizedUrl = normalizeArchiveUrl(item.url)
@@ -60,5 +64,23 @@ export async function seedArchive(payload: Payload) {
     log(`Upserted archive: ${item.title}`)
   }
 
-  log(`Archive seed complete: ${upserted} upserted, ${skipped} skipped`)
+  const existingArchive = await payload.find({
+    collection: 'archive',
+    limit: 500,
+    pagination: false,
+  })
+
+  for (const doc of existingArchive.docs) {
+    if (seedTitles.has(doc.title)) continue
+
+    await payload.delete({
+      collection: 'archive',
+      id: doc.id,
+      ...seedContext,
+    })
+    removed += 1
+    log(`Removed stale archive entry: ${doc.title}`)
+  }
+
+  log(`Archive seed complete: ${upserted} upserted, ${skipped} skipped, ${removed} removed`)
 }

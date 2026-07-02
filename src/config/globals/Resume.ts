@@ -1,6 +1,6 @@
 import type { GlobalConfig } from 'payload'
 
-import { resumeRevalidateHooks } from '@/server/cache'
+import { resumeRevalidateHooks } from '@/server/cache/revalidate'
 
 export const Resume: GlobalConfig = {
   slug: 'resume',

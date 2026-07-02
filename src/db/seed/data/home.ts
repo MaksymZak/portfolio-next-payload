@@ -17,38 +17,38 @@ export const homeData: Record<
 > = {
   en: {
     hero: {
-      badge: 'CORE PRINCIPLE / ABSOLUTE DELIVERY',
+      badge: 'PROFILE / FRONTEND DEVELOPER',
       headline:
-        'Building high-performance landing systems and localized web experiences with an absolute delivery mindset.',
-      copy: 'I build and support production landing pages, bilingual content surfaces, and CMS-connected frontend experiences for teams that need reliable delivery, clean implementation, and fast iteration.',
+        'I build high-performance landing systems and CMS-driven frontends that survive real marketing traffic.',
+      copy: 'Production landing pages, A/B test variants, and bilingual content platforms — built and supported for marketing teams that ship weekly. Focus stack: Next.js, Astro, Payload CMS, TypeScript.',
     },
     proof: {
       years: '4+ Years',
       yearsDesc: 'COMMERCIAL DELIVERY',
-      pages: '300+ Pages',
-      pagesDesc: 'SHIPPED OR SUPPORTED',
-      depth: 'Next.js & Payload',
-      depthDesc: 'CMS DEVISE SPECIALIST',
+      pages: '300+ Landings',
+      pagesDesc: 'BUILT & SHIPPED',
+      depth: 'A/B Testing',
+      depthDesc: 'IN PRODUCTION',
       intro:
-        'A strict selection of tools leveraged on production surfaces to achieve reliable page weight, secure content structure, and rapid localization.',
+        'A working toolkit, not a wishlist: every technology below has shipped production pages — fast loads, structured content, quick bilingual rollouts.',
     },
   },
   uk: {
     hero: {
-      badge: 'ГОЛОВНИЙ ПРИНЦИП / АБСОЛЮТНА ПОРЯДНІСТЬ',
+      badge: 'ПРОФІЛЬ / FRONTEND РОЗРОБНИК',
       headline:
-        'Створення високопродуктивних лендингів та локалізованого веб-досвіду з фокусом на абсолютний результат.',
-      copy: 'Я розробляю та підтримую комерційні лендинги, двомовні контент-сайти та інтегровані з CMS інтерфейси для команд, яким потрібна надійна здача, чистий код і швидка ітерація.',
+        'Створюю швидкі лендинг-системи та CMS-фронтенди, що витримують реальний маркетинговий трафік.',
+      copy: 'Продакшн-лендинги, A/B-варіанти та двомовні контентні платформи — розробка й підтримка для маркетинг-команд, які релізять щотижня. Основний стек: Next.js, Astro, Payload CMS, TypeScript.',
     },
     proof: {
       years: '4+ Роки',
-      yearsDesc: 'КОМЕРЦІЙНА ЗДАЧА',
-      pages: '300+ Стор.',
-      pagesDesc: 'ЗАПУЩЕНО ТА ПІДТРИМАНО',
-      depth: 'Next.js та Payload',
-      depthDesc: 'ФОКУС НА HEADLESS CMS',
+      yearsDesc: 'КОМЕРЦІЙНА РОЗРОБКА',
+      pages: '300+ Лендингів',
+      pagesDesc: 'СТВОРЕНО ТА ЗАПУЩЕНО',
+      depth: 'A/B-тести',
+      depthDesc: 'У ПРОДАКШЕНІ',
       intro:
-        'Ретельний вибір інструментів, що використовуються в продакшені для забезпечення мінімальної ваги сторінок, безпеки контенту та адаптивної локалізації.',
+        'Робочий інструментарій, а не список побажань: кожна технологія нижче використовувалась на продакшені — швидке завантаження, структурований контент, двомовні запуски.',
     },
   },
 }

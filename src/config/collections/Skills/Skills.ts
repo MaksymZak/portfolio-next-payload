@@ -1,6 +1,6 @@
 import type { CollectionConfig } from 'payload'
 
-import { skillsRevalidateHooks } from '@/server/cache'
+import { skillsRevalidateHooks } from '@/server/cache/revalidate'
 
 export const Skills: CollectionConfig = {
   slug: 'skills',
@@ -21,11 +21,11 @@ export const Skills: CollectionConfig = {
     {
       name: 'level',
       type: 'number',
-      required: true,
+      required: false,
       min: 1,
       max: 5,
       admin: {
-        description: 'Proficiency level from 1 to 5 (maps to cv.json levels true-count).',
+        description: 'Optional legacy proficiency level; not rendered on the site.',
       },
     },
     {

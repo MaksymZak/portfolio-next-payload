@@ -1,4 +1,5 @@
 export const CACHE_TAGS = {
+  site: 'site',
   settings: 'settings',
   home: 'home',
   resume: 'resume',

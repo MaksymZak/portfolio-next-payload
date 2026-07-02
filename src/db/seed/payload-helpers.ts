@@ -38,15 +38,27 @@ export async function findDocByTitle(
   return result.docs[0]
 }
 
-export async function findExperience(payload: Payload, company: string, order: number) {
-  const result = await payload.find({
-    collection: 'experience',
-    where: {
-      and: [{ company: { equals: company } }, { order: { equals: order } }],
-    },
-    limit: 1,
+export async function clearCollection(
+  payload: Payload,
+  collection: 'experience',
+  label: (doc: { id: number | string }) => string,
+) {
+  const existing = await payload.find({
+    collection,
+    limit: 500,
+    pagination: false,
   })
-  return result.docs[0]
+
+  for (const doc of existing.docs) {
+    await payload.delete({
+      collection,
+      id: doc.id,
+      ...seedContext,
+    })
+    log(`Removed ${collection}: ${label(doc)}`)
+  }
+
+  return existing.docs.length
 }
 
 export async function findProjectBySlug(payload: Payload, slug: string) {
@@ -60,7 +72,7 @@ export async function findProjectBySlug(payload: Payload, slug: string) {
 
 export async function upsertLocalizedCollectionDoc(
   payload: Payload,
-  collection: 'archive' | 'experience' | 'projects',
+  collection: 'archive' | 'projects',
   match: () => Promise<{ id: string | number } | undefined>,
   dataByLocale: Record<Locale, Record<string, unknown>>,
 ) {

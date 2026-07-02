@@ -1,6 +1,4 @@
-import { cv } from '../cv'
 import type { Locale } from '../types'
-import { splitLanguage } from '../utils'
 
 export const resumeData: Record<
   Locale,
@@ -14,34 +12,51 @@ export const resumeData: Record<
 > = {
   en: {
     about: {
-      text: 'Middle Frontend Developer with 4+ years of commercial experience building modern web applications with React, Next.js, Payload CMS, and TypeScript. Skilled in optimizing landing pages, implementing A/B testing, and mentoring developers. Seeking a professional team to deliver scalable, high-performance frontend solutions.',
+      text: 'Frontend Developer with 4+ years of commercial experience: 300+ landing pages built and shipped, production A/B testing, and CMS-driven content platforms on React, Next.js, Astro, and Payload CMS. Comfortable across the stack when needed — Node.js, Express, PostgreSQL, MongoDB. Looking for a team where frontend quality and delivery speed matter.',
     },
-    education: cv.education.list.map((item) => ({
-      title: item.title,
-      date: item.date,
-      text: item.text,
-    })),
-    languages: cv.languages.list.map(splitLanguage),
-    softSkills: cv.softSkills.list.map((text) => ({ text })),
+    education: [
+      {
+        title: 'Full Stack Developer Bootcamp',
+        date: 'February 2021 – November 2021',
+        text: '10-month intensive program: JavaScript, React, Node.js, and database development.',
+      },
+    ],
+    languages: [
+      { name: 'Ukrainian', level: 'Native' },
+      {
+        name: 'English',
+        level: 'Pre-Intermediate (reads technical documentation; not yet conversational)',
+      },
+    ],
+    softSkills: [
+      { text: 'Problem-solving' },
+      { text: 'Teamwork' },
+      { text: 'Communication' },
+      { text: 'Time management' },
+      { text: 'Adaptability' },
+    ],
     portfolioNote: {
-      title: cv.portfolio.title,
-      text: cv.portfolio.description,
+      title: 'Portfolio',
+      text: '300+ landing pages built and shipped. A curated selection with live links is in the archive ledger on this site.',
     },
   },
   uk: {
     about: {
-      text: 'Middle Frontend розробник із 4+ роками комерційного досвіду у створенні сучасних вебзастосунків на React, Next.js, Payload CMS та TypeScript. Досвід оптимізації лендингів, A/B тестування та менторства. Шукаю професійну команду для масштабованих високопродуктивних frontend-рішень.',
+      text: 'Frontend розробник із 4+ роками комерційного досвіду: 300+ лендингів створено та запущено, A/B-тестування в продакшені, контентні платформи на React, Next.js, Astro та Payload CMS. За потреби впевнено працюю по всьому стеку — Node.js, Express, PostgreSQL, MongoDB. Шукаю команду, де важливі якість фронтенду та швидкість доставки.',
     },
     education: [
       {
         title: 'Full Stack Developer Bootcamp',
         date: 'Лютий 2021 – Листопад 2021',
-        text: '10-місячна інтенсивна програма з JavaScript, React, Node.js та роботи з базами даних.',
+        text: '10-місячна інтенсивна програма: JavaScript, React, Node.js та робота з базами даних.',
       },
     ],
     languages: [
       { name: 'Українська', level: 'Рідна' },
-      { name: 'Англійська', level: 'Pre-Intermediate' },
+      {
+        name: 'Англійська',
+        level: 'Pre-Intermediate (читаю технічну документацію; розмовна ще слабка)',
+      },
     ],
     softSkills: [
       { text: 'Вирішення проблем' },
@@ -52,7 +67,7 @@ export const resumeData: Record<
     ],
     portfolioNote: {
       title: 'Портфоліо',
-      text: 'Створено 300+ лендингів (мінімум)',
+      text: '300+ лендингів створено та запущено. Кураторська добірка з живими посиланнями — в архіві на цьому сайті.',
     },
   },
 }

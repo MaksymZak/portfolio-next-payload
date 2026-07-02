@@ -80,7 +80,7 @@
   "archive": {
     "sectionTag": "FULL LEDGER",
     "title": "COMMERCIAL ARCHIVE LEDGER",
-    "description": "A comprehensive registry of commercial landing pages, single-page applications, and interactive campaigns. Predominantly built using Astro for high performance, alongside Next.js and React components.",
+    "description": "A registry of commercial landing pages, single-page applications, and interactive campaigns — built with Astro, Next.js, and React for production marketing traffic.",
     "searchPlaceholder": "Search records...",
     "categoryAll": "All",
     "filtersLabel": "Filter archive records",

@@ -1,6 +1,37 @@
-import { cv } from '../cv'
 import type { Locale } from '../types'
-import { mapContactType } from '../utils'
+
+const contacts = [
+  {
+    type: 'phone' as const,
+    label: '+38 (099) 432-20-85',
+    url: 'tel:+380994322085',
+  },
+  {
+    type: 'mail' as const,
+    label: 'me@maksymzak.dev',
+    url: 'mailto:me@maksymzak.dev',
+  },
+  {
+    type: 'telegram' as const,
+    label: '@MaksymZak',
+    url: 'https://t.me/MaksymZak',
+  },
+  {
+    type: 'github' as const,
+    label: 'Github',
+    url: 'https://github.com/MaksymZak',
+  },
+  {
+    type: 'linkedin' as const,
+    label: 'Linkedin',
+    url: 'https://www.linkedin.com/in/mzakaliuzhnyi/',
+  },
+  {
+    type: 'map' as const,
+    label: 'Sumy, Ukraine',
+    url: 'https://maps.app.goo.gl/8MoxKkNXwVzS99Wi9',
+  },
+]
 
 export const settingsData: Record<
   Locale,
@@ -17,25 +48,17 @@ export const settingsData: Record<
   }
 > = {
   en: {
-    name: cv.title,
-    position: 'Middle Frontend Developer',
+    name: 'Maksym Zakaliuzhnyi',
+    position: 'Frontend Developer',
     location: 'Sumy, Ukraine',
-    availability: 'Remote only',
-    contacts: cv.contacts.list.map((item) => ({
-      type: mapContactType(item.icon),
-      label: item.text,
-      url: item.link,
-    })),
+    availability: 'Remote',
+    contacts,
   },
   uk: {
-    name: cv.title,
-    position: 'Middle Frontend Розробник',
+    name: 'Maksym Zakaliuzhnyi',
+    position: 'Frontend Розробник',
     location: 'Суми, Україна',
-    availability: 'Тільки віддалено',
-    contacts: cv.contacts.list.map((item) => ({
-      type: mapContactType(item.icon),
-      label: item.text,
-      url: item.link,
-    })),
+    availability: 'Віддалено',
+    contacts,
   },
 }

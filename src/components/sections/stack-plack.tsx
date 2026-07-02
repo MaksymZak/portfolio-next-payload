@@ -31,14 +31,6 @@ export function StackPlack({ skill }: StackPlackProps) {
       <span className="font-mono text-xs font-bold tracking-tight text-foreground uppercase">
         {skill.title}
       </span>
-      {skill.level > 0 ? (
-        <span
-          className="font-mono text-[9px] font-bold text-muted-foreground tabular-nums"
-          aria-label={`Level ${skill.level} of 5`}
-        >
-          L{skill.level}
-        </span>
-      ) : null}
     </div>
   )
 }

@@ -22,7 +22,12 @@ async function main() {
   await seedArchive(payload)
   await seedProjects(payload)
 
-  log('Seed complete')
+  // Seed writes to the database only. Next.js caches are not invalidated here
+  // (bulk operations use disableRevalidate: true). Data Cache (unstable_cache) and
+  // pre-rendered pages may still serve old content until you clear cache manually:
+  // admin gear menu → "Clear site cache", POST /api/revalidate with x-revalidate-secret,
+  // or remove .next/cache and restart dev / rebuild for production.
+  log('Seed complete — clear Next.js cache manually (admin → Clear site cache)')
   process.exit(0)
 }
 

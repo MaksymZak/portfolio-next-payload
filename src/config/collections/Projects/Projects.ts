@@ -1,6 +1,6 @@
 import type { CollectionConfig } from 'payload'
 
-import { projectsRevalidateHooks } from '@/server/cache'
+import { projectsRevalidateHooks } from '@/server/cache/revalidate'
 
 export const Projects: CollectionConfig = {
   slug: 'projects',
