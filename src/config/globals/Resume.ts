@@ -41,6 +41,7 @@ export const Resume: GlobalConfig = {
           name: 'date',
           type: 'text',
           required: true,
+          localized: true,
           admin: {
             description: 'Study period, e.g. "February 2021 – November 2021".',
           },

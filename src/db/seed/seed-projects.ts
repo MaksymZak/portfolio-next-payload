@@ -1,15 +1,17 @@
 import type { Payload } from 'payload'
 
-import { deprecatedProjectSlugs, projectsSeed } from './data/projects'
+import { projectsSeed } from './data/projects'
 import { log } from './logger'
-import { findProjectBySlug, upsertLocalizedCollectionDoc } from './payload-helpers'
+import { clearCollection } from './payload-helpers'
 
 const seedContext = { context: { disableRevalidate: true } } as const
 
 export async function seedProjects(payload: Payload) {
   log('Seeding projects')
-  let upserted = 0
-  let removed = 0
+
+  const removed = await clearCollection(payload, 'projects', (doc) => `id ${doc.id}`)
+
+  let created = 0
 
   for (const item of projectsSeed) {
     const base = {
@@ -21,8 +23,13 @@ export async function seedProjects(payload: Payload) {
       order: item.order,
     }
 
-    await upsertLocalizedCollectionDoc(payload, 'projects', () => findProjectBySlug(payload, item.slug), {
-      en: {
+    // Payload localization: create default locale first, then update other locales.
+    // Array rows must reuse the ids returned by create(), otherwise a locale update
+    // that omits ids creates brand-new rows and the previous locale's text is lost.
+    const doc = await payload.create({
+      collection: 'projects',
+      locale: 'en',
+      data: {
         ...base,
         role: item.role.en,
         summary: item.summary.en,
@@ -30,31 +37,29 @@ export async function seedProjects(payload: Payload) {
         metrics: item.metrics.en,
         technicalDepth: item.technicalDepth.en,
       },
-      uk: {
-        ...base,
+      ...seedContext,
+    })
+
+    await payload.update({
+      collection: 'projects',
+      id: doc.id,
+      locale: 'uk',
+      data: {
         role: item.role.uk,
         summary: item.summary.uk,
-        highlights: item.highlights.uk,
+        highlights: item.highlights.uk.map((highlight, index) => ({
+          id: doc.highlights?.[index]?.id ?? undefined,
+          text: highlight.text,
+        })),
         metrics: item.metrics.uk,
         technicalDepth: item.technicalDepth.uk,
       },
-    })
-    upserted += 1
-    log(`Upserted project: ${item.slug}`)
-  }
-
-  for (const slug of deprecatedProjectSlugs) {
-    const existing = await findProjectBySlug(payload, slug)
-    if (!existing) continue
-
-    await payload.delete({
-      collection: 'projects',
-      id: existing.id,
       ...seedContext,
     })
-    removed += 1
-    log(`Removed deprecated placeholder project: ${slug}`)
+
+    created += 1
+    log(`Created project: ${item.slug}`)
   }
 
-  log(`Projects seed complete: ${upserted} upserted, ${removed} removed`)
+  log(`Projects seed complete: ${created} created, ${removed} removed`)
 }

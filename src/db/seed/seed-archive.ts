@@ -2,19 +2,20 @@ import type { Payload } from 'payload'
 
 import { archiveSeed } from './data/archive'
 import { log, warn } from './logger'
-import { findDocByTitle, upsertLocalizedCollectionDoc } from './payload-helpers'
+import { clearCollection } from './payload-helpers'
 import { normalizeArchiveUrl } from './utils'
 
 const seedContext = { context: { disableRevalidate: true } } as const
 
 export async function seedArchive(payload: Payload) {
   log('Seeding archive')
-  const seedTitles = new Set(archiveSeed.map((item) => item.title))
+
+  const removed = await clearCollection(payload, 'archive', (doc) => `id ${doc.id}`)
+
   const seenTitles = new Set<string>()
   const seenUrls = new Set<string>()
-  let upserted = 0
+  let created = 0
   let skipped = 0
-  let removed = 0
 
   for (const item of archiveSeed) {
     const normalizedUrl = normalizeArchiveUrl(item.url)
@@ -43,44 +44,31 @@ export async function seedArchive(payload: Payload) {
       order: item.order,
     }
 
-    await upsertLocalizedCollectionDoc(
-      payload,
-      'archive',
-      () => findDocByTitle(payload, 'archive', item.title),
-      {
-        en: {
-          ...base,
-          role: item.role.en,
-          ...(item.metric ? { metric: item.metric.en } : {}),
-        },
-        uk: {
-          ...base,
-          role: item.role.uk,
-          ...(item.metric ? { metric: item.metric.uk } : {}),
-        },
-      },
-    )
-    upserted += 1
-    log(`Upserted archive: ${item.title}`)
-  }
-
-  const existingArchive = await payload.find({
-    collection: 'archive',
-    limit: 500,
-    pagination: false,
-  })
-
-  for (const doc of existingArchive.docs) {
-    if (seedTitles.has(doc.title)) continue
-
-    await payload.delete({
+    const doc = await payload.create({
       collection: 'archive',
-      id: doc.id,
+      locale: 'en',
+      data: {
+        ...base,
+        role: item.role.en,
+        ...(item.metric ? { metric: item.metric.en } : {}),
+      },
       ...seedContext,
     })
-    removed += 1
-    log(`Removed stale archive entry: ${doc.title}`)
+
+    await payload.update({
+      collection: 'archive',
+      id: doc.id,
+      locale: 'uk',
+      data: {
+        role: item.role.uk,
+        ...(item.metric ? { metric: item.metric.uk } : {}),
+      },
+      ...seedContext,
+    })
+
+    created += 1
+    log(`Created archive: ${item.title}`)
   }
 
-  log(`Archive seed complete: ${upserted} upserted, ${skipped} skipped, ${removed} removed`)
+  log(`Archive seed complete: ${created} created, ${skipped} skipped, ${removed} removed`)
 }

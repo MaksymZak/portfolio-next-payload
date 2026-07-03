@@ -1,12 +1,5 @@
 import type { ProjectSeed } from '../types'
 
-/** Placeholder slugs removed from seed — deleted on re-seed. */
-export const deprecatedProjectSlugs = [
-  'edge-analytics-pipeline',
-  'design-system-ops',
-  'landing-version-system',
-] as const
-
 export const projectsSeed: ProjectSeed[] = [
   {
     slug: 'portfolio-cms',
