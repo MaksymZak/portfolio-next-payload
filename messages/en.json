@@ -13,6 +13,8 @@
     "contactMe": "Contact Me",
     "downloadCv": "DOWNLOAD CV",
     "savePdf": "SAVE PDF",
+    "generatingPdf": "GENERATING…",
+    "previewPdf": "PDF PREVIEW",
     "copyEmail": "COPY ADDRESS",
     "copied": "EMAIL COPIED TO CLIPBOARD",
     "copyFailed": "COULD NOT COPY TO CLIPBOARD",
@@ -65,7 +67,8 @@
       "portfolio": "PORTFOLIO"
     },
     "viewLivePortfolio": "VIEW LIVE PORTFOLIO",
-    "printVisit": "VISIT: {url}"
+    "printVisit": "VISIT: {url}",
+    "pageEnd": "A4 PAGE LIMIT"
   },
   "contact": {
     "types": {

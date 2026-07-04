@@ -5,6 +5,12 @@
    that ships `dark:` variants resolves against our token system. */
 @custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
 
+/* `sheet:` utilities style the resume as an A4 document. The [data-sheet]
+   attribute is set by three consumers that must stay pixel-identical:
+   the on-page "PDF PREVIEW" toggle, the /api/cv PDF generator, and the
+   window.print() fallback. */
+@custom-variant sheet (&:where([data-sheet], [data-sheet] *));
+
 /* ------------------------------------------------------------------ *
  * DESIGN.md token contract — source of truth for all four themes.
  * shadcn semantic variables are mapped from these in `@theme inline`.

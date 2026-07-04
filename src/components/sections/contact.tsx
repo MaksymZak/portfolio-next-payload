@@ -1,19 +1,11 @@
 'use client'
 
-import {
-  ArrowUpRight,
-  Code2,
-  Copy,
-  Link2,
-  Mail,
-  MapPin,
-  Phone,
-  Send,
-  type LucideIcon,
-} from 'lucide-react'
+import { ArrowUpRight, Copy, Mail, MapPin, Phone } from 'lucide-react'
 import { useTranslations } from 'next-intl'
+import type { ComponentType, SVGProps } from 'react'
 import { useCallback, useMemo } from 'react'
 
+import { GithubIcon, LinkedinIcon, TelegramIcon } from '@/components/ui/brand-icons'
 import { Card } from '@/components/ui/card'
 import { MonoLabel } from '@/components/ui/mono-label'
 import { SectionTag } from '@/components/ui/section-tag'
@@ -29,12 +21,14 @@ type ContactProps = {
   contacts: Setting['contacts']
 }
 
-const CONTACT_ICONS: Record<ContactItem['type'], LucideIcon> = {
+type ContactIcon = ComponentType<SVGProps<SVGSVGElement> & { size?: number | string }>
+
+const CONTACT_ICONS: Record<ContactItem['type'], ContactIcon> = {
   phone: Phone,
   mail: Mail,
-  telegram: Send,
-  github: Code2,
-  linkedin: Link2,
+  telegram: TelegramIcon,
+  github: GithubIcon,
+  linkedin: LinkedinIcon,
   map: MapPin,
 }
 

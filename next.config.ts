@@ -14,6 +14,7 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ['lucide-react'],
   },
+  serverExternalPackages: ['@sparticuz/chromium', 'puppeteer-core'],
   images: {
     localPatterns: [
       {

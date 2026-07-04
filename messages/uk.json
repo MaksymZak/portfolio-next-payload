@@ -13,6 +13,8 @@
     "contactMe": "Зв'язатися зі мною",
     "downloadCv": "ЗАВАНТАЖИТИ CV",
     "savePdf": "ЗБЕРЕГТИ PDF",
+    "generatingPdf": "ГЕНЕРУЄТЬСЯ…",
+    "previewPdf": "PDF ПЕРЕГЛЯД",
     "copyEmail": "СКОПІЮВАТИ АДРЕСУ",
     "copied": "АДРЕСУ СКОПІЙОВАНО В БУФЕР",
     "copyFailed": "НЕ ВДАЛОСЯ СКОПІЮВАТИ В БУФЕР",
@@ -65,7 +67,8 @@
       "portfolio": "ПОРТФОЛІО"
     },
     "viewLivePortfolio": "ПЕРЕГЛЯНУТИ ПОРТФОЛІО",
-    "printVisit": "ВІЗИТ: {url}"
+    "printVisit": "ВІЗИТ: {url}",
+    "pageEnd": "МЕЖА АРКУША A4"
   },
   "contact": {
     "types": {

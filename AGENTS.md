@@ -45,6 +45,7 @@ Read these before making structural or architectural changes:
 | [.ai-factory/DESCRIPTION.md](.ai-factory/DESCRIPTION.md) | Project summary, features, content ownership |
 | [.ai-factory/RULES.md](.ai-factory/RULES.md) | Plan-driven implementation rules (`/aif-implement`, step-by-step work) |
 | [.ai-factory/plans/portfolio-mvp.md](.ai-factory/plans/portfolio-mvp.md) | Completed MVP implementation plan |
+| [.ai-factory/docs/resume-pdf-sheet.md](.ai-factory/docs/resume-pdf-sheet.md) | Resume A4 sheet system: `sheet:` variant, PDF generation, preview toggle, layout budget & caps |
 
 ## Reference Documentation
 
