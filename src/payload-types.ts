@@ -220,6 +220,7 @@ export interface Experience {
  */
 export interface Archive {
   id: number;
+  _order?: string | null;
   title: string;
   role: string;
   stack?:
@@ -241,7 +242,6 @@ export interface Archive {
    * Optional live project URL.
    */
   url?: string | null;
-  order: number;
   updatedAt: string;
   createdAt: string;
 }
@@ -455,6 +455,7 @@ export interface ExperienceSelect<T extends boolean = true> {
  * via the `definition` "archive_select".
  */
 export interface ArchiveSelect<T extends boolean = true> {
+  _order?: T;
   title?: T;
   role?: T;
   stack?:
@@ -467,7 +468,6 @@ export interface ArchiveSelect<T extends boolean = true> {
   category?: T;
   metric?: T;
   url?: T;
-  order?: T;
   updatedAt?: T;
   createdAt?: T;
 }

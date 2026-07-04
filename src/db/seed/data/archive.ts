@@ -29,7 +29,7 @@ export const archiveSeed: ArchiveSeed[] = [
     title: 'School Webinar AI',
     role: {
       en: 'High-volume lead capture with GTM analytics',
-      uk: 'Лендинг збору лідів із GTM-аналітикою',
+      uk: 'Високонавантажений збір лідів із GTM-аналітикою',
     },
     stack: ['Astro', 'Tailwind CSS', 'Google Tag Manager'],
     year: '2025',

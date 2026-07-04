@@ -18,12 +18,12 @@ const contacts = [
   },
   {
     type: 'github' as const,
-    label: 'Github',
+    label: 'GitHub',
     url: 'https://github.com/MaksymZak',
   },
   {
     type: 'linkedin' as const,
-    label: 'Linkedin',
+    label: 'LinkedIn',
     url: 'https://www.linkedin.com/in/mzakaliuzhnyi/',
   },
   {
@@ -56,7 +56,7 @@ export const settingsData: Record<
   },
   uk: {
     name: 'Maksym Zakaliuzhnyi',
-    position: 'Frontend Розробник',
+    position: 'Frontend-розробник',
     location: 'Суми, Україна',
     availability: 'Віддалено',
     contacts,

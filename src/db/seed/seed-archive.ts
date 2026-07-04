@@ -1,4 +1,5 @@
 import type { Payload } from 'payload'
+import { generateNKeysBetween } from 'payload/shared'
 
 import { archiveSeed } from './data/archive'
 import { log, warn } from './logger'
@@ -17,7 +18,10 @@ export async function seedArchive(payload: Payload) {
   let created = 0
   let skipped = 0
 
-  for (const item of archiveSeed) {
+  const sortedSeed = [...archiveSeed].sort((a, b) => a.order - b.order)
+  const orderKeys = generateNKeysBetween(null, null, sortedSeed.length)
+
+  for (const [index, item] of sortedSeed.entries()) {
     const normalizedUrl = normalizeArchiveUrl(item.url)
 
     if (seenTitles.has(item.title)) {
@@ -41,7 +45,7 @@ export async function seedArchive(payload: Payload) {
       year: item.year,
       category: item.category,
       url: item.url,
-      order: item.order,
+      _order: orderKeys[index],
     }
 
     const doc = await payload.create({

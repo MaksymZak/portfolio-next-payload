@@ -24,6 +24,13 @@
   --radius: 0rem;
 }
 
+/* Scrollbar tokens — reference theme colors so all four themes stay in sync. */
+:root {
+  --scrollbar-thumb: var(--muted-foreground);
+  --scrollbar-thumb-active: var(--accent);
+  --scrollbar-track: var(--surface-muted);
+}
+
 [data-theme='dark'] {
   --background: #0a0a0a;
   --foreground: #fafafa;
@@ -117,6 +124,8 @@
 @layer base {
   * {
     @apply border-border;
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
   }
 
   html {
@@ -163,5 +172,36 @@
       transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
     }
+  }
+
+  @media (prefers-contrast: more) {
+    :root {
+      --scrollbar-thumb: var(--foreground);
+      --scrollbar-thumb-active: var(--foreground);
+      --scrollbar-track: var(--surface);
+    }
+  }
+}
+
+/* Brutalist scrollbar — WebKit fallback (modern-web-guidance). */
+@supports not (scrollbar-color: auto) {
+  *::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border: 1px solid var(--border);
+    border-radius: 0;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-active);
+    border-color: var(--foreground);
   }
 }

@@ -32,16 +32,13 @@ function ArchiveFeaturedCard({
   const externalUrl = resolveExternalUrl(item.url, { context: `archive:${item.title}` })
 
   return (
-    <Card
-      variant="interactive"
-      className="group relative flex flex-col justify-between gap-6 bg-surface-muted p-5"
-    >
+    <Card className="relative flex flex-col justify-between gap-6 bg-surface-muted p-5">
       <div>
         <div className="mb-2 flex items-start justify-between gap-2">
           <h4 className="text-sm leading-tight font-extrabold tracking-tight text-foreground uppercase">
             {item.title}
           </h4>
-          <span className="flex shrink-0 items-center gap-1 font-mono text-[10px] font-bold text-muted-foreground group-hover:text-primary motion-safe:transition-colors">
+          <span className="flex shrink-0 items-center gap-1 font-mono text-[10px] font-bold text-muted-foreground">
             {externalUrl ? <ArrowUpRight size={10} aria-hidden /> : null}
             _0{index + 1}
           </span>
@@ -64,14 +61,14 @@ function ArchiveFeaturedCard({
             aria-label={externalLinkLabel}
             className={cn(
               linkControlVariants({ variant: 'compact-link', size: 'compact' }),
-              'w-full justify-between sm:w-auto sm:justify-start',
+              'group/link w-full justify-between sm:w-auto sm:justify-start',
             )}
           >
             <span>{visitSiteLabel}</span>
             <ArrowUpRight
               size={10}
               aria-hidden
-              className="shrink-0 motion-safe:transition-transform motion-safe:group-hover:translate-x-px motion-safe:group-hover:-translate-y-px"
+              className="shrink-0 motion-safe:transition-transform motion-safe:group-hover/link:translate-x-px motion-safe:group-hover/link:-translate-y-px"
             />
           </a>
         ) : null}

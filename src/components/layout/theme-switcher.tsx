@@ -3,7 +3,6 @@
 import { Palette } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { useTheme } from 'next-themes'
-import { useSyncExternalStore } from 'react'
 
 import { MonoLabel } from '@/components/ui/mono-label'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
@@ -11,6 +10,9 @@ import { brutalistSwitcherClasses, type BrutalistSwitcherVariant } from '@/lib/b
 import { cn } from '@/lib/cn'
 
 const THEME_TOOLTIP_DELAY_MS = 200
+
+/** Must match ThemeProvider defaultTheme — stable SSR/hydration fallback before useTheme initializes. */
+const DEFAULT_THEME = 'light' as const
 
 const THEMES = [
   { id: 'light', shortLabel: 'LT', swatch: 'bg-[#f9f9f9] border-[#e2e8f0]' },
@@ -21,14 +23,6 @@ const THEMES = [
 
 type ThemeId = (typeof THEMES)[number]['id']
 
-function useMounted() {
-  return useSyncExternalStore(
-    () => () => {},
-    () => true,
-    () => false,
-  )
-}
-
 type ThemeSwitcherProps = {
   variant?: BrutalistSwitcherVariant
   showSection?: boolean
@@ -38,27 +32,9 @@ export function ThemeSwitcher({ variant = 'sidebar', showSection = false }: Them
   const t = useTranslations('themes')
   const tLabels = useTranslations('labels')
   const { theme, setTheme, resolvedTheme } = useTheme()
-  const mounted = useMounted()
 
-  const activeTheme = (mounted ? (theme ?? resolvedTheme) : 'light') as ThemeId
-
+  const activeTheme = (theme ?? resolvedTheme ?? DEFAULT_THEME) as ThemeId
   const isSidebar = variant === 'sidebar'
-
-  if (!mounted) {
-    return (
-      <div
-        className={cn('grid w-full gap-1', isSidebar ? 'grid-cols-4' : 'grid-cols-2')}
-        aria-hidden
-      >
-        {THEMES.map((item) => (
-          <div
-            key={item.id}
-            className="h-[34px] w-full rounded-none border border-border bg-surface"
-          />
-        ))}
-      </div>
-    )
-  }
 
   const handleSelect = (nextTheme: ThemeId) => {
     if (process.env.NODE_ENV === 'development' && nextTheme !== activeTheme) {

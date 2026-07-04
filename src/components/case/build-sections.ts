@@ -51,7 +51,7 @@ export function buildCaseSections(
     push('stack', titles.stack)
   }
 
-  if (project.metrics) {
+  if (project.metrics?.trim()) {
     push('metrics', titles.metrics)
   }
 

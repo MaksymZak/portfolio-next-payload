@@ -8,6 +8,7 @@ export type ArchiveSeed = {
   category: 'landing' | 'platform' | 'campaign' | 'prototype'
   metric?: Record<Locale, string>
   url?: string
+  /** Seed-only display order; mapped to Payload `_order` on create. */
   order: number
 }
 
@@ -16,11 +17,11 @@ export type ProjectSeed = {
   title: string
   label: 'live' | 'roadmap'
   role: Record<Locale, string>
-  period: string
+  period: Record<Locale, string>
   summary: Record<Locale, string>
   highlights: Record<Locale, { text: string }[]>
   stack: string[]
-  metrics: Record<Locale, string>
+  metrics?: Record<Locale, string>
   technicalDepth: Record<Locale, string>
   order: number
 }

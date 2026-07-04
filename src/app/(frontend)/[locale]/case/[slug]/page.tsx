@@ -13,7 +13,6 @@ import { MonoLabel } from '@/components/ui/mono-label'
 import { Clock as KyivClock } from '@/components/layout/clock'
 import { Link } from '@/i18n/navigation'
 import { routing } from '@/i18n/routing'
-import { brutalistTileLift } from '@/lib/brutalist-motion'
 import { cn } from '@/lib/cn'
 import { resolveMediaUrl } from '@/lib/media-url'
 import { buildPageMetadata, buildRoadmapCaseRobots } from '@/lib/metadata'
@@ -249,10 +248,7 @@ export default async function CasePage({ params }: CasePageProps) {
                       {highlights.map((highlight, index) => (
                         <li
                           key={highlight.id ?? `${project.slug}-goal-${index}`}
-                          className={cn(
-                            'border border-border bg-surface p-4 hover:border-foreground hover:bg-surface-muted',
-                            brutalistTileLift,
-                          )}
+                          className="border border-border bg-surface p-4"
                         >
                           <MonoLabel variant="accent" size="sm" className="mb-2 block">
                             {tCase('goalIndex', {

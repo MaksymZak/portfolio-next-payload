@@ -55,7 +55,7 @@ export async function Hero({ locale }: HeroProps) {
         aria-hidden
         className="pointer-events-none absolute top-5 left-8 z-0 hidden font-mono text-[8px] tracking-widest text-muted-foreground opacity-40 select-none sm:block"
       >
-        [SYS_INIT_COORD // 48.2N 34.1E]
+        [SYS_INIT_COORD // 50.9N 34.8E]
       </div>
       <div
         aria-hidden

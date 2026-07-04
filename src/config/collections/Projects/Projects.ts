@@ -47,6 +47,7 @@ export const Projects: CollectionConfig = {
       name: 'period',
       type: 'text',
       required: true,
+      localized: true,
       admin: {
         description: 'Delivery window, e.g. "Q1-Q2 2026" or "Planned Q3 2026".',
       },

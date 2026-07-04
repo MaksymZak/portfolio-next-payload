@@ -1,8 +1,6 @@
 import { createElement } from 'react'
 
 import { getSkillIcon } from '@/lib/skill-icon'
-import { approvedMotionR12 } from '@/lib/brutalist-motion'
-import { cn } from '@/lib/cn'
 import type { Skill } from '@/payload-types'
 
 type StackPlackProps = {
@@ -15,11 +13,7 @@ export function StackPlack({ skill }: StackPlackProps) {
   return (
     <div
       id={plackId}
-      className={cn(
-        'flex cursor-default items-center gap-2 rounded-none border border-border bg-surface px-3 py-2 font-mono text-xs select-none',
-        approvedMotionR12,
-        'motion-safe:hover:border-foreground motion-safe:hover:bg-surface-muted',
-      )}
+      className="flex cursor-default items-center gap-2 rounded-none border border-border bg-surface px-3 py-2 font-mono text-xs select-none"
     >
       <div className="flex size-5 shrink-0 items-center justify-center rounded-none border border-border bg-background">
         {createElement(getSkillIcon(skill.title), {

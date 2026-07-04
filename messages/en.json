@@ -5,7 +5,7 @@
     "stack": "02 PROOF & STACK",
     "projects": "03 CASE STUDIES",
     "archive": "04 ARCHIVE SYSTEM",
-    "experience": "05 OPERATIONAL EXPERIENCE",
+    "experience": "05 EXPERIENCE LOG",
     "contact": "06 CONTACTS"
   },
   "actions": {
@@ -18,10 +18,10 @@
     "copyFailed": "COULD NOT COPY TO CLIPBOARD",
     "readDoc": "READ DETAILED ENGINEERING DOCUMENTATION",
     "viewTelemetry": "VIEW TECHNICAL TELEMETRY",
-    "hideTelemetry": "HIDE GRANULAR ARCHITECTURE",
+    "hideTelemetry": "HIDE TECHNICAL TELEMETRY",
     "backToIndex": "BACK TO INDEX",
     "viewArchive": "VIEW FULL ARCHIVE LEDGER [→]",
-    "search": "Search stack or scope..."
+    "search": "Search stack or role..."
   },
   "labels": {
     "location": "LOCATION",
@@ -41,11 +41,11 @@
     "contrast": "HIGH CONTRAST"
   },
   "footer": {
-    "spec": "SPEC: TS, REACT 19, NEXT.js, TAILWIND V4.",
-    "intended": "© 2026. INTENDED FOR SECURE RECRUITMENT ONLY."
+    "spec": "SPEC: TS, REACT 19, NEXT.JS, TAILWIND V4.",
+    "intended": "© 2026. FOR RECRUITMENT PURPOSES ONLY."
   },
   "header": {
-    "systemActive": "W-SYSTEM: ACTIVE"
+    "systemActive": "MZ-SYSTEM: ACTIVE"
   },
   "drawer": {
     "menu": "[ MENU ]",
@@ -74,7 +74,7 @@
       "telegram": "INSTANT TEXT SYSTEM",
       "github": "SECURE CODE PLATFORM",
       "linkedin": "VERIFIED IDENTITY HUB",
-      "map": "GEO SPATIAL NODE"
+      "map": "GEOSPATIAL NODE"
     }
   },
   "archive": {
@@ -146,8 +146,8 @@
     "overviewTitle": "Executive Summary / Overview",
     "goalsTitle": "Aims & Technical Goals",
     "stackTitle": "Technology Assembly & Stack",
-    "metricsTitle": "Verified Metric Proof",
-    "depthTitle": "Depth Resolution",
+    "metricsTitle": "Verified Metrics",
+    "depthTitle": "Technical Depth",
     "sections": {
       "overview": "OVERVIEW",
       "goals": "GOALS",

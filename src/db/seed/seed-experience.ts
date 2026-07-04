@@ -45,6 +45,8 @@ export async function seedExperience(payload: Payload) {
       locale: 'uk',
       data: {
         role: ukItem.role,
+        company: ukItem.company,
+        period: ukItem.period,
         bullets: ukItem.bullets.map((bullet, index) => ({
           id: doc.bullets?.[index]?.id ?? undefined,
           text: bullet.text,

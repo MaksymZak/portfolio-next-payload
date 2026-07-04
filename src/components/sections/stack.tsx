@@ -56,9 +56,9 @@ export async function Stack({ proof, skills }: StackProps) {
             <div
               key={metric.id}
               id={metric.id}
-              className="group relative flex flex-col justify-between p-5 motion-safe:transition-colors motion-safe:hover:bg-surface-muted"
+              className="relative flex flex-col justify-between p-5"
             >
-              <span className="mb-3 block font-mono text-[10px] font-bold text-muted-foreground uppercase motion-safe:transition-colors motion-safe:group-hover:text-foreground">
+              <span className="mb-3 block font-mono text-[10px] font-bold text-muted-foreground uppercase">
                 {tStack(`metrics.${metric.labelKey}.label`)}
               </span>
               <div>

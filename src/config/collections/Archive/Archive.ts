@@ -4,10 +4,12 @@ import { archiveRevalidateHooks } from '@/server/cache/revalidate'
 
 export const Archive: CollectionConfig = {
   slug: 'archive',
+  orderable: true,
+  defaultSort: '_order',
   hooks: archiveRevalidateHooks,
   admin: {
     useAsTitle: 'title',
-    defaultColumns: ['title', 'category', 'year', 'order'],
+    defaultColumns: ['title', 'category', 'year'],
   },
   access: {
     read: () => true,
@@ -67,14 +69,6 @@ export const Archive: CollectionConfig = {
       type: 'text',
       admin: {
         description: 'Optional live project URL.',
-      },
-    },
-    {
-      name: 'order',
-      type: 'number',
-      required: true,
-      admin: {
-        position: 'sidebar',
       },
     },
   ],

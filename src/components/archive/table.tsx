@@ -87,10 +87,7 @@ export function ArchiveTable({ items }: ArchiveTableProps) {
                 })
 
                 return (
-                  <tr
-                    key={item.id}
-                    className="group motion-safe:transition-colors hover:bg-surface-muted"
-                  >
+                  <tr key={item.id}>
                     <td className="border-r border-border p-4 align-top font-mono text-[10px] font-bold whitespace-nowrap text-muted-foreground">
                       {t('arcId', { id: String(index + 1).padStart(2, '0') })}
                     </td>
@@ -147,7 +144,7 @@ export function ArchiveTable({ items }: ArchiveTableProps) {
                         ))}
                       </div>
                     </td>
-                    <td className="p-4 text-right align-top font-mono text-[10px] font-semibold text-muted-foreground group-hover:text-foreground motion-safe:transition-colors">
+                    <td className="p-4 text-right align-top font-mono text-[10px] font-semibold text-muted-foreground">
                       {item.year}
                     </td>
                   </tr>

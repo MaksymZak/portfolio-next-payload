@@ -7,9 +7,9 @@ export const projectsSeed: ProjectSeed[] = [
     label: 'live',
     role: {
       en: 'Solo Developer — Frontend & CMS Architecture',
-      uk: 'Соло-розробка — Frontend та архітектура CMS',
+      uk: 'Соло-розробник — Frontend та архітектура CMS',
     },
-    period: 'Q1–Q2 2026',
+    period: { en: 'Q1–Q2 2026', uk: 'Q1–Q2 2026' },
     summary: {
       en: 'This site itself: a bilingual portfolio platform on Next.js 16 App Router with embedded Payload CMS 3. Every piece of content is editable in the admin panel and goes live without a redeploy.',
       uk: 'Цей сайт: двомовна портфоліо-платформа на Next.js 16 App Router із вбудованим Payload CMS 3. Увесь контент редагується в адмін-панелі та оновлюється без редеплою.',
@@ -45,10 +45,6 @@ export const projectsSeed: ProjectSeed[] = [
       ],
     },
     stack: ['Next.js 16', 'Payload CMS 3', 'TypeScript', 'Tailwind CSS 4', 'PostgreSQL'],
-    metrics: {
-      en: 'Publish-to-live with zero redeploys',
-      uk: 'Публікація без жодного редеплою',
-    },
     technicalDepth: {
       en: 'Strict layering: RSC pages read only from cached repositories, all CMS access goes through a single Payload Local API entry point, and client components receive data as props. Four brutalist themes on Tailwind CSS 4 design tokens with full reduced-motion support.',
       uk: 'Строга шаруватість: RSC-сторінки читають лише з кешованих репозиторіїв, увесь доступ до CMS іде через єдину точку входу Payload Local API, а клієнтські компоненти отримують дані як пропси. Чотири бруталістські теми на дизайн-токенах Tailwind CSS 4 з повною підтримкою reduced motion.',
@@ -61,9 +57,9 @@ export const projectsSeed: ProjectSeed[] = [
     label: 'roadmap',
     role: {
       en: 'Full-Stack Developer — Pet Project',
-      uk: 'Full-Stack розробник — власний проєкт',
+      uk: 'Full-Stack-розробник — власний проєкт',
     },
-    period: '2025 — relaunch in progress',
+    period: { en: '2025 — relaunch in progress', uk: '2025 — триває перезапуск' },
     summary: {
       en: 'A course delivery platform with lesson progress tracking. The build is complete; third-party services and tokens are being restored before the public demo relaunch. A full case study will replace this entry once it is live.',
       uk: 'Платформа доставки навчальних курсів із відстеженням прогресу уроків. Розробку завершено; зараз відновлюються сторонні сервіси й токени перед публічним перезапуском демо. Після запуску цей запис замінить повний кейс.',
@@ -73,10 +69,6 @@ export const projectsSeed: ProjectSeed[] = [
       uk: [{ text: 'Каталог курсів, сторінки уроків та відстеження прогресу користувача.' }],
     },
     stack: ['Next.js', 'TypeScript', 'Tailwind CSS'],
-    metrics: {
-      en: 'In relaunch — full case to follow',
-      uk: 'На перезапуску — повний кейс згодом',
-    },
     technicalDepth: {
       en: 'Details will be published with the relaunch; this entry is intentionally short until the demo is publicly verifiable.',
       uk: 'Деталі буде опубліковано разом із перезапуском; запис свідомо короткий, доки демо не можна перевірити публічно.',
@@ -89,9 +81,9 @@ export const projectsSeed: ProjectSeed[] = [
     label: 'roadmap',
     role: {
       en: 'Frontend Developer — Sanitized Work Replica',
-      uk: 'Frontend розробник — знеособлена копія робочої системи',
+      uk: 'Frontend-розробник — знеособлена копія робочої системи',
     },
-    period: 'Planned 2026',
+    period: { en: 'Planned 2026', uk: 'Заплановано на 2026' },
     summary: {
       en: 'A public, sanitized rebuild of the A/B landing workflow I run in production: variant builds, traffic routing, and conversion analytics — with all employer branding and data removed.',
       uk: 'Публічна знеособлена реконструкція робочого A/B-процесу для лендингів: збирання варіантів, маршрутизація трафіку та аналітика конверсій — без брендингу й даних роботодавця.',
@@ -109,10 +101,6 @@ export const projectsSeed: ProjectSeed[] = [
       ],
     },
     stack: ['Next.js', 'TypeScript', 'Vercel'],
-    metrics: {
-      en: 'In development — sanitized demo',
-      uk: 'У розробці — знеособлене демо',
-    },
     technicalDepth: {
       en: 'Variant routing and measurement architecture will be documented once the demo is public — no numbers will be published that cannot be reproduced in the demo.',
       uk: 'Архітектуру маршрутизації варіантів і вимірювань буде задокументовано після публікації демо — жодних цифр, які не можна відтворити в демо.',

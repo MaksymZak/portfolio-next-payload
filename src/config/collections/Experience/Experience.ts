@@ -23,11 +23,13 @@ export const Experience: CollectionConfig = {
       name: 'company',
       type: 'text',
       required: true,
+      localized: true,
     },
     {
       name: 'period',
       type: 'text',
       required: true,
+      localized: true,
       admin: {
         description: 'Employment period, e.g. "June 2024 - Present".',
       },

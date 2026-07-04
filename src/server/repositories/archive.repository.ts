@@ -13,7 +13,7 @@ export const getArchive = cache(async (locale: DataLocale): Promise<Archive[]> =
       collection: 'archive',
       locale,
       depth: DEFAULT_DEPTH,
-      sort: 'order',
+      sort: '_order',
       limit: 200,
     })
     return docs

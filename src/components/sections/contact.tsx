@@ -49,6 +49,15 @@ function getEmailForClipboard(url: string, label: string): string {
   return label
 }
 
+function resolveMailtoHref(url: string, label: string): string {
+  if (url.startsWith('mailto:')) {
+    return url
+  }
+
+  const address = getEmailForClipboard(url, label)
+  return `mailto:${address}`
+}
+
 function isExternalUrl(url: string): boolean {
   return url.startsWith('http://') || url.startsWith('https://')
 }
@@ -111,9 +120,12 @@ function ContactContent({ contacts }: ContactContentProps) {
                   <Mail size={12} aria-hidden className="text-primary" />
                   <MonoLabel>{tContactTypes('mail')}</MonoLabel>
                 </div>
-                <span className="block select-all text-xl font-bold tracking-tight text-foreground sm:text-2xl">
+                <a
+                  href={resolveMailtoHref(emailContact.url, emailContact.label)}
+                  className="block select-all text-xl font-bold tracking-tight text-foreground motion-safe:transition-colors hover:text-primary sm:text-2xl"
+                >
                   {emailContact.label}
-                </span>
+                </a>
               </div>
               <button
                 type="button"

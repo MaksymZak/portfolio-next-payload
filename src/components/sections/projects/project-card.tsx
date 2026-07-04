@@ -9,7 +9,7 @@ import { Button, buttonVariants } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { MonoLabel } from '@/components/ui/mono-label'
 import { Link } from '@/i18n/navigation'
-import { brutalistCardSelected } from '@/lib/brutalist-motion'
+import { brutalistCardSelected, brutalistLiftClasses } from '@/lib/brutalist-motion'
 import { cn } from '@/lib/cn'
 import type { Project } from '@/payload-types'
 
@@ -29,6 +29,13 @@ function formatNodeId(slug: string) {
   return `NODE_${slug.toUpperCase()}`
 }
 
+/** R13 card scale — transition only (no hover lift on the shell). */
+const projectCardShellMotion = brutalistLiftClasses('card', {
+  shadow: false,
+  active: false,
+  hover: false,
+})
+
 export function ProjectCard({ project, actions, isFlagship = false }: ProjectCardProps) {
   const t = useTranslations('projects')
   const [isExpanded, setIsExpanded] = useState(false)
@@ -42,12 +49,16 @@ export function ProjectCard({ project, actions, isFlagship = false }: ProjectCar
   const highlights = project.highlights ?? []
   const stack = project.stack ?? []
   const isLive = project.label === 'live'
-  const hasTelemetry = highlights.length > 0 || stack.length > 0 || Boolean(project.metrics)
+  const metrics = project.metrics?.trim()
+  const hasTelemetry = highlights.length > 0 || stack.length > 0 || Boolean(metrics)
 
   return (
     <Card
-      variant="interactive"
-      className={cn('flex flex-col', isExpanded && cn('z-10', brutalistCardSelected))}
+      className={cn(
+        'flex flex-col',
+        projectCardShellMotion,
+        isExpanded && cn('z-10', brutalistCardSelected),
+      )}
     >
       <div className="flex items-center justify-between border-b border-border bg-surface-muted px-4 py-2 font-mono text-[10px]">
         <div className="flex items-center gap-1.5 font-bold">
@@ -127,10 +138,10 @@ export function ProjectCard({ project, actions, isFlagship = false }: ProjectCar
           >
             <div className="overflow-hidden">
               <div className="mt-4 space-y-5 border-t border-border pt-5">
-                {project.metrics ? (
+                {metrics ? (
                   <div className="border-l-2 border-foreground bg-surface-muted px-2 py-1">
                     <MonoLabel variant="foreground" size="sm" className="tracking-widest">
-                      {project.metrics}
+                      {metrics}
                     </MonoLabel>
                   </div>
                 ) : null}

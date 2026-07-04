@@ -67,7 +67,7 @@ export const experienceData: Record<
     {
       role: 'Frontend Developer',
       company: 'SoftRyzen, Україна',
-      period: 'Липень 2022 — Квітень 2024',
+      period: 'Липень 2022 — квітень 2024',
       bullets: [
         {
           text: 'Створено та здано 150+ лендингів і CRM-фронтендів на React та Gulp.',

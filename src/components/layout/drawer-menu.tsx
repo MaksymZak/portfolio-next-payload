@@ -55,7 +55,7 @@ export function DrawerMenu({ settings, className }: DrawerMenuProps) {
       </DrawerTrigger>
 
       <DrawerContent aria-describedby={undefined}>
-        <div className="flex flex-1 flex-col gap-6 overflow-y-auto overflow-x-visible!">
+        <div className="flex flex-1 flex-col gap-6 px-0.5 pt-0.5">
           <DrawerHeader className="flex-row items-start justify-between space-y-0">
             <div className="space-y-1">
               <DrawerDescription>{tDrawer('registrar')}</DrawerDescription>

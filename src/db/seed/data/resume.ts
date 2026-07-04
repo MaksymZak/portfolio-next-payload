@@ -25,7 +25,7 @@ export const resumeData: Record<
       { name: 'Ukrainian', level: 'Native' },
       {
         name: 'English',
-        level: 'Pre-Intermediate (reads technical documentation; not yet conversational)',
+        level: 'Pre-Intermediate — reads technical documentation fluently',
       },
     ],
     softSkills: [
@@ -42,7 +42,7 @@ export const resumeData: Record<
   },
   uk: {
     about: {
-      text: 'Frontend розробник із 4+ роками комерційного досвіду: 300+ лендингів створено та запущено, A/B-тестування в продакшені, контентні платформи на React, Next.js, Astro та Payload CMS. За потреби впевнено працюю по всьому стеку — Node.js, Express, PostgreSQL, MongoDB. Шукаю команду, де важливі якість фронтенду та швидкість доставки.',
+      text: 'Frontend-розробник із 4+ роками комерційного досвіду: 300+ лендингів створено та запущено, A/B-тестування в продакшені, контентні платформи на React, Next.js, Astro та Payload CMS. За потреби впевнено працюю по всьому стеку — Node.js, Express, PostgreSQL, MongoDB. Шукаю команду, де важливі якість фронтенду та швидкість доставки.',
     },
     education: [
       {
@@ -55,7 +55,7 @@ export const resumeData: Record<
       { name: 'Українська', level: 'Рідна' },
       {
         name: 'Англійська',
-        level: 'Pre-Intermediate (читаю технічну документацію; розмовна ще слабка)',
+        level: 'Pre-Intermediate — вільно читаю технічну документацію',
       },
     ],
     softSkills: [

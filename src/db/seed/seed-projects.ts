@@ -18,7 +18,6 @@ export async function seedProjects(payload: Payload) {
       title: item.title,
       slug: item.slug,
       label: item.label,
-      period: item.period,
       stack: item.stack.map((name) => ({ name })),
       order: item.order,
     }
@@ -32,9 +31,10 @@ export async function seedProjects(payload: Payload) {
       data: {
         ...base,
         role: item.role.en,
+        period: item.period.en,
         summary: item.summary.en,
         highlights: item.highlights.en,
-        metrics: item.metrics.en,
+        ...(item.metrics ? { metrics: item.metrics.en } : {}),
         technicalDepth: item.technicalDepth.en,
       },
       ...seedContext,
@@ -46,12 +46,13 @@ export async function seedProjects(payload: Payload) {
       locale: 'uk',
       data: {
         role: item.role.uk,
+        period: item.period.uk,
         summary: item.summary.uk,
         highlights: item.highlights.uk.map((highlight, index) => ({
           id: doc.highlights?.[index]?.id ?? undefined,
           text: highlight.text,
         })),
-        metrics: item.metrics.uk,
+        ...(item.metrics ? { metrics: item.metrics.uk } : {}),
         technicalDepth: item.technicalDepth.uk,
       },
       ...seedContext,
