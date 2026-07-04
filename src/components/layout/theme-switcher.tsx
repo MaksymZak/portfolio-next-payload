@@ -89,7 +89,7 @@ export function ThemeSwitcher({ variant = 'sidebar', showSection = false }: Them
       ) : null}
 
       <div
-        className={cn('grid w-full gap-1', isSidebar ? 'grid-cols-4' : 'grid-cols-2')}
+        className={cn('grid w-full gap-2', isSidebar ? 'grid-cols-4' : 'grid-cols-2')}
         role="group"
         aria-label={tLabels('theme')}
       >

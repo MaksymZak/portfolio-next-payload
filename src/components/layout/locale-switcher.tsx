@@ -76,7 +76,7 @@ export function LocaleSwitcher({ variant = 'sidebar', showSection = false }: Loc
       ) : null}
 
       <div
-        className="grid w-full grid-cols-2 gap-1"
+        className="grid w-full grid-cols-2 gap-2"
         role="group"
         aria-label={tLabels('locale')}
         aria-busy={isPending}

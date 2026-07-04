@@ -142,13 +142,13 @@ export const brutalistCardLift = brutalistLiftClasses('card', { shadow: false })
 /** Precomposed compact tile lift (3px hover shadow, 150ms) for bento tiles and case goal rows. */
 export const brutalistTileLift = brutalistLiftClasses('tile', { shadow: false })
 
-/** R10 — drawer locale / theme selected (draft approved). */
+/** R10 — drawer locale / theme selected (tape-deck pressed key: sunk into its shadow). */
 export const brutalistDrawerSwitcherSelected =
-  '-translate-x-px -translate-y-px shadow-[2px_2px_0_var(--foreground)]'
+  'translate-x-[3px] translate-y-[3px] shadow-none'
 
-/** R08 — desktop sidebar locale / theme selected (draft approved). */
+/** R08 — desktop sidebar locale / theme selected (tape-deck pressed key: sunk into its shadow). */
 export const brutalistSidebarSwitcherSelected =
-  '-translate-x-[1.5px] -translate-y-[1.5px] shadow-[2px_2px_0_var(--accent)]'
+  'translate-x-0.5 translate-y-0.5 shadow-none'
 
 /** @deprecated Use brutalistDrawerSwitcherSelected — kept for call-site compatibility. */
 export const brutalistCompactSelected = brutalistDrawerSwitcherSelected
@@ -182,18 +182,25 @@ export const brutalistSidebarNavSelected = cn(
   PRESS_RESET,
 )
 
-/** R07 — desktop sidebar locale / theme toggle (inactive). */
-export const brutalistSidebarSwitcherLift = cn(
-  TRANSITION_ALL,
-  'motion-safe:hover:-translate-x-px motion-safe:hover:-translate-y-px motion-safe:hover:shadow-[2px_2px_0_var(--border)]',
-  PRESS_RESET,
+/** Drawer switcher press — matches the 3px rest shadow depth. */
+const DRAWER_SWITCHER_PRESS = brutalistPressActive(
+  'motion-safe:active:translate-x-[3px] motion-safe:active:translate-y-[3px] motion-safe:hover:active:translate-x-[3px] motion-safe:hover:active:translate-y-[3px]',
 )
 
-/** R09 — drawer locale / theme toggle (inactive). */
+/** R07 — desktop sidebar locale / theme toggle (inactive, raised tape-deck key). */
+export const brutalistSidebarSwitcherLift = cn(
+  TRANSITION_150,
+  'shadow-[2px_2px_0_var(--foreground)]',
+  'motion-safe:hover:-translate-x-px motion-safe:hover:-translate-y-px',
+  COMPACT_PRESS,
+)
+
+/** R09 — drawer locale / theme toggle (inactive, raised tape-deck key). */
 export const brutalistDrawerSwitcherLift = cn(
-  TRANSITION_ALL,
-  'motion-safe:hover:-translate-x-px motion-safe:hover:-translate-y-px motion-safe:hover:shadow-[2px_2px_0_var(--foreground)]',
-  PRESS_RESET,
+  TRANSITION_150,
+  'shadow-[3px_3px_0_var(--foreground)]',
+  'motion-safe:hover:-translate-x-px motion-safe:hover:-translate-y-px',
+  DRAWER_SWITCHER_PRESS,
 )
 
 /** Visible keyboard focus ring aligned with globals.css focus treatment. */
@@ -209,6 +216,9 @@ const SWITCHER_BASE = cn(
 
 /**
  * Locale/theme switcher tile — sidebar (R07/R08) or drawer (R09/R10).
+ *
+ * Tape-deck metaphor: inactive keys rest raised on a hard shadow; the selected
+ * key stays sunk into its shadow, so no press/hover motion is layered on it.
  */
 export function brutalistSwitcherClasses(
   isActive: boolean,
@@ -223,15 +233,14 @@ export function brutalistSwitcherClasses(
       padding,
       isActive
         ? cn(
-            TRANSITION_ALL,
+            TRANSITION_150,
             brutalistSidebarSwitcherSelected,
-            PRESS_RESET,
-            'border-foreground bg-foreground font-black text-background',
+            'border-2 border-foreground bg-foreground font-black text-background',
           )
         : cn(
-            'border-border bg-surface text-muted-foreground',
+            'border-2 border-foreground bg-surface text-muted-foreground',
             brutalistSidebarSwitcherLift,
-            'motion-safe:hover:border-foreground motion-safe:hover:text-foreground',
+            'motion-safe:hover:text-foreground',
           ),
       className,
     )
@@ -242,15 +251,14 @@ export function brutalistSwitcherClasses(
     padding,
     isActive
       ? cn(
-          TRANSITION_ALL,
+          TRANSITION_150,
           brutalistDrawerSwitcherSelected,
-          PRESS_RESET,
-          'border-foreground bg-foreground text-background',
+          'border-2 border-foreground bg-foreground text-background',
         )
       : cn(
-          'border-border bg-background text-muted-foreground',
+          'border-2 border-foreground bg-surface text-muted-foreground',
           brutalistDrawerSwitcherLift,
-          'motion-safe:hover:border-foreground motion-safe:hover:text-foreground',
+          'motion-safe:hover:text-foreground',
         ),
     className,
   )
@@ -359,22 +367,14 @@ export const approvedMotionR06Selected = brutalistSidebarNavSelected
 /** R07 — Desktop sidebar locale / theme toggle inactive (reference). */
 export const approvedMotionR07 = brutalistSidebarSwitcherLift
 
-/** R08 — Desktop sidebar locale / theme selected (draft approved). */
-export const approvedMotionR08 = cn(
-  TRANSITION_ALL,
-  brutalistSidebarSwitcherSelected,
-  PRESS_RESET,
-)
+/** R08 — Desktop sidebar locale / theme selected (tape-deck pressed key). */
+export const approvedMotionR08 = cn(TRANSITION_150, brutalistSidebarSwitcherSelected)
 
 /** R09 — Drawer locale / theme toggle inactive (reference). */
 export const approvedMotionR09 = brutalistDrawerSwitcherLift
 
-/** R10 — Drawer locale / theme selected (draft approved). */
-export const approvedMotionR10 = cn(
-  TRANSITION_ALL,
-  brutalistDrawerSwitcherSelected,
-  PRESS_RESET,
-)
+/** R10 — Drawer locale / theme selected (tape-deck pressed key). */
+export const approvedMotionR10 = cn(TRANSITION_150, brutalistDrawerSwitcherSelected)
 
 /** R11 — Sticky header [ MENU ] trigger (reference). */
 export const approvedMotionR11 = brutalistLiftClasses('plack', { shadow: false })
