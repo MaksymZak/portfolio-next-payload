@@ -71,7 +71,7 @@ If you change row heights or caps, keep the 1063px budget: rendered `#main-conte
 
 ## PDF generation environment
 
-- **Vercel (production):** `puppeteer-core` + `@sparticuz/chromium` (`process.env.VERCEL` branch). `serverExternalPackages` in `next.config.ts` keeps binaries unbundled. `maxDuration = 60`.
+- **Vercel (production):** `puppeteer-core` + `@sparticuz/chromium-min` with remote pack URL (`CHROMIUM_PACK_URL`, default matches package version). Pack downloads to `/tmp` on cold start. `serverExternalPackages` in `next.config.ts`. `maxDuration = 60`. Recommend 1536 MB+ function memory.
 - **Local dev:** standard Chrome install paths are auto-detected; `CHROME_EXECUTABLE_PATH` in `.env` is an optional override for non-standard installs only.
 - **Caching:** `Cache-Control: public, s-maxage=600, stale-while-revalidate=86400` — after a CMS edit the CDN copy refreshes within ~10 minutes.
 - Vercel preview deployments with Deployment Protection enabled will break the route (self-fetch hits the auth wall) — verify on production.

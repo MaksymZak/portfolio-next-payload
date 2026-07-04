@@ -1,6 +1,6 @@
 import { existsSync } from 'node:fs'
 
-import chromium from '@sparticuz/chromium'
+import chromium from '@sparticuz/chromium-min'
 import { hasLocale } from 'next-intl'
 import puppeteer from 'puppeteer-core'
 
@@ -13,6 +13,15 @@ export const maxDuration = 60
 const LOCALE_FILE_SUFFIX: Record<DataLocale, string> = {
   en: 'EN',
   uk: 'UA',
+}
+
+/** Keep in sync with @sparticuz/chromium-min in package.json and CHROMIUM_PACK_URL in .env. */
+const DEFAULT_CHROMIUM_PACK_URL =
+  'https://github.com/Sparticuz/chromium/releases/download/v149.0.0/chromium-v149.0.0-pack.x64.tar'
+
+function resolveChromiumPackUrl(): string {
+  const fromEnv = process.env.CHROMIUM_PACK_URL?.trim()
+  return fromEnv || DEFAULT_CHROMIUM_PACK_URL
 }
 
 const LOCAL_CHROME_PATHS = [
@@ -31,9 +40,11 @@ function resolveLocalChromePath(): string | undefined {
 
 async function launchBrowser() {
   if (process.env.VERCEL) {
+    const executablePath = await chromium.executablePath(resolveChromiumPackUrl())
+
     return puppeteer.launch({
       args: chromium.args,
-      executablePath: await chromium.executablePath(),
+      executablePath,
       headless: 'shell',
     })
   }

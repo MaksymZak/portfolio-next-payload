@@ -67,6 +67,7 @@
       "portfolio": "ПОРТФОЛІО"
     },
     "viewLivePortfolio": "ПЕРЕГЛЯНУТИ ПОРТФОЛІО",
+    "stackMore": "+{count}",
     "printVisit": "ВІЗИТ: {url}",
     "pageEnd": "МЕЖА АРКУША A4"
   },

@@ -67,6 +67,7 @@
       "portfolio": "PORTFOLIO"
     },
     "viewLivePortfolio": "VIEW LIVE PORTFOLIO",
+    "stackMore": "+{count}",
     "printVisit": "VISIT: {url}",
     "pageEnd": "A4 PAGE LIMIT"
   },
