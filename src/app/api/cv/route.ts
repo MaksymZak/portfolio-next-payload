@@ -1,68 +1,22 @@
-import { existsSync } from 'node:fs'
-
-import chromium from '@sparticuz/chromium-min'
 import { hasLocale } from 'next-intl'
-import puppeteer from 'puppeteer-core'
 
 import { routing } from '@/i18n/routing'
+import { launchCvPdfBrowser } from '@/lib/cv-pdf/launch-browser'
 import { getSettings } from '@/server/repositories'
 import type { DataLocale } from '@/server/types'
 
 export const maxDuration = 60
+export const runtime = 'nodejs'
 
 const LOCALE_FILE_SUFFIX: Record<DataLocale, string> = {
   en: 'EN',
   uk: 'UA',
 }
 
-/** Keep in sync with @sparticuz/chromium-min in package.json and CHROMIUM_PACK_URL in .env. */
-const DEFAULT_CHROMIUM_PACK_URL =
-  'https://github.com/Sparticuz/chromium/releases/download/v149.0.0/chromium-v149.0.0-pack.x64.tar'
-
-function resolveChromiumPackUrl(): string {
-  const fromEnv = process.env.CHROMIUM_PACK_URL?.trim()
-  return fromEnv || DEFAULT_CHROMIUM_PACK_URL
-}
-
-const LOCAL_CHROME_PATHS = [
-  'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
-  'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe',
-  '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
-  '/usr/bin/google-chrome',
-  '/usr/bin/chromium-browser',
-]
-
-function resolveLocalChromePath(): string | undefined {
-  const fromEnv = process.env.CHROME_EXECUTABLE_PATH
-  if (fromEnv && existsSync(fromEnv)) return fromEnv
-  return LOCAL_CHROME_PATHS.find((path) => existsSync(path))
-}
-
-async function launchBrowser() {
-  if (process.env.VERCEL) {
-    const executablePath = await chromium.executablePath(resolveChromiumPackUrl())
-
-    return puppeteer.launch({
-      args: chromium.args,
-      executablePath,
-      headless: 'shell',
-    })
-  }
-
-  const executablePath = resolveLocalChromePath()
-  if (!executablePath) {
-    throw new Error(
-      'No local Chrome found. Set CHROME_EXECUTABLE_PATH in .env to your Chrome executable.',
-    )
-  }
-
-  return puppeteer.launch({ executablePath, headless: true })
-}
-
 function buildFileName(name: string, locale: DataLocale): string {
   const base = name
     .normalize('NFKD')
-    .replace(/[̀-ͯ]/g, '')
+    .replace(/[\u0300-\u036f]/g, '')
     .replace(/[^a-zA-Z0-9]+/g, '_')
     .replace(/^_+|_+$/g, '')
 
@@ -79,7 +33,7 @@ export async function GET(request: Request) {
 
   try {
     const settings = await getSettings(locale)
-    const browser = await launchBrowser()
+    const browser = await launchCvPdfBrowser()
 
     try {
       const page = await browser.newPage()
