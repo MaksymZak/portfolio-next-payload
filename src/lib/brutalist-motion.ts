@@ -412,9 +412,11 @@ export const approvedMotionR19 = 'motion-safe:transition-colors'
 /** R20 — contact email copy CTA (color only). */
 export const approvedMotionR20 = 'motion-safe:transition-colors'
 
-/** R21 — toast notification static chrome (fixed shadow, no hover motion). */
+/** R21 — toast notification static chrome (fixed shadow, no hover motion).
+ * Shadow derives from --foreground so it stays visible on every theme,
+ * including dark, where a black rgba shadow would disappear. */
 export const approvedMotionR21 =
-  'shadow-[4px_4px_0_rgba(0,0,0,0.1)] motion-safe:duration-150'
+  'shadow-[4px_4px_0_color-mix(in_srgb,var(--foreground)_15%,transparent)] motion-safe:duration-150'
 
 export const APPROVED_MOTION_BY_PATTERN = {
   R01: approvedMotionR01,
