@@ -1,0 +1,366 @@
+- generic [active] [ref=f1e1]:
+  - link "Skip to main content" [ref=f1e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f1e3]:
+    - banner [ref=f1e4]:
+      - generic [ref=f1e5]:
+        - generic [ref=f1e8]: "W-SYSTEM: ACTIVE"
+        - generic [ref=f1e9]: Maksym Zakaliuzhnyi
+      - button "[ MENU ]" [ref=f1e10] [cursor=pointer]
+    - main [ref=f1e12]:
+      - generic [ref=f1e14]:
+        - generic [ref=f1e15]:
+          - img [ref=f1e16]
+          - text: PROFILE / FRONTEND DEVELOPER
+        - heading "I build high-performance landing systems and CMS-driven frontends that survive real marketing traffic." [level=2] [ref=f1e19]
+        - paragraph [ref=f1e20]: "Production landing pages, A/B test variants, and bilingual content platforms — built and supported for marketing teams that ship weekly. Focus stack: Next.js, Astro, Payload CMS, TypeScript."
+        - generic [ref=f1e21]:
+          - button "View Projects" [ref=f1e22] [cursor=pointer]
+          - button "Contact Me" [ref=f1e23] [cursor=pointer]
+      - generic [ref=f1e25]:
+        - generic [ref=f1e26]:
+          - generic [ref=f1e27]: "[02]"
+          - generic [ref=f1e29]: PROOF & STACK
+        - generic [ref=f1e30]:
+          - generic [ref=f1e31]:
+            - generic [ref=f1e32]: EXPERIENCE CYCLE
+            - generic [ref=f1e33]:
+              - text: 4+ Years
+              - generic [ref=f1e34]: COMMERCIAL DELIVERY
+          - generic [ref=f1e35]:
+            - generic [ref=f1e36]: PRODUCTION METRIC
+            - generic [ref=f1e37]:
+              - text: 300+ Landings
+              - generic [ref=f1e38]: BUILT & SHIPPED
+          - generic [ref=f1e39]:
+            - generic [ref=f1e40]: TECHNOLOGY DEPTH
+            - generic [ref=f1e41]:
+              - generic [ref=f1e42]: A/B Testing
+              - generic [ref=f1e43]: IN PRODUCTION
+        - generic [ref=f1e44]:
+          - generic [ref=f1e45]:
+            - heading "Engineering Inventory" [level=3] [ref=f1e46]:
+              - img [ref=f1e47]
+              - text: Engineering Inventory
+            - paragraph [ref=f1e51]: "A working toolkit, not a wishlist: every technology below has shipped production pages — fast loads, structured content, quick bilingual rollouts."
+          - generic [ref=f1e52]:
+            - generic [ref=f1e53]:
+              - img [ref=f1e55]
+              - generic [ref=f1e59]: Next.js
+            - generic [ref=f1e60]:
+              - img [ref=f1e62]
+              - generic [ref=f1e65]: React
+            - generic [ref=f1e66]:
+              - img [ref=f1e68]
+              - generic [ref=f1e70]: TypeScript
+            - generic [ref=f1e71]:
+              - img [ref=f1e73]
+              - generic [ref=f1e77]: JavaScript
+            - generic [ref=f1e78]:
+              - img [ref=f1e80]
+              - generic [ref=f1e84]: Payload CMS
+            - generic [ref=f1e85]:
+              - img [ref=f1e87]
+              - generic [ref=f1e93]: Tailwind CSS
+            - generic [ref=f1e94]:
+              - img [ref=f1e96]
+              - generic [ref=f1e99]: Astro
+            - generic [ref=f1e100]:
+              - img [ref=f1e102]
+              - generic [ref=f1e108]: HTML & CSS
+            - generic [ref=f1e109]:
+              - img [ref=f1e111]
+              - generic [ref=f1e114]: GSAP
+            - generic [ref=f1e115]:
+              - img [ref=f1e117]
+              - generic [ref=f1e120]: Framer Motion
+            - generic [ref=f1e121]:
+              - img [ref=f1e123]
+              - generic [ref=f1e127]: TanStack Query
+            - generic [ref=f1e128]:
+              - img [ref=f1e130]
+              - generic [ref=f1e132]: Zustand
+            - generic [ref=f1e133]:
+              - img [ref=f1e135]
+              - generic [ref=f1e137]: Redux
+            - generic [ref=f1e138]:
+              - img [ref=f1e140]
+              - generic [ref=f1e142]: Gulp
+            - generic [ref=f1e143]:
+              - img [ref=f1e145]
+              - generic [ref=f1e147]: Node.js
+            - generic [ref=f1e148]:
+              - img [ref=f1e150]
+              - generic [ref=f1e152]: Express.js
+            - generic [ref=f1e153]:
+              - img [ref=f1e155]
+              - generic [ref=f1e159]: PostgreSQL
+            - generic [ref=f1e160]:
+              - img [ref=f1e162]
+              - generic [ref=f1e166]: MongoDB
+            - generic [ref=f1e167]:
+              - img [ref=f1e169]
+              - generic [ref=f1e173]: Prisma
+            - generic [ref=f1e174]:
+              - img [ref=f1e176]
+              - generic [ref=f1e178]: Docker
+            - generic [ref=f1e179]:
+              - img [ref=f1e181]
+              - generic [ref=f1e183]: Vercel
+      - generic [ref=f1e185]:
+        - generic [ref=f1e186]:
+          - generic [ref=f1e187]:
+            - generic [ref=f1e188]: "[03]"
+            - generic [ref=f1e190]: CASE STUDIES
+          - generic [ref=f1e191]: "NODES: 3"
+        - generic [ref=f1e192]:
+          - generic [ref=f1e193]:
+            - generic [ref=f1e194]:
+              - generic [ref=f1e195]:
+                - generic [ref=f1e196]: //
+                - generic [ref=f1e197]: NODE_PORTFOLIO-CMS
+              - generic [ref=f1e198]: LIVE
+            - generic [ref=f1e199]:
+              - generic [ref=f1e200]:
+                - heading "Portfolio CMS" [level=3] [ref=f1e201]
+                - paragraph [ref=f1e202]: "ROLE: Solo Developer — Frontend & CMS Architecture |DATE: Q1–Q2 2026"
+              - paragraph [ref=f1e203]: "This site itself: a bilingual portfolio platform on Next.js 16 App Router with embedded Payload CMS 3. Every piece of content is editable in the admin panel and goes live without a redeploy."
+              - generic [ref=f1e204]:
+                - link "READ DETAILED ENGINEERING DOCUMENTATION" [ref=f1e205] [cursor=pointer]:
+                  - /url: /en/case/portfolio-cms
+                  - img [ref=f1e206]
+                  - text: READ DETAILED ENGINEERING DOCUMENTATION
+                - button "VIEW TECHNICAL TELEMETRY" [ref=f1e208] [cursor=pointer]:
+                  - img [ref=f1e209]
+                  - text: VIEW TECHNICAL TELEMETRY
+              - generic [ref=f1e211]:
+                - generic [ref=f1e213]: Publish-to-live with zero redeploys
+                - list [ref=f1e214]:
+                  - listitem [ref=f1e215]:
+                    - generic [ref=f1e216]: _01
+                  - listitem [ref=f1e217]:
+                    - generic [ref=f1e218]: _02
+                  - listitem [ref=f1e219]:
+                    - generic [ref=f1e220]: _03
+                  - listitem [ref=f1e221]:
+                    - generic [ref=f1e222]: _04
+                - generic [ref=f1e223]:
+                  - generic [ref=f1e224]: Next.js 16
+                  - generic [ref=f1e225]: Payload CMS 3
+                  - generic [ref=f1e226]: TypeScript
+                  - generic [ref=f1e227]: Tailwind CSS 4
+                  - generic [ref=f1e228]: PostgreSQL
+          - generic [ref=f1e229]:
+            - generic [ref=f1e230]:
+              - generic [ref=f1e231]:
+                - generic [ref=f1e232]: //
+                - generic [ref=f1e233]: NODE_LMS-PLATFORM
+              - generic [ref=f1e234]: ROADMAP
+            - generic [ref=f1e235]:
+              - generic [ref=f1e236]:
+                - heading "LMS Platform" [level=3] [ref=f1e237]
+                - paragraph [ref=f1e238]: "ROLE: Full-Stack Developer — Pet Project |DATE: 2025 — relaunch in progress"
+              - paragraph [ref=f1e239]: A course delivery platform with lesson progress tracking. The build is complete; third-party services and tokens are being restored before the public demo relaunch. A full case study will replace this entry once it is live.
+              - button "VIEW TECHNICAL TELEMETRY" [ref=f1e241] [cursor=pointer]:
+                - img [ref=f1e242]
+                - text: VIEW TECHNICAL TELEMETRY
+              - generic [ref=f1e244]:
+                - generic [ref=f1e246]: In relaunch — full case to follow
+                - list [ref=f1e247]:
+                  - listitem [ref=f1e248]:
+                    - generic [ref=f1e249]: _01
+                - generic [ref=f1e250]:
+                  - generic [ref=f1e251]: Next.js
+                  - generic [ref=f1e252]: TypeScript
+                  - generic [ref=f1e253]: Tailwind CSS
+          - generic [ref=f1e254]:
+            - generic [ref=f1e255]:
+              - generic [ref=f1e256]:
+                - generic [ref=f1e257]: //
+                - generic [ref=f1e258]: NODE_AB-TESTING-LAB
+              - generic [ref=f1e259]: ROADMAP
+            - generic [ref=f1e260]:
+              - generic [ref=f1e261]:
+                - heading "A/B Testing Lab" [level=3] [ref=f1e262]
+                - paragraph [ref=f1e263]: "ROLE: Frontend Developer — Sanitized Work Replica |DATE: Planned 2026"
+              - paragraph [ref=f1e264]: "A public, sanitized rebuild of the A/B landing workflow I run in production: variant builds, traffic routing, and conversion analytics — with all employer branding and data removed."
+              - button "VIEW TECHNICAL TELEMETRY" [ref=f1e266] [cursor=pointer]:
+                - img [ref=f1e267]
+                - text: VIEW TECHNICAL TELEMETRY
+              - generic [ref=f1e269]:
+                - generic [ref=f1e271]: In development — sanitized demo
+                - list [ref=f1e272]:
+                  - listitem [ref=f1e273]:
+                    - generic [ref=f1e274]: _01
+                - generic [ref=f1e275]:
+                  - generic [ref=f1e276]: Next.js
+                  - generic [ref=f1e277]: TypeScript
+                  - generic [ref=f1e278]: Vercel
+      - generic [ref=f1e280]:
+        - generic [ref=f1e281]:
+          - generic [ref=f1e282]: "[04]"
+          - generic [ref=f1e284]: ARCHIVE SYSTEM
+        - generic [ref=f1e285]:
+          - generic [ref=f1e286]:
+            - generic [ref=f1e287]:
+              - generic [ref=f1e288]:
+                - heading "GoITeens Landing Registry" [level=4] [ref=f1e289]
+                - generic [ref=f1e290]:
+                  - img [ref=f1e291]
+                  - text: _01
+              - paragraph [ref=f1e294]: Live ledger of A/B-tested landing pages I build and support
+            - generic [ref=f1e295]:
+              - generic [ref=f1e296]:
+                - generic [ref=f1e297]: platform
+                - generic [ref=f1e298]: 2024–2026
+              - link "GoITeens Landing Registry (opens in new tab)" [ref=f1e299] [cursor=pointer]:
+                - /url: https://lp.goiteens.com/landings-list
+                - generic [ref=f1e300]: Visit live site
+                - img [ref=f1e301]
+          - generic [ref=f1e304]:
+            - generic [ref=f1e305]:
+              - generic [ref=f1e306]:
+                - heading "Interior Design Hub" [level=4] [ref=f1e307]
+                - generic [ref=f1e308]:
+                  - img [ref=f1e309]
+                  - text: _02
+              - paragraph [ref=f1e312]: Payload CMS integration & frontend build
+            - generic [ref=f1e313]:
+              - generic [ref=f1e314]:
+                - generic [ref=f1e315]: landing
+                - generic [ref=f1e316]: "2025"
+              - link "Interior Design Hub (opens in new tab)" [ref=f1e317] [cursor=pointer]:
+                - /url: https://interior-design.goiteens.com/
+                - generic [ref=f1e318]: Visit live site
+                - img [ref=f1e319]
+          - generic [ref=f1e322]:
+            - generic [ref=f1e323]:
+              - generic [ref=f1e324]:
+                - heading "School Webinar AI" [level=4] [ref=f1e325]
+                - generic [ref=f1e326]:
+                  - img [ref=f1e327]
+                  - text: _03
+              - paragraph [ref=f1e330]: High-volume lead capture with GTM analytics
+            - generic [ref=f1e331]:
+              - generic [ref=f1e332]:
+                - generic [ref=f1e333]: campaign
+                - generic [ref=f1e334]: "2025"
+              - link "School Webinar AI (opens in new tab)" [ref=f1e335] [cursor=pointer]:
+                - /url: https://school-lp.goiteens.com/webinar-ai/
+                - generic [ref=f1e336]: Visit live site
+                - img [ref=f1e337]
+          - generic [ref=f1e340]:
+            - generic [ref=f1e341]:
+              - generic [ref=f1e342]:
+                - heading "NMT 2026 Test Preparation" [level=4] [ref=f1e343]
+                - generic [ref=f1e344]:
+                  - img [ref=f1e345]
+                  - text: _04
+              - paragraph [ref=f1e348]: Interactive test-prep landing
+            - generic [ref=f1e349]:
+              - generic [ref=f1e350]:
+                - generic [ref=f1e351]: landing
+                - generic [ref=f1e352]: "2025"
+              - link "NMT 2026 Test Preparation (opens in new tab)" [ref=f1e353] [cursor=pointer]:
+                - /url: https://nmt.goiteens.com/nmt-2026/
+                - generic [ref=f1e354]: Visit live site
+                - img [ref=f1e355]
+        - link "VIEW FULL ARCHIVE LEDGER [→]" [ref=f1e358] [cursor=pointer]:
+          - /url: /en/archive
+      - generic [ref=f1e360]:
+        - generic [ref=f1e361]:
+          - generic [ref=f1e362]: "[05]"
+          - generic [ref=f1e364]: OPERATIONAL EXPERIENCE
+        - generic [ref=f1e365]:
+          - generic [ref=f1e366]:
+            - generic [ref=f1e368]:
+              - generic [ref=f1e369]:
+                - heading "Frontend Developer" [level=4] [ref=f1e370]
+                - generic [ref=f1e371]: GoITeens, Ukraine
+              - generic [ref=f1e372]: June 2024 — Present
+            - list [ref=f1e373]:
+              - listitem [ref=f1e374]:
+                - generic [ref=f1e375]: →
+                - generic [ref=f1e376]: Build and maintain marketing landing pages at production scale on Next.js, Astro, Payload CMS, and Gulp.
+              - listitem [ref=f1e377]:
+                - generic [ref=f1e378]: →
+                - generic [ref=f1e379]: "Implement A/B testing end-to-end: variant builds, traffic splits, and conversion analytics for paid campaigns."
+              - listitem [ref=f1e380]:
+                - generic [ref=f1e381]: →
+                - generic [ref=f1e382]: Integrate Payload CMS so marketing editors publish content without developer involvement.
+              - listitem [ref=f1e383]:
+                - generic [ref=f1e384]: →
+                - generic [ref=f1e385]: "Mentor a junior developer: code review, task decomposition, onboarding."
+          - generic [ref=f1e386]:
+            - generic [ref=f1e388]:
+              - generic [ref=f1e389]:
+                - heading "Frontend Developer" [level=4] [ref=f1e390]
+                - generic [ref=f1e391]: SoftRyzen, Ukraine
+              - generic [ref=f1e392]: July 2022 — April 2024
+            - list [ref=f1e393]:
+              - listitem [ref=f1e394]:
+                - generic [ref=f1e395]: →
+                - generic [ref=f1e396]: Delivered 150+ landing pages and CRM frontends with React and Gulp.
+              - listitem [ref=f1e397]:
+                - generic [ref=f1e398]: →
+                - generic [ref=f1e399]: Worked with designers and backend developers to keep UI pixel-accurate and consistent.
+              - listitem [ref=f1e400]:
+                - generic [ref=f1e401]: →
+                - generic [ref=f1e402]: Improved performance and maintainability of long-running projects.
+      - generic [ref=f1e404]:
+        - generic [ref=f1e406]:
+          - generic [ref=f1e407]: "[06]"
+          - generic [ref=f1e409]: CONTACTS
+        - generic [ref=f1e410]:
+          - generic [ref=f1e411]:
+            - generic [ref=f1e412]:
+              - generic [ref=f1e413]:
+                - img [ref=f1e414]
+                - generic [ref=f1e417]: SECURED MAIL ENDPOINT
+              - generic [ref=f1e418]: me@maksymzak.dev
+            - button "COPY ADDRESS" [ref=f1e419] [cursor=pointer]:
+              - img [ref=f1e420]
+              - text: COPY ADDRESS
+          - generic [ref=f1e423]:
+            - link "DIRECT VOICE LINE +38 (099) 432-20-85" [ref=f1e424] [cursor=pointer]:
+              - /url: tel:+380994322085
+              - generic [ref=f1e425]:
+                - generic [ref=f1e426]: DIRECT VOICE LINE
+                - img [ref=f1e427]
+              - generic [ref=f1e430]:
+                - img [ref=f1e431]
+                - generic [ref=f1e433]: +38 (099) 432-20-85
+            - link "@MaksymZak (opens in new tab)" [ref=f1e434] [cursor=pointer]:
+              - /url: https://t.me/MaksymZak
+              - generic [ref=f1e435]:
+                - generic [ref=f1e436]: INSTANT TEXT SYSTEM
+                - img [ref=f1e437]
+              - generic [ref=f1e440]:
+                - img [ref=f1e441]
+                - generic [ref=f1e444]: "@MaksymZak"
+            - link "Github (opens in new tab)" [ref=f1e445] [cursor=pointer]:
+              - /url: https://github.com/MaksymZak
+              - generic [ref=f1e446]:
+                - generic [ref=f1e447]: SECURE CODE PLATFORM
+                - img [ref=f1e448]
+              - generic [ref=f1e451]:
+                - img [ref=f1e452]
+                - generic [ref=f1e456]: Github
+            - link "Linkedin (opens in new tab)" [ref=f1e457] [cursor=pointer]:
+              - /url: https://www.linkedin.com/in/mzakaliuzhnyi/
+              - generic [ref=f1e458]:
+                - generic [ref=f1e459]: VERIFIED IDENTITY HUB
+                - img [ref=f1e460]
+              - generic [ref=f1e463]:
+                - img [ref=f1e464]
+                - generic [ref=f1e467]: Linkedin
+            - link "Sumy, Ukraine (opens in new tab)" [ref=f1e468] [cursor=pointer]:
+              - /url: https://maps.app.goo.gl/8MoxKkNXwVzS99Wi9
+              - generic [ref=f1e469]:
+                - generic [ref=f1e470]: GEO SPATIAL NODE
+                - img [ref=f1e471]
+              - generic [ref=f1e474]:
+                - img [ref=f1e475]
+                - generic [ref=f1e478]: Sumy, Ukraine
+  - button "Open Next.js Dev Tools" [ref=f1e484] [cursor=pointer]:
+    - img [ref=f1e485]

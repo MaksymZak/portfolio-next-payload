@@ -48,7 +48,7 @@ function DrawerContent({
       <DrawerPrimitive.Content
         data-slot="drawer-content"
         className={cn(
-          'fixed inset-y-0 right-0 z-50 flex h-full w-full flex-col gap-4 overflow-y-auto rounded-none border-l border-border bg-surface p-6 font-mono text-xs text-foreground shadow-2xl outline-none sm:w-[420px]',
+          'fixed inset-y-0 right-0 overflow-x-visible! z-50 flex h-full w-full flex-col gap-4 overflow-y-auto rounded-none border-l border-border bg-surface p-6 font-mono text-xs text-foreground shadow-2xl outline-none sm:w-[420px]',
           'data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:slide-out-to-right',
           'data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:slide-in-from-right',
           'motion-safe:data-[state=closed]:duration-300 motion-safe:data-[state=open]:duration-300 motion-reduce:animate-none',

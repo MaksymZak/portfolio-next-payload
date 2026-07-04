@@ -1,0 +1,475 @@
+- generic:
+  - link:
+    - /url: "#main-content"
+    - text: Skip to main content
+  - generic:
+    - banner:
+      - generic:
+        - generic:
+          - generic: "W-SYSTEM: ACTIVE"
+        - generic: Maksym Zakaliuzhnyi
+      - button [expanded]: "[ MENU ]"
+    - generic:
+      - main:
+        - generic:
+          - generic:
+            - generic:
+              - img
+              - text: PROFILE / FRONTEND DEVELOPER
+            - heading [level=2]: I build high-performance landing systems and CMS-driven frontends that survive real marketing traffic.
+            - paragraph: "Production landing pages, A/B test variants, and bilingual content platforms — built and supported for marketing teams that ship weekly. Focus stack: Next.js, Astro, Payload CMS, TypeScript."
+            - generic:
+              - button: View Projects
+              - button: Contact Me
+        - generic:
+          - generic:
+            - generic:
+              - generic: "[02]"
+              - generic: PROOF & STACK
+            - generic:
+              - generic:
+                - generic: EXPERIENCE CYCLE
+                - generic:
+                  - text: 4+ Years
+                  - generic: COMMERCIAL DELIVERY
+              - generic:
+                - generic: PRODUCTION METRIC
+                - generic:
+                  - text: 300+ Landings
+                  - generic: BUILT & SHIPPED
+              - generic:
+                - generic: TECHNOLOGY DEPTH
+                - generic:
+                  - generic: A/B Testing
+                  - generic: IN PRODUCTION
+            - generic:
+              - generic:
+                - heading [level=3]:
+                  - img
+                  - text: Engineering Inventory
+                - paragraph: "A working toolkit, not a wishlist: every technology below has shipped production pages — fast loads, structured content, quick bilingual rollouts."
+              - generic:
+                - generic:
+                  - generic:
+                    - img
+                  - generic: Next.js
+                - generic:
+                  - generic:
+                    - img
+                  - generic: React
+                - generic:
+                  - generic:
+                    - img
+                  - generic: TypeScript
+                - generic:
+                  - generic:
+                    - img
+                  - generic: JavaScript
+                - generic:
+                  - generic:
+                    - img
+                  - generic: Payload CMS
+                - generic:
+                  - generic:
+                    - img
+                  - generic: Tailwind CSS
+                - generic:
+                  - generic:
+                    - img
+                  - generic: Astro
+                - generic:
+                  - generic:
+                    - img
+                  - generic: HTML & CSS
+                - generic:
+                  - generic:
+                    - img
+                  - generic: GSAP
+                - generic:
+                  - generic:
+                    - img
+                  - generic: Framer Motion
+                - generic:
+                  - generic:
+                    - img
+                  - generic: TanStack Query
+                - generic:
+                  - generic:
+                    - img
+                  - generic: Zustand
+                - generic:
+                  - generic:
+                    - img
+                  - generic: Redux
+                - generic:
+                  - generic:
+                    - img
+                  - generic: Gulp
+                - generic:
+                  - generic:
+                    - img
+                  - generic: Node.js
+                - generic:
+                  - generic:
+                    - img
+                  - generic: Express.js
+                - generic:
+                  - generic:
+                    - img
+                  - generic: PostgreSQL
+                - generic:
+                  - generic:
+                    - img
+                  - generic: MongoDB
+                - generic:
+                  - generic:
+                    - img
+                  - generic: Prisma
+                - generic:
+                  - generic:
+                    - img
+                  - generic: Docker
+                - generic:
+                  - generic:
+                    - img
+                  - generic: Vercel
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - generic: "[03]"
+                - generic: CASE STUDIES
+              - generic: "NODES: 3"
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic: //
+                    - generic: NODE_PORTFOLIO-CMS
+                  - generic: LIVE
+                - generic:
+                  - generic:
+                    - heading [level=3]: Portfolio CMS
+                    - paragraph: "ROLE: Solo Developer — Frontend & CMS Architecture |DATE: Q1–Q2 2026"
+                  - paragraph: "This site itself: a bilingual portfolio platform on Next.js 16 App Router with embedded Payload CMS 3. Every piece of content is editable in the admin panel and goes live without a redeploy."
+                  - generic:
+                    - link:
+                      - /url: /en/case/portfolio-cms
+                      - img
+                      - text: READ DETAILED ENGINEERING DOCUMENTATION
+                    - button:
+                      - img
+                      - text: VIEW TECHNICAL TELEMETRY
+                  - generic:
+                    - generic:
+                      - generic: Publish-to-live with zero redeploys
+                    - list:
+                      - listitem:
+                        - generic: _01
+                      - listitem:
+                        - generic: _02
+                      - listitem:
+                        - generic: _03
+                      - listitem:
+                        - generic: _04
+                    - generic:
+                      - generic: Next.js 16
+                      - generic: Payload CMS 3
+                      - generic: TypeScript
+                      - generic: Tailwind CSS 4
+                      - generic: PostgreSQL
+              - generic:
+                - generic:
+                  - generic:
+                    - generic: //
+                    - generic: NODE_LMS-PLATFORM
+                  - generic: ROADMAP
+                - generic:
+                  - generic:
+                    - heading [level=3]: LMS Platform
+                    - paragraph: "ROLE: Full-Stack Developer — Pet Project |DATE: 2025 — relaunch in progress"
+                  - paragraph: A course delivery platform with lesson progress tracking. The build is complete; third-party services and tokens are being restored before the public demo relaunch. A full case study will replace this entry once it is live.
+                  - generic:
+                    - button:
+                      - img
+                      - text: VIEW TECHNICAL TELEMETRY
+                  - generic:
+                    - generic:
+                      - generic: In relaunch — full case to follow
+                    - list:
+                      - listitem:
+                        - generic: _01
+                    - generic:
+                      - generic: Next.js
+                      - generic: TypeScript
+                      - generic: Tailwind CSS
+              - generic:
+                - generic:
+                  - generic:
+                    - generic: //
+                    - generic: NODE_AB-TESTING-LAB
+                  - generic: ROADMAP
+                - generic:
+                  - generic:
+                    - heading [level=3]: A/B Testing Lab
+                    - paragraph: "ROLE: Frontend Developer — Sanitized Work Replica |DATE: Planned 2026"
+                  - paragraph: "A public, sanitized rebuild of the A/B landing workflow I run in production: variant builds, traffic routing, and conversion analytics — with all employer branding and data removed."
+                  - generic:
+                    - button:
+                      - img
+                      - text: VIEW TECHNICAL TELEMETRY
+                  - generic:
+                    - generic:
+                      - generic: In development — sanitized demo
+                    - list:
+                      - listitem:
+                        - generic: _01
+                    - generic:
+                      - generic: Next.js
+                      - generic: TypeScript
+                      - generic: Vercel
+        - generic:
+          - generic:
+            - generic:
+              - generic: "[04]"
+              - generic: ARCHIVE SYSTEM
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - heading [level=4]: GoITeens Landing Registry
+                    - generic:
+                      - img
+                      - text: _01
+                  - paragraph: Live ledger of A/B-tested landing pages I build and support
+                - generic:
+                  - generic:
+                    - generic: platform
+                    - generic: 2024–2026
+                  - link:
+                    - /url: https://lp.goiteens.com/landings-list
+                    - generic: Visit live site
+                    - img
+              - generic:
+                - generic:
+                  - generic:
+                    - heading [level=4]: Interior Design Hub
+                    - generic:
+                      - img
+                      - text: _02
+                  - paragraph: Payload CMS integration & frontend build
+                - generic:
+                  - generic:
+                    - generic: landing
+                    - generic: "2025"
+                  - link:
+                    - /url: https://interior-design.goiteens.com/
+                    - generic: Visit live site
+                    - img
+              - generic:
+                - generic:
+                  - generic:
+                    - heading [level=4]: School Webinar AI
+                    - generic:
+                      - img
+                      - text: _03
+                  - paragraph: High-volume lead capture with GTM analytics
+                - generic:
+                  - generic:
+                    - generic: campaign
+                    - generic: "2025"
+                  - link:
+                    - /url: https://school-lp.goiteens.com/webinar-ai/
+                    - generic: Visit live site
+                    - img
+              - generic:
+                - generic:
+                  - generic:
+                    - heading [level=4]: NMT 2026 Test Preparation
+                    - generic:
+                      - img
+                      - text: _04
+                  - paragraph: Interactive test-prep landing
+                - generic:
+                  - generic:
+                    - generic: landing
+                    - generic: "2025"
+                  - link:
+                    - /url: https://nmt.goiteens.com/nmt-2026/
+                    - generic: Visit live site
+                    - img
+            - link:
+              - /url: /en/archive
+              - text: VIEW FULL ARCHIVE LEDGER [→]
+        - generic:
+          - generic:
+            - generic:
+              - generic: "[05]"
+              - generic: OPERATIONAL EXPERIENCE
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - heading [level=4]: Frontend Developer
+                    - generic: GoITeens, Ukraine
+                  - generic: June 2024 — Present
+                - list:
+                  - listitem:
+                    - generic: →
+                    - generic: Build and maintain marketing landing pages at production scale on Next.js, Astro, Payload CMS, and Gulp.
+                  - listitem:
+                    - generic: →
+                    - generic: "Implement A/B testing end-to-end: variant builds, traffic splits, and conversion analytics for paid campaigns."
+                  - listitem:
+                    - generic: →
+                    - generic: Integrate Payload CMS so marketing editors publish content without developer involvement.
+                  - listitem:
+                    - generic: →
+                    - generic: "Mentor a junior developer: code review, task decomposition, onboarding."
+              - generic:
+                - generic:
+                  - generic:
+                    - heading [level=4]: Frontend Developer
+                    - generic: SoftRyzen, Ukraine
+                  - generic: July 2022 — April 2024
+                - list:
+                  - listitem:
+                    - generic: →
+                    - generic: Delivered 150+ landing pages and CRM frontends with React and Gulp.
+                  - listitem:
+                    - generic: →
+                    - generic: Worked with designers and backend developers to keep UI pixel-accurate and consistent.
+                  - listitem:
+                    - generic: →
+                    - generic: Improved performance and maintainability of long-running projects.
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - generic: "[06]"
+                - generic: CONTACTS
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - img
+                    - generic: SECURED MAIL ENDPOINT
+                  - generic: me@maksymzak.dev
+                - button:
+                  - img
+                  - text: COPY ADDRESS
+              - generic:
+                - link:
+                  - /url: tel:+380994322085
+                  - generic:
+                    - generic: DIRECT VOICE LINE
+                    - img
+                  - generic:
+                    - img
+                    - generic: +38 (099) 432-20-85
+                - link:
+                  - /url: https://t.me/MaksymZak
+                  - generic:
+                    - generic: INSTANT TEXT SYSTEM
+                    - img
+                  - generic:
+                    - img
+                    - generic: "@MaksymZak"
+                - link:
+                  - /url: https://github.com/MaksymZak
+                  - generic:
+                    - generic: SECURE CODE PLATFORM
+                    - img
+                  - generic:
+                    - img
+                    - generic: Github
+                - link:
+                  - /url: https://www.linkedin.com/in/mzakaliuzhnyi/
+                  - generic:
+                    - generic: VERIFIED IDENTITY HUB
+                    - img
+                  - generic:
+                    - img
+                    - generic: Linkedin
+                - link:
+                  - /url: https://maps.app.goo.gl/8MoxKkNXwVzS99Wi9
+                  - generic:
+                    - generic: GEO SPATIAL NODE
+                    - img
+                  - generic:
+                    - img
+                    - generic: Sumy, Ukraine
+  - button "Open Next.js Dev Tools" [ref=f1e484] [cursor=pointer]:
+    - img [ref=f1e485]
+  - alert
+  - dialog "CONFIG & INDEX" [ref=f1e490]:
+    - generic [ref=f1e491]:
+      - generic [ref=f1e492]:
+        - generic [ref=f1e493]:
+          - paragraph [ref=f1e494]: MENU_SYSTEM // REGISTRAR
+          - heading "CONFIG & INDEX" [level=2] [ref=f1e495]
+        - button "[ CLOSE ]" [active] [ref=f1e496] [cursor=pointer]
+      - navigation "INDEX" [ref=f1e497]:
+        - paragraph [ref=f1e498]: INDEX
+        - button "01 INTRODUCTION" [ref=f1e499] [cursor=pointer]:
+          - generic [ref=f1e500]: INTRODUCTION
+          - generic [ref=f1e501]: "[01]"
+        - button "02 PROOF & STACK" [ref=f1e502] [cursor=pointer]:
+          - generic [ref=f1e503]: PROOF & STACK
+          - generic [ref=f1e504]: "[02]"
+        - button "03 CASE STUDIES" [ref=f1e505] [cursor=pointer]:
+          - generic [ref=f1e506]: CASE STUDIES
+          - generic [ref=f1e507]: "[03]"
+        - button "04 ARCHIVE SYSTEM" [ref=f1e508] [cursor=pointer]:
+          - generic [ref=f1e509]: ARCHIVE SYSTEM
+          - generic [ref=f1e510]: "[04]"
+        - button "05 OPERATIONAL EXPERIENCE" [ref=f1e511] [cursor=pointer]:
+          - generic [ref=f1e512]: OPERATIONAL EXPERIENCE
+          - generic [ref=f1e513]: "[05]"
+        - button "06 CONTACTS" [ref=f1e514] [cursor=pointer]:
+          - generic [ref=f1e515]: CONTACTS
+          - generic [ref=f1e516]: "[06]"
+      - link "DOWNLOAD CV" [ref=f1e518] [cursor=pointer]:
+        - /url: /en/resume
+        - img [ref=f1e519]
+        - text: DOWNLOAD CV
+      - generic [ref=f1e522]:
+        - generic [ref=f1e523]:
+          - generic [ref=f1e524]:
+            - img [ref=f1e525]
+            - text: SYSTEM_LOCALE
+          - generic [ref=f1e528]: "[EN]"
+        - group "SYSTEM_LOCALE" [ref=f1e529]:
+          - button "ENGLISH [EN]" [pressed] [ref=f1e530] [cursor=pointer]:
+            - generic [ref=f1e532]: ENGLISH [EN]
+          - button "УКРАЇНСЬКА [UK]" [ref=f1e533] [cursor=pointer]:
+            - generic [ref=f1e535]: УКРАЇНСЬКА [UK]
+      - generic [ref=f1e536]:
+        - generic [ref=f1e537]:
+          - generic [ref=f1e538]:
+            - img [ref=f1e539]
+            - text: WORKSPACE_THEME
+          - generic [ref=f1e545]: "[DARK]"
+        - group "WORKSPACE_THEME" [ref=f1e546]:
+          - button "EDITORIAL LIGHT" [ref=f1e547] [cursor=pointer]:
+            - generic [ref=f1e549]: EDITORIAL LIGHT
+          - button "GRAPHITE DARK" [pressed] [ref=f1e550] [cursor=pointer]:
+            - generic [ref=f1e552]: GRAPHITE DARK
+          - button "WARM NEUTRAL" [ref=f1e553] [cursor=pointer]:
+            - generic [ref=f1e555]: WARM NEUTRAL
+          - button "HIGH CONTRAST" [ref=f1e556] [cursor=pointer]:
+            - generic [ref=f1e558]: HIGH CONTRAST
+      - generic [ref=f1e559]:
+        - generic [ref=f1e560]:
+          - generic [ref=f1e561]: LOCATION
+          - generic [ref=f1e562]:
+            - img [ref=f1e563]
+            - text: Sumy, Ukraine
+        - separator [ref=f1e566]
+        - generic [ref=f1e567]:
+          - generic [ref=f1e568]: AVAILABILITY
+          - generic [ref=f1e569]: Remote
+        - separator [ref=f1e571]
+        - generic [ref=f1e572]:
+          - generic [ref=f1e573]: LOCAL TIME
+          - generic [ref=f1e574]: 14:03:49 (Kyiv)

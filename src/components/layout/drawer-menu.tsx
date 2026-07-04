@@ -14,7 +14,10 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from '@/components/ui/drawer'
-import { brutalistDrawerDismissClasses, brutalistDrawerTriggerClasses } from '@/lib/brutalist-motion'
+import {
+  brutalistDrawerDismissClasses,
+  brutalistDrawerTriggerClasses,
+} from '@/lib/brutalist-motion'
 import { prefersReducedMotion } from '@/lib/home-scroll'
 import type { Setting } from '@/payload-types'
 
@@ -52,7 +55,7 @@ export function DrawerMenu({ settings, className }: DrawerMenuProps) {
       </DrawerTrigger>
 
       <DrawerContent aria-describedby={undefined}>
-        <div className="flex flex-1 flex-col gap-6 overflow-y-auto">
+        <div className="flex flex-1 flex-col gap-6 overflow-y-auto overflow-x-visible!">
           <DrawerHeader className="flex-row items-start justify-between space-y-0">
             <div className="space-y-1">
               <DrawerDescription>{tDrawer('registrar')}</DrawerDescription>
@@ -82,8 +85,8 @@ export function DrawerMenu({ settings, className }: DrawerMenuProps) {
             </DrawerClose>
           </div>
 
-          <LocaleSwitcher variant="drawer" showSection />
-          <ThemeSwitcher variant="drawer" showSection />
+          <LocaleSwitcher variant="sidebar" showSection />
+          <ThemeSwitcher variant="sidebar" showSection />
 
           <StatusPanel location={settings.location} availability={settings.availability} />
         </div>
