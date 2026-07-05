@@ -29,10 +29,7 @@ const nextConfig: NextConfig = {
     'puppeteer-core',
   ],
   outputFileTracingExcludes: {
-    '*': [
-      '**/node_modules/puppeteer-core/**',
-      '**/node_modules/payload/dist/bin/**',
-    ],
+    '*': ['**/node_modules/puppeteer-core/**'],
   },
   images: {
     localPatterns: [
