@@ -36,6 +36,8 @@ export default buildConfig({
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URL || '',
+      // Workers cannot reuse pg connections across requests.
+      maxUses: 1,
     },
     migrationDir: path.resolve(dirname, 'migrations'),
   }),

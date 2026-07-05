@@ -14,7 +14,24 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ['lucide-react'],
   },
-  serverExternalPackages: ['puppeteer-core', '@cloudflare/puppeteer'],
+  // OpenNext + Payload on Cloudflare: keep workerd-specific and migration tooling external.
+  // https://opennext.js.org/cloudflare/howtos/workerd
+  // https://github.com/opennextjs/opennextjs-cloudflare/issues/263
+  serverExternalPackages: [
+    '@payloadcms/db-postgres',
+    '@payloadcms/drizzle',
+    '@cloudflare/puppeteer',
+    'drizzle-kit',
+    'jose',
+    'pg',
+    'pg-cloudflare',
+    'prettier',
+    'puppeteer-core',
+    'sharp',
+  ],
+  outputFileTracingExcludes: {
+    '*': ['**/node_modules/puppeteer-core/**'],
+  },
   images: {
     localPatterns: [
       {
