@@ -3,13 +3,18 @@ import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
-import sharp from 'sharp'
 import { collections } from '@/config/collections'
 import { revalidateSiteCacheEndpoint } from '@/config/endpoints/revalidate-site-cache'
 import { globals } from '@/config/globals'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
+
+// Native sharp does not run on Cloudflare Workers. Load only for local `next dev`.
+const sharp =
+  process.env.NODE_ENV === 'development'
+    ? (await import('sharp')).default
+    : undefined
 
 export default buildConfig({
   localization: {
@@ -41,6 +46,6 @@ export default buildConfig({
     },
     migrationDir: path.resolve(dirname, 'migrations'),
   }),
-  sharp,
+  ...(sharp ? { sharp } : {}),
   plugins: [],
 })

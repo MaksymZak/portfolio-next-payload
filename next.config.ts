@@ -27,7 +27,6 @@ const nextConfig: NextConfig = {
     'pg-cloudflare',
     'prettier',
     'puppeteer-core',
-    'sharp',
   ],
   outputFileTracingExcludes: {
     '*': ['**/node_modules/puppeteer-core/**'],
