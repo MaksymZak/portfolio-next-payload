@@ -14,10 +14,7 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ['lucide-react'],
   },
-  serverExternalPackages: ['@sparticuz/chromium-min', 'puppeteer-core', 'tar-fs', 'tar-stream'],
-  outputFileTracingIncludes: {
-    '/api/cv': ['./node_modules/@sparticuz/chromium-min/**/*'],
-  },
+  serverExternalPackages: ['puppeteer-core', '@cloudflare/puppeteer'],
   images: {
     localPatterns: [
       {
@@ -40,3 +37,8 @@ const nextConfig: NextConfig = {
 }
 
 export default withPayload(withNextIntl(nextConfig), { devBundleServerPackages: false })
+
+// Bindings stub for `next dev` only — skip during production build (opennextjs-cloudflare build)
+if (process.env.NODE_ENV === 'development') {
+  import('@opennextjs/cloudflare').then((m) => m.initOpenNextCloudflareForDev())
+}

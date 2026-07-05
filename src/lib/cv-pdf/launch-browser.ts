@@ -4,10 +4,6 @@ import { existsSync } from 'node:fs'
 
 import puppeteer, { type Browser } from 'puppeteer-core'
 
-/** Keep in sync with @sparticuz/chromium-min in package.json. */
-export const DEFAULT_CHROMIUM_PACK_URL =
-  'https://github.com/Sparticuz/chromium/releases/download/v149.0.0/chromium-v149.0.0-pack.x64.tar'
-
 const LOCAL_CHROME_PATHS = [
   'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
   'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe',
@@ -22,56 +18,42 @@ function resolveLocalChromePath(): string | undefined {
   return LOCAL_CHROME_PATHS.find((path) => existsSync(path))
 }
 
-function isValidPackUrl(value: string): boolean {
+/**
+ * Cloudflare Browser Rendering — only in deployed/preview Workers.
+ * During `next dev`, initOpenNextCloudflareForDev stubs bindings; they cannot launch PDFs.
+ */
+async function isCloudflareWorkersRuntime(): Promise<boolean> {
+  if (process.env.NODE_ENV === 'development') {
+    return false
+  }
+
   try {
-    const parsed = new URL(value)
-    return parsed.protocol === 'https:'
+    const { getCloudflareContext } = await import('@opennextjs/cloudflare')
+    const { env } = getCloudflareContext()
+    return 'BROWSER' in env && Boolean(env.BROWSER)
   } catch {
     return false
   }
 }
 
-export function resolveChromiumPackUrl(): string {
-  const fromEnv = process.env.CHROMIUM_PACK_URL?.trim()
+async function launchCloudflareBrowser(): Promise<Browser> {
+  const { getCloudflareContext } = await import('@opennextjs/cloudflare')
+  const { env } = getCloudflareContext()
+  const browserBinding = env.BROWSER
 
-  if (fromEnv) {
-    if (isValidPackUrl(fromEnv)) return fromEnv
-
-    console.warn(
-      `[cv-pdf] Ignoring invalid CHROMIUM_PACK_URL (must be https://). Using default pack.`,
+  if (!browserBinding) {
+    throw new Error(
+      'BROWSER binding is missing. Enable Browser Rendering and add a browser binding to wrangler.jsonc.',
     )
   }
 
-  return DEFAULT_CHROMIUM_PACK_URL
+  const cloudflarePuppeteer = await import('@cloudflare/puppeteer')
+  return cloudflarePuppeteer.default.launch(browserBinding) as unknown as Browser
 }
 
-async function launchServerlessBrowser(): Promise<Browser> {
-  const packUrl = resolveChromiumPackUrl()
-  const { default: chromium } = await import('@sparticuz/chromium-min')
-
-  chromium.setGraphicsMode = false
-
-  let executablePath: string
-  try {
-    executablePath = await chromium.executablePath(packUrl)
-  } catch (error) {
-    const detail = error instanceof Error ? error.message : String(error)
-    throw new Error(`Chromium pack download/extract failed (${packUrl}): ${detail}`)
-  }
-
-  return puppeteer.launch({
-    args: chromium.args,
-    executablePath,
-    headless: 'shell',
-  })
-}
-
-export async function launchCvPdfBrowser(): Promise<Browser> {
-  if (process.env.VERCEL) {
-    return launchServerlessBrowser()
-  }
-
+async function launchLocalBrowser(): Promise<Browser> {
   const executablePath = resolveLocalChromePath()
+
   if (!executablePath) {
     throw new Error(
       'No local Chrome found. Set CHROME_EXECUTABLE_PATH in .env to your Chrome executable.',
@@ -79,4 +61,12 @@ export async function launchCvPdfBrowser(): Promise<Browser> {
   }
 
   return puppeteer.launch({ executablePath, headless: true })
+}
+
+export async function launchCvPdfBrowser(): Promise<Browser> {
+  if (await isCloudflareWorkersRuntime()) {
+    return launchCloudflareBrowser()
+  }
+
+  return launchLocalBrowser()
 }

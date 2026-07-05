@@ -1,0 +1,10 @@
+# Wrangler preview reads THIS file, not .env. Copy to .dev.vars (gitignored).
+
+NEXTJS_ENV=development
+
+DATABASE_URL=postgresql://127.0.0.1:5432/your-database-name
+PAYLOAD_SECRET=your-payload-secret
+REVALIDATE_SECRET=your-revalidate-secret
+
+# Preview runs on port 8787 by default
+NEXT_PUBLIC_SITE_URL=http://localhost:8787

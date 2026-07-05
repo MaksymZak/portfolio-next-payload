@@ -1,0 +1,56 @@
+# Deploy to Cloudflare Workers (OpenNext) on push to main/claudflare.
+#
+# GitHub repository secrets (Settings → Secrets and variables → Actions):
+#   CLOUDFLARE_API_TOKEN   — Workers edit (Create API Token → Edit Cloudflare Workers)
+#   CLOUDFLARE_ACCOUNT_ID  — Cloudflare account ID
+#   DATABASE_URL           — Neon Postgres (needed at build time for SSG)
+#   PAYLOAD_SECRET
+#   REVALIDATE_SECRET
+#   NEXT_PUBLIC_SITE_URL   — e.g. https://portfolio-next-payload.<subdomain>.workers.dev
+#
+# Worker runtime secrets already in Cloudflare Dashboard are reused on deploy.
+# See: https://opennext.js.org/cloudflare/get-started
+
+name: Deploy Cloudflare
+
+on:
+  push:
+    branches:
+      - main
+      - claudflare
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-cloudflare
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+        continue-on-error: true
+
+      - name: Install dependencies (no lockfile)
+        if: failure()
+        run: bun install
+
+      - name: Deploy to Cloudflare Workers
+        run: bun run deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          PAYLOAD_SECRET: ${{ secrets.PAYLOAD_SECRET }}
+          REVALIDATE_SECRET: ${{ secrets.REVALIDATE_SECRET }}
+          NEXT_PUBLIC_SITE_URL: ${{ secrets.NEXT_PUBLIC_SITE_URL }}
+          WRANGLER_BUILD_CONDITIONS: ""
+          WRANGLER_BUILD_PLATFORM: node

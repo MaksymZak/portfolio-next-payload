@@ -14,6 +14,7 @@
 
 # next.js
 /.next/
+/.open-next/
 /out/
 
 # production
@@ -33,9 +34,14 @@ yarn-error.log*
 
 # local env files
 .env*.local
+.dev.vars
+.prod.vars
 
 # vercel
 .vercel
+
+# cloudflare wrangler (local cache, dev state)
+.wrangler/
 
 # typescript
 *.tsbuildinfo
