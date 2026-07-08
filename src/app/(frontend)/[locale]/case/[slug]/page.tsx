@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { ArrowLeft, Clock } from 'lucide-react'
+import { ArrowLeft, ArrowUpRight, Clock } from 'lucide-react'
 import Image from 'next/image'
 import { hasLocale } from 'next-intl'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
@@ -9,6 +9,8 @@ import { buildCaseSections } from '@/components/case/build-sections'
 import { CaseIndexNav } from '@/components/case/index-nav'
 import { CaseSection } from '@/components/case/section'
 import { Badge } from '@/components/ui/badge'
+import { GithubIcon } from '@/components/ui/brand-icons'
+import { linkControlVariants } from '@/components/ui/button'
 import { MonoLabel } from '@/components/ui/mono-label'
 import { Clock as KyivClock } from '@/components/layout/clock'
 import { Link } from '@/i18n/navigation'
@@ -25,6 +27,10 @@ type CasePageProps = {
 
 function formatNodeId(slug: string) {
   return `NODE_${slug.toUpperCase().replace(/-/g, '_')}`
+}
+
+function formatUrlLabel(url: string) {
+  return url.replace(/^https?:\/\//, '').replace(/\/$/, '')
 }
 
 export async function generateStaticParams() {
@@ -111,6 +117,8 @@ export default async function CasePage({ params }: CasePageProps) {
     ? project.technicalDepth.split(/\n{2,}/).filter(Boolean)
     : []
   const screenshot = resolveMediaUrl(project.screenshot)
+  const repoUrl = project.repoUrl?.trim()
+  const demoUrl = project.demoUrl?.trim()
 
   return (    <div className="relative flex min-h-screen flex-col bg-background font-sans text-foreground">
       <div className="sticky top-0 z-40 mx-auto w-full max-w-full border-x border-border bg-surface md:max-w-[768px] xl:max-w-[1280px] 2xl:max-w-[1536px]">
@@ -186,6 +194,33 @@ export default async function CasePage({ params }: CasePageProps) {
                   </Badge>
                 ))}
               </div>
+
+              {demoUrl || repoUrl ? (
+                <div className="flex flex-wrap gap-4 pt-2 font-mono text-sm">
+                  {demoUrl ? (
+                    <a
+                      href={demoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={linkControlVariants({ variant: 'card-accent', size: 'card' })}
+                    >
+                      <ArrowUpRight size={12} aria-hidden />
+                      {tActions('liveDemo')}
+                    </a>
+                  ) : null}
+                  {repoUrl ? (
+                    <a
+                      href={repoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={linkControlVariants({ variant: 'card-action', size: 'card' })}
+                    >
+                      <GithubIcon size={12} />
+                      {tActions('sourceCode')}
+                    </a>
+                  ) : null}
+                </div>
+              ) : null}
             </div>
 
             {screenshot ? (
@@ -226,10 +261,46 @@ export default async function CasePage({ params }: CasePageProps) {
                           <span className="text-muted-foreground">{tCase('role')}</span>
                           <span className="font-bold text-foreground">{project.role}</span>
                         </div>
-                        <div className="flex justify-between py-1">
+                        <div
+                          className={cn(
+                            'flex justify-between py-1',
+                            (repoUrl || demoUrl) && 'border-b border-border',
+                          )}
+                        >
                           <span className="text-muted-foreground">{tCase('period')}</span>
                           <span className="font-bold text-foreground">{project.period}</span>
                         </div>
+                        {repoUrl ? (
+                          <div
+                            className={cn(
+                              'flex justify-between gap-4 py-1',
+                              demoUrl && 'border-b border-border',
+                            )}
+                          >
+                            <span className="text-muted-foreground">{tCase('repo')}</span>
+                            <a
+                              href={repoUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="truncate font-bold text-foreground underline-offset-2 hover:underline"
+                            >
+                              {formatUrlLabel(repoUrl)}
+                            </a>
+                          </div>
+                        ) : null}
+                        {demoUrl ? (
+                          <div className="flex justify-between gap-4 py-1">
+                            <span className="text-muted-foreground">{tCase('demo')}</span>
+                            <a
+                              href={demoUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="truncate font-bold text-foreground underline-offset-2 hover:underline"
+                            >
+                              {formatUrlLabel(demoUrl)}
+                            </a>
+                          </div>
+                        ) : null}
                       </div>
                     </div>
                   </CaseSection>

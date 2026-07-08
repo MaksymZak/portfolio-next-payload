@@ -19,6 +19,8 @@
     "copied": "EMAIL COPIED TO CLIPBOARD",
     "copyFailed": "COULD NOT COPY TO CLIPBOARD",
     "readDoc": "READ DETAILED ENGINEERING DOCUMENTATION",
+    "liveDemo": "OPEN LIVE DEMO",
+    "sourceCode": "VIEW SOURCE CODE",
     "viewTelemetry": "VIEW TECHNICAL TELEMETRY",
     "hideTelemetry": "HIDE TECHNICAL TELEMETRY",
     "backToIndex": "BACK TO INDEX",
@@ -141,6 +143,8 @@
     "verified": "PUBLIC FILE / VERIFIED",
     "role": "ROLE",
     "period": "PERIOD",
+    "repo": "REPO",
+    "demo": "DEMO",
     "status": {
       "live": "LIVE",
       "roadmap": "ROADMAP"

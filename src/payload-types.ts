@@ -284,6 +284,14 @@ export interface Project {
    */
   technicalDepth?: string | null;
   /**
+   * Public source repository URL (e.g. GitHub). Leave empty to hide the link.
+   */
+  repoUrl?: string | null;
+  /**
+   * Live deployment URL. Leave empty to hide the link.
+   */
+  demoUrl?: string | null;
+  /**
    * Hero screenshot for the case study page and future OG image use. Upload via Media (recommended: 1280×720 or wider, WebP/PNG). Leave empty until a capture is ready.
    */
   screenshot?: (number | null) | Media;
@@ -496,6 +504,8 @@ export interface ProjectsSelect<T extends boolean = true> {
       };
   metrics?: T;
   technicalDepth?: T;
+  repoUrl?: T;
+  demoUrl?: T;
   screenshot?: T;
   order?: T;
   updatedAt?: T;

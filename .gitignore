@@ -45,6 +45,9 @@ next-env.d.ts
 
 /media
 
+# generated CV PDFs (uploaded to R2 manually, see scripts/generate-cv.ts)
+/cv-dist
+
 # Playwright
 node_modules/
 /test-results/

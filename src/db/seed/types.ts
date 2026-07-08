@@ -23,5 +23,7 @@ export type ProjectSeed = {
   stack: string[]
   metrics?: Record<Locale, string>
   technicalDepth: Record<Locale, string>
+  repoUrl?: string
+  demoUrl?: string
   order: number
 }

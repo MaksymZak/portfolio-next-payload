@@ -54,56 +54,116 @@ export const projectsSeed: ProjectSeed[] = [
   {
     slug: 'lms-platform',
     title: 'LMS Platform',
-    label: 'roadmap',
+    label: 'live',
     role: {
       en: 'Full-Stack Developer — Pet Project',
-      uk: 'Full-Stack-розробник — власний проєкт',
+      uk: 'Full-Stack-розробник — пет-проєкт',
     },
-    period: { en: '2025 — relaunch in progress', uk: '2025 — триває перезапуск' },
+    period: { en: '2025–2026', uk: '2025–2026' },
     summary: {
-      en: 'A course delivery platform with lesson progress tracking. The build is complete; third-party services and tokens are being restored before the public demo relaunch. A full case study will replace this entry once it is live.',
-      uk: 'Платформа доставки навчальних курсів із відстеженням прогресу уроків. Розробку завершено; зараз відновлюються сторонні сервіси й токени перед публічним перезапуском демо. Після запуску цей запис замінить повний кейс.',
+      en: 'A full-stack Learning Management System on Next.js 14 App Router. Teachers build courses with rich-text descriptions, video chapters, and attachments; students browse the catalog, enroll for free or via Stripe Checkout, watch videos, and track chapter progress on a personal dashboard.',
+      uk: 'Full-stack платформа управління навчанням на Next.js 14 App Router. Викладачі створюють курси з rich-text описами, відеорозділами та вкладеннями; студенти переглядають каталог, записуються безкоштовно або через Stripe Checkout, дивляться відео та відстежують прогрес розділів на особистому дашборді.',
     },
     highlights: {
-      en: [{ text: 'Course catalog, lesson pages, and per-user progress tracking.' }],
-      uk: [{ text: 'Каталог курсів, сторінки уроків та відстеження прогресу користувача.' }],
+      en: [
+        {
+          text: 'Rebuilt a legacy tutorial codebase into a self-hosted stack: replaced Clerk, Mux, and PlanetScale with Better Auth, a custom video pipeline, and PostgreSQL + Prisma.',
+        },
+        {
+          text: 'Designed a pluggable storage layer (lib/storage): local disk with HTTP Range streaming for video seeking, or Cloudflare R2 — switched by a single env variable.',
+        },
+        {
+          text: 'Integrated Stripe Checkout with webhook-driven purchase fulfillment; free courses enroll instantly without payment.',
+        },
+        {
+          text: 'Built a course builder with drag-and-drop chapter reordering, per-chapter free/paid access, publish validation, and revenue/sales analytics charts.',
+        },
+        {
+          text: 'Udemy-style access model: any user can teach; every mutation enforces ownership at the query level.',
+        },
+      ],
+      uk: [
+        {
+          text: 'Перебудовано застарілий туторіальний код у self-hosted стек: Clerk, Mux і PlanetScale замінено на Better Auth, власний відеопайплайн та PostgreSQL + Prisma.',
+        },
+        {
+          text: 'Спроєктовано змінний шар сховища (lib/storage): локальний диск із HTTP Range-стрімінгом для перемотування відео або Cloudflare R2 — перемикається однією env-змінною.',
+        },
+        {
+          text: 'Інтегровано Stripe Checkout із підтвердженням покупки через webhook; безкоштовні курси записують миттєво без оплати.',
+        },
+        {
+          text: 'Створено конструктор курсів із drag-and-drop сортуванням розділів, безкоштовним/платним доступом на рівні розділу, валідацією публікації та графіками доходів і продажів.',
+        },
+        {
+          text: 'Модель доступу в стилі Udemy: будь-який користувач може викладати; кожна мутація перевіряє володіння на рівні запиту.',
+        },
+      ],
     },
-    stack: ['Next.js', 'TypeScript', 'Tailwind CSS'],
+    stack: [
+      'Next.js 14',
+      'React 18',
+      'TypeScript',
+      'PostgreSQL',
+      'Prisma',
+      'Better Auth',
+      'Stripe',
+      'Tailwind CSS',
+      'shadcn/ui',
+    ],
     technicalDepth: {
-      en: 'Details will be published with the relaunch; this entry is intentionally short until the demo is publicly verifiable.',
-      uk: 'Деталі буде опубліковано разом із перезапуском; запис свідомо короткий, доки демо не можна перевірити публічно.',
+      en: 'Mutations go through route handlers with client-side revalidation via router.refresh() — a deliberate choice over Server Actions. Optimistic cookie-based auth check in middleware keeps every route private except auth and webhook endpoints. An idempotent seed provisions demo teacher and student accounts with courses, purchases, and progress in one command.',
+      uk: 'Мутації йдуть через route handlers із клієнтською ревалідацією через router.refresh() — свідомий вибір замість Server Actions. Оптимістична перевірка cookie в middleware тримає всі маршрути приватними, крім автентифікації та webhook. Ідемпотентний seed розгортає демо-акаунти викладача і студента з курсами, покупками та прогресом однією командою.',
     },
     order: 2,
   },
   {
     slug: 'ab-testing-lab',
     title: 'A/B Testing Lab',
-    label: 'roadmap',
+    label: 'live',
     role: {
       en: 'Frontend Developer — Sanitized Work Replica',
       uk: 'Frontend-розробник — знеособлена копія робочої системи',
     },
-    period: { en: 'Planned 2026', uk: 'Заплановано на 2026' },
+    period: { en: '2026', uk: '2026' },
     summary: {
-      en: 'A public, sanitized rebuild of the A/B landing workflow I run in production: variant builds, traffic routing, and conversion analytics — with all employer branding and data removed.',
-      uk: 'Публічна знеособлена реконструкція робочого A/B-процесу для лендингів: збирання варіантів, маршрутизація трафіку та аналітика конверсій — без брендингу й даних роботодавця.',
+      en: 'A public, sanitized rebuild of the A/B landing platform I run in production (the original is under NDA): config-driven split tests, weighted traffic rollout, and sticky version assignment — with all employer branding, code, and data removed.',
+      uk: 'Публічна знеособлена реконструкція продакшн-платформи A/B-лендингів (оригінал під NDA): спліт-тести на конфігах, зважений розподіл трафіку та закріплення версії за відвідувачем — без брендингу, коду й даних роботодавця.',
     },
     highlights: {
       en: [
         {
-          text: 'Demonstrates the real production workflow: how variants are built, split, and measured.',
+          text: 'Config-driven experiments: each landing owns a plain _config.ts declaring its versions, active flags, and relative rollout weights (e.g. 50/30/20).',
+        },
+        {
+          text: 'Middleware resolves the version in one pass — ?v= preview param, then cookie, then weighted random — and persists it in a 365-day path-scoped cookie for sticky sessions.',
+        },
+        {
+          text: 'Each version is a fully independent page via Next.js parallel routes (@v1/@v2/@v3) with its own sections, layout, and theme.',
+        },
+        {
+          text: 'Deactivating a version excludes it from rollout and reassigns its audience on the next visit, while keeping it reachable via ?v= for QA and stakeholder preview.',
         },
       ],
       uk: [
         {
-          text: 'Демонструє реальний продакшн-процес: як варіанти збираються, розподіляються та вимірюються.',
+          text: 'Експерименти на конфігах: кожен лендинг має власний _config.ts із версіями, прапорцями активності та відносними вагами розподілу (напр. 50/30/20).',
+        },
+        {
+          text: 'Middleware визначає версію за один прохід — параметр ?v=, потім cookie, потім зважений випадковий вибір — і зберігає її в cookie на 365 днів у межах шляху лендингу.',
+        },
+        {
+          text: 'Кожна версія — повністю незалежна сторінка через паралельні маршрути Next.js (@v1/@v2/@v3) з власними секціями, лейаутом і темою.',
+        },
+        {
+          text: 'Деактивація версії виключає її з розподілу та переназначає її аудиторію при наступному візиті, залишаючи доступ через ?v= для QA та превʼю стейкхолдерів.',
         },
       ],
     },
-    stack: ['Next.js', 'TypeScript', 'Vercel'],
+    stack: ['Next.js 15', 'React 19', 'TypeScript', 'CSS design tokens'],
     technicalDepth: {
-      en: 'Variant routing and measurement architecture will be documented once the demo is public — no numbers will be published that cannot be reproduced in the demo.',
-      uk: 'Архітектуру маршрутизації варіантів і вимірювань буде задокументовано після публікації демо — жодних цифр, які не можна відтворити в демо.',
+      en: 'The assignment logic lives in an Edge-safe pure module shared by middleware and server components; experiment configs sit next to their pages and are aggregated in a single registry, so changing a rollout is a one-object edit. The production original added CMS-managed experiment records, atomic impression counters for least-shown balancing, conversion analytics with first-touch attribution, and CRM integration — intentionally not reproduced here.',
+      uk: 'Логіка призначення версій живе в Edge-безпечному чистому модулі, спільному для middleware та серверних компонентів; конфіги експериментів лежать поруч зі сторінками й агрегуються в єдиному реєстрі, тож зміна розподілу — це правка одного обʼєкта. Продакшн-оригінал додавав CMS-керовані записи експериментів, атомарні лічильники показів для балансування, аналітику конверсій з first-touch атрибуцією та інтеграцію з CRM — свідомо не відтворено тут.',
     },
     order: 3,
   },

@@ -98,6 +98,20 @@ export const Projects: CollectionConfig = {
       },
     },
     {
+      name: 'repoUrl',
+      type: 'text',
+      admin: {
+        description: 'Public source repository URL (e.g. GitHub). Leave empty to hide the link.',
+      },
+    },
+    {
+      name: 'demoUrl',
+      type: 'text',
+      admin: {
+        description: 'Live deployment URL. Leave empty to hide the link.',
+      },
+    },
+    {
       name: 'screenshot',
       type: 'upload',
       relationTo: 'media',

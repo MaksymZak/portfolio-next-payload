@@ -1,10 +1,11 @@
 'use client'
 
-import { BookOpen, Terminal } from 'lucide-react'
+import { ArrowUpRight, BookOpen, Terminal } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { useCallback, useState } from 'react'
 
 import { Badge } from '@/components/ui/badge'
+import { GithubIcon } from '@/components/ui/brand-icons'
 import { Button, buttonVariants } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { MonoLabel } from '@/components/ui/mono-label'
@@ -38,6 +39,7 @@ const projectCardShellMotion = brutalistLiftClasses('card', {
 
 export function ProjectCard({ project, actions, isFlagship = false }: ProjectCardProps) {
   const t = useTranslations('projects')
+  const tActions = useTranslations('actions')
   const [isExpanded, setIsExpanded] = useState(false)
   const panelId = `telemetry-${project.slug}`
   const toggleId = `telemetry-toggle-${project.slug}`
@@ -50,6 +52,8 @@ export function ProjectCard({ project, actions, isFlagship = false }: ProjectCar
   const stack = project.stack ?? []
   const isLive = project.label === 'live'
   const metrics = project.metrics?.trim()
+  const repoUrl = project.repoUrl?.trim()
+  const demoUrl = project.demoUrl?.trim()
   const hasTelemetry = highlights.length > 0 || stack.length > 0 || Boolean(metrics)
 
   return (
@@ -121,6 +125,35 @@ export function ProjectCard({ project, actions, isFlagship = false }: ProjectCar
               <Terminal size={12} aria-hidden className="text-muted-foreground" />
               {isExpanded ? actions.hideTelemetry : actions.viewTelemetry}
             </Button>
+          ) : null}
+
+          {repoUrl || demoUrl ? (
+            <span className="ml-auto flex items-center gap-3 self-center">
+              {repoUrl ? (
+                <a
+                  href={repoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={tActions('sourceCode')}
+                  title={tActions('sourceCode')}
+                  className="text-muted-foreground motion-safe:transition-colors hover:text-foreground"
+                >
+                  <GithubIcon size={14} />
+                </a>
+              ) : null}
+              {demoUrl ? (
+                <a
+                  href={demoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={tActions('liveDemo')}
+                  title={tActions('liveDemo')}
+                  className="text-muted-foreground motion-safe:transition-colors hover:text-foreground"
+                >
+                  <ArrowUpRight size={14} aria-hidden />
+                </a>
+              ) : null}
+            </span>
           ) : null}
         </div>
 

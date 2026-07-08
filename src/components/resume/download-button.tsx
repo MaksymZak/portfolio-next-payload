@@ -4,17 +4,44 @@ import { FileText } from 'lucide-react'
 import { useLocale, useTranslations } from 'next-intl'
 import { useState } from 'react'
 
-import { Button } from '@/components/ui/button'
+import { Button, linkControlVariants } from '@/components/ui/button'
 import { cn } from '@/lib/cn'
 
 export type DownloadCvButtonProps = {
   className?: string
 }
 
+// Pre-generated PDFs hosted on R2 (see scripts/generate-cv.ts). When the URL
+// for the current locale is set, the button is a plain download link and the
+// serverless generation route is never called — required on the Vercel Hobby
+// plan, where headless Chromium exceeds the 1024 MB function memory limit.
+const STATIC_CV_URLS: Record<string, string | undefined> = {
+  en: process.env.NEXT_PUBLIC_CV_URL_EN,
+  uk: process.env.NEXT_PUBLIC_CV_URL_UK,
+}
+
 export function DownloadCvButton({ className }: DownloadCvButtonProps) {
   const tActions = useTranslations('actions')
   const locale = useLocale()
   const [isGenerating, setIsGenerating] = useState(false)
+
+  const staticUrl = STATIC_CV_URLS[locale]?.trim()
+
+  if (staticUrl) {
+    return (
+      <a
+        href={staticUrl}
+        className={cn(
+          linkControlVariants({ variant: 'secondary' }),
+          'print:hidden',
+          className,
+        )}
+      >
+        <FileText size={11} aria-hidden />
+        {tActions('savePdf')}
+      </a>
+    )
+  }
 
   const handleDownload = async () => {
     if (isGenerating) return

@@ -19,6 +19,8 @@ export async function seedProjects(payload: Payload) {
       slug: item.slug,
       label: item.label,
       stack: item.stack.map((name) => ({ name })),
+      ...(item.repoUrl ? { repoUrl: item.repoUrl } : {}),
+      ...(item.demoUrl ? { demoUrl: item.demoUrl } : {}),
       order: item.order,
     }
 
