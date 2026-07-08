@@ -1,5 +1,6 @@
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { s3Storage } from '@payloadcms/storage-s3'
 import path from 'path'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
@@ -40,5 +41,37 @@ export default buildConfig({
     migrationDir: path.resolve(dirname, 'migrations'),
   }),
   sharp,
-  plugins: [],
+  plugins: [
+    // Cloudflare R2 via S3-compatible API. Falls back to local ./media storage
+    // when R2_BUCKET is not set (local dev without R2 credentials).
+    s3Storage({
+      enabled: Boolean(process.env.R2_BUCKET),
+      // Keep the per-document `prefix` (folder) field in the schema even
+      // without a collection-level prefix, so its value is persisted.
+      alwaysInsertFields: true,
+      collections: {
+        media: process.env.R2_PUBLIC_URL
+          ? {
+              // Serve files straight from the R2 public domain instead of
+              // proxying through Payload — requires a public bucket URL.
+              disablePayloadAccessControl: true,
+              generateFileURL: ({ filename, prefix }) => {
+                const key = prefix ? `${prefix}/${filename}` : filename
+                return `${process.env.R2_PUBLIC_URL}/${key}`
+              },
+            }
+          : true,
+      },
+      bucket: process.env.R2_BUCKET || '',
+      config: {
+        credentials: {
+          accessKeyId: process.env.R2_ACCESS_KEY_ID || '',
+          secretAccessKey: process.env.R2_SECRET_ACCESS_KEY || '',
+        },
+        region: 'auto',
+        endpoint: process.env.R2_ENDPOINT,
+        forcePathStyle: true,
+      },
+    }),
+  ],
 })
