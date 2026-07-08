@@ -52,12 +52,14 @@ async function launchServerlessBrowser(): Promise<Browser> {
   chromium.setGraphicsMode = false
 
   let executablePath: string
+  const downloadStartedAt = Date.now()
   try {
     executablePath = await chromium.executablePath(packUrl)
   } catch (error) {
     const detail = error instanceof Error ? error.message : String(error)
     throw new Error(`Chromium pack download/extract failed (${packUrl}): ${detail}`)
   }
+  console.log(`[cv-pdf] chromium binary ready in ${Date.now() - downloadStartedAt}ms`)
 
   return puppeteer.launch({
     args: chromium.args,

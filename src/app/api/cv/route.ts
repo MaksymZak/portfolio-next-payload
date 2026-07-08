@@ -31,26 +31,65 @@ export async function GET(request: Request) {
     return Response.json({ ok: false, error: 'Invalid locale' }, { status: 400 })
   }
 
+  // `stage` pins down where generation died — Vercel logs show it alongside
+  // the error, which beats a bare "PDF generation failed".
+  let stage = 'settings'
+  const startedAt = Date.now()
+  const elapsed = () => `${Date.now() - startedAt}ms`
+
   try {
     const settings = await getSettings(locale)
+
+    stage = 'launch'
     const browser = await launchCvPdfBrowser()
+    console.log(`[api/cv] browser ready (${elapsed()})`)
 
     try {
       const page = await browser.newPage()
       await page.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: 'light' }])
-      await page.goto(`${origin}/${locale}/resume`, {
-        waitUntil: 'networkidle0',
-        timeout: 45_000,
+
+      // Preview deployments (and production with Vercel Authentication enabled)
+      // wall off the self-fetch below. The bypass secret lives in
+      // Settings → Deployment Protection → Protection Bypass for Automation.
+      const bypassSecret = process.env.VERCEL_AUTOMATION_BYPASS_SECRET
+      if (bypassSecret) {
+        await page.setExtraHTTPHeaders({
+          'x-vercel-protection-bypass': bypassSecret,
+          'x-vercel-set-bypass-cookie': 'true',
+        })
+      }
+
+      stage = 'navigate'
+      // `load` instead of `networkidle0`: prefetches/analytics keep sockets
+      // open on Vercel and networkidle0 never fires, timing the function out.
+      const response = await page.goto(`${origin}/${locale}/resume`, {
+        waitUntil: 'load',
+        timeout: 30_000,
+      })
+      if (!response || !response.ok()) {
+        throw new Error(
+          `Resume page responded ${response?.status() ?? 'without a response'} — ` +
+            'if this is 401/403, enable Protection Bypass for Automation and set VERCEL_AUTOMATION_BYPASS_SECRET',
+        )
+      }
+
+      stage = 'render'
+      await page.waitForSelector('#main-content', { timeout: 10_000 })
+      await page.evaluate(async () => {
+        await document.fonts.ready
       })
       // Activate the shared `sheet:` document styles — the same attribute the
       // on-page "PDF PREVIEW" toggle sets, so preview and PDF stay identical.
       await page.evaluate(() => document.body.setAttribute('data-sheet', ''))
+      console.log(`[api/cv] page rendered (${elapsed()})`)
 
+      stage = 'pdf'
       const pdf = await page.pdf({
         format: 'A4',
         printBackground: true,
         preferCSSPageSize: true,
       })
+      console.log(`[api/cv] pdf generated (${elapsed()})`)
 
       return new Response(new Uint8Array(pdf), {
         headers: {
@@ -63,7 +102,7 @@ export async function GET(request: Request) {
       await browser.close()
     }
   } catch (error) {
-    console.error('[api/cv] PDF generation failed:', error)
-    return Response.json({ ok: false, error: 'PDF generation failed' }, { status: 500 })
+    console.error(`[api/cv] PDF generation failed at stage "${stage}" (${elapsed()}):`, error)
+    return Response.json({ ok: false, error: 'PDF generation failed', stage }, { status: 500 })
   }
 }
