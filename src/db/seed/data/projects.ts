@@ -5,6 +5,8 @@ export const projectsSeed: ProjectSeed[] = [
     slug: 'portfolio-cms',
     title: 'Portfolio CMS',
     label: 'live',
+    repoUrl: 'https://github.com/MaksymZak/portfolio-next-payload',
+    demoUrl: 'https://portfolio.maksymzak.dev/',
     role: {
       en: 'Solo Developer — Frontend & CMS Architecture',
       uk: 'Соло-розробник — Frontend та архітектура CMS',
@@ -55,6 +57,8 @@ export const projectsSeed: ProjectSeed[] = [
     slug: 'lms-platform',
     title: 'LMS Platform',
     label: 'live',
+    repoUrl: 'https://github.com/MaksymZak/lms-next-13',
+    demoUrl: 'https://lms-beta-rosy.vercel.app/',
     role: {
       en: 'Full-Stack Developer — Pet Project',
       uk: 'Full-Stack-розробник — пет-проєкт',
@@ -121,6 +125,8 @@ export const projectsSeed: ProjectSeed[] = [
     slug: 'ab-testing-lab',
     title: 'A/B Testing Lab',
     label: 'live',
+    repoUrl: 'https://github.com/MaksymZak/ab-landing-demo',
+    demoUrl: 'https://ab-landing-demo.vercel.app',
     role: {
       en: 'Frontend Developer — Sanitized Work Replica',
       uk: 'Frontend-розробник — знеособлена копія робочої системи',

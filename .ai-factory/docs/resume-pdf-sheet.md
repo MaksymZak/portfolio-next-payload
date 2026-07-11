@@ -71,10 +71,10 @@ If you change row heights or caps, keep the 1063px budget: rendered `#main-conte
 
 ## PDF generation environment
 
-- **Vercel (production):** `puppeteer-core` + `@sparticuz/chromium-min` with remote pack URL (`CHROMIUM_PACK_URL`, default matches package version). Pack downloads to `/tmp` on cold start. `serverExternalPackages` in `next.config.ts`. `maxDuration = 60`. Recommend 1536 MB+ function memory.
-- **Local dev:** standard Chrome install paths are auto-detected; `CHROME_EXECUTABLE_PATH` in `.env` is an optional override for non-standard installs only.
-- **Caching:** `Cache-Control: public, s-maxage=600, stale-while-revalidate=86400` — after a CMS edit the CDN copy refreshes within ~10 minutes.
-- Vercel preview deployments with Deployment Protection enabled will break the route (self-fetch hits the auth wall) — verify on production.
+- **Generation is local-only.** `/api/cv` renders the page in the locally installed Chrome (`puppeteer-core`, no bundled Chromium). Standard install paths are auto-detected; `CHROME_EXECUTABLE_PATH` in `.env` is an optional override for non-standard installs only.
+- **Vercel (production):** `/api/cv` returns 404 (`process.env.VERCEL` guard) — headless Chromium does not fit the Hobby plan. `outputFileTracingExcludes` in `next.config.ts` keeps `puppeteer-core` out of the traced serverless bundle; the route imports `launch-browser` dynamically so the excluded module is never loaded there.
+- **Production PDFs:** pre-generated and hosted on R2. Workflow: `bun run dev` → `bun run cv:generate` (writes `./cv-dist/`, prints wrangler upload commands) → upload to R2 → set `NEXT_PUBLIC_CV_URL_EN` / `NEXT_PUBLIC_CV_URL_UK` in Vercel. When set, the SAVE PDF button is a plain download link. **Re-run this after every meaningful CMS content edit — the hosted PDFs do not auto-update.**
+- **Caching (local route only):** `Cache-Control: public, s-maxage=600, stale-while-revalidate=86400`.
 
 ## Verification routine
 

@@ -1,11 +1,9 @@
 import { hasLocale } from 'next-intl'
 
 import { routing } from '@/i18n/routing'
-import { launchCvPdfBrowser } from '@/lib/cv-pdf/launch-browser'
 import { getSettings } from '@/server/repositories'
 import type { DataLocale } from '@/server/types'
 
-export const maxDuration = 60
 export const runtime = 'nodejs'
 
 const LOCALE_FILE_SUFFIX: Record<DataLocale, string> = {
@@ -24,6 +22,16 @@ function buildFileName(name: string, locale: DataLocale): string {
 }
 
 export async function GET(request: Request) {
+  // PDF generation is local-only: production serves pre-generated files from R2
+  // (NEXT_PUBLIC_CV_URL_EN / NEXT_PUBLIC_CV_URL_UK). Headless Chromium does not
+  // fit the Vercel Hobby plan, so this route is a stub there.
+  if (process.env.VERCEL) {
+    return Response.json(
+      { ok: false, error: 'On-demand PDF generation is disabled on Vercel' },
+      { status: 404 },
+    )
+  }
+
   const { origin, searchParams } = new URL(request.url)
   const locale = searchParams.get('locale') ?? routing.defaultLocale
 
@@ -31,8 +39,8 @@ export async function GET(request: Request) {
     return Response.json({ ok: false, error: 'Invalid locale' }, { status: 400 })
   }
 
-  // `stage` pins down where generation died — Vercel logs show it alongside
-  // the error, which beats a bare "PDF generation failed".
+  // `stage` pins down where generation died, which beats a bare
+  // "PDF generation failed" in the logs.
   let stage = 'settings'
   const startedAt = Date.now()
   const elapsed = () => `${Date.now() - startedAt}ms`
@@ -41,6 +49,9 @@ export async function GET(request: Request) {
     const settings = await getSettings(locale)
 
     stage = 'launch'
+    // Dynamic import keeps puppeteer-core out of the traced Vercel bundle —
+    // the guard above returns before this line ever runs there.
+    const { launchCvPdfBrowser } = await import('@/lib/cv-pdf/launch-browser')
     const browser = await launchCvPdfBrowser()
     console.log(`[api/cv] browser ready (${elapsed()})`)
 
@@ -48,29 +59,15 @@ export async function GET(request: Request) {
       const page = await browser.newPage()
       await page.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: 'light' }])
 
-      // Preview deployments (and production with Vercel Authentication enabled)
-      // wall off the self-fetch below. The bypass secret lives in
-      // Settings → Deployment Protection → Protection Bypass for Automation.
-      const bypassSecret = process.env.VERCEL_AUTOMATION_BYPASS_SECRET
-      if (bypassSecret) {
-        await page.setExtraHTTPHeaders({
-          'x-vercel-protection-bypass': bypassSecret,
-          'x-vercel-set-bypass-cookie': 'true',
-        })
-      }
-
       stage = 'navigate'
-      // `load` instead of `networkidle0`: prefetches/analytics keep sockets
-      // open on Vercel and networkidle0 never fires, timing the function out.
+      // `load` instead of `networkidle0`: prefetches keep sockets open and
+      // networkidle0 may never fire.
       const response = await page.goto(`${origin}/${locale}/resume`, {
         waitUntil: 'load',
         timeout: 30_000,
       })
       if (!response || !response.ok()) {
-        throw new Error(
-          `Resume page responded ${response?.status() ?? 'without a response'} — ` +
-            'if this is 401/403, enable Protection Bypass for Automation and set VERCEL_AUTOMATION_BYPASS_SECRET',
-        )
+        throw new Error(`Resume page responded ${response?.status() ?? 'without a response'}`)
       }
 
       stage = 'render'

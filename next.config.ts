@@ -14,9 +14,12 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ['lucide-react'],
   },
-  serverExternalPackages: ['@sparticuz/chromium-min', 'puppeteer-core', 'tar-fs', 'tar-stream'],
-  outputFileTracingIncludes: {
-    '/api/cv': ['./node_modules/@sparticuz/chromium-min/**/*'],
+  serverExternalPackages: ['puppeteer-core'],
+  // PDF generation is local-only (see src/app/api/cv/route.ts): keep
+  // puppeteer-core out of the traced serverless bundle so Vercel deployments
+  // never ship any Chromium tooling.
+  outputFileTracingExcludes: {
+    '*': ['./node_modules/puppeteer-core/**/*'],
   },
   images: {
     localPatterns: [
