@@ -67,7 +67,34 @@ export function ArchiveTable({ items }: ArchiveTableProps) {
         availableCategories={availableCategories}
       />
 
-      <div className="w-full overflow-x-auto border border-border bg-surface">
+      {/* Mobile: each entry as a stacked card */}
+      <ul className="divide-y divide-border border border-border bg-surface md:hidden">
+        {filteredItems.length > 0 ? (
+          filteredItems.map((item, index) => (
+            <li key={item.id} className="space-y-3 p-4">
+              <div className="flex items-center justify-between font-mono text-[10px] font-bold text-muted-foreground">
+                <span>{t('arcId', { id: String(index + 1).padStart(2, '0') })}</span>
+                <span>{item.year}</span>
+              </div>
+              <div>
+                <ItemTitle item={item} />
+                <div className="mt-1.5 font-sans text-xs leading-relaxed font-medium text-muted-foreground">
+                  {item.role}
+                </div>
+              </div>
+              <ItemBadges item={item} />
+              <ItemStack item={item} />
+            </li>
+          ))
+        ) : (
+          <li className="p-12 text-center font-mono text-xs tracking-widest text-muted-foreground uppercase">
+            {t('noResults')}
+          </li>
+        )}
+      </ul>
+
+      {/* Desktop: full ledger table */}
+      <div className="hidden w-full overflow-x-auto border border-border bg-surface md:block">
         <table className="w-full border-collapse text-left font-mono text-sm">
           <caption className="sr-only">{tA11y('tableCaption')}</caption>
           <thead>
@@ -80,76 +107,28 @@ export function ArchiveTable({ items }: ArchiveTableProps) {
           </thead>
           <tbody className="divide-y divide-border">
             {filteredItems.length > 0 ? (
-              filteredItems.map((item, index) => {
-                const stack = item.stack ?? []
-                const externalUrl = resolveExternalUrl(item.url, {
-                  context: `archive:${item.title}`,
-                })
-
-                return (
-                  <tr key={item.id}>
-                    <td className="border-r border-border p-4 align-top font-mono text-[10px] font-bold whitespace-nowrap text-muted-foreground">
-                      {t('arcId', { id: String(index + 1).padStart(2, '0') })}
-                    </td>
-                    <td className="max-w-sm border-r border-border p-4 align-top">
-                      <div className="mb-1.5 flex items-start gap-2">
-                        {externalUrl ? (
-                          <a
-                            href={externalUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="group/link inline-flex items-start gap-1.5 font-sans text-sm leading-snug font-extrabold text-foreground motion-safe:transition-colors hover:text-primary"
-                            aria-label={tA11y('externalLink', {
-                              label: item.title,
-                              hint: tA11y('opensInNewTab'),
-                            })}
-                          >
-                            <span>{item.title}</span>
-                            <ArrowUpRight
-                              size={12}
-                              className="mt-0.5 shrink-0 text-muted-foreground motion-safe:transition-transform motion-safe:group-hover/link:-translate-y-0.5 motion-safe:group-hover/link:translate-x-0.5 motion-safe:group-hover/link:text-primary"
-                              aria-hidden
-                            />
-                          </a>
-                        ) : (
-                          <div className="font-sans text-sm leading-snug font-extrabold text-foreground">
-                            {item.title}
-                          </div>
-                        )}
-                      </div>
-                      <div className="mb-3 font-sans text-xs leading-relaxed font-medium text-muted-foreground">
-                        {item.role}
-                      </div>
-                      <div className="flex flex-wrap gap-2">
-                        <Badge variant="surface" size="sm">
-                          {t(`categories.${item.category}`)}
-                        </Badge>
-                        {item.metric ? (
-                          <Badge variant="accent" size="sm" className="italic">
-                            {item.metric}
-                          </Badge>
-                        ) : null}
-                      </div>
-                    </td>
-                    <td className="border-r border-border p-4 align-top">
-                      <div className="flex flex-wrap gap-1.5">
-                        {stack.map((entry, stackIndex) => (
-                          <Badge
-                            key={entry.id ?? `${item.id}-stack-${stackIndex}`}
-                            variant="surface"
-                            size="sm"
-                          >
-                            {entry.name}
-                          </Badge>
-                        ))}
-                      </div>
-                    </td>
-                    <td className="p-4 text-right align-top font-mono text-[10px] font-semibold text-muted-foreground">
-                      {item.year}
-                    </td>
-                  </tr>
-                )
-              })
+              filteredItems.map((item, index) => (
+                <tr key={item.id}>
+                  <td className="border-r border-border p-4 align-top font-mono text-[10px] font-bold whitespace-nowrap text-muted-foreground">
+                    {t('arcId', { id: String(index + 1).padStart(2, '0') })}
+                  </td>
+                  <td className="max-w-sm border-r border-border p-4 align-top">
+                    <div className="mb-1.5 flex items-start gap-2">
+                      <ItemTitle item={item} />
+                    </div>
+                    <div className="mb-3 font-sans text-xs leading-relaxed font-medium text-muted-foreground">
+                      {item.role}
+                    </div>
+                    <ItemBadges item={item} />
+                  </td>
+                  <td className="border-r border-border p-4 align-top">
+                    <ItemStack item={item} />
+                  </td>
+                  <td className="p-4 text-right align-top font-mono text-[10px] font-semibold text-muted-foreground">
+                    {item.year}
+                  </td>
+                </tr>
+              ))
             ) : (
               <tr>
                 <td
@@ -163,6 +142,72 @@ export function ArchiveTable({ items }: ArchiveTableProps) {
           </tbody>
         </table>
       </div>
+    </div>
+  )
+}
+
+function ItemTitle({ item }: { item: Archive }) {
+  const tA11y = useTranslations('a11y')
+  const externalUrl = resolveExternalUrl(item.url, {
+    context: `archive:${item.title}`,
+  })
+
+  if (!externalUrl) {
+    return (
+      <div className="font-sans text-sm leading-snug font-extrabold text-foreground">
+        {item.title}
+      </div>
+    )
+  }
+
+  return (
+    <a
+      href={externalUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group/link inline-flex items-start gap-1.5 font-sans text-sm leading-snug font-extrabold text-foreground motion-safe:transition-colors hover:text-primary"
+      aria-label={tA11y('externalLink', {
+        label: item.title,
+        hint: tA11y('opensInNewTab'),
+      })}
+    >
+      <span>{item.title}</span>
+      <ArrowUpRight
+        size={12}
+        className="mt-0.5 shrink-0 text-muted-foreground motion-safe:transition-transform motion-safe:group-hover/link:-translate-y-0.5 motion-safe:group-hover/link:translate-x-0.5 motion-safe:group-hover/link:text-primary"
+        aria-hidden
+      />
+    </a>
+  )
+}
+
+function ItemBadges({ item }: { item: Archive }) {
+  const t = useTranslations('archive')
+
+  return (
+    <div className="flex flex-wrap gap-2">
+      <Badge variant="surface" size="sm">
+        {t(`categories.${item.category}`)}
+      </Badge>
+      {item.metric ? (
+        <Badge variant="accent" size="sm" className="italic">
+          {item.metric}
+        </Badge>
+      ) : null}
+    </div>
+  )
+}
+
+function ItemStack({ item }: { item: Archive }) {
+  const stack = item.stack ?? []
+
+  return (
+    <div className="flex flex-wrap gap-1.5">
+      {stack.map((entry, stackIndex) => (
+        <Badge key={entry.id ?? `${item.id}-stack-${stackIndex}`} variant="surface" size="sm">
+          {entry.name}
+        </Badge>
+      ))}
     </div>
   )
 }

@@ -19,7 +19,7 @@ export const homeData: Record<
     hero: {
       badge: 'PROFILE / FRONTEND DEVELOPER',
       headline:
-        'I build high-performance landing systems and CMS-driven frontends that survive real marketing traffic.',
+        'I build landing systems and CMS-driven frontends that ship fast and load faster.',
       copy: 'Production landing pages, A/B test variants, and bilingual content platforms — built and supported for marketing teams that ship weekly. Focus stack: Next.js, Astro, Payload CMS, TypeScript.',
     },
     proof: {
@@ -37,7 +37,7 @@ export const homeData: Record<
     hero: {
       badge: 'ПРОФІЛЬ / FRONTEND-РОЗРОБНИК',
       headline:
-        'Створюю швидкі лендинг-системи та CMS-фронтенди, що витримують реальний маркетинговий трафік.',
+        'Створюю лендинг-системи та CMS-фронтенди, які релізяться швидко, а завантажуються ще швидше.',
       copy: 'Продакшн-лендинги, A/B-варіанти та двомовні контентні платформи — розробка й підтримка для маркетинг-команд, які релізять щотижня. Основний стек: Next.js, Astro, Payload CMS, TypeScript.',
     },
     proof: {

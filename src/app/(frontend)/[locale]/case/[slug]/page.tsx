@@ -6,6 +6,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { notFound } from 'next/navigation'
 
 import { buildCaseSections } from '@/components/case/build-sections'
+import { CaseDrawer } from '@/components/case/case-drawer'
 import { CaseIndexNav } from '@/components/case/index-nav'
 import { CaseSection } from '@/components/case/section'
 import { Badge } from '@/components/ui/badge'
@@ -140,13 +141,14 @@ export default async function CasePage({ params }: CasePageProps) {
           </div>
 
           <div className="flex items-center gap-4">
-            <span className="flex items-center gap-1 font-bold text-muted-foreground uppercase">
+            <span className="hidden items-center gap-1 font-bold text-muted-foreground uppercase sm:flex">
               <Clock size={11} className="text-muted-foreground" aria-hidden />
               <KyivClock suffix={tLabels('timeZoneRegion')} />
             </span>
             <span className="hidden rounded-none border border-border bg-surface-muted px-2 py-0.5 text-[9px] font-bold text-muted-foreground uppercase md:inline">
               {tCase('verified')}
             </span>
+            <CaseDrawer items={indexItems} indexTitle={tCase('indexTitle')} className="xl:hidden" />
           </div>
         </header>
       </div>

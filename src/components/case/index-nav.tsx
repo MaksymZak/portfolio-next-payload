@@ -61,10 +61,10 @@ export function CaseIndexNav({ items, indexTitle }: CaseIndexNavProps) {
 
   return (
     <nav
-      className="space-y-6 border-b border-border bg-surface p-6 xl:sticky xl:top-[43px] xl:h-[calc(100vh-43px)] xl:w-[32%] xl:overflow-y-auto xl:border-r xl:border-b-0 xl:p-8"
+      className="hidden border-b border-border bg-surface p-6 xl:sticky xl:top-[43px] xl:block xl:h-[calc(100vh-43px)] xl:w-[32%] xl:space-y-6 xl:overflow-y-auto xl:border-r xl:border-b-0 xl:p-8"
       aria-label={indexTitle}
     >
-      <div className="space-y-4 border border-border bg-surface-muted p-3">
+      <div className="hidden space-y-4 border border-border bg-surface-muted p-3 xl:block">
         <LocaleSwitcher showSection />
         <ThemeSwitcher showSection />
       </div>
