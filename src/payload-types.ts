@@ -226,6 +226,14 @@ export interface Archive {
   id: number;
   _order?: string | null;
   title: string;
+  /**
+   * Show this entry in the home archive section.
+   */
+  featured?: boolean | null;
+  /**
+   * Position in the home archive section (lower first).
+   */
+  featuredOrder?: number | null;
   role: string;
   stack?:
     | {
@@ -470,6 +478,8 @@ export interface ExperienceSelect<T extends boolean = true> {
 export interface ArchiveSelect<T extends boolean = true> {
   _order?: T;
   title?: T;
+  featured?: T;
+  featuredOrder?: T;
   role?: T;
   stack?:
     | T

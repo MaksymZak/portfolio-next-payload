@@ -9,7 +9,7 @@ export const Archive: CollectionConfig = {
   hooks: archiveRevalidateHooks,
   admin: {
     useAsTitle: 'title',
-    defaultColumns: ['title', 'category', 'year'],
+    defaultColumns: ['title', 'featured', 'category', 'year'],
   },
   access: {
     read: () => true,
@@ -19,6 +19,24 @@ export const Archive: CollectionConfig = {
       name: 'title',
       type: 'text',
       required: true,
+    },
+    {
+      name: 'featured',
+      type: 'checkbox',
+      defaultValue: false,
+      admin: {
+        position: 'sidebar',
+        description: 'Show this entry in the home archive section.',
+      },
+    },
+    {
+      name: 'featuredOrder',
+      type: 'number',
+      admin: {
+        position: 'sidebar',
+        condition: (data) => Boolean(data?.featured),
+        description: 'Position in the home archive section (lower first).',
+      },
     },
     {
       name: 'role',

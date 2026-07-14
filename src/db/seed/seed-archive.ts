@@ -45,6 +45,8 @@ export async function seedArchive(payload: Payload) {
       year: item.year,
       category: item.category,
       url: item.url,
+      featured: item.featured ?? false,
+      featuredOrder: item.featuredOrder,
       _order: orderKeys[index],
     }
 

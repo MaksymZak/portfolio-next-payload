@@ -8,6 +8,10 @@ export type ArchiveSeed = {
   category: 'landing' | 'platform' | 'campaign' | 'prototype'
   metric?: Record<Locale, string>
   url?: string
+  /** When true, shown in the home archive section. */
+  featured?: boolean
+  /** Position in the home archive section (lower first). */
+  featuredOrder?: number
   /** Seed-only display order; mapped to Payload `_order` on create. */
   order: number
 }

@@ -1,59 +1,52 @@
 'use client'
 
-import { FileText } from 'lucide-react'
+import { Download } from 'lucide-react'
 import { useLocale, useTranslations } from 'next-intl'
 import { useState } from 'react'
 
 import { Button, linkControlVariants } from '@/components/ui/button'
 import { cn } from '@/lib/cn'
 
-export type DownloadCvButtonProps = {
-  className?: string
+type CvLocale = 'en' | 'uk'
+
+const CV_LABELS: Record<CvLocale, string> = {
+  en: 'EN',
+  uk: 'UA',
 }
 
 // Pre-generated PDFs hosted on R2 (see scripts/generate-cv.ts). When the URL
-// for the current locale is set, the button is a plain download link and the
-// serverless generation route is never called — required on the Vercel Hobby
-// plan, where headless Chromium exceeds the 1024 MB function memory limit.
-const STATIC_CV_URLS: Record<string, string | undefined> = {
+// for a locale is set, its control is a plain download link and the serverless
+// generation route is never called — required on the Vercel Hobby plan, where
+// headless Chromium exceeds the 1024 MB function memory limit.
+const STATIC_CV_URLS: Record<CvLocale, string | undefined> = {
   en: process.env.NEXT_PUBLIC_CV_URL_EN,
   uk: process.env.NEXT_PUBLIC_CV_URL_UK,
+}
+
+export type DownloadCvButtonProps = {
+  className?: string
 }
 
 export function DownloadCvButton({ className }: DownloadCvButtonProps) {
   const tActions = useTranslations('actions')
   const locale = useLocale()
-  const [isGenerating, setIsGenerating] = useState(false)
+  const [generating, setGenerating] = useState<CvLocale | null>(null)
 
-  const staticUrl = STATIC_CV_URLS[locale]?.trim()
+  // Both CV languages are always offered; the site language only picks which
+  // one comes first.
+  const cvLocales: CvLocale[] = locale === 'uk' ? ['uk', 'en'] : ['en', 'uk']
 
-  if (staticUrl) {
-    return (
-      <a
-        href={staticUrl}
-        className={cn(
-          linkControlVariants({ variant: 'secondary' }),
-          'print:hidden',
-          className,
-        )}
-      >
-        <FileText size={11} aria-hidden />
-        {tActions('savePdf')}
-      </a>
-    )
-  }
-
-  const handleDownload = async () => {
-    if (isGenerating) return
-    setIsGenerating(true)
+  const handleDownload = async (target: CvLocale) => {
+    if (generating) return
+    setGenerating(target)
 
     try {
-      const response = await fetch(`/api/cv?locale=${locale}`)
+      const response = await fetch(`/api/cv?locale=${target}`)
       if (!response.ok) throw new Error(`PDF request failed: ${response.status}`)
 
       const disposition = response.headers.get('Content-Disposition')
       const fileName =
-        disposition?.match(/filename="([^"]+)"/)?.[1] ?? `CV_${locale.toUpperCase()}.pdf`
+        disposition?.match(/filename="([^"]+)"/)?.[1] ?? `CV_${target.toUpperCase()}.pdf`
 
       const url = URL.createObjectURL(await response.blob())
       const anchor = document.createElement('a')
@@ -62,29 +55,67 @@ export function DownloadCvButton({ className }: DownloadCvButtonProps) {
       anchor.click()
       URL.revokeObjectURL(url)
     } catch {
-      // Server-side generation unavailable — fall back to the browser print
-      // dialog with the same `sheet:` document styles the PDF route uses.
-      document.body.setAttribute('data-sheet', '')
-      try {
-        window.print()
-      } finally {
-        document.body.removeAttribute('data-sheet')
+      // Server-side generation unavailable — the browser print dialog can only
+      // capture the page in its current language, so this fallback is limited
+      // to the active locale.
+      if (target === locale) {
+        document.body.setAttribute('data-sheet', '')
+        try {
+          window.print()
+        } finally {
+          document.body.removeAttribute('data-sheet')
+        }
       }
     } finally {
-      setIsGenerating(false)
+      setGenerating(null)
     }
   }
 
   return (
-    <Button
-      type="button"
-      variant="secondary"
-      className={cn('print:hidden', className)}
-      onClick={handleDownload}
-      disabled={isGenerating}
-    >
-      <FileText size={11} aria-hidden />
-      {tActions(isGenerating ? 'generatingPdf' : 'savePdf')}
-    </Button>
+    <div className={cn('flex items-center gap-2 print:hidden', className)}>
+      {/* Caption carries the verb; hidden on narrow screens (≤320px budget),
+          where the download icon on each button communicates the action. */}
+      <span
+        aria-hidden
+        className="hidden font-mono text-[10px] font-bold text-muted-foreground sm:inline"
+      >
+        {tActions('savePdf')}
+      </span>
+      {cvLocales.map((target) => {
+        const staticUrl = STATIC_CV_URLS[target]?.trim()
+        const label = CV_LABELS[target]
+        const ariaLabel = `${tActions('savePdf')} ${label}`
+
+        if (staticUrl) {
+          return (
+            <a
+              key={target}
+              href={staticUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={ariaLabel}
+              className={linkControlVariants({ variant: 'secondary' })}
+            >
+              <Download size={11} aria-hidden />
+              {label}
+            </a>
+          )
+        }
+
+        return (
+          <Button
+            key={target}
+            type="button"
+            variant="secondary"
+            aria-label={ariaLabel}
+            onClick={() => handleDownload(target)}
+            disabled={generating !== null}
+          >
+            <Download size={11} aria-hidden />
+            {generating === target ? tActions('generatingPdf') : label}
+          </Button>
+        )
+      })}
+    </div>
   )
 }

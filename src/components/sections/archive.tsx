@@ -10,8 +10,6 @@ import { resolveExternalUrl } from '@/lib/external-url'
 import { HOME_SECTION_SCROLL_MT } from '@/lib/home-scroll'
 import type { Archive } from '@/payload-types'
 
-const FEATURED_COUNT = 4
-
 type ArchiveSectionProps = {
   items: Archive[]
 }
@@ -82,7 +80,12 @@ export async function Archive({ items }: ArchiveSectionProps) {
   const tActions = await getTranslations('actions')
   const tArchive = await getTranslations('archive')
   const tA11y = await getTranslations('a11y')
-  const featured = items.slice(0, FEATURED_COUNT)
+  const featured = items
+    .filter((item) => item.featured)
+    .sort(
+      (a, b) =>
+        (a.featuredOrder ?? Number.MAX_SAFE_INTEGER) - (b.featuredOrder ?? Number.MAX_SAFE_INTEGER),
+    )
   const opensInNewTabHint = tA11y('opensInNewTab')
 
   return (
