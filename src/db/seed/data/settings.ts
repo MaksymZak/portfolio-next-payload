@@ -2,11 +2,6 @@ import type { Locale } from '../types'
 
 const contacts = [
   {
-    type: 'phone' as const,
-    label: '+38 (099) 432-20-85',
-    url: 'tel:+380994322085',
-  },
-  {
     type: 'mail' as const,
     label: 'me@maksymzak.dev',
     url: 'mailto:me@maksymzak.dev',
