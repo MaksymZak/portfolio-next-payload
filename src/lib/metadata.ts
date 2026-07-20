@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import { env } from '@/config/env'
 import { routing } from '@/i18n/routing'
 
-const DEFAULT_OG_IMAGE_PATH = '/og-default.svg'
+const DEFAULT_OG_IMAGE_PATH = '/og-default.png'
 const FAVICON_PATH = '/favicon.svg'
 const APPLE_ICON_PATH = '/apple-touch-icon.svg'
 

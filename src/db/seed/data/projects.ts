@@ -8,8 +8,8 @@ export const projectsSeed: ProjectSeed[] = [
     repoUrl: 'https://github.com/MaksymZak/portfolio-next-payload',
     demoUrl: 'https://portfolio.maksymzak.dev/',
     role: {
-      en: 'Solo Developer — Frontend & CMS Architecture',
-      uk: 'Соло-розробник — Frontend та архітектура CMS',
+      en: 'Solo Developer — Frontend, CMS & Backend Architecture',
+      uk: 'Соло-розробник — Frontend, CMS та архітектура бекенду',
     },
     period: { en: 'Q1–Q2 2026', uk: 'Q1–Q2 2026' },
     summary: {
@@ -51,7 +51,7 @@ export const projectsSeed: ProjectSeed[] = [
       en: 'Strict layering: RSC pages read only from cached repositories, all CMS access goes through a single Payload Local API entry point, and client components receive data as props. Four brutalist themes on Tailwind CSS 4 design tokens with full reduced-motion support.',
       uk: 'Строга шаруватість: RSC-сторінки читають лише з кешованих репозиторіїв, увесь доступ до CMS іде через єдину точку входу Payload Local API, а клієнтські компоненти отримують дані як пропси. Чотири бруталістські теми на дизайн-токенах Tailwind CSS 4 з повною підтримкою reduced motion.',
     },
-    order: 1,
+    order: 2,
   },
   {
     slug: 'lms-platform',
@@ -65,8 +65,8 @@ export const projectsSeed: ProjectSeed[] = [
     },
     period: { en: '2025–2026', uk: '2025–2026' },
     summary: {
-      en: 'A full-stack Learning Management System on Next.js 14 App Router. Teachers build courses with rich-text descriptions, video chapters, and attachments; students browse the catalog, enroll for free or via Stripe Checkout, watch videos, and track chapter progress on a personal dashboard.',
-      uk: 'Full-stack платформа управління навчанням на Next.js 14 App Router. Викладачі створюють курси з rich-text описами, відеорозділами та вкладеннями; студенти переглядають каталог, записуються безкоштовно або через Stripe Checkout, дивляться відео та відстежують прогрес розділів на особистому дашборді.',
+      en: 'End-to-end ownership: data model, auth, payments, video streaming, and UI — all designed and shipped solo. A full-stack Learning Management System on Next.js 14 App Router. Teachers build courses with rich-text descriptions, video chapters, and attachments; students browse the catalog, enroll for free or via Stripe Checkout, watch videos, and track chapter progress on a personal dashboard.',
+      uk: 'Наскрізна відповідальність: модель даних, авторизація, платежі, відеострімінг та UI — усе спроєктовано і реалізовано самостійно. Full-stack платформа управління навчанням на Next.js 14 App Router. Викладачі створюють курси з rich-text описами, відеорозділами та вкладеннями; студенти переглядають каталог, записуються безкоштовно або через Stripe Checkout, дивляться відео та відстежують прогрес розділів на особистому дашборді.',
     },
     highlights: {
       en: [
@@ -119,7 +119,7 @@ export const projectsSeed: ProjectSeed[] = [
       en: 'Mutations go through route handlers with client-side revalidation via router.refresh() — a deliberate choice over Server Actions. Optimistic cookie-based auth check in middleware keeps every route private except auth and webhook endpoints. An idempotent seed provisions demo teacher and student accounts with courses, purchases, and progress in one command.',
       uk: 'Мутації йдуть через route handlers із клієнтською ревалідацією через router.refresh() — свідомий вибір замість Server Actions. Оптимістична перевірка cookie в middleware тримає всі маршрути приватними, крім автентифікації та webhook. Ідемпотентний seed розгортає демо-акаунти викладача і студента з курсами, покупками та прогресом однією командою.',
     },
-    order: 2,
+    order: 1,
   },
   {
     slug: 'ab-testing-lab',

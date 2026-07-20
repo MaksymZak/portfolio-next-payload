@@ -17,10 +17,10 @@ export const homeData: Record<
 > = {
   en: {
     hero: {
-      badge: 'PROFILE / FRONTEND DEVELOPER',
+      badge: 'PROFILE / FRONTEND · FULLSTACK',
       headline:
-        'I build landing systems and CMS-driven frontends that ship fast and load faster.',
-      copy: 'Production landing pages, A/B test variants, and bilingual content platforms — built and supported for marketing teams that ship weekly. Focus stack: Next.js, Astro, Payload CMS, TypeScript.',
+        'I build landing systems and CMS-driven products that ship fast and load faster — from pixel to database.',
+      copy: 'Production landing pages, A/B test variants, and bilingual content platforms — built and supported for marketing teams that ship weekly. Frontend-first, comfortable owning the backend: Stripe payments, auth, PostgreSQL/Prisma, and CMS backends shipped in production-grade projects. Focus stack: Next.js, Astro, Payload CMS, TypeScript, Node.js.',
     },
     proof: {
       years: '4+ Years',
@@ -35,10 +35,10 @@ export const homeData: Record<
   },
   uk: {
     hero: {
-      badge: 'ПРОФІЛЬ / FRONTEND-РОЗРОБНИК',
+      badge: 'ПРОФІЛЬ / FRONTEND · FULLSTACK',
       headline:
-        'Створюю лендинг-системи та CMS-фронтенди, які релізяться швидко, а завантажуються ще швидше.',
-      copy: 'Продакшн-лендинги, A/B-варіанти та двомовні контентні платформи — розробка й підтримка для маркетинг-команд, які релізять щотижня. Основний стек: Next.js, Astro, Payload CMS, TypeScript.',
+        'Я створюю лендинг-системи та CMS-продукти, що швидко деплояться і ще швидше вантажаться — від пікселя до бази даних.',
+      copy: 'Продакшн-лендинги, A/B-варіанти та двомовні контент-платформи для маркетинг-команд, що релізять щотижня. Frontend-перш за все, але впевнено закриваю бекенд: Stripe-платежі, авторизація, PostgreSQL/Prisma та CMS-бекенди у production-проєктах. Стек: Next.js, Astro, Payload CMS, TypeScript, Node.js.',
     },
     proof: {
       years: '4+ роки',
