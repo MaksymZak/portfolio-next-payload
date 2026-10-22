@@ -12,7 +12,7 @@ export const resumeData: Record<
 > = {
   en: {
     about: {
-      text: 'Frontend Developer with 4+ years of commercial experience: 300+ landing pages built and shipped, production A/B testing, and CMS-driven content platforms on React, Next.js, Astro, and Payload CMS. Comfortable across the stack when needed — Node.js, Express, PostgreSQL, MongoDB. Looking for a team where frontend quality and delivery speed matter.',
+      text: "Full-stack developer with a strong frontend core and 4+ years in production. I build and run marketing platforms on Next.js, Astro, and Payload CMS: 300+ landing pages, A/B testing with conversion analytics, and bilingual content that editors publish without a developer. On the backend: Node.js, PostgreSQL, auth, Stripe, CRM and MCP integrations. I set up the team's agent workflow in Claude Code, Cursor, and Codex; architecture, code review, and the final call on what ships stay with me.",
     },
     education: [
       {
@@ -28,21 +28,15 @@ export const resumeData: Record<
         level: 'Pre-Intermediate — reads technical documentation fluently',
       },
     ],
-    softSkills: [
-      { text: 'Problem-solving' },
-      { text: 'Teamwork' },
-      { text: 'Communication' },
-      { text: 'Time management' },
-      { text: 'Adaptability' },
-    ],
+    softSkills: [],
     portfolioNote: {
       title: 'Portfolio',
-      text: '300+ landing pages built and shipped. A curated selection with live links is in the archive ledger on this site.',
+      text: 'Full-stack cases: Vartovi (OAuth + MCP) and LMS (Stripe, video). 300+ live landings in the archive.',
     },
   },
   uk: {
     about: {
-      text: 'Frontend-розробник із 4+ роками комерційного досвіду: 300+ лендингів створено та запущено, A/B-тестування в продакшені, контентні платформи на React, Next.js, Astro та Payload CMS. За потреби впевнено працюю по всьому стеку — Node.js, Express, PostgreSQL, MongoDB. Шукаю команду, де важливі якість фронтенду та швидкість доставки.',
+      text: "Full-stack розробник із сильним фронтендом і 4+ роками в продакшені. Будую та підтримую маркетингові платформи на Next.js, Astro і Payload CMS: 300+ лендингів, A/B-тести з аналітикою конверсій і двомовний контент, який редактори публікують без розробника. На бекенді — Node.js, PostgreSQL, авторизація, Stripe, CRM- та MCP-інтеграції. Налаштовую агентний воркфлоу команди в Claude Code, Cursor і Codex; архітектура, код-рев'ю й останнє слово щодо релізу — за мною.",
     },
     education: [
       {
@@ -58,16 +52,10 @@ export const resumeData: Record<
         level: 'Pre-Intermediate — вільно читаю технічну документацію',
       },
     ],
-    softSkills: [
-      { text: 'Вирішення проблем' },
-      { text: 'Командна робота' },
-      { text: 'Комунікація' },
-      { text: 'Тайм-менеджмент' },
-      { text: 'Адаптивність' },
-    ],
+    softSkills: [],
     portfolioNote: {
       title: 'Портфоліо',
-      text: '300+ лендингів створено та запущено. Кураторська добірка з живими посиланнями — в архіві на цьому сайті.',
+      text: 'Full-stack кейси: Vartovi (OAuth + MCP) і LMS (Stripe, відео). 300+ живих лендингів — в архіві.',
     },
   },
 }

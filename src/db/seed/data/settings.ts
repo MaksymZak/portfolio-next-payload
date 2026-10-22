@@ -44,14 +44,14 @@ export const settingsData: Record<
 > = {
   en: {
     name: 'Maksym Zakaliuzhnyi',
-    position: 'Frontend / Fullstack Developer',
+    position: 'Full-Stack Developer',
     location: 'Sumy, Ukraine',
     availability: 'Remote',
     contacts,
   },
   uk: {
     name: 'Maksym Zakaliuzhnyi',
-    position: 'Frontend / Fullstack розробник',
+    position: 'Full-Stack розробник',
     location: 'Суми, Україна',
     availability: 'Віддалено',
     contacts,

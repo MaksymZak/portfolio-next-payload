@@ -17,6 +17,7 @@ import { Clock as KyivClock } from '@/components/layout/clock'
 import { Link } from '@/i18n/navigation'
 import { routing } from '@/i18n/routing'
 import { cn } from '@/lib/cn'
+import { projectDisplayTitle } from '@/lib/project-title'
 import { resolveMediaUrl } from '@/lib/media-url'
 import { buildPageMetadata, buildRoadmapCaseRobots } from '@/lib/metadata'
 import { getProject, getProjects, getSettings } from '@/server/repositories'
@@ -64,7 +65,7 @@ export async function generateMetadata({ params }: CasePageProps): Promise<Metad
 
   return buildPageMetadata({
     locale,
-    title: `${project.title} — ${settings.name}`,
+    title: `${projectDisplayTitle(project.slug, project.title, locale)} — ${settings.name}`,
     description: project.summary,
     path: `/case/${slug}`,
     siteName: settings.name,
@@ -168,7 +169,7 @@ export default async function CasePage({ params }: CasePageProps) {
                 {tCase('nodeStudy')}
               </div>
               <h1 className="text-3xl leading-none font-extrabold tracking-tight text-foreground lg:text-5xl xl:leading-[1.1]">
-                {project.title}
+                {projectDisplayTitle(slug, project.title, locale)}
               </h1>
               <p className="font-mono text-sm font-semibold text-muted-foreground">{project.summary}</p>
 

@@ -6,21 +6,21 @@ export const experienceData: Record<
 > = {
   en: [
     {
-      role: 'Frontend Developer',
+      role: 'Frontend / Full-Stack Developer',
       company: 'GoITeens, Ukraine',
       period: 'June 2024 — Present',
       bullets: [
         {
-          text: 'Build and maintain marketing landing pages at production scale on Next.js, Astro, Payload CMS, and Gulp.',
+          text: 'Build and run the campaign landing system on Next.js, Astro, and Payload CMS; editors publish bilingual pages without a developer.',
         },
         {
-          text: 'Implement A/B testing end-to-end: variant builds, traffic splits, and conversion analytics for paid campaigns.',
+          text: 'Built the A/B testing platform end to end: experiments in Payload CMS, atomic impression counters, first-touch analytics, CRM integration.',
         },
         {
-          text: 'Integrate Payload CMS so marketing editors publish content without developer involvement.',
+          text: "Set up the team's agent workflow: custom skills and subagents, plus a two-agent layout pipeline — mockup breakdown, review gate, build, semantics check.",
         },
         {
-          text: 'Mentor a junior developer: code review, task decomposition, onboarding.',
+          text: 'Mentor a junior developer: code review, task breakdown, onboarding.',
         },
       ],
       order: 1,
@@ -34,7 +34,7 @@ export const experienceData: Record<
           text: 'Delivered 150+ landing pages and CRM frontends with React and Gulp.',
         },
         {
-          text: 'Worked with designers and backend developers to keep UI pixel-accurate and consistent.',
+          text: 'Worked with designers and backend developers on pixel-accurate UI.',
         },
         {
           text: 'Improved performance and maintainability of long-running projects.',
@@ -45,21 +45,21 @@ export const experienceData: Record<
   ],
   uk: [
     {
-      role: 'Frontend Developer',
+      role: 'Frontend / Full-Stack Developer',
       company: 'GoITeens, Україна',
       period: 'Червень 2024 — дотепер',
       bullets: [
         {
-          text: 'Розробка та підтримка маркетингових лендингів у продакшн-масштабі на Next.js, Astro, Payload CMS та Gulp.',
+          text: 'Веду систему лендингів для рекламних кампаній на Next.js, Astro і Payload CMS; редактори публікують двомовні сторінки без розробника.',
         },
         {
-          text: 'Наскрізна реалізація A/B-тестування: збирання варіантів, розподіл трафіку та аналітика конверсій для платних кампаній.',
+          text: 'Побудував A/B-платформу наскрізно: експерименти в Payload CMS, атомарні лічильники показів, first-touch аналітика, інтеграція з CRM.',
         },
         {
-          text: 'Інтеграція Payload CMS, щоб маркетологи публікували контент без залучення розробника.',
+          text: "Налаштував агентний воркфлоу команди: власні skills і субагенти та пайплайн верстки з двох агентів — розбір макета, рев'ю, верстка, перевірка семантики.",
         },
         {
-          text: "Менторство junior-розробника: код-рев'ю, декомпозиція задач, онбординг.",
+          text: "Менторю junior-розробника: код-рев'ю, декомпозиція задач, онбординг.",
         },
       ],
       order: 1,
@@ -70,13 +70,13 @@ export const experienceData: Record<
       period: 'Липень 2022 — квітень 2024',
       bullets: [
         {
-          text: 'Створено та здано 150+ лендингів і CRM-фронтендів на React та Gulp.',
+          text: 'Створив і здав 150+ лендингів та CRM-фронтендів на React і Gulp.',
         },
         {
-          text: 'Співпраця з дизайнерами та бекенд-розробниками для піксель-точного й консистентного UI.',
+          text: 'Працював із дизайнерами та бекенд-розробниками над піксель-точним UI.',
         },
         {
-          text: 'Покращення продуктивності та підтримуваності довгострокових проєктів.',
+          text: 'Покращував продуктивність і підтримуваність довгострокових проєктів.',
         },
       ],
       order: 2,

@@ -1,11 +1,14 @@
 import type { LucideIcon } from 'lucide-react'
 import {
   Activity,
+  Bot,
   Code2,
   Cpu,
+  CreditCard,
   Database,
   Layers,
   Palette,
+  Plug,
   Shield,
   Sparkles,
   Terminal,
@@ -39,7 +42,14 @@ const SKILL_ICON_MAP: Record<string, LucideIcon> = {
   mongodb: Database,
   'mongoose & prisma orm': Layers,
   prisma: Layers,
+  'drizzle orm': Layers,
+  zod: Shield,
+  stripe: CreditCard,
   docker: Shield,
+  'claude code': Bot,
+  cursor: Bot,
+  codex: Bot,
+  mcp: Plug,
 }
 
 const warnedUnknownSkills = new Set<string>()

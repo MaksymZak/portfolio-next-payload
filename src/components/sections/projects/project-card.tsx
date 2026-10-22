@@ -1,7 +1,7 @@
 'use client'
 
 import { ArrowUpRight, BookOpen, Terminal } from 'lucide-react'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { useCallback, useState } from 'react'
 
 import { Badge } from '@/components/ui/badge'
@@ -12,6 +12,7 @@ import { MonoLabel } from '@/components/ui/mono-label'
 import { Link } from '@/i18n/navigation'
 import { brutalistCardSelected, brutalistLiftClasses } from '@/lib/brutalist-motion'
 import { cn } from '@/lib/cn'
+import { projectDisplayTitle } from '@/lib/project-title'
 import type { Project } from '@/payload-types'
 
 type ProjectCardActions = {
@@ -38,6 +39,7 @@ const projectCardShellMotion = brutalistLiftClasses('card', {
 })
 
 export function ProjectCard({ project, actions, isFlagship = false }: ProjectCardProps) {
+  const locale = useLocale()
   const t = useTranslations('projects')
   const tActions = useTranslations('actions')
   const [isExpanded, setIsExpanded] = useState(false)
@@ -88,7 +90,7 @@ export function ProjectCard({ project, actions, isFlagship = false }: ProjectCar
       <div className="space-y-4 p-5">
         <div className="border-b border-border pb-3">
           <h3 className="font-mono text-base font-extrabold tracking-tight text-foreground uppercase">
-            {project.title}
+            {projectDisplayTitle(project.slug, project.title, locale)}
           </h3>
           <p className="mt-1 font-mono text-[10px] text-muted-foreground uppercase">
             {t('role')}: {project.role}{' '}
