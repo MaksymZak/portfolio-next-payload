@@ -4,23 +4,27 @@ export const archiveSeed: ArchiveSeed[] = [
   {
     title: 'GoITeens Landing Registry',
     role: {
-      en: 'Live ledger of A/B-tested landing pages I build and support',
-      uk: 'Живий реєстр A/B-лендингів, які я створюю та підтримую',
+      en: 'Centralized Next.js + Payload CMS platform powering A/B-tested marketing funnels and bilingual editor publishing',
+      uk: 'Централізована платформа на Next.js + Payload CMS для A/B-воронок та двомовної публікації без розробника',
+    },
+    metric: {
+      en: 'CMS + A/B Engine',
+      uk: 'CMS + A/B-рушій',
     },
     stack: ['Next.js', 'Payload CMS'],
     year: '2024–2026',
     category: 'platform',
     url: 'https://lp.goiteens.com/landings-list',
     featured: true,
-    featuredOrder: 5,
+    featuredOrder: 1,
     order: 1,
   },
   // — Astro era · 2025–2026 —
   {
     title: 'NMT-2027 Prep',
     role: {
-      en: 'Exam-prep funnel for NMT-2027 — Astro landing with React islands and PHP form handling',
-      uk: 'Воронка підготовки до НМТ-2027 — Astro-лендінг із React-острівцями та обробкою форм на PHP',
+      en: 'Exam-prep funnel for NMT-2027 — Astro static shell with interactive React islands and PHP CRM lead handler',
+      uk: 'Воронка підготовки до НМТ-2027 — статичне ядро Astro з інтерактивними React-острівцями та PHP-інтеграцією CRM',
     },
     stack: ['Astro', 'Tailwind CSS', 'PHP', 'React'],
     year: '2026',
@@ -31,8 +35,8 @@ export const archiveSeed: ArchiveSeed[] = [
   {
     title: 'Kids Painting Course',
     role: {
-      en: 'Landing for the 12-month “paper to tablet” kids painting program — GSAP scroll animations',
-      uk: 'Лендінг 12-місячної програми малювання «від паперу до планшета» — скрол-анімації на GSAP',
+      en: '12-month “paper to tablet” kids painting funnel — custom GSAP scroll choreography and responsive media grid',
+      uk: 'Воронка 12-місячної програми малювання «від паперу до планшета» — скрол-хореографія на GSAP та адаптивна медіасітка',
     },
     stack: ['Astro', 'Tailwind CSS', 'GSAP'],
     year: '2025',
@@ -43,8 +47,8 @@ export const archiveSeed: ArchiveSeed[] = [
   {
     title: 'Blogger Quiz Funnel',
     role: {
-      en: 'Quiz funnel for blogger traffic — course matching with a free-month offer, animated with Motion',
-      uk: 'Квіз-воронка для трафіку від блогерів — підбір курсу з місяцем у подарунок, анімації на Motion',
+      en: 'Multi-step quiz funnel for influencer traffic — dynamic course matching logic and Motion state transitions',
+      uk: 'Багатокрокова квіз-воронка для інфлюенс-трафіку — логіка підбору курсу та анімовані переходи станів на Motion',
     },
     stack: ['Astro', 'Tailwind CSS', 'Motion'],
     year: '2026',
@@ -55,22 +59,26 @@ export const archiveSeed: ArchiveSeed[] = [
   {
     title: 'Fast Reading Course',
     role: {
-      en: 'Landing for a gamified speed-reading course — progress cards and GSAP micro-animations',
-      uk: 'Лендінг гейміфікованого курсу швидкочитання — картки прогресу та мікроанімації на GSAP',
+      en: 'Gamified speed-reading funnel — interactive progress cards and hardware-accelerated GSAP micro-interactions',
+      uk: 'Гейміфікована воронка курсу швидкочитання — інтерактивні картки прогресу та плавні мікроанімації на GSAP',
+    },
+    metric: {
+      en: 'Astro + GSAP Motion',
+      uk: 'Astro + GSAP-анімації',
     },
     stack: ['Astro', 'Tailwind CSS', 'GSAP'],
     year: '2025',
     category: 'landing',
     url: 'https://fast-reading.goiteens.com/',
     featured: true,
-    featuredOrder: 2,
+    featuredOrder: 3,
     order: 5,
   },
   {
     title: 'Admission Abroad',
     role: {
-      en: 'Landing for a two-month university-admission course — 8 modules, downloadable portfolio gallery',
-      uk: 'Лендінг 2-місячного курсу вступу за кордон — 8 модулів, галерея портфоліо для завантаження',
+      en: 'University-admission funnel — 8-module curriculum breakdown and downloadable student portfolio showcase',
+      uk: 'Воронка курсу вступу за кордон — 8-модульна програма та інтерактивна вітрина портфоліо для завантаження',
     },
     stack: ['Astro', 'Tailwind CSS'],
     year: '2025',
@@ -81,8 +89,8 @@ export const archiveSeed: ArchiveSeed[] = [
   {
     title: 'AI Mini-Course',
     role: {
-      en: 'Lead-magnet landing for a free AI mini-course for teens',
-      uk: 'Лід-магніт-лендінг безоплатного мінікурсу з AI для підлітків',
+      en: 'High-conversion lead-magnet funnel for a free teen AI mini-course with CRM lead capture',
+      uk: 'Висококонверсійна лід-магніт воронка безоплатного мінікурсу з AI для підлітків із передачею лідів у CRM',
     },
     stack: ['Astro', 'Tailwind CSS', 'GSAP'],
     year: '2025',
@@ -93,22 +101,26 @@ export const archiveSeed: ArchiveSeed[] = [
   {
     title: 'NMT-2026 Prep',
     role: {
-      en: 'Exam-prep landing with countdown urgency, video testimonials and a three-format pricing block',
-      uk: 'Лендінг підготовки до НМТ із таймером, відеовідгуками та блоком трьох форматів навчання',
+      en: 'High-traffic exam-prep funnel with countdown urgency, lazy-loaded video testimonials, and 3-tier pricing matrix',
+      uk: 'Високонавантажена воронка підготовки до НМТ із таймером, відкладеним завантаженням відеовідгуків і матрицею тарифів',
+    },
+    metric: {
+      en: 'High-Traffic Funnel',
+      uk: 'Високий трафік',
     },
     stack: ['Astro', 'Tailwind CSS'],
     year: '2025',
     category: 'landing',
     url: 'https://nmt.goiteens.com/nmt-2026/',
     featured: true,
-    featuredOrder: 3,
+    featuredOrder: 4,
     order: 8,
   },
   {
     title: 'Course Selection Hub',
     role: {
-      en: 'Personalized course-selection landing — video project carousels and quiz navigation on React islands',
-      uk: 'Лендінг персонального підбору курсів — каруселі відеопроєктів і квіз-навігація на React-острівцях',
+      en: 'Personalized course-matching hub — video project carousels and stateful quiz navigation on React islands',
+      uk: 'Хаб персонального підбору курсів — каруселі відеопроєктів і квіз-навігація зі стейтом на React-острівцях',
     },
     stack: ['Astro', 'Tailwind CSS', 'GSAP', 'React'],
     year: '2026',
@@ -119,22 +131,26 @@ export const archiveSeed: ArchiveSeed[] = [
   {
     title: 'Interior Design Course',
     role: {
-      en: 'Landing for a kids interior-design course — learning-progress timeline and portfolio gallery',
-      uk: 'Лендінг курсу дизайну інтер’єру для дітей — таймлайн прогресу та галерея портфоліо',
+      en: 'Kids interior-design course funnel — interactive learning timeline and student portfolio gallery on Astro + GSAP',
+      uk: 'Воронка курсу дизайну інтер’єру — інтерактивний таймлайн навчання та галерея портфоліо на Astro + GSAP',
+    },
+    metric: {
+      en: 'Interactive Timeline',
+      uk: 'Інтерактивний таймлайн',
     },
     stack: ['Astro', 'Tailwind CSS', 'GSAP'],
     year: '2026',
     category: 'landing',
     url: 'https://interior-design.goiteens.com/',
     featured: true,
-    featuredOrder: 4,
+    featuredOrder: 5,
     order: 10,
   },
   {
     title: 'Long Quiz Funnel',
     role: {
-      en: 'Extended quiz funnel over a 20+ course catalog with age-based filtering',
-      uk: 'Розширена квіз-воронка каталогом 20+ курсів із фільтрацією за віком',
+      en: 'Multi-step recommendation quiz over a 20+ course catalog with dynamic age-cohort filtering',
+      uk: 'Багатокроковий рекомендаційний квіз по каталогу 20+ курсів із динамічною фільтрацією за віком',
     },
     stack: ['Astro', 'Tailwind CSS'],
     year: '2026',
@@ -145,15 +161,19 @@ export const archiveSeed: ArchiveSeed[] = [
   {
     title: 'Painting: Three Tracks',
     role: {
-      en: 'Seasonal promo landing for three painting tracks — countdown timer and per-track student galleries',
-      uk: 'Сезонний промо-лендінг трьох напрямків малювання — таймер акції та галереї робіт по кожному напрямку',
+      en: 'Seasonal multi-track campaign — dynamic promo countdown and per-track student work galleries',
+      uk: 'Сезонна мультитрекова кампанія — динамічний таймер акції та окремі галереї робіт по кожному напрямку',
+    },
+    metric: {
+      en: 'Multi-Track Campaign',
+      uk: 'Мультитрекова кампанія',
     },
     stack: ['Astro', 'Tailwind CSS', 'GSAP'],
     year: '2026',
     category: 'campaign',
     url: 'https://painting.goiteens.com/three-courses/',
     featured: true,
-    featuredOrder: 1,
+    featuredOrder: 2,
     order: 12,
   },
   {

@@ -86,7 +86,7 @@
   "archive": {
     "sectionTag": "FULL LEDGER",
     "title": "COMMERCIAL ARCHIVE LEDGER",
-    "description": "A registry of commercial landing pages, single-page applications, and interactive campaigns — built with Astro, Next.js, and React for production marketing traffic.",
+    "description": "A production registry of CMS-driven platforms, interactive quiz funnels, and high-traffic commercial campaigns built with Next.js, Payload CMS, Astro, and React.",
     "searchPlaceholder": "Search records...",
     "categoryAll": "All",
     "filtersLabel": "Filter archive records",

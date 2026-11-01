@@ -8,48 +8,52 @@ export const projectsSeed: ProjectSeed[] = [
     repoUrl: 'https://github.com/MaksymZak/portfolio-next-payload',
     demoUrl: 'https://portfolio.maksymzak.dev/',
     role: {
-      en: 'Solo Developer — Frontend, CMS & Backend Architecture',
-      uk: 'Соло-розробник — Frontend, CMS та архітектура бекенду',
+      en: 'Solo Full-Stack Engineer — Next.js 16 & Payload CMS 3 Architecture',
+      uk: 'Соло Full-Stack-інженер — архітектура Next.js 16 та Payload CMS 3',
     },
     period: { en: 'Q1–Q2 2026', uk: 'Q1–Q2 2026' },
     summary: {
-      en: 'This site itself: a bilingual portfolio platform on Next.js 16 App Router with embedded Payload CMS 3. Every piece of content is editable in the admin panel and goes live without a redeploy.',
-      uk: 'Цей сайт: двомовна портфоліо-платформа на Next.js 16 App Router із вбудованим Payload CMS 3. Увесь контент редагується в адмін-панелі та оновлюється без редеплою.',
+      en: 'This platform: a bilingual engineering portfolio and embedded CMS monolith on Next.js 16 App Router and Payload CMS 3. Combines instant tag-based cache revalidation, a deterministic A4 PDF resume generator, and a custom 4-theme brutalist design system.',
+      uk: 'Ця платформа: двомовний інженерний портфоліо-моноліт на Next.js 16 App Router із вбудованою Payload CMS 3. Поєднує миттєву тегову інвалідацію кешу без редеплою, детермінований генератор односторінкового PDF-резюме формату A4 та власну бруталістську дизайн-систему на 4 теми.',
+    },
+    metrics: {
+      en: '2 LOCALES (EN/UK) // 4 DESIGN-TOKEN THEMES // 0-REBUILD CMS PUBLISH // PIXEL-EXACT A4 PDF ENGINE',
+      uk: '2 ЛОКАЛІ (EN/UK) // 4 ТЕМИ НА ТОКЕНАХ // ОНОВЛЕННЯ БЕЗ РЕБІЛДУ // ПОПІКСЕЛЬНИЙ A4 PDF-РУШІЙ',
     },
     highlights: {
       en: [
         {
-          text: 'Modeled the content schema in Payload CMS with field-level EN/UK localization — one document serves both locales.',
+          text: 'Modeled localized collections and globals in Payload CMS 3 with field-level EN/UK localization — editors manage both languages in a single document.',
         },
         {
-          text: 'Built a tagged cache layer: React.cache per request plus unstable_cache with revalidateTag fired from CMS hooks on publish.',
+          text: 'Engineered a two-tier caching architecture: per-request deduplication via React.cache paired with cross-request unstable_cache and granular revalidateTag hooks triggered on CMS publish.',
         },
         {
-          text: 'Case pages are statically generated via generateStaticParams and revalidate on content edits — no rebuilds.',
+          text: 'Built a single-source-of-truth A4 resume system: a custom Tailwind CSS 4 sheet: variant renders an on-screen A4 preview and drives headless Chromium PDF generation with an exact 1063px page budget.',
         },
         {
-          text: 'Wrote an idempotent bilingual seed script that provisions the entire database in one command.',
+          text: 'Crafted a custom Neo-Brutalist Swiss Grids design system with 4 themes (Light, Dark, Warm, High Contrast), standardized motion physics, and full WAI-ARIA / reduced-motion accessibility.',
         },
       ],
       uk: [
         {
-          text: 'Змодельовано контент-схему в Payload CMS з локалізацією на рівні полів EN/UK — один документ обслуговує обидві мови.',
+          text: 'Змодельовано колекції та глобальні сутності в Payload CMS 3 з локалізацією на рівні полів EN/UK — обидві мови редагуються в межах одного документа.',
         },
         {
-          text: 'Побудовано теговий шар кешування: React.cache на запит та unstable_cache із revalidateTag, який спрацьовує з хуків CMS при публікації.',
+          text: 'Побудовано дворівневу архітектуру кешування: дедуплікація запитів через React.cache плюс міжзапитовий unstable_cache із точковою інвалідацією через revalidateTag у хуках CMS.',
         },
         {
-          text: 'Сторінки кейсів генеруються статично через generateStaticParams і ревалідуються при редагуванні контенту — без ребілдів.',
+          text: "Створено єдину систему A4-резюме: кастомний варіант Tailwind CSS 4 (sheet:) одночасно керує інтерактивним прев'ю на сторінці та серверною генерацією PDF через Headless Chromium із точним бюджетом висоти 1063px.",
         },
         {
-          text: 'Написано ідемпотентний двомовний seed-скрипт, що розгортає всю базу однією командою.',
+          text: 'Розроблено власну дизайн-систему в стилі Neo-Brutalist Swiss Grids на 4 теми (Light, Dark, Warm, High Contrast) зі стандартизованою фізикою мікроанімацій і повною підтримкою доступності (WAI-ARIA, reduced motion).',
         },
       ],
     },
     stack: ['Next.js 16', 'Payload CMS 3', 'TypeScript', 'Tailwind CSS 4', 'PostgreSQL'],
     technicalDepth: {
-      en: 'Strict layering: RSC pages read only from cached repositories, all CMS access goes through a single Payload Local API entry point, and client components receive data as props. Four brutalist themes on Tailwind CSS 4 design tokens with full reduced-motion support.',
-      uk: 'Строга шаруватість: RSC-сторінки читають лише з кешованих репозиторіїв, увесь доступ до CMS іде через єдину точку входу Payload Local API, а клієнтські компоненти отримують дані як пропси. Чотири бруталістські теми на дизайн-токенах Tailwind CSS 4 з повною підтримкою reduced motion.',
+      en: 'Strict layered architecture: RSC pages and metadata builders read exclusively from typed server repositories, all database queries route through a single cached Payload Local API client, and client components receive minimal serialized props. Static case study routes are pre-rendered via generateStaticParams and updated on-demand via CMS hooks. An idempotent bilingual seed script provisions all collections, globals, and localized arrays in one command.',
+      uk: 'Строга шарувата архітектура: RSC-сторінки та генератори метаданих звертаються виключно до типізованих серверних репозиторіїв, усі запити до БД проходять через єдиний кешований клієнт Payload Local API, а клієнтські компоненти отримують мінімальні серіалізовані пропси. Сторінки кейсів пререндеряться через generateStaticParams і оновлюються на льоту через хуки CMS. Ідемпотентний двомовний seed-скрипт розгортає всі колекції та глобальні налаштування однією командою.',
     },
     order: 3,
   },
@@ -60,47 +64,51 @@ export const projectsSeed: ProjectSeed[] = [
     repoUrl: 'https://github.com/MaksymZak/lms-next-13',
     demoUrl: 'https://lms-beta-rosy.vercel.app/',
     role: {
-      en: 'Full-Stack Developer — Pet Project',
-      uk: 'Full-Stack-розробник — пет-проєкт',
+      en: 'Solo Full-Stack Developer — Self-Hosted Architecture',
+      uk: 'Соло Full-Stack-розробник — Self-Hosted архітектура',
     },
     period: { en: '2025–2026', uk: '2025–2026' },
     summary: {
-      en: 'End-to-end ownership: data model, auth, payments, video streaming, and UI — all designed and shipped solo. A full-stack Learning Management System on Next.js 14 App Router. Teachers build courses with rich-text descriptions, video chapters, and attachments; students browse the catalog, enroll for free or via Stripe Checkout, watch videos, and track chapter progress on a personal dashboard.',
-      uk: 'Наскрізна відповідальність: модель даних, авторизація, платежі, відеострімінг та UI — усе спроєктовано і реалізовано самостійно. Full-stack платформа управління навчанням на Next.js 14 App Router. Викладачі створюють курси з rich-text описами, відеорозділами та вкладеннями; студенти переглядають каталог, записуються безкоштовно або через Stripe Checkout, дивляться відео та відстежують прогрес розділів на особистому дашборді.',
+      en: 'A self-hosted full-stack Learning Management System with custom HTTP Range video streaming, Stripe Checkout fulfillment, and role-based course authoring. Engineered to run entirely on own infrastructure (PostgreSQL, Prisma, Better Auth, and pluggable local/R2 storage) with zero per-seat or per-minute SaaS vendor lock-in.',
+      uk: "Self-hosted full-stack платформа управління навчанням (LMS) із власним відеострімінгом через HTTP Range, оплатою через Stripe Checkout і конструктором курсів. Спроєктована для роботи повністю на власній інфраструктурі (PostgreSQL, Prisma, Better Auth та змінне локальне/R2 сховище) без прив'язки до дорогих SaaS-сервісів.",
+    },
+    metrics: {
+      en: '0 SAAS LOCK-IN (SELF-HOSTED AUTH & VIDEO) // HTTP 206 RANGE STREAMING // STRIPE WEBHOOK FULFILLMENT',
+      uk: '0 SAAS-ЗАЛЕЖНОСТЕЙ (ВЛАСНІ AUTH І ВІДЕО) // HTTP 206 RANGE-СТРІМІНГ // STRIPE WEBHOOKS',
     },
     highlights: {
       en: [
         {
-          text: 'Rebuilt a legacy tutorial codebase into a self-hosted stack: replaced Clerk, Mux, and PlanetScale with Better Auth, a custom video pipeline, and PostgreSQL + Prisma.',
+          text: 'Eliminated third-party SaaS dependencies (Clerk, Mux, PlanetScale) by engineering a self-hosted stack on Better Auth, a custom video delivery pipeline, and PostgreSQL + Prisma.',
         },
         {
-          text: 'Designed a pluggable storage layer (lib/storage): local disk with HTTP Range streaming for video seeking, or Cloudflare R2 — switched by a single env variable.',
+          text: 'Designed a pluggable storage abstraction (lib/storage) supporting both local disk with HTTP 206 Range streaming for instant video seeking and Cloudflare R2 object storage, switched via a single environment variable.',
         },
         {
-          text: 'Integrated Stripe Checkout with webhook-driven purchase fulfillment; free courses enroll instantly without payment.',
+          text: 'Integrated Stripe Checkout with idempotent webhook-driven enrollment fulfillment, alongside instant zero-cost enrollment for free courses.',
         },
         {
-          text: 'Built a course builder with drag-and-drop chapter reordering, per-chapter free/paid access, publish validation, and revenue/sales analytics charts.',
+          text: 'Built an interactive instructor studio featuring drag-and-drop chapter reordering, granular per-chapter free/paid access gates, readiness validation before publishing, and revenue analytics.',
         },
         {
-          text: 'Udemy-style access model: any user can teach; every mutation enforces ownership at the query level.',
+          text: 'Enforced strict resource ownership at the Prisma query layer: any authenticated user can author courses, and every mutation verifies instructor ownership on the server.',
         },
       ],
       uk: [
         {
-          text: 'Перебудовано застарілий туторіальний код у self-hosted стек: Clerk, Mux і PlanetScale замінено на Better Auth, власний відеопайплайн та PostgreSQL + Prisma.',
+          text: 'Повністю замінено сторонні SaaS-сервіси (Clerk, Mux, PlanetScale) на власний self-hosted стек: Better Auth, кастомний пайплайн роздачі відео та PostgreSQL + Prisma.',
         },
         {
-          text: 'Спроєктовано змінний шар сховища (lib/storage): локальний диск із HTTP Range-стрімінгом для перемотування відео або Cloudflare R2 — перемикається однією env-змінною.',
+          text: 'Спроєктовано змінну абстракцію сховища (lib/storage): локальний диск із підтримкою HTTP 206 Range-стрімінгу для миттєвого перемотування відео або хмарне сховище Cloudflare R2 — перемикається однією env-змінною.',
         },
         {
-          text: 'Інтегровано Stripe Checkout із підтвердженням покупки через webhook; безкоштовні курси записують миттєво без оплати.',
+          text: 'Інтегровано Stripe Checkout з обробкою покупок через захищені вебхуки, а також миттєвий запис на безкоштовні курси в один клік.',
         },
         {
-          text: 'Створено конструктор курсів із drag-and-drop сортуванням розділів, безкоштовним/платним доступом на рівні розділу, валідацією публікації та графіками доходів і продажів.',
+          text: 'Створено кабінет викладача з drag-and-drop сортуванням розділів, налаштуванням платного/безкоштовного доступу до окремих уроків, валідацією перед публікацією та графіками продажів.',
         },
         {
-          text: 'Модель доступу в стилі Udemy: будь-який користувач може викладати; кожна мутація перевіряє володіння на рівні запиту.',
+          text: 'Реалізовано перевірку прав володіння на рівні запитів до БД: будь-який користувач може створювати власні курси, а кожна мутація перевіряє авторство на сервері.',
         },
       ],
     },
@@ -116,8 +124,8 @@ export const projectsSeed: ProjectSeed[] = [
       'shadcn/ui',
     ],
     technicalDepth: {
-      en: 'Mutations go through route handlers with client-side revalidation via router.refresh() — a deliberate choice over Server Actions. Optimistic cookie-based auth check in middleware keeps every route private except auth and webhook endpoints. An idempotent seed provisions demo teacher and student accounts with courses, purchases, and progress in one command.',
-      uk: 'Мутації йдуть через route handlers із клієнтською ревалідацією через router.refresh() — свідомий вибір замість Server Actions. Оптимістична перевірка cookie в middleware тримає всі маршрути приватними, крім автентифікації та webhook. Ідемпотентний seed розгортає демо-акаунти викладача і студента з курсами, покупками та прогресом однією командою.',
+      en: 'All write operations flow through typed Next.js Route Handlers paired with deterministic client-side cache invalidation via router.refresh(). Middleware performs fast cookie-based session checks to protect private student and instructor routes while keeping auth and Stripe webhook endpoints accessible. Database provisioning includes an idempotent seed pipeline that sets up demo instructor and student workspaces, multi-chapter video courses, purchase records, and completion progress in a single command.',
+      uk: 'Усі операції запису проходять через типізовані Route Handlers Next.js із детермінованою клієнтською інвалідацією кешу через router.refresh(). Middleware виконує швидку перевірку сесійних cookie, захищаючи приватні маршрути студентів і викладачів та залишаючи відкритими лише ендпоїнти авторизації й вебхуків Stripe. Для швидкого розгортання реалізовано ідемпотентний seed-пайплайн, який однією командою створює демо-акаунти викладача та студента, курси з відео, історію покупок і прогрес проходження.',
     },
     order: 2,
   },
@@ -128,41 +136,45 @@ export const projectsSeed: ProjectSeed[] = [
     repoUrl: 'https://github.com/MaksymZak/ab-landing-demo',
     demoUrl: 'https://ab-landing-demo.vercel.app',
     role: {
-      en: 'Frontend Developer — Sanitized Work Replica',
-      uk: 'Frontend-розробник — знеособлена копія робочої системи',
+      en: 'Frontend / Growth Platform Engineer — Sanitized Production Architecture',
+      uk: 'Frontend / Growth Platform інженер — знеособлена продакшн-архітектура',
     },
     period: { en: '2026', uk: '2026' },
     summary: {
-      en: 'A public, sanitized rebuild of the A/B landing platform I run in production (the original is under NDA): config-driven split tests, weighted traffic rollout, and sticky version assignment — with all employer branding, code, and data removed.',
-      uk: 'Публічна знеособлена реконструкція продакшн-платформи A/B-лендингів (оригінал під NDA): спліт-тести на конфігах, зважений розподіл трафіку та закріплення версії за відвідувачем — без брендингу, коду й даних роботодавця.',
+      en: 'A public, NDA-safe reference implementation of the A/B experimentation engine I built and run in production. Demonstrates zero-flicker Edge middleware traffic splitting, weighted variant rollouts (e.g. 50/30/20), sticky visitor sessions, and fully isolated page variants via Next.js Parallel Routes.',
+      uk: 'Публічна, очищена від NDA-даних еталонна реалізація платформи A/B-експериментів, яку я побудував і підтримую в продакшені. Демонструє розподіл трафіку в Edge Middleware без мерехтіння (zero-flicker), зважений ролаут версій (напр. 50/30/20), закріплення сесій і повну ізоляцію варіантів через паралельні маршрути Next.js.',
+    },
+    metrics: {
+      en: '0 CLS / ZERO-FLICKER EDGE ROUTING // @V1/@V2/@V3 PARALLEL ROUTES // 365-DAY STICKY SESSIONS',
+      uk: '0 CLS / EDGE-РОУТИНГ БЕЗ МЕРЕХТІННЯ // ПАРАЛЕЛЬНІ МАРШРУТИ @V1/@V2/@V3 // 365-ДЕННІ STICKY-СЕСІЇ',
     },
     highlights: {
       en: [
         {
-          text: 'Config-driven experiments: each landing owns a plain _config.ts declaring its versions, active flags, and relative rollout weights (e.g. 50/30/20).',
+          text: 'Declarative experiment configs: each funnel defines its variants, active flags, and relative traffic weights (e.g. 50/30/20) in a co-located _config.ts module.',
         },
         {
-          text: 'Middleware resolves the version in one pass — ?v= preview param, then cookie, then weighted random — and persists it in a 365-day path-scoped cookie for sticky sessions.',
+          text: 'Single-pass Edge Middleware resolution — ?v= QA override param, existing cookie, or weighted random draw — persisted in a 365-day path-scoped cookie for deterministic sticky sessions.',
         },
         {
-          text: 'Each version is a fully independent page via Next.js parallel routes (@v1/@v2/@v3) with its own sections, layout, and theme.',
+          text: 'Complete variant isolation via Next.js Parallel Routes (@v1/@v2/@v3): each variant can ship its own layout, component tree, copy, and visual theme without bundle bloat.',
         },
         {
-          text: 'Deactivating a version excludes it from rollout and reassigns its audience on the next visit, while keeping it reachable via ?v= for QA and stakeholder preview.',
+          text: 'Graceful variant retirement: deactivating a version automatically redistributes its traffic cohort on the next visit while keeping ?v= preview links alive for QA and stakeholders.',
         },
       ],
       uk: [
         {
-          text: 'Експерименти на конфігах: кожен лендинг має власний _config.ts із версіями, прапорцями активності та відносними вагами розподілу (напр. 50/30/20).',
+          text: 'Декларативні конфіги експериментів: кожна воронка описує свої версії, прапорці активності та відносні ваги трафіку (напр. 50/30/20) у локальному модулі _config.ts.',
         },
         {
-          text: 'Middleware визначає версію за один прохід — параметр ?v=, потім cookie, потім зважений випадковий вибір — і зберігає її в cookie на 365 днів у межах шляху лендингу.',
+          text: 'Визначення версії в Edge Middleware за один прохід — параметр ?v= для QA, наявна cookie або зважений випадковий вибір — зі збереженням у path-scoped cookie на 365 днів.',
         },
         {
-          text: 'Кожна версія — повністю незалежна сторінка через паралельні маршрути Next.js (@v1/@v2/@v3) з власними секціями, лейаутом і темою.',
+          text: 'Повна ізоляція варіантів через паралельні маршрути Next.js (@v1/@v2/@v3): кожна версія може мати власний лейаут, дерево компонентів і тему без роздування спільного бандла.',
         },
         {
-          text: 'Деактивація версії виключає її з розподілу та переназначає її аудиторію при наступному візиті, залишаючи доступ через ?v= для QA та превʼю стейкхолдерів.',
+          text: 'Безшовне виведення варіантів з ротації: деактивація версії автоматично перерозподіляє її аудиторію при наступному візиті, зберігаючи прямий доступ за ?v= для QA та стейкхолдерів.',
         },
       ],
     },
@@ -179,50 +191,54 @@ export const projectsSeed: ProjectSeed[] = [
     label: 'live',
     demoUrl: 'https://vartovi.maksymzak.dev/',
     role: {
-      en: 'Full-Stack Developer — Silpo AI Factory hackathon',
-      uk: 'Full-Stack-розробник — хакатон Silpo AI Factory',
+      en: 'Full-Stack Engineer — Silpo AI Factory Hackathon',
+      uk: 'Full-Stack-інженер — хакатон Silpo AI Factory',
     },
     period: {
       en: 'Sep–Oct 2026',
       uk: 'вересень–жовтень 2026',
     },
     summary: {
-      en: 'A Silpo guest buys exact products for a household with different food rules. I keep one guard cart of confirmed SKUs and write the allowed part into the real cart only after an explicit confirmation and a read-back.',
-      uk: 'Гість «Сільпо» купує точні товари для родини з різними харчовими правилами. Я тримаю один вартовий кошик підтверджених SKU і записую дозволену частину в справжній кошик лише після явного підтвердження та повторного зчитування.',
+      en: 'A dietary-safe grocery shopping web app integrated with the official Silpo MCP server. Households configure per-person food restrictions and allergies, assemble a verified "guard cart" of exact SKUs, and transfer only compliant items into their real Silpo cart via an idempotent two-phase confirmation flow.',
+      uk: 'Вебзастосунок для безпечних продуктових покупок з інтеграцією офіційного MCP-сервера «Сільпо». Користувач налаштовує харчові обмеження та алергії для членів родини, формує перевірений «вартовий кошик» точних SKU і переносить лише безпечні позиції в реальний кошик «Сільпо» через ідемпотентний двофазний механізм підтвердження.',
+    },
+    metrics: {
+      en: '3 DOMAIN MODULES // OAUTH 2.1 + PKCE + DCR // AES-256-GCM TOKEN ENVELOPE // 6-STATE IDEMPOTENT CART TRANSFER',
+      uk: '3 ДОМЕННІ МОДУЛІ // OAUTH 2.1 + PKCE + DCR // ШИФРУВАННЯ AES-256-GCM // 6-СТАНОВИЙ ІДЕМПОТЕНТНИЙ ЗАПИС',
     },
     highlights: {
       en: [
         {
-          text: 'I replaced a general auth framework with a server-side OAuth 2.1 Authorization Code + PKCE + Dynamic Client Registration adapter. The browser holds only an opaque HttpOnly session cookie; PostgreSQL stores a SHA-256 of that token, and MCP tokens sit in an AES-256-GCM envelope. One DCR row registers the application, and every guest reuses that client_id.',
+          text: 'Engineered a custom server-side OAuth 2.1 (Authorization Code + PKCE + Dynamic Client Registration) adapter: the browser holds only an opaque HttpOnly cookie, PostgreSQL stores SHA-256 session hashes, and Silpo MCP credentials are encrypted at rest with AES-256-GCM.',
         },
         {
-          text: 'Product rules live in three modules — identity, guard, and cart-transfer — as models, services, and repositories. Pages and route handlers call a module\'s public API. They do not open PostgreSQL or the MCP transport, and models do not import Next.js, Drizzle, or the MCP SDK.',
+          text: 'Structured the backend as a modular monolith with three isolated domains (identity, guard, cart-transfer): Route Handlers and Server Actions invoke domain services, while pure domain models remain zero-dependency (no Next.js, Drizzle, or MCP SDK imports).',
         },
         {
-          text: 'Readiness is a pure policy over required items only. A line counts when it is available and guest-confirmed or explicit-label. needs-review and unavailable-or-not-found stay out of the ready count and the write set. thresholdReached is ready/required ≥ 0.8; fullyReady is ready === required with required > 0, so 4/5 never becomes full readiness.',
+          text: 'Implemented a deterministic dietary-compliance policy over required shopping items: only available, verified SKUs (explicit label match or user confirmation) enter the transfer set, enforcing strict readiness thresholds (≥80% partial vs. 100% full readiness).',
         },
         {
-          text: 'The guard cart is our aggregate, separate from the Silpo cart. A partial unique index allows one active cart per guest. Any draft change bumps draft_revision, and a snapshot stays usable for review and commit only while cart_revision matches. The write uses the product and company UUIDs saved on that snapshot.',
+          text: 'Designed the guard cart as an isolated aggregate with optimistic concurrency control: a partial unique index enforces one active cart per guest, and any draft edit increments draft_revision to invalidate stale pre-transfer snapshots.',
         },
         {
-          text: 'The cart write is a state machine (prepared → writing → reconciling → succeeded, partial, failed, or uncertain) with a hashed one-time confirmation nonce and an idempotency key. A PostgreSQL transaction records intent before and after the MCP call and does not wrap that call. Retry is limited to lines whose read-back still equals the baseline quantity. Checkout links are kept only from that read-back, and only for https on silpo.ua or a subdomain.',
+          text: 'Built a fault-tolerant cart transfer state machine (prepared → writing → reconciling → succeeded / partial / failed / uncertain) with one-time confirmation nonces, idempotency keys, and post-write MCP read-back reconciliation outside the DB transaction.',
         },
       ],
       uk: [
         {
-          text: 'Замість загального auth-фреймворка я зібрав серверний адаптер OAuth 2.1 Authorization Code + PKCE + Dynamic Client Registration. У браузері лишається лише непрозора HttpOnly session cookie; у PostgreSQL — SHA-256 цього токена, а токени MCP — у конверті AES-256-GCM. Один запис DCR реєструє застосунок, і кожен гість перевикористовує той самий client_id.',
+          text: 'Розроблено власний серверний адаптер OAuth 2.1 (Authorization Code + PKCE + Dynamic Client Registration): браузер зберігає лише непрозору HttpOnly cookie, у PostgreSQL лежать SHA-256 хеші сесій, а токени Silpo MCP шифруються в AES-256-GCM.',
         },
         {
-          text: 'Правила продукту живуть у трьох модулях — identity, guard і cart-transfer — як моделі, сервіси й репозиторії. Сторінки та route handlers викликають публічний API модуля. Вони не відкривають PostgreSQL і транспорт MCP, а моделі не імпортують Next.js, Drizzle чи MCP SDK.',
+          text: 'Архітектура побудована як модульний моноліт із трьома ізольованими доменами (identity, guard, cart-transfer): Route Handlers і Server Actions викликають сервіси модулів, а чисті доменні моделі не залежать від Next.js, Drizzle чи MCP SDK.',
         },
         {
-          text: 'Готовність — чиста політика лише над обов’язковими позиціями. Рядок входить у рахунок, коли він доступний і має статус guest-confirmed або explicit-label. needs-review і unavailable-or-not-found не входять ні в готовий рахунок, ні в набір на запис. thresholdReached — це ready/required ≥ 0.8; fullyReady — ready === required і required > 0, тож 4/5 ніколи не стає повною готовністю.',
+          text: 'Реалізовано детерміновану політику перевірки складу та правил харчування: у набір на перенесення потрапляють лише доступні та верифіковані SKU із жорстким контролем порогів готовності кошика (≥80% часткова та 100% повна готовність).',
         },
         {
-          text: 'Вартовий кошик — наш агрегат, окремий від кошика «Сільпо». Частковий унікальний індекс дозволяє один активний кошик на гостя. Будь-яка зміна чернетки піднімає draft_revision, і знімок лишається придатним для розбору й запису, лише поки cart_revision збігається. Запис бере product і company UUID, збережені на цьому знімку.',
+          text: 'Спроєктовано «вартовий кошик» як окремий агрегат із оптимістичним контролем конкурентності: частковий унікальний індекс гарантує один активний кошик на гостя, а будь-яка правка чернетки інвалідує застарілі знімки перевірки через ревізії.',
         },
         {
-          text: 'Запис у кошик — автомат станів (prepared → writing → reconciling → succeeded, partial, failed або uncertain) з хешем одноразового nonce підтвердження та ключем ідемпотентності. Транзакція PostgreSQL фіксує намір до і після виклику MCP і не обгортає сам виклик. Повтор обмежений рядками, де повторне зчитування досі дорівнює baseline. Посилання на checkout зберігаються лише з цього зчитування і лише для https на silpo.ua або піддомені.',
+          text: 'Побудовано відмовостійкий автомат станів запису в реальний кошик (prepared → writing → reconciling → succeeded / partial / failed / uncertain) з одноразовими nonce підтвердження, ключами ідемпотентності та повторним читанням (read-back) стану через MCP поза транзакцією БД.',
         },
       ],
     },
@@ -237,8 +253,8 @@ export const projectsSeed: ProjectSeed[] = [
       'MCP SDK',
     ],
     technicalDepth: {
-      en: 'The app is one Next.js modular monolith. Browser traffic stops at Server Components, Server Actions, and Route Handlers, which re-check the session and pass a validated command into a module service. Services load models, run policies, and persist through that module\'s repository. Identity owns guests, hashed sessions, one-time OAuth transactions, and encrypted credentials. Guard owns recipients, rules, the single active cart, and immutable check snapshots. Cart-transfer owns write attempts and a sanitized trace that keeps the tool name, kind, timing, and status. The official MCP at https://mcp.silpo.ua/mcp is the only channel to Silpo data and to the real cart. Zod validates MCP payloads at the adapter, and repositories do not return raw payloads above that boundary.\n\nThe manual check is read-only and ends in an immutable snapshot tied to the current draft revision. The write is a separate confirmed command. PostgreSQL commits our attempt state in its own transaction; the MCP call sits outside that transaction. If the process dies after a write, an uncertain or stuck writing state is resolved by reading the real cart again. A line is retried only when that read-back shows the quantity never left the baseline. The app does not take payment: a checkout link is stored only when the read-back is clean and the URL is https on silpo.ua.',
-      uk: 'Застосунок — один модульний моноліт на Next.js. Браузерний трафік зупиняється на Server Components, Server Actions і Route Handlers: вони наново перевіряють сесію і передають валідовану команду в сервіс модуля. Сервіс завантажує моделі, виконує політики і зберігає результат через репозиторій свого модуля. Identity тримає гостей, хеші сесій, одноразові OAuth-транзакції й зашифровані облікові дані. Guard тримає адресатів, правила, єдиний активний кошик і незмінні знімки перевірки. Cart-transfer тримає спроби запису і очищений трейс: назва tool, вид, час і статус. Єдиний канал до даних «Сільпо» і до справжнього кошика — офіційний MCP https://mcp.silpo.ua/mcp. Zod перевіряє payload MCP на межі адаптера, і репозиторії не віддають сирий payload вище цієї межі.\n\nРучна перевірка лише читає і завершується незмінним знімком, прив’язаним до поточної ревізії чернетки. Запис — окрема підтверджена команда. PostgreSQL фіксує стан спроби у своїй транзакції; виклик MCP лежить поза нею. Якщо процес падає після запису, стан uncertain або зависший writing закривається повторним читанням справжнього кошика. Рядок іде на повтор лише коли це читання показує, що кількість не зрушила з baseline. Оплати в застосунку немає: посилання на checkout зберігається лише з чистого read-back і лише для https на silpo.ua.',
+      en: 'The application is architected as a strict Next.js 16 modular monolith. Incoming browser requests terminate at Server Components, Server Actions, and Route Handlers, which validate the session and dispatch typed commands to domain services. Identity manages guest profiles, hashed sessions, one-time OAuth 2.1 PKCE state, and AES-256-GCM encrypted MCP tokens. Guard owns household dietary profiles, ingredient rules, the active guard cart, and immutable verification snapshots. Cart-transfer manages external write attempts and a sanitized audit trace (tool name, operation kind, latency, and outcome). All communication with Silpo goes exclusively through the official MCP endpoint (https://mcp.silpo.ua/mcp) with strict Zod 4 boundary validation.\n\nPre-checkout verification is strictly read-only and produces an immutable snapshot bound to the current cart revision. Executing the transfer requires a separate user-confirmed command: PostgreSQL commits the write intent before and after the external MCP call without holding an open database transaction across network I/O. If a network drop or process crash leaves an attempt in an uncertain state, recovery reconciles against the live Silpo cart and retries only lines whose quantity has not moved from the baseline. Validated checkout URLs are accepted only from clean read-backs on https://silpo.ua subdomains.',
+      uk: 'Застосунок побудовано як строгий модульний моноліт на Next.js 16. Браузерні запити обробляються на рівні Server Components, Server Actions і Route Handlers, які валідують сесію та передають типізовані команди в доменні сервіси. Модуль Identity відповідає за профілі гостей, хешовані сесії, одноразові OAuth 2.1 PKCE-транзакції та зашифровані AES-256-GCM токени MCP. Модуль Guard керує харчовими правилами учасників родини, активним вартовим кошиком і незмінними знімками перевірки. Модуль Cart-transfer веде спроби зовнішнього запису та очищений аудит-трейс (назва MCP-інструмента, тип операції, тривалість і статус). Взаємодія із «Сільпо» відбувається виключно через офіційний MCP-сервер (https://mcp.silpo.ua/mcp) із жорсткою Zod 4 валідацією на межі адаптера.\n\nПопередня перевірка працює лише на читання й формує незмінний знімок, прив’язаний до поточної ревізії чернетки. Перенесення товарів — окрема підтверджена команда: PostgreSQL фіксує намір до та після зовнішнього виклику MCP, не утримуючи транзакцію відкритою під час мережевого запиту. У разі збою мережі або падіння процесу стан uncertain узгоджується повторним читанням реального кошика «Сільпо», а повторний запис виконується лише для позицій, де кількість не змінилася відносно baseline. Посилання на checkout приймаються виключно після чистого read-back і лише для піддоменів https://silpo.ua.',
     },
     order: 1,
   },

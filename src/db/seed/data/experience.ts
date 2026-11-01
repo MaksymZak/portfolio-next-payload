@@ -11,16 +11,16 @@ export const experienceData: Record<
       period: 'June 2024 — Present',
       bullets: [
         {
-          text: 'Build and run the campaign landing system on Next.js, Astro, and Payload CMS; editors publish bilingual pages without a developer.',
+          text: 'Architected the Next.js, Astro, and Payload CMS marketing platform, enabling editors to launch bilingual campaigns without developer involvement.',
         },
         {
-          text: 'Built the A/B testing platform end to end: experiments in Payload CMS, atomic impression counters, first-touch analytics, CRM integration.',
+          text: 'Engineered an end-to-end A/B testing engine with edge assignment, atomic impression counters, first-touch attribution, and CRM lead sync.',
         },
         {
-          text: "Set up the team's agent workflow: custom skills and subagents, plus a two-agent layout pipeline — mockup breakdown, review gate, build, semantics check.",
+          text: 'Built a deterministic two-agent AI delivery pipeline (Figma breakdown, review gate, Astro/Next.js build, and semantic/a11y verification).',
         },
         {
-          text: 'Mentor a junior developer: code review, task breakdown, onboarding.',
+          text: 'Lead code reviews, task decomposition, architectural standards, and technical onboarding/mentoring within the frontend team.',
         },
       ],
       order: 1,
@@ -31,13 +31,13 @@ export const experienceData: Record<
       period: 'July 2022 — April 2024',
       bullets: [
         {
-          text: 'Delivered 150+ landing pages and CRM frontends with React and Gulp.',
+          text: 'Developed 150+ high-conversion marketing funnels and internal CRM web interfaces using React, TypeScript/JavaScript, Tailwind CSS, and Gulp.',
         },
         {
-          text: 'Worked with designers and backend developers on pixel-accurate UI.',
+          text: 'Built reusable UI component libraries, multi-step validated forms, and REST API integrations in close collaboration with product and backend teams.',
         },
         {
-          text: 'Improved performance and maintainability of long-running projects.',
+          text: 'Optimized Core Web Vitals (LCP, CLS, bundle size) and refactored legacy frontend codebases for long-term maintainability.',
         },
       ],
       order: 2,
@@ -50,16 +50,16 @@ export const experienceData: Record<
       period: 'Червень 2024 — дотепер',
       bullets: [
         {
-          text: 'Веду систему лендингів для рекламних кампаній на Next.js, Astro і Payload CMS; редактори публікують двомовні сторінки без розробника.',
+          text: 'Спроєктував маркетингову платформу на Next.js, Astro і Payload CMS, що дало змогу редакторам запускати двомовні кампанії без участі розробника.',
         },
         {
-          text: 'Побудував A/B-платформу наскрізно: експерименти в Payload CMS, атомарні лічильники показів, first-touch аналітика, інтеграція з CRM.',
+          text: 'Побудував наскрізну A/B-платформу: Edge-розподіл трафіку, атомарні лічильники показів, first-touch аналітика конверсій та інтеграція з CRM.',
         },
         {
-          text: "Налаштував агентний воркфлоу команди: власні skills і субагенти та пайплайн верстки з двох агентів — розбір макета, рев'ю, верстка, перевірка семантики.",
+          text: "Впровадив детермінований двоагентний AI-пайплайн доставки (декомпозиція макета Figma, рев'ю-гейт, верстка та перевірка семантики/a11y).",
         },
         {
-          text: "Менторю junior-розробника: код-рев'ю, декомпозиція задач, онбординг.",
+          text: "Проводжу код-рев'ю, декомпозицію задач, підтримую архітектурні стандарти та менторю молодших розробників у команді.",
         },
       ],
       order: 1,
@@ -70,13 +70,13 @@ export const experienceData: Record<
       period: 'Липень 2022 — квітень 2024',
       bullets: [
         {
-          text: 'Створив і здав 150+ лендингів та CRM-фронтендів на React і Gulp.',
+          text: 'Розробив і запустив 150+ висококонверсійних маркетингових воронок та інтерфейсів внутрішніх CRM-систем на React, JS/TS, Tailwind CSS і Gulp.',
         },
         {
-          text: 'Працював із дизайнерами та бекенд-розробниками над піксель-точним UI.',
+          text: "Створював перевикористовувані UI-компоненти, багатокрокові форми з валідацією та інтеграції з REST API у зв'язці з продуктовою і бекенд-командами.",
         },
         {
-          text: 'Покращував продуктивність і підтримуваність довгострокових проєктів.',
+          text: 'Оптимізував Core Web Vitals (LCP, CLS, розмір бандлів) і проводив рефакторинг довгострокових проєктів для спрощення їх підтримки.',
         },
       ],
       order: 2,
