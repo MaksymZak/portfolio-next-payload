@@ -1,4 +1,37 @@
+import config from '@payload-config'
+import { REST_DELETE, REST_GET, REST_OPTIONS, REST_PATCH, REST_PUT } from '@payloadcms/next/routes'
+
 import { recordVisit } from '@/server/services/record-visit'
+
+const restGet = REST_GET(config)
+const restDelete = REST_DELETE(config)
+const restPatch = REST_PATCH(config)
+const restPut = REST_PUT(config)
+const restOptions = REST_OPTIONS(config)
+
+function visitsArgs() {
+  return { params: Promise.resolve({ slug: ['visits'] }) }
+}
+
+export function GET(request: Request) {
+  return restGet(request, visitsArgs())
+}
+
+export function DELETE(request: Request) {
+  return restDelete(request, visitsArgs())
+}
+
+export function PATCH(request: Request) {
+  return restPatch(request, visitsArgs())
+}
+
+export function PUT(request: Request) {
+  return restPut(request, visitsArgs())
+}
+
+export function OPTIONS(request: Request) {
+  return restOptions(request, visitsArgs())
+}
 
 const ONE_YEAR_SECONDS = 60 * 60 * 24 * 365
 
