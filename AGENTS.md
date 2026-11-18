@@ -68,6 +68,7 @@ src/
 │   ├── (frontend)/               # public site
 │   │   └── [locale]/             # home, resume, archive, case/[slug]
 │   ├── (payload)/                # Payload admin + API routes
+│   ├── api/                      # public route handlers (visits beacon) beside Payload's /api catch-all
 │   ├── sitemap.ts
 │   └── robots.ts
 ├── components/
@@ -86,6 +87,7 @@ src/
 │   └── seed/                     # idempotent seed script
 ├── server/
 │   ├── repositories/             # cached read accessors (getSettings, getHome, …)
+│   ├── services/                 # write path (visit log, owner cookie) — not a cached repository
 │   ├── cache/                    # CACHE_TAGS, cachedQuery, revalidation hooks
 │   └── types.ts                  # DataLocale, shared server types
 ├── lib/                          # pure utilities (cn, metadata, brutalist-motion, home-scroll)

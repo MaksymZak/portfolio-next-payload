@@ -6,6 +6,7 @@ import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
 import sharp from 'sharp'
 import { collections } from '@/config/collections'
+import { claimOwnerEndpoint } from '@/config/endpoints/claim-owner'
 import { revalidateSiteCacheEndpoint } from '@/config/endpoints/revalidate-site-cache'
 import { globals } from '@/config/globals'
 
@@ -23,12 +24,13 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
     components: {
+      providers: ['@/components/admin/ClaimOwnerCookie#ClaimOwnerCookie'],
       settingsMenu: ['@/components/admin/RevalidateCacheMenuItem#RevalidateCacheMenuItem'],
     },
   },
   collections: collections,
   globals,
-  endpoints: [revalidateSiteCacheEndpoint],
+  endpoints: [revalidateSiteCacheEndpoint, claimOwnerEndpoint],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

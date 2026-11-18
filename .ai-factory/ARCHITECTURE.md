@@ -73,7 +73,7 @@ src/
 │   │   ├── tags.ts                # CACHE_TAGS constants
 │   │   ├── query.ts               # cachedQuery (unstable_cache wrapper)
 │   │   └── revalidate.ts          # Payload hooks → revalidateTag / revalidatePath
-│   ├── services/                  # reserved for future business logic (empty on MVP)
+│   ├── services/                  # write-side orchestration (visit log, owner cookie)
 │   └── types.ts                   # DataLocale, shared server types
 │
 ├── lib/                           # pure utilities (cn, metadata, brutalist-motion)
@@ -93,7 +93,7 @@ messages/
 | --- | --- | --- |
 | **Presentation** | `app/(frontend)/*`, `components/*` | RSC pages fetch data and compose UI; client components handle
 where state, DOM APIs, or browser APIs are needed |
-| **Application** | `server/repositories/*` | Locale-aware read accessors; one function per domain entity |
+| **Application** | `server/repositories/*`, `server/services/*` | Repositories are locale-aware read accessors. Services own write paths. `visits` is written by `recordVisit` and is not a cached repository. |
 | **Infrastructure** | `db/*`, `config/*`, `server/cache/*`, `payload.config.ts` | Payload client, schema, caching, revalidation |
 | **Shared utilities** | `lib/*`, `i18n/*`, `messages/*` | Framework-agnostic helpers and i18n config |
 
@@ -102,6 +102,7 @@ where state, DOM APIs, or browser APIs are needed |
 Dependencies flow **downward** — outer layers call inner layers, never the reverse.
 
 - ✅ RSC pages / layouts → `@/server/repositories`
+- ✅ Route handlers and Payload endpoints → `@/server/services` for writes (`recordVisit`, owner cookie)
 - ✅ Repositories → `@/db/client`, `@/server/cache`, `@/payload-types`
 - ✅ Seed script → `@/db/client` (same entry point as repositories)
 - ✅ Payload hooks in `config/` → `@/server/cache/revalidate`
@@ -197,7 +198,7 @@ Rules:
 
 1. **Single Payload entry point** — `getPayloadClient()` in `src/db/get-payload-client.ts` is the only way to reach Payload Local API from app code.
 2. **Repositories are the public data API** — pages and layouts import from `@/server/repositories`, never from `db/` directly (except seed).
-3. **Thin pages, fat composition** — route files orchestrate fetches and wire sections; business logic stays in repositories (MVP) or future `server/services/`.
+3. **Thin pages, fat composition** — route files orchestrate fetches and wire sections; reads stay in repositories, writes in `server/services/`.
 4. **Minimize client bundle** — no framer-motion; CSS transitions + Radix `data-state`; `optimizePackageImports: ['lucide-react']`. Brutalist hover/active motion is centralized in `src/lib/brutalist-motion.ts` (`APPROVED_MOTION_BY_PATTERN` R01–R15); UI primitives and layout helpers import from there — do not scatter ad-hoc translate/shadow classes.
 5. **Content vs chrome separation** — static UI strings in next-intl; editorial content in Payload with field-level locales.
 6. **Tagged cache by domain** — one `CACHE_TAGS.*` per repository domain; hooks invalidate the matching tag on admin edit.
@@ -291,6 +292,8 @@ hooks: {
 | `/[locale]/case/[slug]` | SSG | project by slug; `generateStaticParams` from all slugs × locales |
 | `/admin` | Payload admin | — |
 | `/api/*` | Payload REST | — |
+| `POST /api/visits` | public route handler | client beacon → `recordVisit` → `visits` (no cache tag, no repository). At most 20 new sessions per 10 minutes. Owner rows are unreadable in admin, including by id. |
+| `POST /api/claim-owner` | Payload endpoint | authenticated admin session sets the `mz_owner` cookie |
 | `/sitemap.xml`, `/robots.txt` | static routes | projects slugs for case URLs |
 
 ## Evolution Path
@@ -299,7 +302,7 @@ Current state is appropriate for MVP. Consider these migrations only when trigge
 
 | Signal | Action |
 | --- | --- |
-| Write paths (forms, mutations, server actions) grow | Add `server/services/` for orchestration; keep repositories read-focused |
+| Write paths (forms, mutations, server actions) grow | `server/services/` already owns the visit log; keep repositories read-focused |
 | Complex validation or cross-entity rules | Extract domain types/functions into `server/domain/` |
 | Feature folders exceed ~500 LOC with tangled imports | Split into vertical slices under `components/` or introduce feature modules |
 | Independent scaling or team boundaries | Unlikely for this project — stay monolith |

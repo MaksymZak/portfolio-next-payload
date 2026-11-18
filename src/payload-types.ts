@@ -73,6 +73,7 @@ export interface Config {
     experience: Experience;
     archive: Archive;
     projects: Project;
+    visits: Visit;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -86,6 +87,7 @@ export interface Config {
     experience: ExperienceSelect<false> | ExperienceSelect<true>;
     archive: ArchiveSelect<false> | ArchiveSelect<true>;
     projects: ProjectsSelect<false> | ProjectsSelect<true>;
+    visits: VisitsSelect<false> | VisitsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -312,6 +314,29 @@ export interface Project {
   createdAt: string;
 }
 /**
+ * Owner sessions are stored and hidden from this list.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "visits".
+ */
+export interface Visit {
+  id: number;
+  visitorId: string;
+  owner?: boolean | null;
+  locale?: ('en' | 'uk') | null;
+  country?: string | null;
+  referrer?: string | null;
+  ref?: string | null;
+  paths?:
+    | {
+        path: string;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
@@ -358,6 +383,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'projects';
         value: number | Project;
+      } | null)
+    | ({
+        relationTo: 'visits';
+        value: number | Visit;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -523,6 +552,26 @@ export interface ProjectsSelect<T extends boolean = true> {
   demoUrl?: T;
   screenshot?: T;
   order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "visits_select".
+ */
+export interface VisitsSelect<T extends boolean = true> {
+  visitorId?: T;
+  owner?: T;
+  locale?: T;
+  country?: T;
+  referrer?: T;
+  ref?: T;
+  paths?:
+    | T
+    | {
+        path?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }

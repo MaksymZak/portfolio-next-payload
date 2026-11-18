@@ -7,6 +7,7 @@ import type { ReactNode } from 'react'
 
 import { SkipLink } from '@/components/layout/skip-link'
 import { ThemeProvider } from '@/components/layout/theme-provider'
+import { VisitBeacon } from '@/components/layout/visit-beacon'
 import { routing } from '@/i18n/routing'
 import { buildPageMetadata, buildSiteName, getSiteUrl } from '@/lib/metadata'
 import { getHome, getSettings } from '@/server/repositories'
@@ -79,6 +80,7 @@ export default async function LocaleLayout({ children, params }: Props) {
         <ThemeProvider>
           <NextIntlClientProvider locale={locale} messages={messages}>
             <SkipLink />
+            <VisitBeacon locale={locale} />
             {children}
           </NextIntlClientProvider>
         </ThemeProvider>
