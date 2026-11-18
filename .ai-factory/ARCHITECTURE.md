@@ -292,7 +292,7 @@ hooks: {
 | `/[locale]/case/[slug]` | SSG | project by slug; `generateStaticParams` from all slugs × locales |
 | `/admin` | Payload admin | — |
 | `/api/*` | Payload REST | — |
-| `POST /api/visits` | public route handler | client beacon → `recordVisit` → `visits` (no cache tag, no repository). At most 20 new sessions per 10 minutes. Owner rows are unreadable in admin, including by id. |
+| `POST /api/visits` | public route handler | Beacon `POST` writes through `recordVisit` (20 new sessions per 10 minutes). `GET`, `DELETE`, `PATCH`, and `PUT` on the same path are forwarded to Payload so the admin can list and delete. Owner rows stay out of the admin list. |
 | `POST /api/claim-owner` | Payload endpoint | authenticated admin session sets the `mz_owner` cookie |
 | `/sitemap.xml`, `/robots.txt` | static routes | projects slugs for case URLs |
 
