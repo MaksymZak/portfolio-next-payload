@@ -2,6 +2,7 @@ import type { CollectionConfig } from 'payload'
 
 export const Visits: CollectionConfig = {
   slug: 'visits',
+  lockDocuments: false,
   admin: {
     useAsTitle: 'visitorId',
     defaultColumns: ['createdAt', 'country', 'locale', 'referrer', 'ref', 'owner'],
@@ -15,14 +16,7 @@ export const Visits: CollectionConfig = {
   access: {
     create: () => false,
     update: () => false,
-    read: ({ req }) => {
-      if (!req.user) return false
-      return {
-        owner: {
-          not_equals: true,
-        },
-      }
-    },
+    read: ({ req }) => Boolean(req.user),
     delete: ({ req }) => Boolean(req.user),
   },
   fields: [
