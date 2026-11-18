@@ -30,6 +30,7 @@ Personal portfolio site with a CMS-backed public frontend. Built as a Next.js Ap
 - Bilingual content via Payload field localization + next-intl UI chrome
 - Tagged Data Cache with admin-triggered revalidation
 - SEO: metadata, hreflang, sitemap, robots
+- Private visit log: a client beacon writes one session per visitor, an owner cookie is set only after admin login, and raw IP is not stored
 
 ## Non-Functional Requirements
 
