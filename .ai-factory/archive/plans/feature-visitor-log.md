@@ -1,3 +1,7 @@
+---
+archived: 2026-11-18
+---
+
 # Implementation Plan: Visitor Log
 
 Branch: feature/visitor-log
